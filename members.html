@@ -5,124 +5,110 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Members | BNI Grano Chapter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#FDF7F0;--coral:#E85D4A;--coral-light:#FF8A7A;--teal:#2B8A8A;--gold:#E8A838;--gold-light:#FFD07A;--purple:#8E6BA8;--navy:#1E2D4A;--text:#2D2D2D;--text-sub:#666;--white:#fff}
+:root{--navy:#0F1B2D;--navy-light:#1A2D47;--amber:#C8943E;--amber-light:#D4A855;--white:#FFFFFF;--offwhite:#F8F7F5;--gray50:#FAFAF9;--text:#1A1A1A;--text-sub:#5A5A5A;--text-muted:#8A8A8A;--border:#E5E3E0}
 html{scroll-behavior:smooth}
-body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh}
+body{font-family:'Noto Sans JP','Inter',sans-serif;background:var(--offwhite);color:var(--text);overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,247,240,.95);backdrop-filter:blur(12px);border-bottom:2px solid var(--coral);padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:'Zen Maru Gothic',sans-serif;font-size:18px;font-weight:900;color:var(--coral)}
-.nav-links{display:flex;gap:20px}
-.nav-links a{color:var(--text-sub);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:1px;transition:color .3s;padding:4px 0;border-bottom:2px solid transparent}
-.nav-links a:hover,.nav-links a.active{color:var(--coral);border-bottom-color:var(--coral)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,27,45,.97);backdrop-filter:blur(12px);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:3px;color:var(--amber);text-transform:uppercase}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--amber)}
 
-/* HERO */
-.hero{
-  padding:120px 20px 60px;text-align:center;position:relative;
-  background:linear-gradient(135deg,#FFF5EB 0%,#FFE8D6 30%,#E8D5F5 70%,#D6E8FF 100%);
-}
-.hero-label{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--coral);margin-bottom:12px;font-weight:700}
-.hero-title{font-family:'Zen Maru Gothic',sans-serif;font-weight:900;font-size:clamp(28px,5vw,48px);line-height:1.4;margin-bottom:16px;color:var(--navy)}
-.hero-title .accent{color:var(--coral);position:relative;display:inline-block}
-.hero-title .accent::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:8px;background:var(--gold-light);opacity:.5;z-index:-1}
-.hero-sub{font-size:16px;color:var(--text-sub);max-width:600px;margin:0 auto 40px;line-height:1.8}
-.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
-.stat{text-align:center;background:var(--white);padding:20px 28px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.05)}
-.stat-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--coral)}
-.stat-label{font-size:12px;color:var(--text-sub);letter-spacing:2px;margin-top:4px;font-weight:700}
+.hero{padding:120px 24px 64px;text-align:center;background:var(--navy);color:var(--white)}
+.hero-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+.hero-title{font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,4.5vw,44px);line-height:1.4;margin-bottom:16px}
+.hero-title .accent{color:var(--amber)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.5);max-width:560px;margin:0 auto 40px;line-height:1.8}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.stat{text-align:center;padding:16px 24px;border:1px solid rgba(255,255,255,.1)}
+.stat-num{font-family:'Inter',sans-serif;font-size:40px;font-weight:700;color:var(--amber)}
+.stat-label{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:3px;margin-top:4px;font-weight:600;text-transform:uppercase}
 
-/* LEADERSHIP */
-.leadership{padding:60px 20px;max-width:960px;margin:0 auto}
-.section-label{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--coral);text-align:center;margin-bottom:8px;font-weight:700}
-.section-title{font-family:'Zen Maru Gothic',sans-serif;font-size:clamp(22px,3.5vw,32px);font-weight:900;text-align:center;margin-bottom:40px;color:var(--navy)}
+.leadership{padding:64px 24px;max-width:880px;margin:0 auto}
+.section-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--amber);text-align:center;margin-bottom:12px}
+.section-title{font-family:'Noto Serif JP',serif;font-size:clamp(20px,3vw,30px);font-weight:700;text-align:center;margin-bottom:40px;color:var(--navy)}
 .lead-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.lead-card{background:var(--white);border-radius:16px;padding:24px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.05);border-top:4px solid var(--coral);transition:transform .3s}
-.lead-card:hover{transform:translateY(-4px)}
-.lead-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--coral);margin-bottom:8px;font-weight:700}
-.lead-name{font-family:'Zen Maru Gothic',sans-serif;font-size:20px;font-weight:900;color:var(--navy);margin-bottom:6px}
+.lead-card{background:var(--white);padding:24px;text-align:center;border:1px solid var(--border);transition:box-shadow .3s}
+.lead-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.lead-title{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.lead-name{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px}
 .lead-cat{font-size:13px;color:var(--text-sub)}
 
-/* FILTER */
-.filter-section{padding:20px 20px;max-width:1200px;margin:0 auto;text-align:center;position:sticky;top:52px;z-index:50;background:rgba(253,247,240,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,93,74,.1)}
-.filter-buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.filter-section{padding:16px 24px;max-width:1200px;margin:0 auto;text-align:center;position:sticky;top:56px;z-index:50;background:rgba(248,247,245,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.filter-buttons{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .filter-btn{
-  padding:8px 18px;border:1.5px solid #ddd;border-radius:50px;
-  background:var(--white);color:var(--text-sub);font-size:13px;
+  padding:7px 16px;border:1px solid var(--border);
+  background:var(--white);color:var(--text-sub);font-size:12px;
   cursor:pointer;transition:all .3s;font-family:'Noto Sans JP',sans-serif;font-weight:500;
 }
-.filter-btn:hover{border-color:var(--fc,var(--coral));color:var(--fc,var(--coral));background:rgba(232,93,74,.03)}
-.filter-btn.active{background:var(--fc,var(--coral));color:var(--white);border-color:var(--fc,var(--coral));font-weight:700}
-.filter-btn small{opacity:.7;font-size:11px}
+.filter-btn:hover{border-color:var(--fc,var(--amber));color:var(--fc,var(--amber))}
+.filter-btn.active{background:var(--fc,var(--navy));color:var(--white);border-color:var(--fc,var(--navy));font-weight:600}
+.filter-btn small{opacity:.6;font-size:10px}
 
-/* MEMBER GRID */
-.members-section{padding:30px 20px 80px;max-width:1200px;margin:0 auto}
+.members-section{padding:32px 24px 80px;max-width:1200px;margin:0 auto}
 .member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
 @media(max-width:400px){.member-grid{grid-template-columns:1fr}}
 
 .member-card{
-  background:var(--white);border-radius:16px;border:1px solid #eee;
+  background:var(--white);border:1px solid var(--border);
   padding:0;overflow:hidden;transition:transform .3s,box-shadow .3s;
 }
-.member-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.member-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,.06)}
 .member-card.hidden{display:none}
 
-.m-header{display:flex;gap:12px;align-items:flex-start;padding:20px 20px 12px;border-left:4px solid;margin:0}
+.m-header{display:flex;gap:12px;align-items:flex-start;padding:20px 20px 12px;border-left:3px solid;margin:0}
 .m-num{
-  width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  color:#fff;font-family:'Playfair Display',serif;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;
 }
-.m-name{font-family:'Zen Maru Gothic',sans-serif;font-size:17px;font-weight:900;line-height:1.3;color:var(--navy)}
-.m-kana{font-size:11px;color:var(--text-sub);font-weight:400;margin-left:8px;font-family:'Noto Sans JP',sans-serif}
-.m-cat{font-size:13px;color:var(--coral);margin-top:2px;font-weight:700}
-.m-company{font-size:12px;color:var(--text-sub);margin-top:1px}
+.m-name{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:700;line-height:1.3;color:var(--navy)}
+.m-kana{font-size:10px;color:var(--text-muted);font-weight:400;margin-left:8px}
+.m-cat{font-size:12px;color:var(--amber);margin-top:2px;font-weight:600;letter-spacing:.5px}
+.m-company{font-size:11px;color:var(--text-muted);margin-top:1px}
 
 .m-desc{padding:0 20px 12px;font-size:13px;line-height:1.8;color:var(--text-sub)}
 
 .m-want{
   padding:10px 16px;margin:0 12px 12px;
-  background:#FFF8F0;border-left:3px solid var(--gold-light);border-radius:8px;
+  background:rgba(200,148,62,.04);border-left:2px solid var(--amber);
   font-size:12px;line-height:1.7;color:var(--text-sub);
 }
 .m-want-label{
-  display:inline-block;font-size:10px;letter-spacing:1px;
-  color:var(--coral);font-weight:700;margin-right:8px;
-  padding:2px 10px;background:rgba(232,93,74,.08);border-radius:20px;
+  display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--amber);font-weight:600;margin-right:8px;
+  padding:2px 8px;border:1px solid rgba(200,148,62,.3);
 }
 
 .m-footer{padding:10px 20px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.m-circle-tag{font-size:11px;padding:4px 12px;border:1.5px solid;border-radius:20px;font-weight:600}
-.m-role{font-size:11px;color:var(--text-sub);font-style:italic}
+.m-circle-tag{font-size:10px;padding:3px 10px;border:1px solid;font-weight:500;letter-spacing:.5px}
+.m-role{font-size:10px;color:var(--text-muted)}
 
-/* CONTACT CIRCLES */
-.circles-section{padding:60px 20px;max-width:960px;margin:0 auto}
+.circles-section{padding:64px 24px;max-width:880px;margin:0 auto}
 .circles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
 .circle-item{
   display:flex;align-items:center;gap:10px;padding:14px 16px;
-  background:var(--white);border-radius:12px;border:1px solid #eee;
-  transition:all .3s;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.03);
+  background:var(--white);border:1px solid var(--border);
+  transition:all .3s;cursor:pointer;
 }
-.circle-item:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.circle-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.circle-item:hover{box-shadow:0 4px 16px rgba(0,0,0,.05);transform:translateY(-2px)}
+.circle-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .circle-name{font-size:13px;font-weight:500}
-.circle-count{font-size:11px;color:var(--text-sub);margin-left:auto;font-weight:700}
+.circle-count{font-size:11px;color:var(--text-muted);margin-left:auto;font-weight:600}
 
-/* RECRUITING */
-.recruiting{padding:60px 20px;max-width:960px;margin:0 auto;text-align:center;background:linear-gradient(135deg,#FFF5EB,#F5E8FF);border-radius:24px;margin-bottom:40px}
-.recruit-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
-.recruit-item{padding:8px 20px;border:1.5px solid var(--teal);border-radius:50px;font-size:13px;color:var(--teal);font-weight:600;transition:all .3s}
-.recruit-item:hover{background:var(--teal);color:var(--white)}
+.recruiting{padding:64px 24px;max-width:880px;margin:0 auto;text-align:center;background:var(--gray50);border:1px solid var(--border);margin-bottom:40px}
+.recruit-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:24px}
+.recruit-item{padding:7px 18px;border:1px solid var(--border);font-size:12px;color:var(--text-sub);font-weight:500;transition:all .3s}
+.recruit-item:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
 
-/* FOOTER */
-.footer{text-align:center;padding:40px 20px;background:var(--navy)}
-.footer-logo{height:36px;margin-bottom:8px;filter:brightness(2)}
-.footer-text{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:2px}
+.footer{text-align:center;padding:40px 24px;background:var(--navy)}
+.footer-logo{height:32px;margin-bottom:8px;filter:brightness(1.5)}
+.footer-text{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:2px}
 
-/* ANIMATIONS */
-.fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.fade-in.visible{opacity:1;transform:none}
 
 @media print{
   .nav,.filter-section{display:none}
@@ -130,40 +116,36 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   .member-card{break-inside:avoid;border:1px solid #ddd}
 }
 </style>
-
-<!-- OGP / Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://resta0715.github.io/grano-event/members.html">
-<meta property="og:title" content="メンバー紹介｜BNI Grano Chapter 横浜セントラル">
-<meta property="og:description" content="建設・不動産、士業、健康・美容、クリエイティブなど9カテゴリー32名のプロフェッショナルが在籍。紹介を通じてビジネスの成長を実現します。">
+<meta property="og:title" content="メンバー紹介｜BNI Grano Chapter">
+<meta property="og:description" content="建設・不動産、士業、健康・美容、クリエイティブなど9カテゴリー32名のプロフェッショナルが在籍。">
 <meta property="og:image" content="https://resta0715.github.io/grano-event/ogp_members.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="BNI Grano Chapter">
 <meta property="og:locale" content="ja_JP">
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="メンバー紹介｜BNI Grano Chapter 横浜セントラル">
-<meta name="twitter:description" content="建設・不動産、士業、健康・美容、クリエイティブなど9カテゴリー32名のプロフェッショナルが在籍。紹介を通じてビジネスの成長を実現します。">
+<meta name="twitter:title" content="メンバー紹介｜BNI Grano Chapter">
+<meta name="twitter:description" content="建設・不動産、士業、健康・美容、クリエイティブなど9カテゴリー32名のプロフェッショナルが在籍。">
 <meta name="twitter:image" content="https://resta0715.github.io/grano-event/ogp_members.jpg">
-<!-- General SEO -->
-<meta name="description" content="建設・不動産、士業、健康・美容、クリエイティブなど9カテゴリー32名のプロフェッショナルが在籍。紹介を通じてビジネスの成長を実現します。">
+<meta name="description" content="建設・不動産、士業、健康・美容、クリエイティブなど9カテゴリー32名のプロフェッショナルが在籍。">
 </head>
 <body>
 
 <nav class="nav">
-  <span class="nav-logo">🎪 GRANO</span>
+  <span class="nav-logo">BNI Grano</span>
   <div class="nav-links">
-    <a href="announcement_page.html">告知ページ</a>
-    <a href="members.html" class="active">メンバー</a>
-    <a href="flyer_a4.html">チラシ</a>
+    <a href="announcement_page.html">Event</a>
+    <a href="members.html" class="active">Members</a>
+    <a href="flyer_a4.html">Flyer</a>
   </div>
 </nav>
 
 <header class="hero">
-  <p class="hero-label">🎪 Yokohama Central Region</p>
+  <p class="hero-label">Yokohama Central Region</p>
   <h1 class="hero-title"><span class="accent">Grano</span> Chapter<br>メンバー紹介</h1>
-  <p class="hero-sub">信頼関係を基盤に、紹介を通じてビジネスの成長を実現する<br>32名のプロフェッショナルたちをご紹介します 🌟</p>
+  <p class="hero-sub">信頼関係を基盤に、紹介を通じてビジネスの成長を実現する<br>32名のプロフェッショナルたちをご紹介します。</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">32</div><div class="stat-label">MEMBERS</div></div>
     <div class="stat"><div class="stat-num">9</div><div class="stat-label">CATEGORIES</div></div>
@@ -172,7 +154,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 </header>
 
 <section class="leadership">
-  <p class="section-label">👑 Leadership Team</p>
+  <p class="section-label">Leadership Team</p>
   <h2 class="section-title">リーダーシップチーム</h2>
   <div class="lead-grid">
     <div class="lead-card">
@@ -725,7 +707,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 </section>
 
 <section class="circles-section fade-in">
-  <p class="section-label">🔗 Contact Circles</p>
+  <p class="section-label">Contact Circles</p>
   <h2 class="section-title">コンタクトサークル</h2>
   <div class="circles-grid">
     <div class="circle-item" data-filter-trigger="クリエイティブ"><span class="circle-dot" style="background:#e8a838"></span><span class="circle-name">🎨 クリエイティブ</span><span class="circle-count">5名</span></div><div class="circle-item" data-filter-trigger="グローバル"><span class="circle-dot" style="background:#42a5b3"></span><span class="circle-name">🌍 グローバル</span><span class="circle-count">2名</span></div><div class="circle-item" data-filter-trigger="ファッショナブル"><span class="circle-dot" style="background:#b88c5a"></span><span class="circle-name">👗 ファッショナブル</span><span class="circle-count">3名</span></div><div class="circle-item" data-filter-trigger="企業サポート"><span class="circle-dot" style="background:#6b8dd6"></span><span class="circle-name">💼 企業サポート</span><span class="circle-count">3名</span></div><div class="circle-item" data-filter-trigger="保険・金融・ライフサポート"><span class="circle-dot" style="background:#5c9e72"></span><span class="circle-name">💰 保険・金融・ライフサポート</span><span class="circle-count">3名</span></div><div class="circle-item" data-filter-trigger="健康・美容"><span class="circle-dot" style="background:#c27ba0"></span><span class="circle-name">💆 健康・美容</span><span class="circle-count">5名</span></div><div class="circle-item" data-filter-trigger="士業"><span class="circle-dot" style="background:#7b68ae"></span><span class="circle-name">⚖️ 士業</span><span class="circle-count">2名</span></div><div class="circle-item" data-filter-trigger="建設・不動産"><span class="circle-dot" style="background:#4a90a4"></span><span class="circle-name">🏠 建設・不動産</span><span class="circle-count">6名</span></div><div class="circle-item" data-filter-trigger="飲食・イベント"><span class="circle-dot" style="background:#d4654a"></span><span class="circle-name">🍽️ 飲食・イベント</span><span class="circle-count">3名</span></div>
@@ -733,9 +715,9 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 </section>
 
 <section class="recruiting fade-in">
-  <p class="section-label">📢 Now Recruiting</p>
+  <p class="section-label">Now Recruiting</p>
   <h2 class="section-title">募集カテゴリー</h2>
-  <p style="color:var(--text-sub);font-size:14px;margin-bottom:16px">以下のカテゴリーのプロフェッショナルを募集しています</p>
+  <p style="color:var(--text-sub);font-size:13px;margin-bottom:16px">以下のカテゴリーのプロフェッショナルを募集しています</p>
   <div class="recruit-grid">
     <span class="recruit-item">司法書士</span><span class="recruit-item">税理士</span><span class="recruit-item">行政書士</span><span class="recruit-item">社会保険労務士</span><span class="recruit-item">弁理士</span><span class="recruit-item">パーソナルトレーナー</span><span class="recruit-item">ネイリスト</span><span class="recruit-item">印刷会社</span><span class="recruit-item">コピーライター</span><span class="recruit-item">土地家屋調査士</span><span class="recruit-item">旅行業</span><span class="recruit-item">葬祭業</span><span class="recruit-item">人材派遣</span><span class="recruit-item">介護施設</span><span class="recruit-item">運送業</span><span class="recruit-item">花屋</span><span class="recruit-item">補助金申請</span><span class="recruit-item">ナレーター</span><span class="recruit-item">化粧品販売</span><span class="recruit-item">広告代理店</span><span class="recruit-item">カメラマン</span><span class="recruit-item">キッチンカー</span><span class="recruit-item">占い</span><span class="recruit-item">リフォーム</span>
   </div>
@@ -744,7 +726,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 <footer class="footer">
   <img class="footer-logo" src="data:image/png;base64,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" alt="BNI">
   <p class="footer-text">GRANO CHAPTER — YOKOHAMA CENTRAL REGION</p>
-  <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px">毎週水曜 AM9:00〜10:30 ／ ONLINE開催（zoomアプリ使用）／ 最終水曜日 対面開催</p>
+  <p style="font-size:10px;color:rgba(255,255,255,.3);margin-top:8px">毎週水曜 AM9:00 — 10:30 ／ ONLINE開催（Zoom）／ 最終水曜日 対面開催</p>
 </footer>
 
 <script>
