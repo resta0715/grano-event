@@ -108,6 +108,18 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
 .cta-btn{display:inline-block;padding:16px 52px;background:var(--amber);color:var(--white);text-decoration:none;font-weight:600;font-size:14px;letter-spacing:2px;transition:all .3s;border-radius:2px}
 .cta-btn:hover{background:var(--amber-light);box-shadow:0 6px 20px rgba(200,148,62,.25)}
 
+.members-link{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:16px 36px;background:var(--white);border:1px solid var(--border);
+  border-radius:4px;text-decoration:none;color:var(--navy);font-weight:600;font-size:15px;
+  transition:all .3s;
+}
+.members-link:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.members-link:hover .members-link-icon{color:var(--amber)}
+.members-link-icon{color:var(--amber);display:flex}
+.members-link-arrow{color:var(--amber);font-size:18px;transition:transform .3s}
+.members-link:hover .members-link-arrow{transform:translateX(4px)}
+
 .footer{text-align:center;padding:40px 24px;background:var(--navy)}
 .footer-logo{height:28px;margin-bottom:8px;filter:brightness(1.5)}
 .footer-text{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:2px}
@@ -196,6 +208,15 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
       <p class="pres-role">グラフィックデザイナー</p>
       <p class="pres-desc">デザイン・パンフレット<br>などの制作</p>
     </div>
+  </div>
+  <div style="text-align:center;margin-top:32px">
+    <a href="members.html" class="members-link">
+      <span class="members-link-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </span>
+      32名のメンバーを見る
+      <span class="members-link-arrow">→</span>
+    </a>
   </div>
 </div>
 
