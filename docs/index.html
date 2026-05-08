@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宇部光太 — BNI プロフィール</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #111;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .box {
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+  }
+  .logo {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: clamp(1.25rem, 4vw, 1.6rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+  }
+  a {
+    display: block;
+    margin: 0.85rem 0;
+    padding: 1rem 1.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: transform 0.15s, filter 0.15s;
+  }
+  a:hover { transform: scale(1.02); filter: brightness(1.08); }
+  .btn-profile {
+    background: linear-gradient(135deg, #c41230 0%, #9b0e27 100%);
+    color: #fff;
+  }
+  .btn-gains {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .hint {
+    margin-top: 1.75rem;
+    font-size: 0.8rem;
+    opacity: 0.35;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">BNI</div>
+  <h1>宇部 光太<br><span style="font-size:0.65em;font-weight:700;opacity:.85">グラーノ · サロンフランチャイズ</span></h1>
+  <a class="btn-profile" href="profile.html">メンバー略歴を開く</a>
+  <a class="btn-gains" href="gains.html">G.A.I.N.S. を開く</a>
+  <p class="hint">略歴・GAINS ページ下部のボタンでも相互に切り替えられます。<br>URL は gains.html（z は付きません）</p>
+</div>
+</body>
+</html>
