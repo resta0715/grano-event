@@ -471,3 +471,69 @@ h2 {
 .page-foot a {
   color: var(--muted);
 }
+
+/* プロフィール／GAINS と同型の下部ナビ（スクロールページ用・bni-profile は読み込まない） */
+.page-shell--scroll {
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.inail-scroll {
+  flex: 1 0 auto;
+}
+
+.nav.nav--dock {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(0.55rem, 2vmin, 1rem) clamp(0.75rem, 3vmin, 1.25rem);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(0.55rem, 2vmin, 1rem));
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.nav.nav--dock .nav-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.88);
+  border-radius: 100px;
+  padding: clamp(0.4rem, 1.05vmin, 0.58rem) clamp(0.95rem, 2.6vmin, 1.45rem);
+  font-size: clamp(0.88rem, 1.2vmin + 0.42vw, 1.12rem);
+  font-weight: 600;
+  font-family: 'Noto Sans JP', sans-serif;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav.nav--dock .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.nav.nav--dock .nav-btn.active {
+  background: #c41230;
+  border-color: #c41230;
+  color: #fff;
+}
+
+.nav.nav--dock .nav-btn.nav-inail {
+  background: rgba(155, 89, 182, 0.28);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav.nav--dock .nav-btn.nav-inail:hover {
+  background: rgba(155, 89, 182, 0.45);
+  color: #fff;
+}
+
+.nav.nav--dock .nav-btn.nav-inail.active {
+  background: linear-gradient(135deg, #7d3c98, #9b59b6);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
