@@ -132,6 +132,151 @@ a {
   max-width: 36rem;
 }
 
+.hero-accent {
+  background: linear-gradient(135deg, #fff 0%, #ffb8c8 40%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-lead-bold {
+  color: #c5ccd8;
+}
+
+.hero-lead-bold strong {
+  color: #fff;
+}
+
+.hero-subcopy {
+  font-size: clamp(0.88rem, 0.9vw + 0.75rem, 1rem);
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1.35rem;
+  max-width: 38rem;
+}
+
+.hero-subcopy strong {
+  color: #e8eaef;
+}
+
+.hero-quote {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.06em;
+}
+
+/* 公式訴求を並べたインパクト行 */
+.hero-stats-wrap {
+  position: relative;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  border-top: 1px solid var(--border);
+}
+
+.hero-stats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.85rem;
+}
+
+.hero-stat {
+  background: rgba(21, 25, 34, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem 1rem 1rem;
+}
+
+.hero-stat-val {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  display: block;
+  margin-bottom: 0.55rem;
+}
+
+.hero-stat-unit {
+  font-size: 0.55em;
+  font-weight: 800;
+  margin-left: 0.05em;
+}
+
+.hero-stat-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.hero-stat-label strong {
+  color: #dce1ea;
+  font-weight: 700;
+}
+
+.hero-stat-micro {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.hero-stats-source {
+  margin-top: 0.85rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.hero-stats-source a {
+  color: var(--accent);
+}
+
+.card-hard h3 {
+  color: #fff;
+}
+
+.sec-lead-hard {
+  color: #b4bcc9;
+  font-weight: 600;
+}
+
+.brand-bullets {
+  margin-bottom: 1.35rem;
+}
+
+.brand-bullets p {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.62;
+  margin-bottom: 0.65rem;
+  border-left: 3px solid rgba(233, 69, 96, 0.45);
+  padding-left: 0.75rem;
+}
+
+.brand-bullets strong {
+  color: #e8eaef;
+}
+
+.cta-kicker {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.cta-bar p.cta-lead-hard {
+  color: #b4bcc9;
+  font-weight: 600;
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
 /* Sections */
 section {
   padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
