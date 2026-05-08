@@ -2,11 +2,6 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* 下部固定ナビ + ノッチ／ホームバーぶんを差し引いた実効高さ */
-  :root {
-    --nav-clearance: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
-  }
-
   /* 画面サイズに連動（横幅だけ広いディスプレイでも vmin で縦基準のバランスを維持） */
   html {
     /* 読みやすさ優先：下限・係数ともにアップ */
@@ -23,18 +18,18 @@
     color: #2d2d2d;
   }
 
+  /* カードが残り領域を使い、ナビは常にその下に配置（fixed は使わない） */
   .slide {
-    width: 98vw;
-    height: min(96vh, calc(100vh - var(--nav-clearance)));
-    max-height: calc(100vh - var(--nav-clearance));
-    max-width: none;
+    width: min(98vw, 100%);
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: 100%;
     background: #fff;
     border-radius: 18px;
     box-shadow: 0 30px 80px rgba(0,0,0,0.5);
     display: grid;
     grid-template-rows: auto 1fr;
     overflow: hidden;
-    min-height: 0;
   }
 
   .slide > .p1-body,
@@ -42,31 +37,25 @@
     min-height: 0;
   }
 
-  @supports (height: 100svh) {
-    .slide {
-      height: min(96vh, calc(100svh - var(--nav-clearance)));
-      max-height: calc(100svh - var(--nav-clearance));
-    }
-  }
-
   .nav {
-    position: fixed;
-    bottom: max(0.65rem, env(safe-area-inset-bottom, 0px));
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    flex-shrink: 0;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
-    z-index: 99999;
+    z-index: 10;
     pointer-events: auto;
   }
 
   .nav-btn {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: rgba(255,255,255,0.85);
     border-radius: 100px;
-    padding: clamp(0.5rem, 1.2vmin, 0.75rem) clamp(1.25rem, 2.8vmin, 1.9rem);
-    font-size: clamp(1rem, 1.4vmin + 0.45vw, 1.3rem);
+    padding: clamp(0.38rem, 1vmin, 0.55rem) clamp(1rem, 2.5vmin, 1.5rem);
+    font-size: clamp(0.88rem, 1.25vmin + 0.38vw, 1.15rem);
     font-weight: 600;
     font-family: 'Noto Sans JP', sans-serif;
     cursor: pointer;
@@ -404,102 +393,105 @@
   /* PAGE 2 GAINS（4段：ヘッダー / VISION / 動画 / GAINS本文） */
   .slide-gains { grid-template-rows: auto auto auto 1fr; }
 
-  /* 1画面に収める：行を縦に伸ばさず詰める・本文はスクロールしない */
+  /* 1画面に収める：行は詰める。はみ出すときだけ白カード内をスクロール */
   .slide-gains .p2-body {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
     justify-content: flex-start;
-    gap: 0.08rem;
-    padding: clamp(0.2rem, 0.65vmin, 0.45rem) clamp(1rem, 3.5vmin, 3rem);
+    gap: 0.06rem;
+    padding: clamp(0.15rem, 0.5vmin, 0.35rem) clamp(0.85rem, 3vmin, 2.75rem);
   }
 
   .slide-gains .gains-row {
     flex: 0 0 auto;
     min-height: 0;
-    padding: clamp(0.1rem, 0.4vmin, 0.28rem) 0;
-    gap: clamp(0.35rem, 1vmin, 0.65rem);
-    grid-template-columns: clamp(2rem, 5vmin, 3rem) clamp(5rem, 11vmin, 8rem) 1fr;
+    padding: clamp(0.06rem, 0.28vmin, 0.18rem) 0;
+    gap: clamp(0.28rem, 0.85vmin, 0.5rem);
+    grid-template-columns: clamp(1.75rem, 4.5vmin, 2.65rem) clamp(4.5rem, 10vmin, 7rem) 1fr;
   }
 
   .slide-gains .row-letter {
-    width: clamp(2rem, 5vmin, 3rem);
-    height: clamp(2rem, 5vmin, 3rem);
-    border-radius: clamp(8px, 1vmin, 14px);
-    font-size: clamp(0.95rem, 2.4vmin, 1.35rem);
+    width: clamp(1.75rem, 4.5vmin, 2.65rem);
+    height: clamp(1.75rem, 4.5vmin, 2.65rem);
+    border-radius: clamp(7px, 0.9vmin, 12px);
+    font-size: clamp(0.82rem, 2vmin, 1.15rem);
   }
 
   .slide-gains .row-label-en {
-    font-size: clamp(0.62rem, 1vmin + 0.1vw, 0.82rem);
+    font-size: clamp(0.55rem, 0.88vmin + 0.08vw, 0.72rem);
   }
 
   .slide-gains .row-label-jp {
-    font-size: clamp(0.82rem, 1.55vmin + 0.18vw, 1.12rem);
-    margin-top: 0.05rem;
+    font-size: clamp(0.72rem, 1.28vmin + 0.12vw, 0.95rem);
+    margin-top: 0.02rem;
   }
 
   .slide-gains .row-items {
-    gap: clamp(0.28rem, 0.85vmin, 0.45rem);
+    gap: clamp(0.2rem, 0.65vmin, 0.35rem);
   }
 
   .slide-gains .item {
-    padding: clamp(0.22rem, 0.65vmin, 0.42rem) clamp(0.45rem, 1.2vmin, 0.75rem);
-    font-size: clamp(0.78rem, 1.25vmin + 0.22vw, 1.08rem);
-    border-radius: clamp(6px, 0.85vmin, 10px);
+    padding: clamp(0.15rem, 0.45vmin, 0.28rem) clamp(0.35rem, 1vmin, 0.55rem);
+    font-size: clamp(0.68rem, 1.08vmin + 0.18vw, 0.92rem);
+    border-radius: clamp(5px, 0.75vmin, 9px);
   }
 
   .slide-gains .item .sub {
-    font-size: clamp(0.68rem, 1.05vmin + 0.08vw, 0.88rem);
+    font-size: clamp(0.58rem, 0.92vmin + 0.06vw, 0.78rem);
   }
 
   .slide-gains .p2-header {
-    padding: clamp(0.42rem, 1.15vmin, 0.8rem) clamp(1rem, 3.2vmin, 2.5rem);
-    gap: clamp(0.35rem, 1vmin, 0.65rem);
+    padding: clamp(0.32rem, 0.95vmin, 0.62rem) clamp(0.85rem, 2.8vmin, 2rem);
+    gap: clamp(0.28rem, 0.85vmin, 0.5rem);
   }
 
   .slide-gains .p2-gains-title {
-    font-size: clamp(1.1rem, 3vmin + 0.2vw, 1.85rem);
+    font-size: clamp(1rem, 2.65vmin + 0.15vw, 1.55rem);
   }
 
   .slide-gains .p2-name {
-    font-size: clamp(0.85rem, 1.85vmin + 0.12vw, 1.25rem);
+    font-size: clamp(0.78rem, 1.55vmin + 0.08vw, 1.05rem);
   }
 
   .slide-gains .p2-youtube-badge {
-    font-size: clamp(0.72rem, 1.15vmin + 0.12vw, 0.88rem);
-    padding: 0.28rem 0.65rem;
+    font-size: clamp(0.65rem, 1vmin + 0.08vw, 0.78rem);
+    padding: 0.22rem 0.5rem;
   }
 
   .slide-gains .p2-vision-bar {
-    margin: clamp(0.25rem, 0.8vmin, 0.45rem) clamp(1rem, 3.5vmin, 3rem) 0;
-    padding: clamp(0.38rem, 1.1vmin, 0.62rem) clamp(0.75rem, 2vmin, 1.35rem);
+    margin: clamp(0.15rem, 0.55vmin, 0.32rem) clamp(0.85rem, 3vmin, 2.75rem) 0;
+    padding: clamp(0.28rem, 0.85vmin, 0.48rem) clamp(0.55rem, 1.65vmin, 1.1rem);
     min-height: 0;
-    gap: clamp(0.4rem, 1.2vmin, 0.75rem);
+    gap: clamp(0.28rem, 0.85vmin, 0.55rem);
   }
 
   .slide-gains .vb-left .vb-label {
-    font-size: clamp(0.72rem, 1.15vmin + 0.12vw, 0.88rem);
+    font-size: clamp(0.62rem, 1vmin + 0.06vw, 0.78rem);
   }
 
   .slide-gains .vb-left .vb-mission {
-    font-size: clamp(0.82rem, 1.45vmin + 0.15vw, 1.08rem);
-    margin-top: 0.08rem;
-    line-height: 1.28;
+    font-size: clamp(0.72rem, 1.25vmin + 0.1vw, 0.95rem);
+    margin-top: 0.04rem;
+    line-height: 1.22;
   }
 
   .slide-gains .vb-now {
-    font-size: clamp(0.78rem, 1.35vmin + 0.12vw, 1rem);
+    font-size: clamp(0.68rem, 1.15vmin + 0.08vw, 0.88rem);
   }
 
   .slide-gains .vb-arrow {
-    font-size: clamp(1rem, 2.2vmin, 1.35rem);
+    font-size: clamp(0.85rem, 1.85vmin, 1.12rem);
   }
 
   .slide-gains .vb-target {
-    font-size: clamp(0.95rem, 2.4vmin + 0.2vw, 1.45rem);
+    font-size: clamp(0.82rem, 2vmin + 0.12vw, 1.18rem);
   }
 
   .slide-gains .vb-target-sub {
-    font-size: clamp(0.68rem, 1.1vmin + 0.08vw, 0.85rem);
-    margin-left: 0.25rem;
+    font-size: clamp(0.58rem, 0.95vmin + 0.05vw, 0.72rem);
+    margin-left: 0.2rem;
   }
 
   @media (max-height: 760px) {
@@ -727,63 +719,59 @@
     border-top: 1px solid #ebebe8;
   }
 
-  /* VISION 直下：横並びのミニプレーヤーで縦を削る */
+  /* VISION 直下：1行リンクのみ（iframe は縦を取るため省略） */
   .gains-video-wrap.gains-video-strip {
     margin-top: 0;
     margin-bottom: 0;
-    padding: clamp(0.28rem, 0.85vmin, 0.5rem) clamp(1rem, 3.5vmin, 3rem);
+    padding: clamp(0.22rem, 0.65vmin, 0.38rem) clamp(0.85rem, 3vmin, 2.75rem);
     border-top: none;
     border-bottom: 1px solid #ebebe8;
     background: linear-gradient(180deg, #f9f9f7 0%, #fff 100%);
     min-height: 0;
   }
 
-  .gains-video-inline {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: clamp(0.45rem, 1.4vmin, 0.75rem);
-  }
-
-  .gains-video-thumb-cell {
-    flex-shrink: 0;
-  }
-
-  .gains-video-thumb {
-    width: clamp(7.5rem, 22vmin, 10rem);
-    max-width: 38vw;
-    aspect-ratio: 16 / 9;
-    max-height: min(5.5rem, 18vmin);
-    border-radius: clamp(8px, 1vmin, 12px);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  }
-
-  .gains-video-aside {
-    flex: 1;
-    min-width: 0;
+  .gains-video-compact-row {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    justify-content: center;
+    gap: 0.12rem;
+    align-items: stretch;
   }
 
-  .gains-video-aside-label {
-    font-size: clamp(0.78rem, 1.25vmin + 0.15vw, 0.95rem);
+  .gains-video-row-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: clamp(0.28rem, 0.75vmin, 0.42rem) clamp(0.55rem, 1.5vmin, 0.85rem);
+    background: #fff;
+    border: 1px solid #e0e0d8;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #1a1a2e;
     font-weight: 700;
-    color: #444;
+    font-size: clamp(0.68rem, 1.08vmin + 0.15vw, 0.88rem);
     line-height: 1.25;
+    align-self: flex-start;
+    max-width: 100%;
+    transition: border-color 0.15s, background 0.15s;
   }
 
-  .gains-video-aside-hint {
-    font-size: clamp(0.65rem, 1vmin + 0.05vw, 0.78rem);
+  .gains-video-row-link:hover {
+    background: #fafaf8;
+    border-color: #c41230;
+  }
+
+  .gains-video-row-icon {
+    flex-shrink: 0;
+    color: #c41230;
+    font-size: 1.05em;
+  }
+
+  .gains-video-row-hint {
+    font-size: clamp(0.58rem, 0.88vmin + 0.05vw, 0.72rem);
     font-weight: 500;
     color: #888;
-    line-height: 1.3;
-  }
-
-  .gains-video-inline .gains-video-link {
-    align-self: flex-start;
-    font-size: clamp(0.78rem, 1.2vmin + 0.12vw, 0.92rem);
+    line-height: 1.25;
+    padding-left: 0.25rem;
   }
 
   .gains-video-head {
@@ -835,19 +823,30 @@
     border: 0;
   }
 
-/* 単一ページ表示・ナビリンク用 */
+/* 単一ページ表示・ナビ（カード下に配置） */
 .page-shell {
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: clamp(0.2rem, 0.75vmin, 0.45rem) clamp(0.35rem, 1vmin, 0.55rem)
+    calc(env(safe-area-inset-bottom, 0px) + clamp(0.3rem, 0.9vmin, 0.5rem));
+  gap: clamp(0.3rem, 0.9vmin, 0.5rem);
+  box-sizing: border-box;
+  overflow: hidden;
+  min-height: 0;
   z-index: 0;
 }
 
 a.nav-btn,
 a.nav-btn:visited {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.82);
+}
+
+a.nav-btn:hover {
+  color: #fff;
 }
 
 a.nav-btn.active,

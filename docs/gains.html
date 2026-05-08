@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>宇部光太 — G.A.I.N.S.</title>
 <link rel="stylesheet" href="bni-profile.css">
 </head>
@@ -34,23 +34,12 @@
       </div>
     </div>
 
-    <div class="gains-video-wrap gains-video-strip gains-video-inline">
-      <div class="gains-video-thumb-cell">
-        <div class="gains-video-frame gains-video-thumb">
-          <iframe
-            src="https://www.youtube.com/embed/QoGom0wljGg"
-            title="G.A.I.N.S. 参考動画"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="gains-video-aside">
-        <span class="gains-video-aside-label">参考動画（G.A.I.N.S.）</span>
-        <a href="https://youtu.be/QoGom0wljGg?si=gxB-RcslgE7i3Qxa" class="gains-video-link" target="_blank" rel="noopener noreferrer">YouTube で開く →</a>
-        <span class="gains-video-aside-hint">再生しないときはリンク／ヘッダーの ▶ から</span>
-      </div>
+    <div class="gains-video-wrap gains-video-strip gains-video-compact-row">
+      <a href="https://youtu.be/QoGom0wljGg?si=gxB-RcslgE7i3Qxa" class="gains-video-row-link" target="_blank" rel="noopener noreferrer">
+        <span class="gains-video-row-icon" aria-hidden="true">▶</span>
+        <span>参考動画（G.A.I.N.S.）を YouTube で見る</span>
+      </a>
+      <span class="gains-video-row-hint">ヘッダーの ▶ からも開けます</span>
     </div>
 
     <div class="p2-body">
@@ -109,11 +98,11 @@
       </div>
     </div>
   </div>
-</div>
 
-<div class="nav">
-  <a href="profile.html" class="nav-btn">メンバー略歴</a>
-  <a href="gains.html" class="nav-btn active">G.A.I.N.S.</a>
+  <nav class="nav" aria-label="ページ切替">
+    <a href="profile.html" class="nav-btn">メンバー略歴</a>
+    <a href="gains.html" class="nav-btn active">G.A.I.N.S.</a>
+  </nav>
 </div>
 
 </body>
