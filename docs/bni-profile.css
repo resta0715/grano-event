@@ -387,8 +387,8 @@
     line-height: 1.45;
   }
 
-  /* PAGE 2 GAINS */
-  .slide-gains { grid-template-rows: auto auto 1fr; }
+  /* PAGE 2 GAINS（4段：ヘッダー / VISION / 動画 / GAINS本文） */
+  .slide-gains { grid-template-rows: auto auto auto 1fr; }
 
   .p2-header {
     background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
@@ -429,6 +429,25 @@
   .p2-meta {
     font-size: clamp(0.95rem, 1.65vmin + 0.25vw, 1.2rem);
     opacity: 0.5;
+  }
+
+  .p2-youtube-badge {
+    align-self: center;
+    font-size: clamp(0.82rem, 1.35vmin + 0.2vw, 1rem);
+    font-weight: 700;
+    color: #fff !important;
+    text-decoration: none;
+    padding: clamp(0.35rem, 1vmin, 0.55rem) clamp(0.75rem, 2vmin, 1.1rem);
+    border-radius: 999px;
+    background: rgba(233, 69, 96, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    white-space: nowrap;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .p2-youtube-badge:hover {
+    background: rgba(233, 69, 96, 0.75);
+    transform: scale(1.02);
   }
 
   .p2-vision-bar {
@@ -577,6 +596,83 @@
     font-weight: 500;
     color: #777;
     margin-left: 0.25rem;
+  }
+
+  .gains-video-wrap {
+    flex-shrink: 0;
+    margin-top: clamp(0.35rem, 1.2vmin, 0.85rem);
+    padding-top: clamp(0.65rem, 2vmin, 1.1rem);
+    border-top: 1px solid #ebebe8;
+  }
+
+  /* VISION 直下の常設ブロック（スクロールせず見える） */
+  .gains-video-wrap.gains-video-strip {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: clamp(0.45rem, 1.3vmin, 0.75rem) clamp(1.25rem, 4vmin, 3.75rem);
+    border-top: none;
+    border-bottom: 1px solid #ebebe8;
+    background: linear-gradient(180deg, #f9f9f7 0%, #fff 100%);
+    min-height: 0;
+  }
+
+  .gains-video-strip .gains-video-head {
+    margin-bottom: clamp(0.35rem, 1vmin, 0.55rem);
+  }
+
+  .gains-video-strip .gains-video-frame {
+    width: min(100%, 28rem);
+    max-height: min(200px, 26vh);
+    aspect-ratio: 16 / 9;
+  }
+
+  .gains-video-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: clamp(0.45rem, 1.2vmin, 0.85rem);
+    margin-bottom: clamp(0.55rem, 1.5vmin, 0.95rem);
+    font-size: clamp(0.95rem, 1.55vmin + 0.2vw, 1.15rem);
+    font-weight: 600;
+    color: #444;
+  }
+
+  .gains-video-head span {
+    font-weight: 500;
+    color: #777;
+    font-size: clamp(0.85rem, 1.35vmin + 0.15vw, 1.05rem);
+  }
+
+  .gains-video-link {
+    color: #c41230;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196, 18, 48, 0.35);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .gains-video-link:hover {
+    color: #9b0e27;
+    border-bottom-color: rgba(155, 14, 39, 0.55);
+  }
+
+  .gains-video-frame {
+    position: relative;
+    width: 100%;
+    max-width: min(40rem, 100%);
+    aspect-ratio: 16 / 9;
+    border-radius: clamp(10px, 1.2vmin, 14px);
+    overflow: hidden;
+    background: #1a1a2e;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  }
+
+  .gains-video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
 /* 単一ページ表示・ナビリンク用 */
