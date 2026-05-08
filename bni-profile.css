@@ -2,6 +2,11 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* 下部固定ナビ + ノッチ／ホームバーぶんを差し引いた実効高さ */
+  :root {
+    --nav-clearance: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+  }
+
   /* 画面サイズに連動（横幅だけ広いディスプレイでも vmin で縦基準のバランスを維持） */
   html {
     /* 読みやすさ優先：下限・係数ともにアップ */
@@ -9,7 +14,9 @@
   }
 
   html, body {
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
     font-family: 'Noto Sans JP', 'Inter', sans-serif;
     background: #111;
@@ -18,9 +25,9 @@
 
   .slide {
     width: 98vw;
-    height: 96vh;
+    height: min(96vh, calc(100vh - var(--nav-clearance)));
+    max-height: calc(100vh - var(--nav-clearance));
     max-width: none;
-    max-height: none;
     background: #fff;
     border-radius: 18px;
     box-shadow: 0 30px 80px rgba(0,0,0,0.5);
@@ -35,9 +42,16 @@
     min-height: 0;
   }
 
+  @supports (height: 100svh) {
+    .slide {
+      height: min(96vh, calc(100svh - var(--nav-clearance)));
+      max-height: calc(100svh - var(--nav-clearance));
+    }
+  }
+
   .nav {
     position: fixed;
-    bottom: 24px;
+    bottom: max(0.65rem, env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -390,6 +404,114 @@
   /* PAGE 2 GAINS（4段：ヘッダー / VISION / 動画 / GAINS本文） */
   .slide-gains { grid-template-rows: auto auto auto 1fr; }
 
+  /* 1画面に収める：行を縦に伸ばさず詰める・本文はスクロールしない */
+  .slide-gains .p2-body {
+    overflow: hidden;
+    justify-content: flex-start;
+    gap: 0.08rem;
+    padding: clamp(0.2rem, 0.65vmin, 0.45rem) clamp(1rem, 3.5vmin, 3rem);
+  }
+
+  .slide-gains .gains-row {
+    flex: 0 0 auto;
+    min-height: 0;
+    padding: clamp(0.1rem, 0.4vmin, 0.28rem) 0;
+    gap: clamp(0.35rem, 1vmin, 0.65rem);
+    grid-template-columns: clamp(2rem, 5vmin, 3rem) clamp(5rem, 11vmin, 8rem) 1fr;
+  }
+
+  .slide-gains .row-letter {
+    width: clamp(2rem, 5vmin, 3rem);
+    height: clamp(2rem, 5vmin, 3rem);
+    border-radius: clamp(8px, 1vmin, 14px);
+    font-size: clamp(0.95rem, 2.4vmin, 1.35rem);
+  }
+
+  .slide-gains .row-label-en {
+    font-size: clamp(0.62rem, 1vmin + 0.1vw, 0.82rem);
+  }
+
+  .slide-gains .row-label-jp {
+    font-size: clamp(0.82rem, 1.55vmin + 0.18vw, 1.12rem);
+    margin-top: 0.05rem;
+  }
+
+  .slide-gains .row-items {
+    gap: clamp(0.28rem, 0.85vmin, 0.45rem);
+  }
+
+  .slide-gains .item {
+    padding: clamp(0.22rem, 0.65vmin, 0.42rem) clamp(0.45rem, 1.2vmin, 0.75rem);
+    font-size: clamp(0.78rem, 1.25vmin + 0.22vw, 1.08rem);
+    border-radius: clamp(6px, 0.85vmin, 10px);
+  }
+
+  .slide-gains .item .sub {
+    font-size: clamp(0.68rem, 1.05vmin + 0.08vw, 0.88rem);
+  }
+
+  .slide-gains .p2-header {
+    padding: clamp(0.42rem, 1.15vmin, 0.8rem) clamp(1rem, 3.2vmin, 2.5rem);
+    gap: clamp(0.35rem, 1vmin, 0.65rem);
+  }
+
+  .slide-gains .p2-gains-title {
+    font-size: clamp(1.1rem, 3vmin + 0.2vw, 1.85rem);
+  }
+
+  .slide-gains .p2-name {
+    font-size: clamp(0.85rem, 1.85vmin + 0.12vw, 1.25rem);
+  }
+
+  .slide-gains .p2-youtube-badge {
+    font-size: clamp(0.72rem, 1.15vmin + 0.12vw, 0.88rem);
+    padding: 0.28rem 0.65rem;
+  }
+
+  .slide-gains .p2-vision-bar {
+    margin: clamp(0.25rem, 0.8vmin, 0.45rem) clamp(1rem, 3.5vmin, 3rem) 0;
+    padding: clamp(0.38rem, 1.1vmin, 0.62rem) clamp(0.75rem, 2vmin, 1.35rem);
+    min-height: 0;
+    gap: clamp(0.4rem, 1.2vmin, 0.75rem);
+  }
+
+  .slide-gains .vb-left .vb-label {
+    font-size: clamp(0.72rem, 1.15vmin + 0.12vw, 0.88rem);
+  }
+
+  .slide-gains .vb-left .vb-mission {
+    font-size: clamp(0.82rem, 1.45vmin + 0.15vw, 1.08rem);
+    margin-top: 0.08rem;
+    line-height: 1.28;
+  }
+
+  .slide-gains .vb-now {
+    font-size: clamp(0.78rem, 1.35vmin + 0.12vw, 1rem);
+  }
+
+  .slide-gains .vb-arrow {
+    font-size: clamp(1rem, 2.2vmin, 1.35rem);
+  }
+
+  .slide-gains .vb-target {
+    font-size: clamp(0.95rem, 2.4vmin + 0.2vw, 1.45rem);
+  }
+
+  .slide-gains .vb-target-sub {
+    font-size: clamp(0.68rem, 1.1vmin + 0.08vw, 0.85rem);
+    margin-left: 0.25rem;
+  }
+
+  @media (max-height: 760px) {
+    html {
+      font-size: clamp(15px, 1.05vmin + 0.55vw, 28px);
+    }
+
+    .slide-gains .p2-meta {
+      font-size: clamp(0.78rem, 1.25vmin + 0.15vw, 0.95rem);
+    }
+  }
+
   .p2-header {
     background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
     color: #fff;
@@ -605,25 +727,63 @@
     border-top: 1px solid #ebebe8;
   }
 
-  /* VISION 直下の常設ブロック（スクロールせず見える） */
+  /* VISION 直下：横並びのミニプレーヤーで縦を削る */
   .gains-video-wrap.gains-video-strip {
     margin-top: 0;
     margin-bottom: 0;
-    padding: clamp(0.45rem, 1.3vmin, 0.75rem) clamp(1.25rem, 4vmin, 3.75rem);
+    padding: clamp(0.28rem, 0.85vmin, 0.5rem) clamp(1rem, 3.5vmin, 3rem);
     border-top: none;
     border-bottom: 1px solid #ebebe8;
     background: linear-gradient(180deg, #f9f9f7 0%, #fff 100%);
     min-height: 0;
   }
 
-  .gains-video-strip .gains-video-head {
-    margin-bottom: clamp(0.35rem, 1vmin, 0.55rem);
+  .gains-video-inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(0.45rem, 1.4vmin, 0.75rem);
   }
 
-  .gains-video-strip .gains-video-frame {
-    width: min(100%, 28rem);
-    max-height: min(200px, 26vh);
+  .gains-video-thumb-cell {
+    flex-shrink: 0;
+  }
+
+  .gains-video-thumb {
+    width: clamp(7.5rem, 22vmin, 10rem);
+    max-width: 38vw;
     aspect-ratio: 16 / 9;
+    max-height: min(5.5rem, 18vmin);
+    border-radius: clamp(8px, 1vmin, 12px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  }
+
+  .gains-video-aside {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    justify-content: center;
+  }
+
+  .gains-video-aside-label {
+    font-size: clamp(0.78rem, 1.25vmin + 0.15vw, 0.95rem);
+    font-weight: 700;
+    color: #444;
+    line-height: 1.25;
+  }
+
+  .gains-video-aside-hint {
+    font-size: clamp(0.65rem, 1vmin + 0.05vw, 0.78rem);
+    font-weight: 500;
+    color: #888;
+    line-height: 1.3;
+  }
+
+  .gains-video-inline .gains-video-link {
+    align-self: flex-start;
+    font-size: clamp(0.78rem, 1.2vmin + 0.12vw, 0.92rem);
   }
 
   .gains-video-head {
