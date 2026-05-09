@@ -91,6 +91,23 @@
     color: #fff;
   }
 
+  .nav-btn.nav-tsuki {
+    background: rgba(46, 108, 181, 0.32);
+    border-color: rgba(120, 200, 255, 0.28);
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .nav-btn.nav-tsuki:hover {
+    background: rgba(46, 108, 181, 0.5);
+    color: #fff;
+  }
+
+  .nav-btn.nav-tsuki.active {
+    background: linear-gradient(135deg, #1e5799, #5ecfff);
+    border-color: rgba(120, 220, 255, 0.45);
+    color: #081420;
+  }
+
   .key-hint {
     position: fixed;
     bottom: 28px;
@@ -871,6 +888,16 @@ a.nav-btn.nav-inail:visited {
 a.nav-btn.nav-inail.active,
 a.nav-btn.nav-inail.active:visited {
   color: #fff;
+}
+
+a.nav-btn.nav-tsuki,
+a.nav-btn.nav-tsuki:visited {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+a.nav-btn.nav-tsuki.active,
+a.nav-btn.nav-tsuki.active:visited {
+  color: #081420;
 }
 
 a.nav-btn {

@@ -5,11 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="INAIL（アイネイル）— 業務用オートネイル。公式の訴求を軸に、経営者向けに「攻めの」導入論点を整理。施術時間の圧縮・生産性・人材不足への突破口。">
 <title>経営に、武器を。｜INAIL オートネイル — オーナー向け・攻めの紹介</title>
-<link rel="stylesheet" href="inail-intro.css">
+<link rel="stylesheet" href="inail-intro.css?v=20260209">
 </head>
 <body>
 
 <div class="page-shell page-shell--scroll">
+<div class="inail-tab-strip" id="inail-tabs-top">
+  <div class="wrap inail-tab-inner">
+    <p class="inail-tab-context">オートネイル｜オーナー向け</p>
+    <div class="inail-tabs" role="tablist" aria-label="表示の切り替え">
+      <button type="button" class="inail-tab" role="tab" id="tab-inail-intro" aria-selected="true" aria-controls="panel-inail-intro">紹介</button>
+      <button type="button" class="inail-tab" role="tab" id="tab-inail-fc" aria-selected="false" aria-controls="panel-inail-fc" tabindex="-1">シミュレーション・詳細</button>
+    </div>
+  </div>
+</div>
+
+<div id="panel-inail-intro" class="inail-tab-panel" role="tabpanel" aria-labelledby="tab-inail-intro">
 <div class="inail-scroll">
 
 <header class="hero">
@@ -43,17 +54,31 @@
             <img src="https://i-nail.jp/assets/img/top/mainvisual_02.jpg" width="800" height="600" alt="INAIL 利用イメージ" loading="lazy" decoding="async">
           </figure>
         </div>
-        <p class="hero-media-label">デザイン例（公式サイトより）</p>
-        <div class="hero-nail-grid">
-          <img src="https://i-nail.jp/wp_site/wp-content/uploads/2018/04/yKzNHi5F-600x400.jpg" width="600" height="400" alt="ネイルデザイン例 1" loading="lazy" decoding="async">
-          <img src="https://i-nail.jp/wp_site/wp-content/uploads/2019/05/2eeb67b5b06f06dbac1b71e0ea75c4ae-600x400.jpg" width="600" height="400" alt="ネイルデザイン例 2" loading="lazy" decoding="async">
-          <img src="https://i-nail.jp/wp_site/wp-content/uploads/2018/04/o0709061314089579160-1-600x400.jpg" width="600" height="400" alt="ネイルデザイン例 3" loading="lazy" decoding="async">
-        </div>
-        <figure class="hero-figure hero-figure-chart">
-          <img src="https://i-nail.jp/assets/img/top/comparison_img.png" width="800" height="400" alt="従来施術時間との比較イメージ（公式サイト）" loading="lazy" decoding="async">
-          <figcaption>施術時間の比較（公式サイトの掲載イメージ）</figcaption>
+        <figure class="hero-figure hero-figure-chart treatment-compare">
+          <div class="treatment-compare-inner">
+            <p class="treatment-compare-heading">施術時間の比較（イメージ）</p>
+            <div class="treatment-compare-rows" role="group" aria-label="所要時間の対比">
+              <div class="treatment-compare-row">
+                <span class="treatment-compare-name">従来（ジェル等）</span>
+                <div class="treatment-compare-line">
+                  <div class="treatment-compare-track">
+                    <div class="treatment-compare-fill treatment-compare-fill--legacy"><span>約150分</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="treatment-compare-row">
+                <span class="treatment-compare-name">INAIL</span>
+                <div class="treatment-compare-line">
+                  <div class="treatment-compare-track">
+                    <div class="treatment-compare-fill treatment-compare-fill--inail"></div>
+                  </div>
+                  <span class="treatment-compare-val">約30分</span>
+                </div>
+              </div>
+            </div>
+            <p class="treatment-compare-foot">ページ内でも触れている一例（約150分と約30分の対比）を図で示しています。施術条件により異なります。</p>
+          </div>
         </figure>
-        <p class="hero-media-credit">参考：<a href="https://i-nail.jp/" target="_blank" rel="noopener noreferrer">https://i-nail.jp/</a> の公開画像・構成を参照しています（著作権は各権利者に帰属）。</p>
       </aside>
     </div>
   </div>
@@ -73,7 +98,7 @@
         <span class="hero-stat-label">「ネイルに興味はあるが時間とコストが壁」の一般客にも、短時間メニューで踏み込める余地。</span>
       </li>
     </ul>
-    <p class="hero-stats-source">※上段の数値・比較の前提は公式サイト（i-nail.jp）の公開内容に基づく要約です。</p>
+    <p class="hero-stats-source">※上段の数値・比較の前提はメーカー公式の公開資料に基づく要約です（条件により異なります）。</p>
   </div>
 </header>
 
@@ -175,13 +200,222 @@
 </footer>
 
 </div>
+</div>
+
+<div id="panel-inail-fc" class="inail-tab-panel" role="tabpanel" aria-labelledby="tab-inail-fc" hidden>
+<div class="inail-scroll fc-sim-page">
+
+<header class="fc-sim-hero">
+  <div class="wrap">
+    <p class="fc-sim-kicker">with Reyel オートネイル｜収益モデル</p>
+    <h1 class="fc-sim-title">固定費を増やさず、<span class="fc-sim-accent">今の売上を伸ばす。</span></h1>
+    <p class="fc-sim-lead">FC加盟シミュレーション資料の<strong>前提数値・コピー・導線</strong>を、一枚で判断しやすい形に整理しました。※実績や保証ではありません。条件により変動します。</p>
+  </div>
+</header>
+
+<section class="fc-sim-section fc-sim-invest">
+  <div class="wrap">
+    <h2 class="fc-sim-h2"><span class="fc-sim-h2-num">01</span>初期投資のイメージ</h2>
+    <p class="fc-sim-sub">物件・内装・採用は不要との前提。<strong>メーカーリース</strong>で機器導入の負担を抑える選択肢があります。</p>
+    <div class="fc-sim-cards fc-sim-cards--invest">
+      <article class="fc-sim-card">
+        <span class="fc-sim-card-label">FC加盟料金</span>
+        <strong class="fc-sim-money">¥220,000</strong>
+      </article>
+      <article class="fc-sim-card">
+        <span class="fc-sim-card-label">研修費用</span>
+        <strong class="fc-sim-money">¥55,000</strong>
+      </article>
+      <article class="fc-sim-card fc-sim-card--wide">
+        <span class="fc-sim-card-label">オートネイル（機器）導入</span>
+        <strong class="fc-sim-money">¥550,000</strong>
+        <span class="fc-sim-card-note">リース対応可能</span>
+      </article>
+    </div>
+    <div class="fc-sim-total-box">
+      <span>合計（一例）</span>
+      <strong>¥825,000</strong>
+      <small>広告・宣伝等をご依頼の場合は別途費用</small>
+    </div>
+  </div>
+</section>
+
+<section class="fc-sim-section fc-sim-accent-bg">
+  <div class="wrap">
+    <h2 class="fc-sim-h2"><span class="fc-sim-h2-num">02</span>月次｜収支の一例</h2>
+    <p class="fc-sim-sub">月<strong>100</strong>名利用・単価<strong>¥2,200</strong>／名のモデル。<strong>粗利約¥1,210／名</strong>（売上より原価控除ベース）は、来客が増えるほど利益が線形に乗りやすいイメージです。</p>
+    <div class="fc-sim-flow">
+      <div class="fc-sim-flow-block fc-sim-flow-block--sales">
+        <span class="fc-sim-flow-cap">売上（月）</span>
+        <span class="fc-sim-flow-num">¥220,000</span>
+      </div>
+      <div class="fc-sim-flow-minus">−</div>
+      <div class="fc-sim-flow-stack">
+        <div class="fc-sim-mini"><span>原価（材料等）</span><b>¥99,000</b></div>
+        <div class="fc-sim-mini"><span>運営サポート<sup>*</sup></span><b>¥27,500</b></div>
+        <p class="fc-sim-mini-foot"><sup>*</sup>営業システム・技術／アフターサポート等（資料表記）</p>
+      </div>
+      <div class="fc-sim-flow-eq">＝</div>
+      <div class="fc-sim-flow-block fc-sim-flow-block--profit">
+        <span class="fc-sim-flow-cap">利益（月）</span>
+        <span class="fc-sim-flow-num">¥93,500</span>
+      </div>
+    </div>
+    <p class="fc-sim-hint">※家賃・人件費・水道光熱・消耗品をゼロ想定したシンプルモデル／資料と同様の前提です。実態に合わせ加算してください。</p>
+  </div>
+</section>
+
+<section class="fc-sim-section">
+  <div class="wrap">
+    <h2 class="fc-sim-h2"><span class="fc-sim-h2-num">03</span>年間インパクト＆回収</h2>
+    <div class="fc-sim-year-grid">
+      <div class="fc-sim-year-card">
+        <span>年間売上（一例）</span>
+        <strong>¥2,640,000</strong>
+      </div>
+      <div class="fc-sim-year-card fc-sim-year-card--hl">
+        <span>年間利益（一例）</span>
+        <strong>¥1,122,000</strong>
+      </div>
+      <div class="fc-sim-year-card">
+        <span>初期投資の回収感</span>
+        <strong class="fc-sim-year-em">およそ9か月</strong>
+        <small>資料：9ヶ月回収想定</small>
+      </div>
+    </div>
+    <div class="fc-sim-beacon">
+      <span class="fc-sim-beacon-label">分岐点（資料より）</span>
+      <p><strong>月20名</strong>がひとつの目安。ここを超えると、模型上は利益が積み上がりやすくなります。</p>
+    </div>
+  </div>
+</section>
+
+<section class="fc-sim-section fc-sim-quote-block">
+  <div class="wrap">
+    <blockquote class="fc-sim-quote">
+      <p>「売上を作る」のではなく、<br><strong>「今の売上を伸ばす仕組み」</strong></p>
+      <cite>— 資料で語られている本質（要旨）</cite>
+    </blockquote>
+    <div class="fc-sim-pill-row">
+      <span class="fc-sim-pill">営業のフックになる商材</span>
+      <span class="fc-sim-pill">既存店にそのまま載せるプロデュース型</span>
+      <span class="fc-sim-pill">低コスト・短期間でスタート可能</span>
+    </div>
+  </div>
+</section>
+
+<section class="fc-sim-section">
+  <div class="wrap">
+    <h2 class="fc-sim-h2"><span class="fc-sim-h2-num">04</span>サービス内容（要点）</h2>
+    <ul class="fc-sim-checklist">
+      <li>約<strong>30分</strong>でサロン級の仕上がり</li>
+      <li><strong>セルフ</strong>対応で誰でも施術可能</li>
+      <li>ネイルプリンターでデザイン再現（写真・柄・オリジナル）</li>
+      <li>専門資格不要・<strong>人材不要</strong>の設計</li>
+      <li><strong>省スペース</strong>で導入可能</li>
+    </ul>
+  </div>
+</section>
+
+<section class="fc-sim-section fc-sim-alt">
+  <div class="wrap">
+    <h2 class="fc-sim-h2"><span class="fc-sim-h2-num">05</span>導入メリット</h2>
+    <div class="fc-sim-benefits">
+      <div class="fc-sim-benefit">
+        <h3>客単価</h3>
+        <p>＋α提案で単価を押し上げやすい</p>
+      </div>
+      <div class="fc-sim-benefit">
+        <h3>来店頻度</h3>
+        <p>2週間〜1か月周期のリピートを意識した設計</p>
+      </div>
+      <div class="fc-sim-benefit">
+        <h3>空きスペース</h3>
+        <p>デッドスペースの収益化</p>
+      </div>
+      <div class="fc-sim-benefit">
+        <h3>オペレーション</h3>
+        <p>既存スタッフで運用しやすい</p>
+      </div>
+    </div>
+    <p class="fc-sim-tagline">固定費を増やさず売上を伸ばせる、という筋の良さを資料は強調しています。</p>
+  </div>
+</section>
+
+<section class="fc-sim-section">
+  <div class="wrap">
+    <h2 class="fc-sim-h2"><span class="fc-sim-h2-num">06</span>収益モデル（前提）</h2>
+    <div class="fc-sim-model-row">
+      <div><span>単価</span><strong>約 ¥2,200</strong></div>
+      <div><span>粗利（一人当たり・イメージ）</span><strong>約 ¥1,210</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="fc-sim-section fc-sim-steps-wrap">
+  <div class="wrap">
+    <h2 class="fc-sim-h2"><span class="fc-sim-h2-num">07</span>導入の流れ</h2>
+    <ol class="fc-sim-steps">
+      <li><span class="fc-sim-step-n">1</span> 申込</li>
+      <li><span class="fc-sim-step-n">2</span> 初期研修</li>
+      <li><span class="fc-sim-step-n">3</span> 導入準備（設置・導線設計）</li>
+      <li><span class="fc-sim-step-n">4</span> 販売開始</li>
+      <li><span class="fc-sim-step-n">5</span> 継続サポート</li>
+    </ol>
+  </div>
+</section>
+
+<footer class="page-foot fc-sim-foot">
+  <p>本タブの数値・文言は、with Reyel オートネイル FC加盟シミュレーション（Google スプレッドシート）に基づく整理です。契約条件・最新価格は必ず公式・担当窓口でご確認ください。</p>
+</footer>
+
+</div>
+</div>
 
 <nav class="nav nav--dock" aria-label="ページ切替">
   <a href="profile.html" class="nav-btn">メンバー略歴</a>
   <a href="gains.html" class="nav-btn">G.A.I.N.S.</a>
   <a href="inail-intro.html" class="nav-btn nav-inail active" aria-current="page">オートネイル</a>
+  <a href="tsukimisou-light-fc.html" class="nav-btn nav-tsuki">かき氷FC</a>
 </nav>
 </div>
+
+<script>
+(function () {
+  var tabIntro = document.getElementById('tab-inail-intro');
+  var tabFc = document.getElementById('tab-inail-fc');
+  var panelIntro = document.getElementById('panel-inail-intro');
+  var panelFc = document.getElementById('panel-inail-fc');
+  if (!tabIntro || !tabFc || !panelIntro || !panelFc) return;
+
+  function goIntro() {
+    panelIntro.hidden = false;
+    panelFc.hidden = true;
+    tabIntro.setAttribute('aria-selected', 'true');
+    tabFc.setAttribute('aria-selected', 'false');
+    tabIntro.tabIndex = 0;
+    tabFc.tabIndex = -1;
+    window.scrollTo(0, 0);
+  }
+  function goFc() {
+    panelIntro.hidden = true;
+    panelFc.hidden = false;
+    tabIntro.setAttribute('aria-selected', 'false');
+    tabFc.setAttribute('aria-selected', 'true');
+    tabIntro.tabIndex = -1;
+    tabFc.tabIndex = 0;
+    window.scrollTo(0, 0);
+  }
+  tabIntro.addEventListener('click', goIntro);
+  tabFc.addEventListener('click', goFc);
+  tabIntro.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); tabFc.focus(); goFc(); }
+  });
+  tabFc.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); tabIntro.focus(); goIntro(); }
+  });
+})();
+</script>
 
 </body>
 </html>
