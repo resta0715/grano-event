@@ -54,12 +54,13 @@
     border: 1px solid rgba(255,255,255,0.28);
     color: rgba(255,255,255,0.85);
     border-radius: 100px;
-    padding: clamp(0.38rem, 1vmin, 0.55rem) clamp(1rem, 2.5vmin, 1.5rem);
-    font-size: clamp(0.88rem, 1.25vmin + 0.38vw, 1.15rem);
+    padding: clamp(0.34rem, 0.9vmin, 0.5rem) clamp(0.7rem, 1.9vmin, 1.15rem);
+    font-size: clamp(0.78rem, 1.05vmin + 0.32vw, 1rem);
     font-weight: 600;
     font-family: 'Noto Sans JP', sans-serif;
     cursor: pointer;
     transition: all 0.2s;
+    white-space: nowrap;
     backdrop-filter: blur(10px);
   }
 
@@ -106,6 +107,23 @@
     background: linear-gradient(135deg, #1e5799, #5ecfff);
     border-color: rgba(120, 220, 255, 0.45);
     color: #081420;
+  }
+
+  .nav-btn.nav-clinic {
+    background: rgba(45, 212, 191, 0.22);
+    border-color: rgba(45, 212, 191, 0.45);
+    color: #e8fffb;
+  }
+
+  .nav-btn.nav-clinic:hover {
+    background: rgba(45, 212, 191, 0.4);
+    color: #fff;
+  }
+
+  .nav-btn.nav-clinic.active {
+    background: linear-gradient(135deg, #0e7a8e, #2dd4bf);
+    border-color: rgba(125, 235, 220, 0.55);
+    color: #03222a;
   }
 
   .key-hint {
@@ -898,6 +916,16 @@ a.nav-btn.nav-tsuki:visited {
 a.nav-btn.nav-tsuki.active,
 a.nav-btn.nav-tsuki.active:visited {
   color: #081420;
+}
+
+a.nav-btn.nav-clinic,
+a.nav-btn.nav-clinic:visited {
+  color: #e8fffb;
+}
+
+a.nav-btn.nav-clinic.active,
+a.nav-btn.nav-clinic.active:visited {
+  color: #03222a;
 }
 
 a.nav-btn {
