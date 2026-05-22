@@ -47,6 +47,8 @@ body{
 }
 .bar-btn:hover{background:rgba(200,148,62,.22); color:#fff}
 .bar-btn.print{cursor:pointer; font-family:inherit}
+.bar-btn.pdf{background:rgba(200,148,62,.18); color:var(--gold); border-color:rgba(200,148,62,.45)}
+.bar-btn.pdf:hover{background:var(--gold); color:#0F1B2D}
 
 /* Hero */
 .hero{
@@ -259,6 +261,7 @@ body{
     <a class="bar-btn" href="announcement_page.html">Event</a>
     <a class="bar-btn" href="members.html">Members</a>
     <a class="bar-btn" href="flyer_a4.html">Flyer</a>
+    <a class="bar-btn pdf" href="seating.pdf" download>PDFダウンロード</a>
     <button class="bar-btn print" type="button" onclick="window.print()">印刷 / PDF</button>
   </nav>
 </header>
