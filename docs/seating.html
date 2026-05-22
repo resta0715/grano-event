@@ -94,7 +94,7 @@ body{
 
 .row{
   display:grid;
-  grid-template-columns: repeat(4, 1fr) 28px repeat(2, 1fr) 28px repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0,1fr)) 28px repeat(2, minmax(0,1fr)) 28px repeat(4, minmax(0,1fr));
   gap:8px;
   margin-bottom:8px;
   align-items:stretch;
@@ -120,16 +120,30 @@ body{
   background:var(--paper-2);
   border:1px solid var(--border);
   border-radius:8px;
-  padding:10px 6px;
+  padding:10px 4px;
   min-height:54px;
+  min-width:0;
   display:flex; align-items:center; justify-content:center; text-align:center;
   font-size:clamp(11px, 1.05vw, 13px);
   font-weight:600;
   color:var(--ink);
   line-height:1.3;
-  word-break:keep-all;
-  overflow-wrap:break-word;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  overflow:hidden;
   transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.seat .nm{display:block; max-width:100%}
+.seat .ascii{
+  display:block;
+  font-family:"Inter",ui-sans-serif,sans-serif;
+  letter-spacing:.02em;
+  font-size:clamp(8.5px, 1vw, 10.5px);
+  line-height:1.15;
+  font-weight:700;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  white-space:normal;
 }
 .seat:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(15,27,45,.07); border-color:var(--amber)}
 .seat.empty{
@@ -138,13 +152,8 @@ body{
   color:transparent;
   user-select:none;
 }
-.seat .nm{display:block}
 .seat .sm{
   font-size:.78em; color:var(--muted); margin-left:2px; font-weight:500;
-}
-.seat .ascii{
-  font-family:"Inter",ui-sans-serif,sans-serif; letter-spacing:.05em;
-  font-size:10.5px; line-height:1.25; font-weight:700;
 }
 
 /* Highlight 宇部 */
@@ -163,19 +172,35 @@ body{
 
 /* Mobile: smaller seats and seat labels */
 @media (max-width: 640px){
+  .seats-wrap{ padding:0 8px }
   .row{
-    grid-template-columns: repeat(4, 1fr) 14px repeat(2, 1fr) 14px repeat(4, 1fr);
-    gap:4px;
+    grid-template-columns: repeat(4, minmax(0,1fr)) 10px repeat(2, minmax(0,1fr)) 10px repeat(4, minmax(0,1fr));
+    gap:3px;
   }
   .seat{
-    font-size:10px; padding:6px 2px; min-height:44px;
-    border-radius:6px;
+    font-size:9.5px;
+    padding:5px 1px;
+    min-height:46px;
+    border-radius:5px;
+    line-height:1.2;
   }
-  .seat .ascii{font-size:8.5px}
-  .aisle{font-size:0; }
+  .seat .sm{font-size:.7em; margin-left:1px}
+  .seat .ascii{font-size:8px; letter-spacing:0}
+  .aisle{font-size:0}
   .stage-name{font-size:12px; letter-spacing:4px}
   .with-rownum{padding-left:14px}
-  .row-num{font-size:9px; left:2px}
+  .row-num{font-size:9px; left:1px}
+}
+
+/* Extra-small phones */
+@media (max-width: 380px){
+  .row{
+    grid-template-columns: repeat(4, minmax(0,1fr)) 6px repeat(2, minmax(0,1fr)) 6px repeat(4, minmax(0,1fr));
+    gap:2px;
+  }
+  .seat{ font-size:8.5px; padding:4px 1px; min-height:42px }
+  .seat .sm{font-size:.65em}
+  .seat .ascii{font-size:7px}
 }
 
 /* Front/back markers */
