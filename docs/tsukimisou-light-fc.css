@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,600;0,9..40,800;1,9..40,700&display=swap');
+:root{
+  --ff-sans: system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+}
 
 :root {
   --ice-bg: #0a1628;
@@ -23,7 +25,7 @@ html {
 }
 
 body {
-  font-family: 'Noto Sans JP', 'DM Sans', sans-serif;
+  font-family: var(--ff-sans);
   background: var(--ice-bg);
   color: var(--text);
   line-height: 1.65;
@@ -72,7 +74,7 @@ a {
   padding: clamp(0.4rem, 1.05vmin, 0.58rem) clamp(0.85rem, 2.4vmin, 1.25rem);
   font-size: clamp(0.82rem, 1.1vmin + 0.38vw, 1.05rem);
   font-weight: 600;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: var(--ff-sans);
   text-decoration: none;
   display: inline-block;
   transition: background 0.2s, color 0.2s;

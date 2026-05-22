@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@600;700;800;900&display=swap');
+:root{
+  --ff-sans: system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+}
 
 :root {
   --sc-bg: #0a0f1a;
@@ -19,7 +21,7 @@
 html { scroll-behavior: smooth; }
 
 body.sc-body {
-  font-family: 'Noto Sans JP', 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   background: var(--sc-bg);
   color: var(--sc-text);
   line-height: 1.65;
@@ -129,7 +131,7 @@ body.sc-body {
   color: #d6f5f1;
 }
 .sc-pricepill b {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-weight: 900;
   font-size: 0.95rem;
   color: #fff;
@@ -162,7 +164,7 @@ body.sc-body {
   padding: 1.1rem 1rem 1rem;
 }
 .sc-hero-stat-val {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-weight: 900;
   font-size: clamp(1.85rem, 4.5vw, 2.55rem);
   line-height: 1;
@@ -202,7 +204,7 @@ body.sc-body {
   color: #fff;
 }
 .sc-h2-num {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-size: 0.72rem;
   font-weight: 800;
   color: var(--sc-cyan);
@@ -310,7 +312,7 @@ body.sc-body {
   text-transform: uppercase;
 }
 .sc-menu-price {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-weight: 900;
   font-size: 1.15rem;
   color: var(--sc-cyan);
@@ -368,7 +370,7 @@ body.sc-body {
   background: rgba(255, 255, 255, 0.02);
 }
 .sc-why-num {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-weight: 900;
   font-size: 1.45rem;
   color: var(--sc-teal);
@@ -411,7 +413,7 @@ body.sc-body {
 .sc-step::before {
   content: 'STEP 0' counter(scstep);
   display: inline-block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-weight: 800;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
@@ -486,7 +488,7 @@ body.sc-body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-weight: 900;
   font-size: 0.82rem;
   color: var(--sc-cyan);
@@ -514,7 +516,7 @@ body.sc-body {
 }
 .sc-brand h2 { margin-bottom: 0.75rem; }
 .sc-brand-name {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--ff-sans);
   font-weight: 900;
   font-size: 1.35rem;
   letter-spacing: 0.04em;
@@ -598,7 +600,7 @@ body.sc-body {
   padding: clamp(0.4rem, 1.05vmin, 0.58rem) clamp(0.95rem, 2.6vmin, 1.45rem);
   font-size: clamp(0.85rem, 1.1vmin + 0.42vw, 1.05rem);
   font-weight: 600;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: var(--ff-sans);
   text-decoration: none;
   display: inline-block;
   transition: background 0.2s, color 0.2s;
