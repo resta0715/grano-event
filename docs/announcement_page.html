@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Business Open Day 2026 | BNI Grano Chapter</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,12 +14,14 @@
   --teal:#2B7A78;
   --text:#1A1A1A;--text-sub:#555;--text-muted:#999;
   --border:#E8E4DD;
+  --ff-sans: system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  --ff-serif: "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Noto Sans JP','Inter',sans-serif;background:var(--warm);color:var(--text);-webkit-font-smoothing:antialiased}
+body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit-font-smoothing:antialiased}
 
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,27,45,.97);backdrop-filter:blur(12px);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px}
-.nav-logo{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:3px;color:var(--amber);text-transform:uppercase}
+.nav-logo{font-family:var(--ff-sans);font-size:13px;font-weight:600;letter-spacing:3px;color:var(--amber);text-transform:uppercase}
 .nav-links{display:flex;gap:28px}
 .nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
 .nav-links a:hover,.nav-links a.active{color:var(--amber)}
@@ -31,12 +31,12 @@ body{font-family:'Noto Sans JP','Inter',sans-serif;background:var(--warm);color:
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   text-align:center;position:relative;overflow:hidden;background:var(--navy);
 }
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1400&q=80') center/cover;opacity:.22}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(200,148,62,.22),transparent 55%),radial-gradient(ellipse at 70% 70%,rgba(43,122,120,.18),transparent 60%),linear-gradient(135deg,#0F1B2D 0%,#1C3048 100%);opacity:1}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,27,45,.3) 0%,rgba(15,27,45,.92) 100%)}
 .hero-content{position:relative;z-index:1;max-width:720px;padding:80px 24px 60px}
-.hero-pre{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--amber);margin-bottom:24px;opacity:0;animation:fadeIn .8s ease .2s forwards}
-.hero-date{font-family:'Inter',sans-serif;font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:6px;color:var(--amber);margin-bottom:24px;opacity:0;animation:fadeIn .8s ease .4s forwards}
-.hero h1{font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(28px,5.5vw,52px);line-height:1.4;color:var(--white);margin-bottom:12px;opacity:0;animation:fadeIn .8s ease .6s forwards}
+.hero-pre{font-family:var(--ff-sans);font-size:11px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--amber);margin-bottom:24px;opacity:0;animation:fadeIn .8s ease .2s forwards}
+.hero-date{font-family:var(--ff-sans);font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:6px;color:var(--amber);margin-bottom:24px;opacity:0;animation:fadeIn .8s ease .4s forwards}
+.hero h1{font-family:var(--ff-serif);font-weight:700;font-size:clamp(28px,5.5vw,52px);line-height:1.4;color:var(--white);margin-bottom:12px;opacity:0;animation:fadeIn .8s ease .6s forwards}
 .hero h1 em{font-style:normal;color:var(--amber)}
 .hero-sub{font-size:clamp(14px,2vw,18px);font-weight:300;color:rgba(255,255,255,.6);margin-bottom:40px;opacity:0;animation:fadeIn .8s ease .8s forwards}
 .hero-tag{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:2px;padding:10px 28px;border:1px solid rgba(200,148,62,.35);display:inline-block;opacity:0;animation:fadeIn .8s ease 1s forwards}
@@ -47,18 +47,17 @@ body{font-family:'Noto Sans JP','Inter',sans-serif;background:var(--warm);color:
 
 /* WARM SECTIONS */
 section{padding:80px 24px;max-width:880px;margin:0 auto}
-.sec-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--amber);text-align:center;margin-bottom:12px}
-.sec-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,3.5vw,34px);font-weight:700;text-align:center;margin-bottom:48px;color:var(--navy)}
+.sec-label{font-family:var(--ff-sans);font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--amber);text-align:center;margin-bottom:12px}
+.sec-title{font-family:var(--ff-serif);font-size:clamp(22px,3.5vw,34px);font-weight:700;text-align:center;margin-bottom:48px;color:var(--navy)}
 .sec-title .em{color:var(--amber)}
 
 /* ACCENT BAR */
 .accent-bar{height:3px;width:48px;background:var(--amber);margin:0 auto 48px;border-radius:2px}
 
-/* PHOTO DIVIDER */
-.photo-bar{width:100%;height:220px;position:relative;overflow:hidden}
-.photo-bar img{width:100%;height:100%;object-fit:cover;filter:brightness(.5)}
+/* PHOTO DIVIDER (CSS-only) */
+.photo-bar{width:100%;height:220px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 30% 30%,rgba(200,148,62,.18),transparent 55%),linear-gradient(135deg,#0F1B2D 0%,#1C3048 100%)}
 .photo-bar .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.photo-bar .overlay h3{font-family:'Noto Serif JP',serif;font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--white);letter-spacing:3px;margin-bottom:4px}
+.photo-bar .overlay h3{font-family:var(--ff-serif);font-size:clamp(20px,3vw,30px);font-weight:700;color:var(--white);letter-spacing:3px;margin-bottom:4px}
 .photo-bar .overlay p{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:2px}
 
 /* CONCEPT */
@@ -66,16 +65,20 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
 .concept p{font-size:16px;line-height:2.2;color:var(--text-sub)}
 .concept strong{color:var(--navy);font-weight:600}
 
-/* IMAGE ROW */
+/* IMAGE ROW (CSS-only decorative tiles, no external images) */
 .img-row{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:960px;margin:0 auto}
-.img-row img{width:100%;height:180px;object-fit:cover;filter:brightness(.8);transition:filter .4s;border-radius:2px}
-.img-row img:hover{filter:brightness(1)}
+.img-tile{position:relative;height:180px;border-radius:2px;overflow:hidden;color:rgba(255,255,255,.92);display:flex;align-items:flex-end;padding:18px;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.img-tile::before{content:"";position:absolute;inset:0;background-image:linear-gradient(135deg,rgba(15,27,45,0) 0%,rgba(15,27,45,.55) 100%)}
+.img-tile-1{background:linear-gradient(135deg,#1C3048 0%,#2B7A78 100%)}
+.img-tile-2{background:linear-gradient(135deg,#0F1B2D 0%,#C8943E 130%)}
+.img-tile-3{background:linear-gradient(135deg,#1C3048 0%,#0F1B2D 60%,#C8943E 130%)}
+.img-tile span{position:relative;z-index:1}
 
 /* SCHEDULE — warm card style */
 .sched-wrap{max-width:640px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:4px;padding:32px 40px}
 .sched-item{display:grid;grid-template-columns:72px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:baseline}
 .sched-item:last-child{border-bottom:none}
-.sched-time{font-family:'Inter',sans-serif;font-size:18px;font-weight:700;color:var(--amber);text-align:right}
+.sched-time{font-family:var(--ff-sans);font-size:18px;font-weight:700;color:var(--amber);text-align:right}
 .sched-desc{font-size:15px;font-weight:500;color:var(--text)}
 .sched-desc span{font-size:12px;color:var(--text-muted);font-weight:400;margin-left:6px}
 
@@ -85,7 +88,7 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
 .pres-card{background:var(--white);padding:36px 24px 28px;text-align:center;border:1px solid var(--border);border-radius:4px;transition:box-shadow .3s,transform .3s}
 .pres-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.07);transform:translateY(-4px)}
 .pres-photo{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:center 20%;border:3px solid var(--amber-pale);margin-bottom:16px}
-.pres-name{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.pres-name{font-family:var(--ff-serif);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px}
 .pres-role{font-size:12px;color:var(--amber);font-weight:600;letter-spacing:1px;margin-bottom:10px}
 .pres-desc{font-size:13px;line-height:1.8;color:var(--text-sub)}
 
@@ -96,9 +99,9 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
 .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:880px;margin:0 auto}
 @media(max-width:600px){.info-grid{grid-template-columns:1fr}}
 .info-block{padding:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);border-radius:4px}
-.info-block h3{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.info-block h3{font-family:var(--ff-sans);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
 .info-block p{font-size:14px;line-height:1.9;color:rgba(255,255,255,.6)}
-.info-block .big{font-family:'Inter',sans-serif;font-size:36px;font-weight:700;color:var(--white)}
+.info-block .big{font-family:var(--ff-sans);font-size:36px;font-weight:700;color:var(--white)}
 .info-block .big-sub{font-size:14px;color:var(--amber);margin-left:2px}
 
 /* CTA — warm */
@@ -144,7 +147,7 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
   <div class="hero-grad"></div>
   <div class="hero-content">
     <p class="hero-pre">BNI Grano Chapter presents</p>
-    <p class="hero-date">2026. 5. 27 <span style="font-family:'Noto Sans JP',sans-serif;font-size:70%;letter-spacing:0">（水）</span></p>
+    <p class="hero-date">2026. 5. 27 <span style="font-family:var(--ff-sans);font-size:70%;letter-spacing:0">（水）</span></p>
     <h1><em>Business Open Day</em><br>大人の文化祭</h1>
     <p class="hero-sub">"紹介"で成果を出す、新しいビジネスの出会い方</p>
     <div class="hero-tag">信頼関係から生まれるリファーラルマーケティングを体験</div>
@@ -160,10 +163,10 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
   </div>
 </section>
 
-<div class="img-row fade">
-  <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?w=800&q=80" alt="">
-  <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="">
-  <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80" alt="">
+<div class="img-row fade" aria-hidden="true">
+  <div class="img-tile img-tile-1"><span>Network</span></div>
+  <div class="img-tile img-tile-2"><span>Referral</span></div>
+  <div class="img-tile img-tile-3"><span>Trust</span></div>
 </div>
 
 <section class="fade">
@@ -179,7 +182,6 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
 </section>
 
 <div class="photo-bar">
-  <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80" alt="">
   <div class="overlay">
     <h3>Presenter Session</h3>
     <p>プロフェッショナルが語る</p>
@@ -232,8 +234,11 @@ section{padding:80px 24px;max-width:880px;margin:0 auto}
       <h3>Venue</h3>
       <p><strong style="color:#fff;font-size:16px">HOTEL PLUMM 横浜</strong><br><br>神奈川県横浜市西区北幸2-9-1<br>JR横浜駅西口 徒歩7分</p>
     </div>
-    <div class="info-block" style="grid-column:1/-1;padding:0;overflow:hidden;border:none;background:none">
-      <iframe src="https://maps.google.com/maps?q=HOTEL+PLUMM+横浜+神奈川県横浜市西区北幸2-9-1&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="240" style="border:0;border-radius:4px;display:block" allowfullscreen="" loading="lazy"></iframe>
+    <div class="info-block" style="grid-column:1/-1">
+      <h3>Map</h3>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:12px">〒220-0004 神奈川県横浜市西区北幸2-9-1<br><strong>HOTEL PLUMM 横浜</strong></p>
+      <p style="font-size:13px;color:var(--text-sub);line-height:1.7;margin-bottom:14px">JR横浜駅 西口 徒歩5分／相鉄線・市営地下鉄・東急東横線・京急線 横浜駅から徒歩圏内</p>
+      <a href="https://maps.google.com/maps?q=HOTEL+PLUMM+横浜+神奈川県横浜市西区北幸2-9-1" target="_blank" rel="noopener" style="display:inline-block;padding:10px 20px;background:var(--amber);color:#fff;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1px;border-radius:2px">Googleマップで開く</a>
     </div>
     <div class="info-block">
       <h3>Fee</h3>

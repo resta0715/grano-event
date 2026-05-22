@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Business Open Day 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @page{size:210mm 297mm;margin:0}
 *{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ff-sans: system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  --ff-serif: "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+}
 html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
-  font-family:'Noto Sans JP','Inter',sans-serif;
+  font-family:var(--ff-sans);
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .page{
@@ -22,12 +25,12 @@ html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
   display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
   background:#0F1B2D;color:#fff;
 }
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1400&q=80') center/cover;opacity:.22}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(200,148,62,.22),transparent 55%),radial-gradient(ellipse at 70% 70%,rgba(43,122,120,.18),transparent 60%),linear-gradient(135deg,#0F1B2D 0%,#1C3048 100%);opacity:1}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,27,45,.1),rgba(15,27,45,.92))}
 .hero-c{position:relative;z-index:1;padding:0 12mm}
-.hero-pre{font-family:'Inter',sans-serif;font-size:7.5pt;font-weight:600;letter-spacing:4pt;text-transform:uppercase;color:#C8943E;margin-bottom:2mm}
-.hero-date{font-family:'Inter',sans-serif;font-size:26pt;font-weight:700;letter-spacing:2pt;color:#C8943E;margin-bottom:3mm}
-.hero h1{font-family:'Noto Serif JP',serif;font-size:34pt;font-weight:700;line-height:1.25;margin-bottom:2mm}
+.hero-pre{font-family:var(--ff-sans);font-size:7.5pt;font-weight:600;letter-spacing:4pt;text-transform:uppercase;color:#C8943E;margin-bottom:2mm}
+.hero-date{font-family:var(--ff-sans);font-size:26pt;font-weight:700;letter-spacing:2pt;color:#C8943E;margin-bottom:3mm}
+.hero h1{font-family:var(--ff-serif);font-size:34pt;font-weight:700;line-height:1.25;margin-bottom:2mm}
 .hero h1 em{font-style:normal;color:#C8943E}
 .hero-sub{font-size:11pt;color:rgba(255,255,255,.6);letter-spacing:.5pt}
 
@@ -39,7 +42,7 @@ html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
   display:flex;align-items:center;justify-content:space-between;
 }
 .venue-band .vb-main{display:flex;align-items:baseline;gap:3mm}
-.venue-band .vb-name{font-family:'Noto Serif JP',serif;font-size:20pt;font-weight:700;letter-spacing:1pt}
+.venue-band .vb-name{font-family:var(--ff-serif);font-size:20pt;font-weight:700;letter-spacing:1pt}
 .venue-band .vb-addr{font-size:10pt;color:rgba(255,255,255,.85)}
 .venue-band .vb-access{font-size:10pt;font-weight:600;background:rgba(255,255,255,.2);padding:1.5mm 4mm;border-radius:1mm}
 
@@ -51,12 +54,12 @@ html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
   border-bottom:0.3mm solid #E8E4DD;
 }
 .sched-label{
-  font-family:'Noto Serif JP',serif;font-size:13pt;font-weight:700;color:#0F1B2D;
+  font-family:var(--ff-serif);font-size:13pt;font-weight:700;color:#0F1B2D;
   white-space:nowrap;padding-right:4mm;border-right:0.3mm solid #E8E4DD;
 }
 .sched-items{display:flex;flex-wrap:wrap;gap:1.5mm 5mm;flex:1}
 .s-item{display:flex;gap:1.5mm;align-items:baseline}
-.s-time{font-family:'Inter',sans-serif;font-size:12pt;font-weight:700;color:#C8943E}
+.s-time{font-family:var(--ff-sans);font-size:12pt;font-weight:700;color:#C8943E}
 .s-name{font-size:11pt;font-weight:500;color:#1A1A1A}
 .s-note{font-size:7.5pt;color:#999;margin-left:1mm}
 
@@ -66,7 +69,7 @@ html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
   display:flex;flex-direction:column;
 }
 .pres-head{
-  font-family:'Inter',sans-serif;font-size:8pt;font-weight:600;letter-spacing:3pt;
+  font-family:var(--ff-sans);font-size:8pt;font-weight:600;letter-spacing:3pt;
   text-transform:uppercase;color:#C8943E;margin-bottom:3mm;
 }
 .pres-grid{display:flex;gap:4mm;flex:1}
@@ -76,7 +79,7 @@ html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
   padding:4mm 3mm;text-align:center;
 }
 .p-img{width:26mm;height:26mm;border-radius:50%;object-fit:cover;object-position:center 20%;border:0.5mm solid #E8E4DD;margin-bottom:2.5mm}
-.p-name{font-family:'Noto Serif JP',serif;font-size:13pt;font-weight:700;color:#0F1B2D;margin-bottom:1.5mm}
+.p-name{font-family:var(--ff-serif);font-size:13pt;font-weight:700;color:#0F1B2D;margin-bottom:1.5mm}
 .p-role{font-size:9.5pt;color:#C8943E;font-weight:600;margin-bottom:1.5mm}
 .p-desc{font-size:8.5pt;color:#777;line-height:1.5}
 
@@ -86,16 +89,16 @@ html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
   padding:5mm 14mm;
 }
 .target-row{display:flex;align-items:center;gap:3mm;margin-bottom:5mm;padding-bottom:4mm;border-bottom:0.3mm solid rgba(200,148,62,.2)}
-.target-label{font-family:'Inter',sans-serif;font-size:7.5pt;font-weight:600;letter-spacing:3pt;text-transform:uppercase;color:#C8943E;white-space:nowrap}
+.target-label{font-family:var(--ff-sans);font-size:7.5pt;font-weight:600;letter-spacing:3pt;text-transform:uppercase;color:#C8943E;white-space:nowrap}
 .target-tags{display:flex;gap:2.5mm;flex-wrap:wrap}
 .t-tag{padding:1.5mm 4mm;border:0.3mm solid rgba(200,148,62,.5);font-size:10pt;color:rgba(255,255,255,.7);font-weight:500;border-radius:1mm}
 
 .info-row{display:grid;grid-template-columns:0.9fr 1.3fr 0.8fr;gap:4mm;align-items:start}
-.info-col h5{font-family:'Inter',sans-serif;font-size:7pt;font-weight:600;letter-spacing:2.5pt;text-transform:uppercase;color:#C8943E;margin-bottom:2mm}
+.info-col h5{font-family:var(--ff-sans);font-size:7pt;font-weight:600;letter-spacing:2.5pt;text-transform:uppercase;color:#C8943E;margin-bottom:2mm}
 .info-col p{font-size:10pt;line-height:1.7;color:rgba(255,255,255,.6)}
-.info-col .num{font-family:'Inter',sans-serif;font-size:30pt;font-weight:700;color:#fff}
+.info-col .num{font-family:var(--ff-sans);font-size:30pt;font-weight:700;color:#fff}
 .info-col .num-s{font-size:13pt;color:#C8943E}
-.info-col .venue-name{font-family:'Noto Serif JP',serif;font-size:16pt;font-weight:700;color:#fff;display:block;margin-bottom:1.5mm}
+.info-col .venue-name{font-family:var(--ff-serif);font-size:16pt;font-weight:700;color:#fff;display:block;margin-bottom:1.5mm}
 
 /* === FOOTER === */
 .foot{
@@ -115,7 +118,7 @@ html,body{width:210mm;height:297mm;margin:0;padding:0;overflow:hidden;
     <div class="hero-grad"></div>
     <div class="hero-c">
       <p class="hero-pre">BNI Grano Chapter presents</p>
-      <p class="hero-date">2026. 5. 27 <span style="font-family:'Noto Sans JP',sans-serif;font-size:70%;letter-spacing:0">（水）</span></p>
+      <p class="hero-date">2026. 5. 27 <span style="font-family:var(--ff-sans);font-size:70%;letter-spacing:0">（水）</span></p>
       <h1><em>Business Open Day</em><br>大人の文化祭</h1>
       <p class="hero-sub">"紹介"で成果を出す、新しいビジネスの出会い方</p>
     </div>
