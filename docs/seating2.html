@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2部 円卓席次表｜Business Open Day 2026 — BNI Grano Chapter</title>
+<meta name="description" content="Business Open Day 2026 第2部 円卓席次（パターンA・B切替対応）。">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F1B2D; --navy-2:#1C3048; --navy-3:#26405E;
+  --amber:#C8943E; --amber-light:#D4A855; --amber-pale:#FBF5EB;
+  --paper:#F6F2EA; --paper-2:#FFFEFA;
+  --ink:#1A1A1A; --ink-2:#3a3a3a; --muted:#8a8378;
+  --border:#E2DCCD;
+  --member:#fff; --member-bd:#bda87a;
+  --visitor:#eef4f1; --visitor-bd:#9bbcb1;
+  --unknown:#fdecec; --unknown-bd:#dca3a3;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  background:var(--paper); color:var(--ink);
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+
+/* Top bar */
+.bar{
+  position:sticky; top:0; z-index:20;
+  background:rgba(15,27,45,.97);
+  backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 20px; gap:12px;
+}
+.bar-l{display:flex; align-items:baseline; gap:14px; min-width:0}
+.bar-mark{font-size:11px; font-weight:700; letter-spacing:3px; color:var(--amber); text-transform:uppercase}
+.bar-title{font-size:13px; font-weight:600; color:#fff; letter-spacing:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.bar-r{display:flex; gap:8px; flex-wrap:wrap}
+.bar-btn{
+  font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+  padding:7px 12px; border-radius:999px; text-decoration:none;
+  background:rgba(255,255,255,.08); color:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.14);
+  transition:background .2s, color .2s; cursor:pointer; font-family:inherit;
+}
+.bar-btn:hover{background:rgba(200,148,62,.22); color:#fff}
+
+/* Hero */
+.hero{ text-align:center; padding:32px 18px 8px }
+.hero-pre{font-size:10px; font-weight:700; letter-spacing:4px; color:var(--amber); text-transform:uppercase; margin-bottom:8px}
+.hero h1{ font-size:clamp(20px,3.5vw,28px); font-weight:800; letter-spacing:.04em; color:var(--navy); margin-bottom:6px }
+.hero-sub{font-size:12px; color:var(--muted); letter-spacing:1px}
+
+/* パターン切替 */
+.pattern-switch{
+  display:flex; gap:0; justify-content:center; margin:18px auto 8px;
+  background:#fff; padding:4px; border-radius:999px; border:1px solid var(--border);
+  width:max-content; box-shadow:0 2px 6px rgba(15,27,45,.04);
+}
+.pattern-btn{
+  font-size:12px; font-weight:700; letter-spacing:2px;
+  padding:8px 22px; border-radius:999px; border:0; background:transparent;
+  color:var(--muted); cursor:pointer; font-family:inherit; transition:all .2s;
+}
+.pattern-btn.active{ background:var(--navy); color:#fff }
+.pattern-label{
+  text-align:center; font-size:11px; color:var(--muted); margin-bottom:14px; letter-spacing:1px;
+}
+
+/* 凡例 */
+.legend{
+  display:flex; gap:16px; flex-wrap:wrap; justify-content:center;
+  font-size:11px; color:var(--muted); margin-bottom:18px;
+}
+.legend i{
+  display:inline-block; width:14px; height:14px; border-radius:3px;
+  margin-right:4px; vertical-align:-2px;
+  border:1px solid var(--border);
+}
+.legend i.m{background:var(--member); border-color:var(--member-bd)}
+.legend i.v{background:var(--visitor); border-color:var(--visitor-bd)}
+.legend i.u{background:var(--unknown); border-color:var(--unknown-bd)}
+
+/* テーブルレイアウト */
+.tables-wrap{ max-width:1240px; margin:0 auto; padding:0 16px 40px }
+.tables-row{ display:grid; gap:24px; margin-bottom:28px; }
+.tables-row-3{ grid-template-columns:repeat(3, minmax(0,1fr)) }
+.tables-row-2{
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  max-width:820px; margin-left:auto; margin-right:auto;
+}
+
+/* 円卓 */
+.table-wrap{
+  position:relative; width:100%; aspect-ratio:1;
+  max-width:380px; margin:0 auto;
+}
+.table-circle{
+  position:absolute; inset:24%;
+  border:2px solid var(--ink-2);
+  border-radius:50%;
+  background:linear-gradient(180deg, #fdfaf2, #f1e9d4);
+  box-shadow:inset 0 4px 18px rgba(0,0,0,.06);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+}
+.table-name{
+  font-size:clamp(18px,2.4vw,24px); font-weight:800; color:var(--navy);
+  letter-spacing:6px; line-height:1;
+}
+.table-count{
+  font-size:10px; color:var(--muted); letter-spacing:2px; margin-top:4px;
+}
+.seat-c{
+  position:absolute; left:50%; top:50%;
+  width:30%; height:13%;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; font-size:10.5px; font-weight:600; line-height:1.15;
+  background:var(--member); border:1px solid var(--member-bd);
+  border-radius:6px; padding:2px 4px;
+  box-shadow:0 2px 6px rgba(15,27,45,.06);
+  transform:translate(-50%, -50%);
+  word-break:break-word; overflow-wrap:anywhere;
+  user-select:none;
+  z-index:1;
+}
+.seat-c.v{ background:var(--visitor); border-color:var(--visitor-bd) }
+.seat-c.u{ background:var(--unknown); border-color:var(--unknown-bd) }
+.seat-c .nm{ display:block; font-size:11px; line-height:1.15 }
+.seat-c .sm{
+  display:inline-block; font-size:.72em; color:var(--muted);
+  margin-left:2px; font-weight:500;
+}
+
+/* スマホ */
+@media (max-width: 760px){
+  .tables-row-3{ grid-template-columns:repeat(1, minmax(0,1fr)) }
+  .tables-row-2{ grid-template-columns:repeat(1, minmax(0,1fr)) }
+  .table-wrap{ max-width:360px }
+  .seat-c{ font-size:10px; width:32% }
+  .seat-c .nm{ font-size:10.5px }
+}
+
+/* 編集モード */
+.edit-toolbar{
+  display:none;
+  position:sticky; top:56px; z-index:25;
+  background:#fff; border-bottom:1px solid var(--border);
+  padding:10px 16px;
+  box-shadow:0 4px 16px rgba(15,27,45,.06);
+}
+body.edit-mode .edit-toolbar{ display:block }
+.edit-toolbar-inner{
+  max-width:1240px; margin:0 auto;
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+}
+.edit-toolbar-tag{
+  background:linear-gradient(135deg, var(--amber) 0%, #d4a855 100%);
+  color:#fff; font-size:11px; font-weight:700; letter-spacing:2px;
+  padding:5px 10px; border-radius:4px; text-transform:uppercase;
+}
+.edit-toolbar-help{font-size:12px; color:var(--ink-2); flex:1; min-width:200px}
+.edit-toolbar-help b{color:var(--navy)}
+.edit-toolbar .btn{
+  font-size:12px; font-weight:700; letter-spacing:1px;
+  padding:8px 14px; border-radius:6px; border:0; cursor:pointer; font-family:inherit;
+}
+.edit-toolbar .btn-primary{background:var(--navy); color:#fff}
+.edit-toolbar .btn-primary:hover{background:var(--navy-2)}
+.edit-toolbar .btn-amber{background:var(--amber); color:#fff}
+.edit-toolbar .btn-amber:hover{background:#b8842e}
+.edit-toolbar .btn-ghost{background:transparent; color:var(--muted); border:1px solid var(--border)}
+.edit-toolbar .btn-ghost:hover{color:var(--ink); border-color:var(--ink-2)}
+.edit-mode-counter{
+  font-size:11px; color:var(--muted);
+  padding:4px 10px; background:#f3eedd; border-radius:999px;
+}
+.edit-mode-counter b{color:var(--amber); font-size:14px}
+.save-status{
+  max-width:1240px; margin:8px auto 0; padding:10px 14px;
+  border-radius:8px; font-size:12px; line-height:1.6;
+}
+.save-status.info{background:#fff8e6; color:#7a5e1e; border:1px solid #f0d68a}
+.save-status.ok{background:#eaf7e3; color:#2e6b1c; border:1px solid #b9dfa6}
+.save-status.err{background:#fbe8e8; color:#8a2222; border:1px solid #e7b6b6; white-space:pre-wrap; word-break:break-all}
+.save-status a{color:inherit; text-decoration:underline}
+
+body.edit-mode .seat-c{ cursor:pointer; transition:box-shadow .15s, outline-offset .15s }
+body.edit-mode .seat-c:hover{
+  box-shadow:0 6px 14px rgba(15,27,45,.18);
+}
+body.edit-mode .seat-c.selected{
+  outline:3px solid var(--amber); outline-offset:2px;
+  background:linear-gradient(180deg, #fff8ec 0%, #fbecc7 100%) !important;
+  border-color:var(--amber);
+  z-index:3;
+}
+body.edit-mode .seat-c.dragging{ opacity:.4 }
+body.edit-mode .seat-c.drag-over{
+  outline:2px dashed var(--amber); outline-offset:2px;
+  background:#fbecc7 !important;
+  z-index:3;
+}
+
+/* footer */
+.footer{
+  max-width:1240px; margin:0 auto 60px; padding:18px;
+  font-size:11px; color:var(--muted); line-height:1.7;
+  border-top:1px solid var(--border);
+}
+
+/* print */
+@media print{
+  @page{ size: A4 landscape; margin: 8mm }
+  body{ background:#fff; color:#000 }
+  .bar, .legend, .edit-toolbar, .pattern-switch, .footer-actions{ display:none !important }
+  .hero{ padding:0 0 4px }
+  .hero h1{ font-size:18px }
+  .pattern-label{ font-size:10px; margin-bottom:8px }
+  .tables-wrap{ padding:0 6mm }
+  .tables-row{ gap:8mm; margin-bottom:8mm }
+  .table-wrap{ max-width:100% }
+  .table-circle{ background:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .seat-c{
+    background:#fff !important;
+    border:.6pt solid #555 !important;
+    box-shadow:none !important;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    font-size:8.5pt;
+  }
+  .seat-c.v{ background:#f4f7f5 !important; border:.6pt solid #777 !important }
+  .seat-c.u{ background:#fff !important; border:.6pt dashed #888 !important }
+}
+</style>
+</head>
+<body>
+
+<header class="bar" role="banner">
+  <div class="bar-l">
+    <span class="bar-mark">BNI Grano</span>
+    <span class="bar-title">Business Open Day 2026 — 第2部 円卓席次</span>
+  </div>
+  <nav class="bar-r" aria-label="ナビ">
+    <a class="bar-btn" href="seating.html">第1部</a>
+    <a class="bar-btn" href="announcement_page.html">Event</a>
+    <a class="bar-btn" href="members.html">Members</a>
+    <button class="bar-btn" type="button" onclick="window.print()">印刷 / PDF</button>
+    <a class="bar-btn" id="barEditEntry" href="?edit=1">編集モード</a>
+  </nav>
+</header>
+<script>
+  if (new URLSearchParams(location.search).get('edit') === '1') {
+    var el = document.getElementById('barEditEntry');
+    if (el) { el.textContent = '編集を終了'; el.href = location.pathname; }
+  }
+</script>
+
+<!-- 編集モード用ツールバー（?edit=1 のときだけ表示） -->
+<div class="edit-toolbar" id="editToolbar" aria-hidden="true">
+  <div class="edit-toolbar-inner">
+    <span class="edit-toolbar-tag">編集モード</span>
+    <span class="edit-toolbar-help">
+      <b>クリック</b>か<b>ドラッグ＆ドロップ</b>で2席を入れ替え。
+      パターンA/B はそれぞれ独立に編集できます。
+    </span>
+    <span class="edit-mode-counter" id="editCounter"><b>0</b> 件</span>
+    <button class="btn btn-ghost" type="button" id="btnCancelSelect" hidden>選択解除</button>
+    <button class="btn btn-ghost" type="button" id="btnReset">最初に戻す</button>
+    <button class="btn btn-amber" type="button" id="btnSaveDirect">保存して反映</button>
+  </div>
+  <div class="save-status" id="saveStatus" hidden></div>
+</div>
+
+<section class="hero">
+  <p class="hero-pre">Round Tables — 2026.5.27 (水) 第2部</p>
+  <h1>第2部 円卓席次</h1>
+  <p class="hero-sub">8卓 × 7〜8名 / 3-3-2 配置 — 席替えあり（パターンA/B）</p>
+</section>
+
+<div class="pattern-switch" role="tablist" aria-label="席替えパターン">
+  <button class="pattern-btn active" type="button" data-target="A" role="tab" aria-selected="true">パターン A</button>
+  <button class="pattern-btn" type="button" data-target="B" role="tab" aria-selected="false">席替え後（B）</button>
+</div>
+<p class="pattern-label" id="patternLabel">パターンA — 第2部 開始時</p>
+
+<div class="legend" role="note">
+  <span><i class="m"></i> メンバー</span>
+  <span><i class="v"></i> ビジター</span>
+  <span><i class="u"></i> 要確認</span>
+</div>
+
+<div class="tables-wrap">
+<section class="tables-pattern" data-pattern="A">
+  <div class="tables-row tables-row-3">
+    <div class="table-wrap" data-table="1" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">1卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">山田 研二</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">岸 信利</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
+      <div class="seat-c u" data-kind="u" style="--angle:90.00deg"><span class="nm">栗原</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">滝口 肇</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">清島 有紗</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">田代 祐司</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="2" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">2卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:12.86deg"><span class="nm">保利 澄香</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">新井 絵美</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">井出 康平</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">高野 なおみ</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">山下 翼</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="3" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">3卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:12.86deg"><span class="nm">新井D</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">近藤 朱莉</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">麻生 恵里</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">葛城 由美</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">堀川 マサル</span><span class="sm">様</span></div>
+    </div>
+  </div>
+  <div class="tables-row tables-row-3">
+    <div class="table-wrap" data-table="4" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">4卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">鈴木 優</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">熊澤 博之</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">髙橋 信博</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">大工原 葉子</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:90.00deg"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">﨏田 美咲</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">木下 貴子</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">小林 良</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="5" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">5卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">宇部 光太</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:45.00deg"><span class="nm">藤井 光樹</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:90.00deg"><span class="nm">細谷 政徳</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">NGUYEN VAN LONG</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">山口 えま</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">岩渕 元気</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="6" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">6卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">横山 孝行</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">かわもと えつこ</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:12.86deg"><span class="nm">佐藤 秀哉</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">藤平 ゆか</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">堀内 健一</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">橋本 香織</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">山坂 秀樹</span><span class="sm">様</span></div>
+    </div>
+  </div>
+  <div class="tables-row tables-row-2">
+    <div class="table-wrap" data-table="7" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">7卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">尾﨑 直人</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:12.86deg"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">岸 翔麻</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">松永 洋忠</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">澤口 奈緒美</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">辻下 敏夫</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="8" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">8卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">上村 マリ</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">中山 朋子</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:90.00deg"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">松村 由華</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">永井 尋己</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">武富 裕一</span><span class="sm">様</span></div>
+    </div>
+  </div>
+</section>
+<section class="tables-pattern" data-pattern="B" style="display:none">
+  <div class="tables-row tables-row-3">
+    <div class="table-wrap" data-table="1" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">1卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">鈴木 優</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">宇部 光太</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:90.00deg"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">山口 えま</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">田代 祐司</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">松村 由華</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="2" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">2卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">岸 信利</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:90.00deg"><span class="nm">近藤 朱莉</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">澤口 奈緒美</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">保利 澄香</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">高野 なおみ</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="3" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">3卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">大工原 葉子</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:12.86deg"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">岸 翔麻</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">藤井 光樹</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">堀内 健一</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">葛城 由美</span><span class="sm">様</span></div>
+    </div>
+  </div>
+  <div class="tables-row tables-row-3">
+    <div class="table-wrap" data-table="4" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">4卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">かわもと えつこ</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:12.86deg"><span class="nm">佐藤 秀哉</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">山坂 秀樹</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">橋本 香織</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">清島 有紗</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">岩渕 元気</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="5" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">5卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">髙橋 信博</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:12.86deg"><span class="nm">新井D</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">﨏田 美咲</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">堀川 マサル</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">永井 尋己</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">木下 貴子</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="6" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">6卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">尾﨑 直人</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">上村 マリ</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:90.00deg"><span class="nm">井出 康平</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">NGUYEN VAN LONG</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">細谷 政徳</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">新井 絵美</span><span class="sm">様</span></div>
+    </div>
+  </div>
+  <div class="tables-row tables-row-2">
+    <div class="table-wrap" data-table="7" data-seats="7">
+      <div class="table-circle">
+        <span class="table-name">7卓</span>
+        <span class="table-count">7名</span>
+      </div>
+      <div class="seat-c u" data-kind="u" style="--angle:-90.00deg"><span class="nm">栗原</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">山田 研二</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:12.86deg"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:64.29deg"><span class="nm">藤平 ゆか</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:115.71deg"><span class="nm">武富 裕一</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:167.14deg"><span class="nm">滝口 肇</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:218.57deg"><span class="nm">麻生 恵里</span><span class="sm">様</span></div>
+    </div>
+    <div class="table-wrap" data-table="8" data-seats="8">
+      <div class="table-circle">
+        <span class="table-name">8卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c m" data-kind="m" style="--angle:-90.00deg"><span class="nm">横山 孝行</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">熊澤 博之</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:0.00deg"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">中山 朋子</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:90.00deg"><span class="nm">山下 翼</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:135.00deg"><span class="nm">小林 良</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:180.00deg"><span class="nm">辻下 敏夫</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" style="--angle:225.00deg"><span class="nm">松永 洋忠</span><span class="sm">様</span></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer class="footer">
+  <p>※ 配置・氏名は当日変更となる場合がございます。「要確認」は元資料に記載があったものの、メンバーリストで照合できなかった氏名です（修正の場合は編集モードでドラッグ＆ドロップ → 保存）。</p>
+  <p>2部不参加：小林 実穂 様 / 岡崎 厚子 様 / 金指 佐江子 様 / 川戸 恒吾 様 ｜ 途中退席：中山 朋子 様（〜13:30）/ 佐藤 秀哉 様</p>
+  <p>BNI Grano Chapter — Business Open Day 2026 / 第2部 円卓席次</p>
+</footer>
+
+<script>
+(function(){
+  // -------- 座席を円周上に配置 --------
+  function placeSeats(){
+    document.querySelectorAll('.table-wrap').forEach(wrap => {
+      const seats = wrap.querySelectorAll('.seat-c');
+      const total = seats.length;
+      if (!total) return;
+      const w = wrap.clientWidth;
+      // 円卓の半径（外側） — table-wrap の42%
+      const r = w * 0.42;
+      seats.forEach((seat, i) => {
+        const angle = (360 / total) * i - 90;
+        const rad = angle * Math.PI / 180;
+        const x = Math.cos(rad) * r;
+        const y = Math.sin(rad) * r;
+        seat.style.left = `calc(50% + ${x.toFixed(1)}px)`;
+        seat.style.top  = `calc(50% + ${y.toFixed(1)}px)`;
+      });
+    });
+  }
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', placeSeats);
+  } else { placeSeats(); }
+  window.addEventListener('resize', placeSeats);
+  // 印刷直前にも再配置
+  window.addEventListener('beforeprint', placeSeats);
+
+  // -------- パターン切替 --------
+  const patternBtns = document.querySelectorAll('.pattern-btn');
+  const patternSections = document.querySelectorAll('.tables-pattern');
+  const patternLabel = document.getElementById('patternLabel');
+  const PATTERN_LABELS = {
+    'A': 'パターンA — 第2部 開始時',
+    'B': '席替え後（パターンB）'
+  };
+  function setPattern(label){
+    patternBtns.forEach(b => {
+      const active = b.dataset.target === label;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    patternSections.forEach(s => {
+      s.style.display = (s.dataset.pattern === label) ? '' : 'none';
+    });
+    patternLabel.textContent = PATTERN_LABELS[label];
+    currentPattern = label;
+    // 切替時にも差分・選択をクリア
+    clearSelection();
+    refreshSeatList();
+    updateCounter();
+    // 表示直後に再配置（display:none 中はサイズ取れない）
+    requestAnimationFrame(placeSeats);
+  }
+  patternBtns.forEach(b => b.addEventListener('click', () => setPattern(b.dataset.target)));
+
+  // -------- 編集モードチェック --------
+  const params = new URLSearchParams(location.search);
+  const isEdit = params.get('edit') === '1';
+  let currentPattern = 'A';
+  let seats = [];
+  let original = {};
+
+  function refreshSeatList(){
+    const visiblePattern = document.querySelector(`.tables-pattern[data-pattern="${currentPattern}"]`);
+    seats = visiblePattern ? Array.from(visiblePattern.querySelectorAll('.seat-c')) : [];
+    seats.forEach((s, i) => { s.dataset.seatIdx = String(i); });
+  }
+
+  function snapshotPattern(label){
+    const sec = document.querySelector(`.tables-pattern[data-pattern="${label}"]`);
+    if (!sec) return [];
+    return Array.from(sec.querySelectorAll('.seat-c')).map(extract);
+  }
+
+  function extract(seat){
+    return {
+      name: seat.querySelector('.nm')?.textContent || '',
+      kind: seat.dataset.kind || 'm'
+    };
+  }
+
+  refreshSeatList();
+  if (isEdit) {
+    document.body.classList.add('edit-mode');
+    document.getElementById('editToolbar').setAttribute('aria-hidden','false');
+
+    original.A = snapshotPattern('A');
+    original.B = snapshotPattern('B');
+
+    applySaved();
+    bindSeatEvents();
+    updateCounter();
+  }
+
+  // -------- ドラッグ＆ドロップ + クリック選択 --------
+  let dragSrc = null;
+  let selected = null;
+
+  function bindSeatEvents(){
+    document.querySelectorAll('.seat-c').forEach(s => {
+      s.draggable = true;
+      s.addEventListener('dragstart', (e)=>{
+        dragSrc = s; s.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        try { e.dataTransfer.setData('text/plain', '1'); } catch(_){}
+      });
+      s.addEventListener('dragend', ()=>{
+        s.classList.remove('dragging');
+        document.querySelectorAll('.seat-c').forEach(x=>x.classList.remove('drag-over'));
+        dragSrc = null;
+      });
+      s.addEventListener('dragover', (e)=>{ e.preventDefault(); s.classList.add('drag-over'); });
+      s.addEventListener('dragleave', ()=> s.classList.remove('drag-over'));
+      s.addEventListener('drop', (e)=>{
+        e.preventDefault();
+        s.classList.remove('drag-over');
+        if (!dragSrc || dragSrc === s) return;
+        if (!sameSection(dragSrc, s)) return;  // 違うパターン間は不可
+        swap(dragSrc, s);
+        save();
+        clearSelection();
+      });
+      s.addEventListener('click', ()=>{
+        if (!selected){
+          selected = s; s.classList.add('selected');
+          document.getElementById('btnCancelSelect').hidden = false;
+        } else if (selected === s){
+          clearSelection();
+        } else if (!sameSection(selected, s)){
+          // 違うパターン間 → 新しい方を選び直し
+          selected.classList.remove('selected');
+          selected = s; s.classList.add('selected');
+        } else {
+          swap(selected, s);
+          clearSelection();
+          save();
+        }
+      });
+    });
+    document.getElementById('btnCancelSelect').addEventListener('click', clearSelection);
+  }
+
+  function sameSection(a, b){
+    return a.closest('.tables-pattern') === b.closest('.tables-pattern');
+  }
+
+  function clearSelection(){
+    if (selected) selected.classList.remove('selected');
+    selected = null;
+    document.getElementById('btnCancelSelect').hidden = true;
+  }
+
+  function swap(a, b){
+    const aHTML = a.innerHTML, bHTML = b.innerHTML;
+    const aKind = a.dataset.kind, bKind = b.dataset.kind;
+    a.innerHTML = bHTML; b.innerHTML = aHTML;
+    // class の m/v/u を入れ替え
+    a.classList.remove('m','v','u'); a.classList.add(bKind);
+    b.classList.remove('m','v','u'); b.classList.add(aKind);
+    a.dataset.kind = bKind; b.dataset.kind = aKind;
+    updateCounter();
+  }
+
+  // -------- localStorage 保存・復元 --------
+  function save(){
+    const data = {
+      A: snapshotPattern('A'),
+      B: snapshotPattern('B')
+    };
+    try{ localStorage.setItem('seating2-edits-v1', JSON.stringify(data)); }catch(_){}
+  }
+  function applySaved(){
+    let raw = null;
+    try { raw = localStorage.getItem('seating2-edits-v1'); } catch(_){}
+    if (!raw) return;
+    let data;
+    try{ data = JSON.parse(raw); }catch(_){ return; }
+    ['A','B'].forEach(label => {
+      const sec = document.querySelector(`.tables-pattern[data-pattern="${label}"]`);
+      if (!sec || !data[label]) return;
+      const ss = sec.querySelectorAll('.seat-c');
+      data[label].forEach((d, i) => {
+        const s = ss[i]; if (!s) return;
+        s.classList.remove('m','v','u'); s.classList.add(d.kind);
+        s.dataset.kind = d.kind;
+        const nm = s.querySelector('.nm');
+        if (nm) nm.textContent = d.name;
+      });
+    });
+  }
+
+  function diffPattern(label){
+    const cur = snapshotPattern(label);
+    const orig = original[label] || [];
+    const out = [];
+    cur.forEach((c, i) => {
+      const o = orig[i];
+      if (!o) return;
+      if (c.name !== o.name){ out.push({i, before:o.name, after:c.name}); }
+    });
+    return out;
+  }
+  function updateCounter(){
+    const a = diffPattern('A'), b = diffPattern('B');
+    document.querySelector('#editCounter b').textContent = (a.length + b.length);
+  }
+
+  // -------- リセット --------
+  if (isEdit){
+    document.getElementById('btnReset').addEventListener('click', ()=>{
+      if (!confirm('編集中の変更を破棄して、最初の配置に戻しますか？')) return;
+      try{ localStorage.removeItem('seating2-edits-v1'); }catch(_){}
+      location.reload();
+    });
+  }
+
+  // -------- HTML build / GitHub PAT 保存 --------
+  function buildCleanHTML(){
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('.edit-toolbar, script').forEach(n=>n.remove());
+    const body = clone.querySelector('body');
+    if (body) body.classList.remove('edit-mode');
+    clone.querySelectorAll('.seat-c.selected, .seat-c.dragging, .seat-c.drag-over')
+      .forEach(s => s.classList.remove('selected','dragging','drag-over'));
+    // パターン表示状態を A:可視 / B:非表示 に正規化
+    clone.querySelectorAll('.tables-pattern').forEach(sec => {
+      sec.style.display = (sec.dataset.pattern === 'A') ? '' : 'none';
+    });
+    // パターン切替ボタンの active も A に戻す
+    clone.querySelectorAll('.pattern-btn').forEach(b => {
+      const active = b.dataset.target === 'A';
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    const pl = clone.getElementById('patternLabel');
+    if (pl) pl.textContent = 'パターンA — 第2部 開始時';
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+
+  const GH_OWNER = 'resta0715';
+  const GH_REPO  = 'grano-event';
+  const GH_BRANCH = 'main';
+  const GH_FILE  = 'docs/seating2.html';
+
+  const statusEl = document.getElementById('saveStatus');
+  function showStatus(kind, html){
+    if (!statusEl) return;
+    statusEl.hidden = false;
+    statusEl.className = 'save-status ' + kind;
+    statusEl.innerHTML = html;
+  }
+
+  function getPat(){
+    try { return (localStorage.getItem('gh-pat-v1') || '').trim(); } catch(_){ return ''; }
+  }
+  function setPat(pat){ try{ localStorage.setItem('gh-pat-v1', pat.trim()); }catch(_){} }
+  function clearPat(){ try{ localStorage.removeItem('gh-pat-v1'); }catch(_){} }
+
+  async function promptForPat(){
+    const msg = 'GitHub の Fine-grained Personal Access Token を貼り付けてください。\n' +
+      '（一度入力するとブラウザに保存され、次回からは不要になります）';
+    const pat = prompt(msg, '');
+    if (!pat) return null;
+    setPat(pat);
+    return pat.trim();
+  }
+
+  function utf8ToBase64(str){
+    const bytes = new TextEncoder().encode(str);
+    let bin = ''; for (let i=0; i<bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+
+  async function saveToGitHub(){
+    let pat = getPat();
+    if (!pat){ pat = await promptForPat(); if (!pat){ showStatus('info','キャンセルされました。'); return; } }
+    const html = buildCleanHTML();
+    const apiUrl = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
+    showStatus('info', '保存中... GitHubに送信しています');
+    let sha = null;
+    try {
+      const r = await fetch(`${apiUrl}?ref=${GH_BRANCH}`, {
+        headers: { 'Authorization': `Bearer ${pat}`, 'Accept': 'application/vnd.github+json' }
+      });
+      if (r.status === 401 || r.status === 403){ clearPat(); showStatus('err','PATが無効か権限不足です。再度入力してください。'); return; }
+      if (r.ok){ const d = await r.json(); sha = d.sha; }
+      else if (r.status !== 404){ showStatus('err','取得失敗: '+r.status+'\n'+await r.text()); return; }
+    } catch(e){ showStatus('err','通信エラー: '+(e?.message||e)); return; }
+
+    const body = {
+      message: `seating2: edit via web (${new Date().toISOString().slice(0,19)}Z)`,
+      content: utf8ToBase64(html),
+      branch: GH_BRANCH
+    };
+    if (sha) body.sha = sha;
+    let res;
+    try {
+      res = await fetch(apiUrl, {
+        method:'PUT',
+        headers:{'Authorization':`Bearer ${pat}`,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
+        body: JSON.stringify(body)
+      });
+    } catch(e){ showStatus('err','通信エラー: '+(e?.message||e)); return; }
+    if (res.status === 401 || res.status === 403){
+      clearPat(); showStatus('err','PATが無効か権限不足です。<a href="#" id="repat">再入力</a>してください。');
+      document.getElementById('repat')?.addEventListener('click', async (e)=>{ e.preventDefault(); await promptForPat(); saveToGitHub(); });
+      return;
+    }
+    if (!res.ok){ showStatus('err','保存失敗: '+res.status+'\n'+await res.text()); return; }
+    const d = await res.json();
+    const sha7 = d.commit?.sha?.slice(0,7) || '';
+    try{ localStorage.removeItem('seating2-edits-v1'); }catch(_){}
+    showStatus('ok',
+      '✅ 保存しました（commit '+sha7+'）。1〜2分でGitHub Pagesに反映されます。\n' +
+      '<a href="https://resta0715.github.io/grano-event/seating2.html" target="_blank">本番ページを開く</a> ／ ' +
+      '<a href="#" id="patClear">PATを削除</a>'
+    );
+    document.getElementById('patClear')?.addEventListener('click', (e)=>{ e.preventDefault(); clearPat(); showStatus('info','PATを削除しました'); });
+  }
+
+  if (isEdit){
+    document.getElementById('btnSaveDirect').addEventListener('click', saveToGitHub);
+  }
+})();
+</script>
+
+</body>
+</html>
