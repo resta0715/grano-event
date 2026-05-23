@@ -217,11 +217,122 @@ body{
   border-top:1px solid var(--border); padding-top:16px;
 }
 
+/* ------- 編集モード（?edit=1 の時だけ有効） ------- */
+.edit-toolbar{
+  display:none;
+  position:sticky; top:56px; z-index:25;
+  background:#fff; border-bottom:1px solid var(--border);
+  padding:10px 16px;
+  box-shadow:0 4px 16px rgba(15,27,45,.06);
+}
+body.edit-mode .edit-toolbar{ display:block }
+.edit-toolbar-inner{
+  max-width:1240px; margin:0 auto;
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+}
+.edit-toolbar-tag{
+  background:linear-gradient(135deg, var(--amber) 0%, #d4a855 100%);
+  color:#fff; font-size:11px; font-weight:700; letter-spacing:2px;
+  padding:5px 10px; border-radius:4px; text-transform:uppercase;
+}
+.edit-toolbar-help{font-size:12px; color:var(--ink-2); flex:1; min-width:200px}
+.edit-toolbar-help b{color:var(--navy)}
+.edit-toolbar .btn{
+  font-size:12px; font-weight:700; letter-spacing:1px;
+  padding:8px 14px; border-radius:6px; border:0; cursor:pointer;
+  font-family:inherit;
+}
+.edit-toolbar .btn-primary{background:var(--navy); color:#fff}
+.edit-toolbar .btn-primary:hover{background:var(--navy-2)}
+.edit-toolbar .btn-amber{background:var(--amber); color:#fff}
+.edit-toolbar .btn-amber:hover{background:#b8842e}
+.edit-toolbar .btn-ghost{background:transparent; color:var(--muted); border:1px solid var(--border)}
+.edit-toolbar .btn-ghost:hover{color:var(--ink); border-color:var(--ink-2)}
+.edit-mode-counter{
+  font-size:11px; color:var(--muted);
+  padding:4px 10px; background:#f3eedd; border-radius:999px;
+}
+.edit-mode-counter b{color:var(--amber); font-size:14px}
+
+body.edit-mode .seat{ cursor:pointer; user-select:none; transition:transform .15s, box-shadow .15s }
+body.edit-mode .seat:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(15,27,45,.12) }
+body.edit-mode .seat.selected{
+  outline:3px solid var(--amber); outline-offset:2px;
+  background:linear-gradient(180deg, #fff8ec 0%, #fbecc7 100%) !important;
+  transform:scale(1.04);
+}
+body.edit-mode .seat.dragging{ opacity:.35 }
+body.edit-mode .seat.drag-over{
+  outline:2px dashed var(--amber); outline-offset:2px;
+  background:#fbecc7 !important;
+}
+body.edit-mode .seat.empty{ background:#faf6ec; border-style:dashed; border-color:#d4c89a }
+body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
+
+/* 編集モード用モーダル */
+.edit-modal{
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:rgba(15,27,45,.72); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center; padding:20px;
+}
+.edit-modal.show{ display:flex }
+.edit-modal-inner{
+  background:#fff; max-width:720px; width:100%; max-height:90vh;
+  border-radius:16px; padding:24px 26px; overflow:auto;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+.edit-modal h2{
+  font-size:16px; font-weight:800; color:var(--navy);
+  margin-bottom:6px; letter-spacing:.04em;
+}
+.edit-modal h2 .em-tag{
+  display:inline-block; vertical-align:2px; margin-right:8px;
+  background:var(--amber); color:#fff; font-size:10px; font-weight:700;
+  padding:3px 7px; border-radius:4px; letter-spacing:1.5px;
+}
+.edit-modal p{font-size:13px; color:var(--ink-2); line-height:1.7; margin-bottom:14px}
+.edit-diff{
+  background:#f8f4ea; border:1px solid var(--border);
+  border-radius:8px; padding:12px 14px; margin-bottom:14px;
+  font-size:13px; line-height:1.7;
+}
+.edit-diff-empty{color:var(--muted); font-size:12px; text-align:center; padding:8px}
+.edit-diff-row{display:flex; gap:8px; align-items:baseline; padding:3px 0}
+.edit-diff-row .where{font-size:11px; color:var(--muted); min-width:90px}
+.edit-diff-row .arrow{color:var(--amber); font-weight:700}
+.edit-diff-row .before{text-decoration:line-through; color:var(--muted)}
+.edit-diff-row .after{color:var(--navy); font-weight:700}
+.edit-modal label{
+  display:block; font-size:11px; font-weight:700; color:var(--muted);
+  letter-spacing:1px; text-transform:uppercase; margin:14px 0 6px;
+}
+.edit-modal textarea{
+  width:100%; min-height:120px; padding:10px; border:1px solid var(--border);
+  border-radius:6px; font-size:11px; font-family:ui-monospace,Menlo,Consolas,monospace;
+  background:#fafaf6; color:var(--ink-2); resize:vertical;
+}
+.edit-modal-actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px}
+.edit-modal .btn{
+  font-size:12px; font-weight:700; letter-spacing:1px;
+  padding:9px 14px; border-radius:6px; border:0; cursor:pointer; font-family:inherit;
+}
+.edit-modal .btn-primary{background:var(--amber); color:#fff}
+.edit-modal .btn-primary:hover{background:#b8842e}
+.edit-modal .btn-secondary{background:var(--navy); color:#fff}
+.edit-modal .btn-secondary:hover{background:var(--navy-2)}
+.edit-modal .btn-ghost{background:transparent; color:var(--muted); border:1px solid var(--border)}
+.edit-modal .btn-ghost:hover{color:var(--ink); border-color:var(--ink-2)}
+.edit-modal .btn .ok{
+  display:inline-block; margin-left:6px; opacity:0; transition:opacity .2s;
+  color:#7ec96a;
+}
+.edit-modal .btn.copied .ok{opacity:1}
+
 /* Print: A4 landscape */
 @media print{
   @page{ size: A4 landscape; margin: 8mm }
   body{ background:#fff; color:#000 }
-  .bar, .legend, .footer-actions{ display:none !important }
+  .bar, .legend, .footer-actions, .edit-toolbar, .edit-modal{ display:none !important }
   .hero{ padding:0 0 6px }
   .hero-pre{ color:#666 }
   .hero h1{ font-size:18px }
@@ -262,8 +373,30 @@ body{
     <a class="bar-btn" href="flyer_a4.html">Flyer</a>
     <a class="bar-btn pdf" href="seating.pdf" download>PDFダウンロード</a>
     <button class="bar-btn print" type="button" onclick="window.print()">印刷 / PDF</button>
+    <a class="bar-btn" id="barEditEntry" href="?edit=1">編集モード</a>
   </nav>
 </header>
+<script>
+  // 編集モード時は「編集モード」リンクを「編集を終了」に切り替え
+  if (new URLSearchParams(location.search).get('edit') === '1') {
+    var el = document.getElementById('barEditEntry');
+    if (el) { el.textContent = '編集を終了'; el.href = location.pathname; }
+  }
+</script>
+
+<!-- 編集モード用ツールバー（?edit=1 のときだけ表示） -->
+<div class="edit-toolbar" id="editToolbar" aria-hidden="true">
+  <div class="edit-toolbar-inner">
+    <span class="edit-toolbar-tag">編集モード</span>
+    <span class="edit-toolbar-help">
+      <b>クリック</b>か<b>ドラッグ＆ドロップ</b>で2席を入れ替え。空席へ移動も可。
+    </span>
+    <span class="edit-mode-counter" id="editCounter"><b>0</b> 件の変更</span>
+    <button class="btn btn-ghost" type="button" id="btnCancelSelect" hidden>選択解除</button>
+    <button class="btn btn-ghost" type="button" id="btnReset">最初に戻す</button>
+    <button class="btn btn-primary" type="button" id="btnConfirm">確定して送信</button>
+  </div>
+</div>
 
 <section class="hero">
   <p class="hero-pre">Seating Chart — 2026.5.27 (水)</p>
@@ -425,6 +558,262 @@ body{
   <p>※ 配置・氏名は当日変更となる場合がございます。当日は会場スタッフのご案内に従ってください。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 / 席次表</p>
 </footer>
+
+<!-- 確定モーダル -->
+<div class="edit-modal" id="editModal" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+  <div class="edit-modal-inner">
+    <h2 id="editModalTitle"><span class="em-tag">確定</span>変更内容を送信</h2>
+    <p>下記のいずれかの方法で送ってください。受け取り次第、私の方で本番ページとPDFを更新します。</p>
+
+    <h3 style="font-size:12px; font-weight:700; color:var(--navy); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px">変更点</h3>
+    <div class="edit-diff" id="editDiff"></div>
+
+    <label for="editJson">方法A：このJSONをコピーしてチャットに貼る</label>
+    <textarea id="editJson" readonly></textarea>
+    <div class="edit-modal-actions" style="margin-top:8px">
+      <button class="btn btn-primary" type="button" id="btnCopyJson">JSONをコピー <span class="ok">✓</span></button>
+      <button class="btn btn-secondary" type="button" id="btnDownloadHtml">HTMLファイルでダウンロード</button>
+    </div>
+
+    <div class="edit-modal-actions">
+      <button class="btn btn-ghost" type="button" id="btnCloseModal">閉じる（編集を続ける）</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const isEdit = params.get('edit') === '1';
+  if (!isEdit) return;
+
+  document.body.classList.add('edit-mode');
+  document.getElementById('editToolbar').setAttribute('aria-hidden','false');
+
+  const seats = Array.from(document.querySelectorAll('.row .seat'));
+  seats.forEach((s,i)=>{ s.dataset.seatIdx = String(i); });
+
+  // 元の状態をスナップショット（差分用）
+  const original = seats.map(extract);
+
+  // localStorage から復元
+  applySaved();
+  updateCounter();
+
+  // -------- ドラッグ&ドロップ --------
+  let dragSrc = null;
+  seats.forEach((s)=>{
+    s.draggable = true;
+    s.addEventListener('dragstart', (e)=>{
+      dragSrc = s; s.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      try{ e.dataTransfer.setData('text/plain', s.dataset.seatIdx); }catch(_){}
+    });
+    s.addEventListener('dragend', ()=>{
+      s.classList.remove('dragging');
+      seats.forEach(x=>x.classList.remove('drag-over'));
+      dragSrc = null;
+    });
+    s.addEventListener('dragover', (e)=>{ e.preventDefault(); s.classList.add('drag-over'); });
+    s.addEventListener('dragleave', ()=>s.classList.remove('drag-over'));
+    s.addEventListener('drop', (e)=>{
+      e.preventDefault();
+      s.classList.remove('drag-over');
+      if (!dragSrc || dragSrc === s) return;
+      swap(dragSrc, s);
+      save();
+      clearSelection();
+    });
+  });
+
+  // -------- クリックで選択 → 別席で交換（モバイル対応） --------
+  let selected = null;
+  seats.forEach((s)=>{
+    s.addEventListener('click', ()=>{
+      if (!selected) {
+        selected = s; s.classList.add('selected');
+        document.getElementById('btnCancelSelect').hidden = false;
+      } else if (selected === s) {
+        clearSelection();
+      } else {
+        swap(selected, s);
+        clearSelection();
+        save();
+      }
+    });
+  });
+  document.getElementById('btnCancelSelect').addEventListener('click', clearSelection);
+
+  function clearSelection(){
+    if (selected) selected.classList.remove('selected');
+    selected = null;
+    document.getElementById('btnCancelSelect').hidden = true;
+  }
+
+  // -------- 入れ替え --------
+  function swap(a,b){
+    const aHTML = a.innerHTML, bHTML = b.innerHTML;
+    const aClasses = [...a.classList].filter(c=>c!=='seat'&&c!=='selected'&&c!=='dragging'&&c!=='drag-over');
+    const bClasses = [...b.classList].filter(c=>c!=='seat'&&c!=='selected'&&c!=='dragging'&&c!=='drag-over');
+    a.innerHTML = bHTML; b.innerHTML = aHTML;
+    a.className = 'seat'; bClasses.forEach(c=>a.classList.add(c));
+    b.className = 'seat'; aClasses.forEach(c=>b.classList.add(c));
+    // aria-hidden も入れ替え
+    if (a.classList.contains('empty')) a.setAttribute('aria-hidden','true'); else a.removeAttribute('aria-hidden');
+    if (b.classList.contains('empty')) b.setAttribute('aria-hidden','true'); else b.removeAttribute('aria-hidden');
+    updateCounter();
+  }
+
+  // -------- 状態抽出 / 保存 / 復元 --------
+  function extract(seat){
+    if (seat.classList.contains('empty')) return {empty:true};
+    const ascii = seat.querySelector('.ascii');
+    const nm = seat.querySelector('.nm');
+    return {
+      name: (ascii || nm)?.textContent || '',
+      ascii: !!ascii,
+      highlight: seat.classList.contains('highlight')
+    };
+  }
+
+  function save(){
+    const data = seats.map(extract);
+    try{ localStorage.setItem('seating-edits-v1', JSON.stringify(data)); }catch(_){}
+  }
+
+  function applySaved(){
+    let raw=null; try{ raw = localStorage.getItem('seating-edits-v1'); }catch(_){}
+    if (!raw) return;
+    try{
+      const data = JSON.parse(raw);
+      if (!Array.isArray(data) || data.length !== seats.length) return;
+      data.forEach((d,i)=>{
+        const s = seats[i];
+        s.className = 'seat';
+        if (d.empty){
+          s.classList.add('empty'); s.setAttribute('aria-hidden','true'); s.innerHTML = '';
+        } else {
+          s.removeAttribute('aria-hidden');
+          if (d.highlight) s.classList.add('highlight');
+          const tag = d.ascii ? 'ascii' : 'nm';
+          s.innerHTML = '<span class="'+tag+'">'+esc(d.name)+'</span><span class="sm">様</span>';
+        }
+      });
+    }catch(_){}
+  }
+
+  function esc(s){return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+  // -------- 差分計算 --------
+  function diff(){
+    const cur = seats.map(extract);
+    const out = [];
+    cur.forEach((c,i)=>{
+      const o = original[i];
+      const cName = c.empty ? '(空席)' : c.name;
+      const oName = o.empty ? '(空席)' : o.name;
+      if (cName !== oName){
+        // どの列の何番目か（11列構造：0-3=左,4=通路,5-6=中央,7=通路,8-11=右 ※実際は通路含めた11セルではなく、.seat のみのインデックス）
+        // 各行は4+2+4=10席。aisleは含まない。
+        const row = Math.floor(i/10) + 1;
+        const colInRow = (i % 10) + 1;
+        out.push({row, col:colInRow, before:oName, after:cName});
+      }
+    });
+    return out;
+  }
+
+  function updateCounter(){
+    const d = diff();
+    document.querySelector('#editCounter b').textContent = d.length;
+  }
+
+  // -------- リセット --------
+  document.getElementById('btnReset').addEventListener('click', ()=>{
+    if (!confirm('変更を破棄して最初の配置に戻しますか？')) return;
+    try{ localStorage.removeItem('seating-edits-v1'); }catch(_){}
+    location.reload();
+  });
+
+  // -------- 確定 → モーダル --------
+  document.getElementById('btnConfirm').addEventListener('click', ()=>{
+    const d = diff();
+    const diffEl = document.getElementById('editDiff');
+    if (d.length === 0){
+      diffEl.innerHTML = '<div class="edit-diff-empty">変更はまだありません。席をクリックまたはドラッグして入れ替えてください。</div>';
+    } else {
+      diffEl.innerHTML = d.map(x =>
+        '<div class="edit-diff-row">'+
+          '<span class="where">'+x.row+'列 '+x.col+'番目</span>'+
+          '<span class="before">'+esc(x.before)+'</span>'+
+          '<span class="arrow">→</span>'+
+          '<span class="after">'+esc(x.after)+'</span>'+
+        '</div>'
+      ).join('');
+    }
+
+    // JSON：行ごとに整形（aisleも含めて全11セル）
+    const rows = Array.from(document.querySelectorAll('.row')).map(row =>
+      Array.from(row.children).map(cell => {
+        if (cell.classList.contains('aisle')) return {t:'aisle'};
+        if (cell.classList.contains('empty')) return {t:'empty'};
+        const ascii = cell.querySelector('.ascii');
+        const nm = cell.querySelector('.nm');
+        const obj = {t:'seat', n:(ascii||nm)?.textContent || ''};
+        if (ascii) obj.ascii = true;
+        if (cell.classList.contains('highlight')) obj.h = true;
+        return obj;
+      })
+    );
+    const payload = {
+      version: 1,
+      generated_at: new Date().toISOString(),
+      changes: d,
+      rows: rows
+    };
+    document.getElementById('editJson').value = JSON.stringify(payload, null, 2);
+    document.getElementById('editModal').classList.add('show');
+    document.getElementById('editModal').setAttribute('aria-hidden','false');
+  });
+
+  // モーダル閉じる
+  document.getElementById('btnCloseModal').addEventListener('click', closeModal);
+  document.getElementById('editModal').addEventListener('click', (e)=>{
+    if (e.target.id === 'editModal') closeModal();
+  });
+  function closeModal(){
+    document.getElementById('editModal').classList.remove('show');
+    document.getElementById('editModal').setAttribute('aria-hidden','true');
+  }
+
+  // コピー
+  document.getElementById('btnCopyJson').addEventListener('click', async (e)=>{
+    const ta = document.getElementById('editJson');
+    try{
+      await navigator.clipboard.writeText(ta.value);
+    } catch(_) {
+      ta.select(); document.execCommand('copy');
+    }
+    e.currentTarget.classList.add('copied');
+    setTimeout(()=>e.currentTarget.classList.remove('copied'), 1500);
+  });
+
+  // HTMLファイルとしてダウンロード
+  document.getElementById('btnDownloadHtml').addEventListener('click', ()=>{
+    // 現在のページHTMLから .edit-toolbar / .edit-modal / script を取り除いた静的版を作る
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('.edit-toolbar, .edit-modal, script').forEach(n=>n.remove());
+    clone.querySelector('body')?.classList.remove('edit-mode');
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'seating-edited.html';
+    document.body.appendChild(a); a.click();
+    setTimeout(()=>{ a.remove(); URL.revokeObjectURL(url); }, 500);
+  });
+})();
+</script>
 
 </body>
 </html>
