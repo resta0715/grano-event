@@ -326,12 +326,13 @@ body.edit-mode .seat-c.drag-over{
     <span class="edit-toolbar-tag">編集モード</span>
     <span class="edit-toolbar-help">
       <b>クリック</b>か<b>ドラッグ＆ドロップ</b>で2席を入れ替え。
-      パターンA/B はそれぞれ独立に編集できます。
+      編集後 <b>JSONダウンロード</b> または <b>JSONをコピー</b> から共有してください。
     </span>
     <span class="edit-mode-counter" id="editCounter"><b>0</b> 件</span>
     <button class="btn btn-ghost" type="button" id="btnCancelSelect" hidden>選択解除</button>
     <button class="btn btn-ghost" type="button" id="btnReset">最初に戻す</button>
-    <button class="btn btn-amber" type="button" id="btnSaveDirect">保存して反映</button>
+    <button class="btn btn-primary" type="button" id="btnExportJson">JSONダウンロード</button>
+    <button class="btn btn-ghost" type="button" id="btnCopyJson">JSONをコピー</button>
   </div>
   <div class="save-status" id="saveStatus" hidden></div>
 </div>
@@ -901,34 +902,7 @@ body.edit-mode .seat-c.drag-over{
     });
   }
 
-  // -------- HTML build / GitHub PAT 保存 --------
-  function buildCleanHTML(){
-    const clone = document.documentElement.cloneNode(true);
-    clone.querySelectorAll('.edit-toolbar, script').forEach(n=>n.remove());
-    const body = clone.querySelector('body');
-    if (body) body.classList.remove('edit-mode');
-    clone.querySelectorAll('.seat-c.selected, .seat-c.dragging, .seat-c.drag-over')
-      .forEach(s => s.classList.remove('selected','dragging','drag-over'));
-    // パターン表示状態を A:可視 / B:非表示 に正規化
-    clone.querySelectorAll('.tables-pattern').forEach(sec => {
-      sec.style.display = (sec.dataset.pattern === 'A') ? '' : 'none';
-    });
-    // パターン切替ボタンの active も A に戻す
-    clone.querySelectorAll('.pattern-btn').forEach(b => {
-      const active = b.dataset.target === 'A';
-      b.classList.toggle('active', active);
-      b.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    const pl = clone.getElementById('patternLabel');
-    if (pl) pl.textContent = 'パターンA — 第2部 開始時';
-    return '<!DOCTYPE html>\n' + clone.outerHTML;
-  }
-
-  const GH_OWNER = 'resta0715';
-  const GH_REPO  = 'grano-event';
-  const GH_BRANCH = 'main';
-  const GH_FILE  = 'docs/seating2.html';
-
+  // -------- JSON エクスポート --------
   const statusEl = document.getElementById('saveStatus');
   function showStatus(kind, html){
     if (!statusEl) return;
@@ -937,76 +911,67 @@ body.edit-mode .seat-c.drag-over{
     statusEl.innerHTML = html;
   }
 
-  function getPat(){
-    try { return (localStorage.getItem('gh-pat-v1') || '').trim(); } catch(_){ return ''; }
-  }
-  function setPat(pat){ try{ localStorage.setItem('gh-pat-v1', pat.trim()); }catch(_){} }
-  function clearPat(){ try{ localStorage.removeItem('gh-pat-v1'); }catch(_){} }
-
-  async function promptForPat(){
-    const msg = 'GitHub の Fine-grained Personal Access Token を貼り付けてください。\n' +
-      '（一度入力するとブラウザに保存され、次回からは不要になります）';
-    const pat = prompt(msg, '');
-    if (!pat) return null;
-    setPat(pat);
-    return pat.trim();
-  }
-
-  function utf8ToBase64(str){
-    const bytes = new TextEncoder().encode(str);
-    let bin = ''; for (let i=0; i<bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-    return btoa(bin);
-  }
-
-  async function saveToGitHub(){
-    let pat = getPat();
-    if (!pat){ pat = await promptForPat(); if (!pat){ showStatus('info','キャンセルされました。'); return; } }
-    const html = buildCleanHTML();
-    const apiUrl = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
-    showStatus('info', '保存中... GitHubに送信しています');
-    let sha = null;
-    try {
-      const r = await fetch(`${apiUrl}?ref=${GH_BRANCH}`, {
-        headers: { 'Authorization': `Bearer ${pat}`, 'Accept': 'application/vnd.github+json' }
+  function buildSeatingJson(){
+    function dump(label){
+      const sec = document.querySelector(`.tables-pattern[data-pattern="${label}"]`);
+      if (!sec) return [];
+      return Array.from(sec.querySelectorAll('.table-wrap')).map(wrap => {
+        const tableIdx = parseInt(wrap.dataset.table, 10);
+        const members = [];
+        const visitors = [];
+        wrap.querySelectorAll('.seat-c').forEach(s => {
+          const name = s.querySelector('.nm')?.textContent.trim() || '';
+          const kind = s.dataset.kind;
+          if (!name) return;
+          if (kind === 'v') visitors.push(name);
+          else members.push(name);
+        });
+        return { table: tableIdx, members, visitors };
       });
-      if (r.status === 401 || r.status === 403){ clearPat(); showStatus('err','PATが無効か権限不足です。再度入力してください。'); return; }
-      if (r.ok){ const d = await r.json(); sha = d.sha; }
-      else if (r.status !== 404){ showStatus('err','取得失敗: '+r.status+'\n'+await r.text()); return; }
-    } catch(e){ showStatus('err','通信エラー: '+(e?.message||e)); return; }
-
-    const body = {
-      message: `seating2: edit via web (${new Date().toISOString().slice(0,19)}Z)`,
-      content: utf8ToBase64(html),
-      branch: GH_BRANCH
-    };
-    if (sha) body.sha = sha;
-    let res;
-    try {
-      res = await fetch(apiUrl, {
-        method:'PUT',
-        headers:{'Authorization':`Bearer ${pat}`,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
-        body: JSON.stringify(body)
-      });
-    } catch(e){ showStatus('err','通信エラー: '+(e?.message||e)); return; }
-    if (res.status === 401 || res.status === 403){
-      clearPat(); showStatus('err','PATが無効か権限不足です。<a href="#" id="repat">再入力</a>してください。');
-      document.getElementById('repat')?.addEventListener('click', async (e)=>{ e.preventDefault(); await promptForPat(); saveToGitHub(); });
-      return;
     }
-    if (!res.ok){ showStatus('err','保存失敗: '+res.status+'\n'+await res.text()); return; }
-    const d = await res.json();
-    const sha7 = d.commit?.sha?.slice(0,7) || '';
-    try{ localStorage.removeItem(STORAGE_KEY); }catch(_){}
+    return {
+      generated_at: new Date().toISOString(),
+      patterns: { A: dump('A'), B: dump('B') }
+    };
+  }
+
+  function downloadJson(){
+    const data = buildSeatingJson();
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    a.href = url;
+    a.download = `seating2_${ts}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     showStatus('ok',
-      '✅ 保存しました（commit '+sha7+'）。1〜2分でGitHub Pagesに反映されます。\n' +
-      '<a href="https://resta0715.github.io/grano-event/seating2.html" target="_blank">本番ページを開く</a> ／ ' +
-      '<a href="#" id="patClear">PATを削除</a>'
+      '✅ JSON をダウンロードしました（seating2_'+ts+'.json）。<br>' +
+      'このファイルを Cursor / LINE / メール などで共有してください。<br>' +
+      '<a href="#" id="copyAfter">ついでにJSONをクリップボードにコピーする</a>'
     );
-    document.getElementById('patClear')?.addEventListener('click', (e)=>{ e.preventDefault(); clearPat(); showStatus('info','PATを削除しました'); });
+    document.getElementById('copyAfter')?.addEventListener('click', (e)=>{ e.preventDefault(); copyJson(); });
+  }
+
+  async function copyJson(){
+    const data = buildSeatingJson();
+    const json = JSON.stringify(data, null, 2);
+    try {
+      await navigator.clipboard.writeText(json);
+      showStatus('ok', '✅ JSON をクリップボードにコピーしました。Cursor / LINE などへそのまま貼り付けてください。');
+    } catch(e){
+      showStatus('err',
+        'コピーに失敗しました（'+(e?.message||e)+'）。<br>' +
+        '下のテキストエリアから手動でコピーしてください。<br>' +
+        '<textarea readonly style="width:100%;min-height:160px;margin-top:6px;font-size:11px;">'+json.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))+'</textarea>'
+      );
+    }
   }
 
   if (isEdit){
-    document.getElementById('btnSaveDirect').addEventListener('click', saveToGitHub);
+    document.getElementById('btnExportJson').addEventListener('click', downloadJson);
+    document.getElementById('btnCopyJson').addEventListener('click', copyJson);
   }
 })();
 </script>
