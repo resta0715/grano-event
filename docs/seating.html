@@ -8,7 +8,8 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260522-1907">
+<meta name="layout-id" content="6ed004357fc2">
+<meta name="version" content="20260524-1233">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -378,10 +379,20 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
 </header>
 <script>
   // 編集モード時は「編集モード」リンクを「編集を終了」に切り替え
-  if (new URLSearchParams(location.search).get('edit') === '1') {
+  (function(){
+    if (new URLSearchParams(location.search).get('edit') !== '1') return;
     var el = document.getElementById('barEditEntry');
-    if (el) { el.textContent = '編集を終了'; el.href = location.pathname; }
-  }
+    if (!el) return;
+    el.textContent = '編集を終了';
+    var u = new URL(location.href);
+    u.searchParams.delete('edit');
+    el.href = u.pathname + u.search;
+    el.addEventListener('click', function(){
+      try {
+        if (typeof window.__seatingSave === 'function') window.__seatingSave();
+      } catch(_){}
+    });
+  })();
 </script>
 
 <!-- 編集モード用ツールバー（?edit=1 のときだけ表示） -->
@@ -446,8 +457,8 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
       <div class="seat"><span class="nm">堀川 マサル</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
-      <div class="seat"><span class="nm">細谷 政徳</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">成瀬 優</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
       <div class="seat"><span class="nm">武富 裕一</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">栗原 優</span><span class="sm">様</span></div>
@@ -463,10 +474,10 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
       <div class="seat"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">近藤 朱莉</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">滝口 肇</span><span class="sm">様</span></div>
-      <div class="seat"><span class="ascii">NGUYEN VAN LONG</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm ascii">NGUYEN VAN LONG</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
-      <div class="seat"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">橋本 香織</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">細谷 政徳</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
       <div class="seat"><span class="nm">山田 研二</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">堀内 健一</span><span class="sm">様</span></div>
@@ -481,16 +492,16 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
     <div class="row" aria-label="4列目">
       <div class="seat"><span class="nm">清島 有紗</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">保利 澄香</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">井出 康平</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
+      <div class="aisle" aria-hidden="true">通路</div>
+      <div class="seat"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">橋本 香織</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
       <div class="seat"><span class="nm">高野 なおみ</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">鈴木 優</span><span class="sm">様</span></div>
-      <div class="aisle" aria-hidden="true">通路</div>
-      <div class="seat"><span class="nm">成瀬 優</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">葛城 由美</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">佐藤 秀哉</span><span class="sm">様</span></div>
     </div>
   </div>
 
@@ -498,8 +509,8 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
   <div class="row-block with-rownum">
     <span class="row-num">5列</span>
     <div class="row" aria-label="5列目">
-      <div class="seat"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">井出 康平</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">保利 澄香</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">高橋 信博</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">永井 尋己</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
@@ -517,17 +528,17 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
   <div class="row-block with-rownum">
     <span class="row-num">6列</span>
     <div class="row" aria-label="6列目">
-      <div class="seat"><span class="nm">麻生 恵里</span><span class="sm">様</span></div>
-      <div class="seat"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
+      <div class="seat empty" aria-hidden="true"></div>
+      <div class="seat"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">木下 貴子</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">尾﨑 直人</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
       <div class="seat"><span class="nm">辻下 敏夫</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">熊澤 博之</span><span class="sm">様</span></div>
       <div class="aisle" aria-hidden="true">通路</div>
-      <div class="seat empty" aria-hidden="true"></div>
-      <div class="seat"><span class="nm">佐藤 秀哉</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">新井 絵美</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">麻生 恵里</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">岸 信利</span><span class="sm">様</span></div>
     </div>
   </div>
@@ -536,10 +547,10 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
   <div class="row-block with-rownum">
     <span class="row-num">7列</span>
     <div class="row" aria-label="7列目">
+      <div class="seat empty" aria-hidden="true"></div>
       <div class="seat"><span class="nm">小林 良</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">岩渕 元気</span><span class="sm">様</span></div>
-      <div class="seat empty" aria-hidden="true"></div>
       <div class="aisle" aria-hidden="true">通路</div>
       <div class="seat empty" aria-hidden="true"></div>
       <div class="seat empty" aria-hidden="true"></div>
@@ -585,19 +596,74 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
 (function(){
   const params = new URLSearchParams(location.search);
   const isEdit = params.get('edit') === '1';
+  const LAYOUT_ID = document.querySelector('meta[name="layout-id"]')?.content || '';
+  const STORAGE_KEY = 'seating-edits-v3';
+
+  const seats = Array.from(document.querySelectorAll('.row .seat'));
+
+  // -------- 状態抽出 / 保存 / 復元（通常表示でも localStorage を反映） --------
+  function extract(seat){
+    if (seat.classList.contains('empty')) return {empty:true};
+    const ascii = seat.querySelector('.ascii');
+    const nm = seat.querySelector('.nm');
+    return {
+      name: (ascii || nm)?.textContent || '',
+      ascii: !!ascii,
+      highlight: seat.classList.contains('highlight')
+    };
+  }
+
+  function esc(s){return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+  function save(){
+    const data = { layoutId: LAYOUT_ID, seats: seats.map(extract) };
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(_){}
+  }
+  window.__seatingSave = save;
+
+  function applySaved(){
+    try{
+      ['seating-edits-v1','seating-edits-v2'].forEach(k => localStorage.removeItem(k));
+    }catch(_){}
+    let raw=null;
+    try{ raw = localStorage.getItem(STORAGE_KEY); }catch(_){}
+    if (!raw) return;
+    try{
+      const parsed = JSON.parse(raw);
+      const data = Array.isArray(parsed) ? parsed : parsed.seats;
+      const lid = Array.isArray(parsed) ? null : parsed.layoutId;
+      if (LAYOUT_ID && lid && lid !== LAYOUT_ID) {
+        try{ localStorage.removeItem(STORAGE_KEY); }catch(_){}
+        return;
+      }
+      if (!Array.isArray(data) || data.length !== seats.length) return;
+      data.forEach((d,i)=>{
+        const s = seats[i];
+        s.className = 'seat';
+        if (d.empty){
+          s.classList.add('empty'); s.setAttribute('aria-hidden','true'); s.innerHTML = '';
+        } else {
+          s.removeAttribute('aria-hidden');
+          if (d.highlight) s.classList.add('highlight');
+          const tag = d.ascii ? 'ascii' : 'nm';
+          s.innerHTML = '<span class="'+tag+'">'+esc(d.name)+'</span><span class="sm">様</span>';
+        }
+      });
+    }catch(_){}
+  }
+
+  applySaved();
+  window.addEventListener('pageshow', (e)=>{ if (e.persisted) applySaved(); });
   if (!isEdit) return;
 
   document.body.classList.add('edit-mode');
   document.getElementById('editToolbar').setAttribute('aria-hidden','false');
 
-  const seats = Array.from(document.querySelectorAll('.row .seat'));
   seats.forEach((s,i)=>{ s.dataset.seatIdx = String(i); });
 
   // 元の状態をスナップショット（差分用）
   const original = seats.map(extract);
 
-  // localStorage から復元
-  applySaved();
   updateCounter();
 
   // -------- ドラッグ&ドロップ --------
@@ -664,46 +730,6 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
     updateCounter();
   }
 
-  // -------- 状態抽出 / 保存 / 復元 --------
-  function extract(seat){
-    if (seat.classList.contains('empty')) return {empty:true};
-    const ascii = seat.querySelector('.ascii');
-    const nm = seat.querySelector('.nm');
-    return {
-      name: (ascii || nm)?.textContent || '',
-      ascii: !!ascii,
-      highlight: seat.classList.contains('highlight')
-    };
-  }
-
-  function save(){
-    const data = seats.map(extract);
-    try{ localStorage.setItem('seating-edits-v1', JSON.stringify(data)); }catch(_){}
-  }
-
-  function applySaved(){
-    let raw=null; try{ raw = localStorage.getItem('seating-edits-v1'); }catch(_){}
-    if (!raw) return;
-    try{
-      const data = JSON.parse(raw);
-      if (!Array.isArray(data) || data.length !== seats.length) return;
-      data.forEach((d,i)=>{
-        const s = seats[i];
-        s.className = 'seat';
-        if (d.empty){
-          s.classList.add('empty'); s.setAttribute('aria-hidden','true'); s.innerHTML = '';
-        } else {
-          s.removeAttribute('aria-hidden');
-          if (d.highlight) s.classList.add('highlight');
-          const tag = d.ascii ? 'ascii' : 'nm';
-          s.innerHTML = '<span class="'+tag+'">'+esc(d.name)+'</span><span class="sm">様</span>';
-        }
-      });
-    }catch(_){}
-  }
-
-  function esc(s){return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-
   // -------- 差分計算 --------
   function diff(){
     const cur = seats.map(extract);
@@ -731,7 +757,7 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
   // -------- リセット --------
   document.getElementById('btnReset').addEventListener('click', ()=>{
     if (!confirm('変更を破棄して最初の配置に戻しますか？')) return;
-    try{ localStorage.removeItem('seating-edits-v1'); }catch(_){}
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(_){}
     location.reload();
   });
 
