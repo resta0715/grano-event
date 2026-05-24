@@ -234,11 +234,13 @@ body.edit-mode .seat-c.drag-over{
   border-top:1px solid var(--border);
 }
 
-/* 招待者対応表 */
+/* 招待者対応表（編集モードのみ表示） */
 .pair-section{
+  display:none;
   max-width:1240px; margin:8px auto 32px; padding:24px 18px;
   background:var(--paper-2); border:1px solid var(--border); border-radius:12px;
 }
+body.edit-mode .pair-section{ display:block }
 .pair-title{
   font-size:16px; font-weight:800; color:var(--navy); letter-spacing:.05em;
   margin-bottom:6px;
