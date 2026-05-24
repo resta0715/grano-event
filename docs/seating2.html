@@ -618,6 +618,8 @@ body.edit-mode .seat-c.drag-over{
   </div>
 </section>
 
+<script id="hostMap" type="application/json">{"麻生 恵里": "飛山 佳枝", "﨏田 美咲": "小林 実穂", "木下 貴子": "尾﨑 直人", "細谷 政徳": "上夷 未紗", "小林 良": "山野井 信夫", "藤平 ゆか": "上村 マリ", "堀内 健一": "山田 研二", "山下 翼": "新井D", "堀川 マサル": "幸田 勝", "清島 有紗": "小宮 雅哲", "葛城 由美": "新美 裕之", "井出 康平": "永吉 佐千子", "保利 澄香": "板倉 佳織", "田代 祐司": "小野 利隆", "武富 裕一": "上村 マリ", "山口 えま": "大工原 葉子", "山坂 秀樹": "新井D", "松村 由華": "龍造寺 亮", "橋本 香織": "上夷 未紗", "滝口 肇": "板倉 佳織", "NGUYEN VAN LONG": "植草 尚大", "近藤 朱莉": "新井D", "新井 絵美": "宇部 光太", "岩渕 元気": "宇部 光太", "澤口 奈緒美": "岡崎 厚子", "岸 翔麻": "岸 信利", "藤井 光樹": "幸田 勝", "永井 尋己": "髙橋 信博", "高野 なおみ": "鈴木 優", "辻下 敏夫": "小野 利隆", "松永 洋忠": "小野 利隆", "成瀬 優": "新美 裕之"}</script>
+
 <footer class="footer">
   <p>※ 配置・氏名は当日変更となる場合がございます。修正の場合は編集モード（?edit=1）でドラッグ＆ドロップ → 保存して反映。</p>
   <p>2部不参加：小林 実穂 様 / 岡崎 厚子 様 ｜ 1部・2部とも欠席：金指 佐江子 様 / 川戸 恒吾 様 / 梅原 様 ｜ 佐藤 秀哉 様：1ターン目（A）のみ・2ターン目（B）退席 ｜ 中山 朋子 様：〜13:30 途中退席</p>
@@ -777,14 +779,63 @@ body.edit-mode .seat-c.drag-over{
     document.getElementById('btnCancelSelect').hidden = true;
   }
 
+  // -------- 招待者マスター（ビジター→招待メンバー） --------
+  let HOST_MAP = {};
+  try {
+    const raw = document.getElementById('hostMap')?.textContent || '{}';
+    HOST_MAP = JSON.parse(raw);
+  } catch(_){ HOST_MAP = {}; }
+
+  function tableMembersOf(seatEl){
+    const wrap = seatEl.closest('.table-wrap');
+    const set = new Set();
+    if (!wrap) return set;
+    wrap.querySelectorAll('.seat-c').forEach(s => {
+      const k = s.dataset.kind;
+      if (k === 'm' || k === 'a' || k === 'u'){
+        const nm = s.querySelector('.nm');
+        if (nm) set.add(nm.textContent.trim());
+      }
+    });
+    return set;
+  }
+
+  // 1席のメタ情報（招待者ツールチップ・hostmatch）を名前から再計算
+  function refreshSeatMeta(seat){
+    const nameEl = seat.querySelector('.nm');
+    if (!nameEl) return;
+    const name = nameEl.textContent.trim();
+    seat.classList.remove('hostmatch');
+    seat.removeAttribute('title');
+    delete seat.dataset.host;
+    if (seat.dataset.kind !== 'v') return;
+    const host = HOST_MAP[name];
+    if (!host) return;
+    seat.dataset.host = host;
+    seat.title = '招待者：' + host + ' 様';
+    const members = tableMembersOf(seat);
+    if (members.has(host)) seat.classList.add('hostmatch');
+  }
+
+  // 1卓内すべての席のメタを再計算（メンバーが入れ替わった卓に必要）
+  function refreshTableMeta(tableWrap){
+    if (!tableWrap) return;
+    tableWrap.querySelectorAll('.seat-c').forEach(refreshSeatMeta);
+  }
+
   function swap(a, b){
     const aHTML = a.innerHTML, bHTML = b.innerHTML;
     const aKind = a.dataset.kind, bKind = b.dataset.kind;
     a.innerHTML = bHTML; b.innerHTML = aHTML;
-    // class の m/v/u を入れ替え
-    a.classList.remove('m','v','u','a'); a.classList.add(bKind);
-    b.classList.remove('m','v','u','a'); b.classList.add(aKind);
+    // class の m/v/u/a を入れ替え（hostmatch は再計算でリセットするので一旦削除）
+    a.classList.remove('m','v','u','a','hostmatch'); a.classList.add(bKind);
+    b.classList.remove('m','v','u','a','hostmatch'); b.classList.add(aKind);
     a.dataset.kind = bKind; b.dataset.kind = aKind;
+    // 入れ替えで卓のメンバー構成が変わるため、両卓全席のメタを再計算
+    const tableA = a.closest('.table-wrap');
+    const tableB = b.closest('.table-wrap');
+    refreshTableMeta(tableA);
+    if (tableB && tableB !== tableA) refreshTableMeta(tableB);
     updateCounter();
   }
 
@@ -815,11 +866,13 @@ body.edit-mode .seat-c.drag-over{
       const ss = sec.querySelectorAll('.seat-c');
       data[label].forEach((d, i) => {
         const s = ss[i]; if (!s) return;
-        s.classList.remove('m','v','u','a'); s.classList.add(d.kind);
+        s.classList.remove('m','v','u','a','hostmatch'); s.classList.add(d.kind);
         s.dataset.kind = d.kind;
         const nm = s.querySelector('.nm');
         if (nm) nm.textContent = d.name;
       });
+      // 復元後、すべての卓のメタ（招待者ツールチップ・hostmatch）を再計算
+      sec.querySelectorAll('.table-wrap').forEach(refreshTableMeta);
     });
   }
 
