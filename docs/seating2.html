@@ -789,16 +789,23 @@ body.edit-mode .seat-c.drag-over{
   }
 
   // -------- localStorage 保存・復元 --------
+  // ベース配置の version。生成側で更新したら古い localStorage を破棄する。
+  const STORAGE_KEY = 'seating2-edits-v3';
+  // 旧キーは破棄（配置が変わるたびに古い編集が再表示される事故を防止）
+  try {
+    ['seating2-edits-v1','seating2-edits-v2'].forEach(k => localStorage.removeItem(k));
+  } catch(_){}
+
   function save(){
     const data = {
       A: snapshotPattern('A'),
       B: snapshotPattern('B')
     };
-    try{ localStorage.setItem('seating2-edits-v1', JSON.stringify(data)); }catch(_){}
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(_){}
   }
   function applySaved(){
     let raw = null;
-    try { raw = localStorage.getItem('seating2-edits-v1'); } catch(_){}
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch(_){}
     if (!raw) return;
     let data;
     try{ data = JSON.parse(raw); }catch(_){ return; }
@@ -836,7 +843,7 @@ body.edit-mode .seat-c.drag-over{
   if (isEdit){
     document.getElementById('btnReset').addEventListener('click', ()=>{
       if (!confirm('編集中の変更を破棄して、最初の配置に戻しますか？')) return;
-      try{ localStorage.removeItem('seating2-edits-v1'); }catch(_){}
+      try{ localStorage.removeItem(STORAGE_KEY); }catch(_){}
       location.reload();
     });
   }
@@ -936,7 +943,7 @@ body.edit-mode .seat-c.drag-over{
     if (!res.ok){ showStatus('err','保存失敗: '+res.status+'\n'+await res.text()); return; }
     const d = await res.json();
     const sha7 = d.commit?.sha?.slice(0,7) || '';
-    try{ localStorage.removeItem('seating2-edits-v1'); }catch(_){}
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(_){}
     showStatus('ok',
       '✅ 保存しました（commit '+sha7+'）。1〜2分でGitHub Pagesに反映されます。\n' +
       '<a href="https://resta0715.github.io/grano-event/seating2.html" target="_blank">本番ページを開く</a> ／ ' +
