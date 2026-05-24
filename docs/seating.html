@@ -19,6 +19,8 @@
   --ink:#1A1A1A; --ink-2:#3a3a3a; --muted:#8a8378;
   --border:#E2DCCD;
   --aisle:#EFE8DA;
+  --member:#fff; --member-bd:#bda87a;
+  --visitor:#eef4f1; --visitor-bd:#9bbcb1;
 }
 html{scroll-behavior:smooth}
 body{
@@ -91,7 +93,9 @@ body{
 }
 .legend span{display:inline-flex; align-items:center; gap:6px}
 .legend i{display:inline-block; width:14px; height:14px; border-radius:3px; border:1px solid var(--border)}
-.legend i.s{background:var(--paper-2)}
+.legend i.s{background:var(--member); border-color:var(--member-bd)}
+.legend i.m{background:var(--member); border-color:var(--member-bd)}
+.legend i.v{background:var(--visitor); border-color:var(--visitor-bd)}
 .legend i.a{background:var(--aisle)}
 .legend i.e{background:transparent; border-style:dashed}
 
@@ -120,8 +124,8 @@ body{
 
 .seat{
   position:relative;
-  background:var(--paper-2);
-  border:1px solid var(--border);
+  background:var(--member);
+  border:1px solid var(--member-bd);
   border-radius:8px;
   padding:10px 4px;
   min-height:54px;
@@ -149,6 +153,10 @@ body{
   white-space:normal;
 }
 .seat:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(15,27,45,.07); border-color:var(--amber)}
+.seat.v{
+  background:var(--visitor);
+  border-color:var(--visitor-bd);
+}
 .seat.empty{
   background:transparent;
   border-style:dashed;
@@ -157,13 +165,6 @@ body{
 }
 .seat .sm{
   font-size:.78em; color:var(--muted); margin-left:2px; font-weight:500;
-}
-
-/* Highlight 宇部 */
-.seat.highlight{
-  background:linear-gradient(180deg,#fff8ec 0%, #fbecc7 100%);
-  border-color:var(--amber);
-  box-shadow:0 4px 12px rgba(200,148,62,.18);
 }
 
 /* row label column for printable layout */
@@ -350,9 +351,7 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
     background:#fff !important; border:.6pt solid #555 !important;
     box-shadow:none !important;
   }
-  .seat.highlight{
-    background:#fff !important; border:1pt solid #000 !important;
-  }
+  .seat.v{ background:#f4f7f5 !important; border:.6pt solid #777 !important }
   .seat.empty{ border-style:dashed; border-color:#bbb !important }
   .aisle{
     background:#eee !important;
@@ -424,7 +423,8 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
 
 <div class="seats-wrap">
   <div class="legend" role="note">
-    <span><i class="s"></i> 座席</span>
+    <span><i class="m"></i> メンバー</span>
+    <span><i class="v"></i> ビジター</span>
     <span><i class="a"></i> 通路</span>
     <span><i class="e"></i> 空席</span>
   </div>
@@ -519,7 +519,7 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
       <div class="aisle" aria-hidden="true">通路</div>
       <div class="seat"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">松村 由華</span><span class="sm">様</span></div>
-      <div class="seat highlight"><span class="nm">宇部 光太</span><span class="sm">様</span></div>
+      <div class="seat"><span class="nm">宇部 光太</span><span class="sm">様</span></div>
       <div class="seat"><span class="nm">岸 翔麻</span><span class="sm">様</span></div>
     </div>
   </div>
@@ -592,6 +592,7 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
   </div>
 </div>
 
+<script id="roleMap" type="application/json">{"members":["髙橋 信博","中山 朋子","上村 マリ","伊藤 梢","植草 尚大","あらい ひとみ","尾﨑 直人","鈴木 優","小野 利隆","宇部 光太","幸田 勝","岸 信利","横山 孝行","龍造寺 亮","かわもと えつこ","永吉 佐千子","新美 裕之","山野井 信夫","徳永 剛太","佐藤 秀哉","大工原 葉子","小宮 雅哲","飛山 佳枝","山田 研二","上夷 未紗","熊澤 博之","板倉 佳織","栗原 優","小林 実穂","岡崎 厚子"],"visitors":["麻生 恵里","﨏田 美咲","木下 貴子","細谷 政徳","小林 良","藤平 ゆか","堀内 健一","山下 翼","堀川 マサル","清島 有紗","葛城 由美","井出 康平","保利 澄香","田代 祐司","武富 裕一","山口 えま","山坂 秀樹","松村 由華","橋本 香織","滝口 肇","NGUYEN VAN LONG","近藤 朱莉","新井 絵美","岩渕 元気","澤口 奈緒美","岸 翔麻","藤井 光樹","永井 尋己","高野 なおみ","辻下 敏夫","松永 洋忠","成瀬 優","冨澤 里子"],"aliases":{"垳田 美咲":"﨏田 美咲","かわもと":"かわもと えつこ","高橋 信博":"髙橋 信博"}}</script>
 <script>
 (function(){
   const params = new URLSearchParams(location.search);
@@ -599,17 +600,55 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
   const LAYOUT_ID = document.querySelector('meta[name="layout-id"]')?.content || '';
   const STORAGE_KEY = 'seating-edits-v3';
 
+  const roleMap = JSON.parse(document.getElementById('roleMap').textContent);
+  const MEMBER_SET = new Set(roleMap.members);
+  const VISITOR_SET = new Set(roleMap.visitors);
+  const NAME_ALIASES = roleMap.aliases || {};
+
   const seats = Array.from(document.querySelectorAll('.row .seat'));
+  const SWAP_SKIP = new Set(['seat','selected','dragging','drag-over','m','v']);
+
+  function seatName(seat){
+    if (seat.classList.contains('empty')) return '';
+    const ascii = seat.querySelector('.ascii');
+    const nm = seat.querySelector('.nm');
+    return (ascii || nm)?.textContent || '';
+  }
+
+  function resolveName(name){
+    return NAME_ALIASES[name] || name;
+  }
+
+  function lookupKind(name){
+    const n = resolveName(name);
+    if (VISITOR_SET.has(n)) return 'v';
+    if (MEMBER_SET.has(n)) return 'm';
+    return 'm';
+  }
+
+  function classifySeat(seat){
+    seat.classList.remove('m','v');
+    seat.removeAttribute('data-kind');
+    if (seat.classList.contains('empty')) return;
+    const kind = lookupKind(seatName(seat));
+    seat.classList.add(kind);
+    seat.dataset.kind = kind;
+  }
+
+  function classifyAllSeats(){
+    seats.forEach(classifySeat);
+  }
 
   // -------- 状態抽出 / 保存 / 復元（通常表示でも localStorage を反映） --------
   function extract(seat){
     if (seat.classList.contains('empty')) return {empty:true};
     const ascii = seat.querySelector('.ascii');
     const nm = seat.querySelector('.nm');
+    const name = (ascii || nm)?.textContent || '';
     return {
-      name: (ascii || nm)?.textContent || '',
+      name,
       ascii: !!ascii,
-      highlight: seat.classList.contains('highlight')
+      kind: lookupKind(name)
     };
   }
 
@@ -644,7 +683,6 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
           s.classList.add('empty'); s.setAttribute('aria-hidden','true'); s.innerHTML = '';
         } else {
           s.removeAttribute('aria-hidden');
-          if (d.highlight) s.classList.add('highlight');
           const tag = d.ascii ? 'ascii' : 'nm';
           s.innerHTML = '<span class="'+tag+'">'+esc(d.name)+'</span><span class="sm">様</span>';
         }
@@ -652,8 +690,13 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
     }catch(_){}
   }
 
-  applySaved();
-  window.addEventListener('pageshow', (e)=>{ if (e.persisted) applySaved(); });
+  function refreshView(){
+    applySaved();
+    classifyAllSeats();
+  }
+
+  refreshView();
+  window.addEventListener('pageshow', (e)=>{ if (e.persisted) refreshView(); });
   if (!isEdit) return;
 
   document.body.classList.add('edit-mode');
@@ -719,12 +762,13 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
   // -------- 入れ替え --------
   function swap(a,b){
     const aHTML = a.innerHTML, bHTML = b.innerHTML;
-    const aClasses = [...a.classList].filter(c=>c!=='seat'&&c!=='selected'&&c!=='dragging'&&c!=='drag-over');
-    const bClasses = [...b.classList].filter(c=>c!=='seat'&&c!=='selected'&&c!=='dragging'&&c!=='drag-over');
+    const aClasses = [...a.classList].filter(c=>!SWAP_SKIP.has(c));
+    const bClasses = [...b.classList].filter(c=>!SWAP_SKIP.has(c));
     a.innerHTML = bHTML; b.innerHTML = aHTML;
     a.className = 'seat'; bClasses.forEach(c=>a.classList.add(c));
     b.className = 'seat'; aClasses.forEach(c=>b.classList.add(c));
-    // aria-hidden も入れ替え
+    classifySeat(a);
+    classifySeat(b);
     if (a.classList.contains('empty')) a.setAttribute('aria-hidden','true'); else a.removeAttribute('aria-hidden');
     if (b.classList.contains('empty')) b.setAttribute('aria-hidden','true'); else b.removeAttribute('aria-hidden');
     updateCounter();
@@ -787,7 +831,7 @@ body.edit-mode .seat.empty:hover{ border-color:var(--amber) }
         const nm = cell.querySelector('.nm');
         const obj = {t:'seat', n:(ascii||nm)?.textContent || ''};
         if (ascii) obj.ascii = true;
-        if (cell.classList.contains('highlight')) obj.h = true;
+        if (cell.dataset.kind === 'v' || cell.classList.contains('v')) obj.role = 'v';
         return obj;
       })
     );
