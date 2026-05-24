@@ -86,6 +86,7 @@ body{
 .legend i.u{background:var(--unknown); border-color:var(--unknown-bd)}
 .legend i.a{background:var(--axis); border-color:var(--axis-bd); box-shadow:0 0 0 1px var(--axis-bd) inset}
 .legend i.hm{background:#e8f5ec; border-color:#7fbf94; box-shadow:0 0 0 1px #7fbf94 inset}
+.legend i.e{background:#f5f5f5; border:1.5px dashed #bbb}
 
 /* テーブルレイアウト */
 .tables-wrap{ max-width:1240px; margin:0 auto; padding:0 16px 40px }
@@ -117,6 +118,22 @@ body{
 .table-count{
   font-size:10px; color:var(--muted); letter-spacing:2px; margin-top:4px;
 }
+/* 編集モード: 卓ごとの席数切替（7 / 8） */
+.table-capacity{
+  display:none;
+  position:absolute; bottom:-28px; left:50%; transform:translateX(-50%);
+  gap:4px; z-index:2;
+}
+body.edit-mode .table-capacity{ display:flex }
+.cap-btn{
+  font-size:10px; font-weight:700; padding:3px 8px; border-radius:4px;
+  border:1px solid var(--border); background:#fff; color:var(--muted);
+  cursor:pointer; font-family:inherit;
+}
+.cap-btn:hover{ border-color:var(--amber); color:var(--navy) }
+.cap-btn.active{ background:var(--navy); color:#fff; border-color:var(--navy) }
+.table-wrap{ position:relative; padding-bottom:0 }
+body.edit-mode .table-wrap{ padding-bottom:32px }
 .seat-c{
   position:absolute; left:50%; top:50%;
   width:30%; height:13%;
@@ -142,6 +159,13 @@ body{
   box-shadow:0 1px 3px rgba(0,0,0,.18);
 }
 .seat-c.u{ background:var(--unknown); border-color:var(--unknown-bd) }
+.seat-c.e{
+  background:#f5f5f5; border:1.5px dashed #bbb; color:#aaa;
+  box-shadow:none; cursor:default;
+}
+.seat-c.e .empty-lbl{ font-size:9px; letter-spacing:1px; color:#aaa; margin-left:0 }
+body.edit-mode .seat-c.e{ cursor:pointer; border-color:#999 }
+body.edit-mode .seat-c.e:hover{ background:#ececec; border-color:var(--amber) }
 .seat-c.a{
   background:var(--axis);
   border-color:var(--axis-bd);
@@ -274,7 +298,11 @@ body.edit-mode .pair-section{ display:block }
 }
 @media print{
   .pair-section{ display:none !important }
+  .seat-c.e{ display:none !important }
+  .table-capacity{ display:none !important }
 }
+.legend-edit-only{ display:none }
+body.edit-mode .legend-edit-only{ display:inline }
 
 /* print */
 @media print{
@@ -329,6 +357,7 @@ body.edit-mode .pair-section{ display:block }
     <span class="edit-toolbar-help">
       <b>クリック</b>か<b>ドラッグ＆ドロップ</b>で2席を入れ替え。
       編集後 <b>JSONダウンロード</b> または <b>JSONをコピー</b> から共有してください。
+      各卓下の <b>7 / 8</b> で席数（空席含む）を変更できます。
     </span>
     <span class="edit-mode-counter" id="editCounter"><b>0</b> 件</span>
     <button class="btn btn-ghost" type="button" id="btnCancelSelect" hidden>選択解除</button>
@@ -356,12 +385,13 @@ body.edit-mode .pair-section{ display:block }
   <span><i class="m"></i> メンバー</span>
   <span><i class="v"></i> ビジター</span>
   <span><i class="hm"></i> ビジター（招待メンバーと同卓）</span>
+  <span class="legend-edit-only"><i class="e"></i> 空席（編集モードのみ操作可）</span>
 </div>
 
 <div class="tables-wrap">
 <section class="tables-pattern" data-pattern="A">
   <div class="tables-row tables-row-3">
-    <div class="table-wrap" data-table="1" data-seats="8">
+    <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">1卓</span>
         <span class="table-count">8名</span>
@@ -374,36 +404,41 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="板倉 佳織" title="招待者：板倉 佳織 様" style="--angle:180.00deg"><span class="nm">滝口 肇</span><span class="sm">様</span></div>
       <div class="seat-c a" data-kind="a" style="--angle:225.00deg"><span class="nm">山田 研二</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="1卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="2" data-seats="7">
+    <div class="table-wrap" data-table="2" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">2卓</span>
-        <span class="table-count">7名</span>
+        <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="龍造寺 亮" title="招待者：龍造寺 亮 様" style="--angle:-90.00deg"><span class="nm">松村 由華</span><span class="sm">様</span></div>
-      <div class="seat-c a" data-kind="a" style="--angle:-38.57deg"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="飛山 佳枝" title="招待者：飛山 佳枝 様" style="--angle:12.86deg"><span class="nm">麻生 恵里</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:64.29deg"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様" style="--angle:115.71deg"><span class="nm">堀内 健一</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:167.14deg"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様" style="--angle:218.57deg"><span class="nm">辻下 敏夫</span><span class="sm">様</span></div>
+      <div class="seat-c a" data-kind="a" style="--angle:-45.00deg"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="飛山 佳枝" title="招待者：飛山 佳枝 様" style="--angle:0.00deg"><span class="nm">麻生 恵里</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様" style="--angle:90.00deg"><span class="nm">堀内 健一</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様" style="--angle:180.00deg"><span class="nm">辻下 敏夫</span><span class="sm">様</span></div>
+      <div class="seat-c e" data-kind="e" style="--angle:225.00deg"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="table-capacity" aria-label="2卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="3" data-seats="7">
+    <div class="table-wrap" data-table="3" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">3卓</span>
-        <span class="table-count">7名</span>
+        <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様" style="--angle:-90.00deg"><span class="nm">葛城 由美</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:-38.57deg"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様" style="--angle:12.86deg"><span class="nm">成瀬 優</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:64.29deg"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="幸田 勝" title="招待者：幸田 勝 様" style="--angle:115.71deg"><span class="nm">堀川 マサル</span><span class="sm">様</span></div>
-      <div class="seat-c a" data-kind="a" style="--angle:167.14deg"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="幸田 勝" title="招待者：幸田 勝 様" style="--angle:218.57deg"><span class="nm">藤井 光樹</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:-45.00deg"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様" style="--angle:0.00deg"><span class="nm">成瀬 優</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="幸田 勝" title="招待者：幸田 勝 様" style="--angle:90.00deg"><span class="nm">堀川 マサル</span><span class="sm">様</span></div>
+      <div class="seat-c a" data-kind="a" style="--angle:135.00deg"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="幸田 勝" title="招待者：幸田 勝 様" style="--angle:180.00deg"><span class="nm">藤井 光樹</span><span class="sm">様</span></div>
+      <div class="seat-c e" data-kind="e" style="--angle:225.00deg"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
   <div class="tables-row tables-row-3">
-    <div class="table-wrap" data-table="4" data-seats="8">
+    <div class="table-wrap" data-table="4" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">4卓</span>
         <span class="table-count">8名</span>
@@ -416,8 +451,9 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">髙橋 信博</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="小林 実穂" title="招待者：小林 実穂 様" style="--angle:180.00deg"><span class="nm">﨏田 美咲</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m" style="--angle:225.00deg"><span class="nm">大工原 葉子</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="4卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="5" data-seats="8">
+    <div class="table-wrap" data-table="5" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">5卓</span>
         <span class="table-count">8名</span>
@@ -430,8 +466,9 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様" style="--angle:180.00deg"><span class="nm">井出 康平</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m" style="--angle:225.00deg"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="5卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="6" data-seats="8">
+    <div class="table-wrap" data-table="6" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">6卓</span>
         <span class="table-count">8名</span>
@@ -444,10 +481,11 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">新井D</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="新井D" title="招待者：新井D 様" style="--angle:180.00deg"><span class="nm">近藤 朱莉</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="新井D" title="招待者：新井D 様" style="--angle:225.00deg"><span class="nm">山坂 秀樹</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="6卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
   <div class="tables-row tables-row-2">
-    <div class="table-wrap" data-table="7" data-seats="8">
+    <div class="table-wrap" data-table="7" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">7卓</span>
         <span class="table-count">8名</span>
@@ -460,8 +498,9 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様" style="--angle:180.00deg"><span class="nm">岩渕 元気</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m" style="--angle:225.00deg"><span class="nm">尾﨑 直人</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="8" data-seats="8">
+    <div class="table-wrap" data-table="8" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">8卓</span>
         <span class="table-count">8名</span>
@@ -474,12 +513,13 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c a" data-kind="a" style="--angle:135.00deg"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様" style="--angle:180.00deg"><span class="nm">武富 裕一</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m" style="--angle:225.00deg"><span class="nm">上村 マリ</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="8卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
 </section>
 <section class="tables-pattern" data-pattern="B" style="display:none">
   <div class="tables-row tables-row-3">
-    <div class="table-wrap" data-table="1" data-seats="8">
+    <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">1卓</span>
         <span class="table-count">8名</span>
@@ -492,8 +532,9 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">宇部 光太</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様" style="--angle:180.00deg"><span class="nm">岩渕 元気</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m" style="--angle:225.00deg"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="1卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="2" data-seats="8">
+    <div class="table-wrap" data-table="2" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">2卓</span>
         <span class="table-count">8名</span>
@@ -506,48 +547,56 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="新井D" title="招待者：新井D 様" style="--angle:180.00deg"><span class="nm">山下 翼</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="小林 実穂" title="招待者：小林 実穂 様" style="--angle:225.00deg"><span class="nm">﨏田 美咲</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="2卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="3" data-seats="6">
+    <div class="table-wrap" data-table="3" data-seats="8" data-capacity="8" data-filled="6">
       <div class="table-circle">
         <span class="table-name">3卓</span>
-        <span class="table-count">6名</span>
+        <span class="table-count">6名 / 8席</span>
       </div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="飛山 佳枝" title="招待者：飛山 佳枝 様" style="--angle:-90.00deg"><span class="nm">麻生 恵里</span><span class="sm">様</span></div>
-      <div class="seat-c a" data-kind="a" style="--angle:-30.00deg"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="大工原 葉子" title="招待者：大工原 葉子 様" style="--angle:30.00deg"><span class="nm">山口 えま</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:90.00deg"><span class="nm">大工原 葉子</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="鈴木 優" title="招待者：鈴木 優 様" style="--angle:150.00deg"><span class="nm">高野 なおみ</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:210.00deg"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
+      <div class="seat-c a" data-kind="a" style="--angle:-45.00deg"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="大工原 葉子" title="招待者：大工原 葉子 様" style="--angle:0.00deg"><span class="nm">山口 えま</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">大工原 葉子</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="鈴木 優" title="招待者：鈴木 優 様" style="--angle:90.00deg"><span class="nm">高野 なおみ</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
+      <div class="seat-c e" data-kind="e" style="--angle:180.00deg"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="seat-c e" data-kind="e" style="--angle:225.00deg"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
   <div class="tables-row tables-row-3">
-    <div class="table-wrap" data-table="4" data-seats="7">
+    <div class="table-wrap" data-table="4" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">4卓</span>
-        <span class="table-count">7名</span>
+        <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様" style="--angle:-90.00deg"><span class="nm">成瀬 優</span><span class="sm">様</span></div>
-      <div class="seat-c a" data-kind="a" style="--angle:-38.57deg"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様" style="--angle:12.86deg"><span class="nm">田代 祐司</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:64.29deg"><span class="nm">かわもと えつこ</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="上夷 未紗" title="招待者：上夷 未紗 様" style="--angle:115.71deg"><span class="nm">橋本 香織</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:167.14deg"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="新井D" title="招待者：新井D 様" style="--angle:218.57deg"><span class="nm">山坂 秀樹</span><span class="sm">様</span></div>
+      <div class="seat-c a" data-kind="a" style="--angle:-45.00deg"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様" style="--angle:0.00deg"><span class="nm">田代 祐司</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">かわもと えつこ</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="上夷 未紗" title="招待者：上夷 未紗 様" style="--angle:90.00deg"><span class="nm">橋本 香織</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="新井D" title="招待者：新井D 様" style="--angle:180.00deg"><span class="nm">山坂 秀樹</span><span class="sm">様</span></div>
+      <div class="seat-c e" data-kind="e" style="--angle:225.00deg"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="table-capacity" aria-label="4卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="5" data-seats="7">
+    <div class="table-wrap" data-table="5" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">5卓</span>
-        <span class="table-count">7名</span>
+        <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="小宮 雅哲" title="招待者：小宮 雅哲 様" style="--angle:-90.00deg"><span class="nm">清島 有紗</span><span class="sm">様</span></div>
-      <div class="seat-c a" data-kind="a" style="--angle:-38.57deg"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様" style="--angle:12.86deg"><span class="nm">藤平 ゆか</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:64.29deg"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様" style="--angle:115.71deg"><span class="nm">葛城 由美</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:167.14deg"><span class="nm">髙橋 信博</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="板倉 佳織" title="招待者：板倉 佳織 様" style="--angle:218.57deg"><span class="nm">滝口 肇</span><span class="sm">様</span></div>
+      <div class="seat-c a" data-kind="a" style="--angle:-45.00deg"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様" style="--angle:0.00deg"><span class="nm">藤平 ゆか</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様" style="--angle:90.00deg"><span class="nm">葛城 由美</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">髙橋 信博</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="板倉 佳織" title="招待者：板倉 佳織 様" style="--angle:180.00deg"><span class="nm">滝口 肇</span><span class="sm">様</span></div>
+      <div class="seat-c e" data-kind="e" style="--angle:225.00deg"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="table-capacity" aria-label="5卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="6" data-seats="8">
+    <div class="table-wrap" data-table="6" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">6卓</span>
         <span class="table-count">8名</span>
@@ -560,23 +609,26 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c a" data-kind="a" style="--angle:135.00deg"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="植草 尚大" title="招待者：植草 尚大 様" style="--angle:180.00deg"><span class="nm">NGUYEN VAN LONG</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m" style="--angle:225.00deg"><span class="nm">上村 マリ</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="6卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
   <div class="tables-row tables-row-2">
-    <div class="table-wrap" data-table="7" data-seats="7">
+    <div class="table-wrap" data-table="7" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">7卓</span>
-        <span class="table-count">7名</span>
+        <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様" style="--angle:-90.00deg"><span class="nm">堀内 健一</span><span class="sm">様</span></div>
-      <div class="seat-c a" data-kind="a" style="--angle:-38.57deg"><span class="nm">栗原 優</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="岸 信利" title="招待者：岸 信利 様" style="--angle:12.86deg"><span class="nm">岸 翔麻</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:64.29deg"><span class="nm">山田 研二</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様" style="--angle:115.71deg"><span class="nm">松永 洋忠</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m" style="--angle:167.14deg"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="新井D" title="招待者：新井D 様" style="--angle:218.57deg"><span class="nm">近藤 朱莉</span><span class="sm">様</span></div>
+      <div class="seat-c a" data-kind="a" style="--angle:-45.00deg"><span class="nm">栗原 優</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="岸 信利" title="招待者：岸 信利 様" style="--angle:0.00deg"><span class="nm">岸 翔麻</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:45.00deg"><span class="nm">山田 研二</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様" style="--angle:90.00deg"><span class="nm">松永 洋忠</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="新井D" title="招待者：新井D 様" style="--angle:180.00deg"><span class="nm">近藤 朱莉</span><span class="sm">様</span></div>
+      <div class="seat-c e" data-kind="e" style="--angle:225.00deg"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="8" data-seats="8">
+    <div class="table-wrap" data-table="8" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">8卓</span>
         <span class="table-count">8名</span>
@@ -589,6 +641,7 @@ body.edit-mode .pair-section{ display:block }
       <div class="seat-c m" data-kind="m" style="--angle:135.00deg"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="岡崎 厚子" title="招待者：岡崎 厚子 様" style="--angle:180.00deg"><span class="nm">澤口 奈緒美</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m" style="--angle:225.00deg"><span class="nm">中山 朋子</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="8卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
 </section>
@@ -719,7 +772,124 @@ body.edit-mode .pair-section{ display:block }
 
     applySaved();
     bindSeatEvents();
+    initCapacityControls();
+    document.getElementById('btnCancelSelect').addEventListener('click', clearSelection);
     updateCounter();
+  }
+
+  function bindOneSeat(s){
+    if (s.dataset.bound === '1') return;
+    s.dataset.bound = '1';
+    s.draggable = true;
+    s.addEventListener('dragstart', onDragStart);
+    s.addEventListener('dragend', onDragEnd);
+    s.addEventListener('dragover', onDragOver);
+    s.addEventListener('dragleave', onDragLeave);
+    s.addEventListener('drop', onDrop);
+    s.addEventListener('click', onSeatClick);
+  }
+
+  function onDragStart(e){
+    const s = e.currentTarget;
+    dragSrc = s; s.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    try { e.dataTransfer.setData('text/plain', '1'); } catch(_){}
+  }
+  function onDragEnd(e){
+    e.currentTarget.classList.remove('dragging');
+    document.querySelectorAll('.seat-c').forEach(x=>x.classList.remove('drag-over'));
+    dragSrc = null;
+  }
+  function onDragOver(e){ e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+  function onDragLeave(e){ e.currentTarget.classList.remove('drag-over'); }
+  function onDrop(e){
+    e.preventDefault();
+    const s = e.currentTarget;
+    s.classList.remove('drag-over');
+    if (!dragSrc || dragSrc === s) return;
+    if (!sameSection(dragSrc, s)) return;
+    swap(dragSrc, s);
+    save();
+    clearSelection();
+  }
+  function onSeatClick(e){
+    const s = e.currentTarget;
+    if (!selected){
+      selected = s; s.classList.add('selected');
+      document.getElementById('btnCancelSelect').hidden = false;
+    } else if (selected === s){
+      clearSelection();
+    } else if (!sameSection(selected, s)){
+      selected.classList.remove('selected');
+      selected = s; s.classList.add('selected');
+    } else {
+      swap(selected, s);
+      clearSelection();
+      save();
+    }
+  }
+
+  // -------- 空席・席数（7/8）切替 --------
+  function countFilled(wrap){
+    return [...wrap.querySelectorAll('.seat-c')].filter(s => s.dataset.kind !== 'e').length;
+  }
+
+  function createEmptySeatEl(){
+    const el = document.createElement('div');
+    el.className = 'seat-c e';
+    el.dataset.kind = 'e';
+    el.innerHTML = '<span class="nm"></span><span class="sm empty-lbl">空席</span>';
+    return el;
+  }
+
+  function updateTableCount(wrap){
+    const filled = countFilled(wrap);
+    const total = wrap.querySelectorAll('.seat-c').length;
+    const el = wrap.querySelector('.table-count');
+    if (el) el.textContent = (filled === total) ? (filled + '名') : (filled + '名 / ' + total + '席');
+    wrap.dataset.seats = String(total);
+    wrap.dataset.capacity = String(total);
+    wrap.dataset.filled = String(filled);
+  }
+
+  function setTableCapacity(wrap, cap){
+    const filled = countFilled(wrap);
+    if (cap < filled){
+      showStatus('info', filled + '名が座っているため ' + cap + '席にはできません。');
+      return;
+    }
+    if (cap < 6 || cap > 8){ return; }
+    let total = wrap.querySelectorAll('.seat-c').length;
+    while (total > cap){
+      const seats = wrap.querySelectorAll('.seat-c');
+      const last = seats[seats.length - 1];
+      if (last?.dataset.kind === 'e'){ last.remove(); total--; }
+      else break;
+    }
+    while (total < cap){
+      const el = createEmptySeatEl();
+      wrap.appendChild(el);
+      bindOneSeat(el);
+      total++;
+    }
+    wrap.querySelectorAll('.cap-btn').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.cap, 10) === cap);
+    });
+    updateTableCount(wrap);
+    placeSeats();
+    save();
+  }
+
+  function initCapacityControls(){
+    document.querySelectorAll('.table-wrap[data-capacity]').forEach(wrap => {
+      const cap = parseInt(wrap.dataset.capacity, 10) || wrap.querySelectorAll('.seat-c').length;
+      wrap.querySelectorAll('.cap-btn').forEach(btn => {
+        if (btn.dataset.capBound === '1') return;
+        btn.dataset.capBound = '1';
+        btn.classList.toggle('active', parseInt(btn.dataset.cap, 10) === cap);
+        btn.addEventListener('click', () => setTableCapacity(wrap, parseInt(btn.dataset.cap, 10)));
+      });
+    });
   }
 
   // -------- ドラッグ＆ドロップ + クリック選択 --------
@@ -727,47 +897,7 @@ body.edit-mode .pair-section{ display:block }
   let selected = null;
 
   function bindSeatEvents(){
-    document.querySelectorAll('.seat-c').forEach(s => {
-      s.draggable = true;
-      s.addEventListener('dragstart', (e)=>{
-        dragSrc = s; s.classList.add('dragging');
-        e.dataTransfer.effectAllowed = 'move';
-        try { e.dataTransfer.setData('text/plain', '1'); } catch(_){}
-      });
-      s.addEventListener('dragend', ()=>{
-        s.classList.remove('dragging');
-        document.querySelectorAll('.seat-c').forEach(x=>x.classList.remove('drag-over'));
-        dragSrc = null;
-      });
-      s.addEventListener('dragover', (e)=>{ e.preventDefault(); s.classList.add('drag-over'); });
-      s.addEventListener('dragleave', ()=> s.classList.remove('drag-over'));
-      s.addEventListener('drop', (e)=>{
-        e.preventDefault();
-        s.classList.remove('drag-over');
-        if (!dragSrc || dragSrc === s) return;
-        if (!sameSection(dragSrc, s)) return;  // 違うパターン間は不可
-        swap(dragSrc, s);
-        save();
-        clearSelection();
-      });
-      s.addEventListener('click', ()=>{
-        if (!selected){
-          selected = s; s.classList.add('selected');
-          document.getElementById('btnCancelSelect').hidden = false;
-        } else if (selected === s){
-          clearSelection();
-        } else if (!sameSection(selected, s)){
-          // 違うパターン間 → 新しい方を選び直し
-          selected.classList.remove('selected');
-          selected = s; s.classList.add('selected');
-        } else {
-          swap(selected, s);
-          clearSelection();
-          save();
-        }
-      });
-    });
-    document.getElementById('btnCancelSelect').addEventListener('click', clearSelection);
+    document.querySelectorAll('.seat-c').forEach(bindOneSeat);
   }
 
   function sameSection(a, b){
@@ -829,23 +959,25 @@ body.edit-mode .pair-section{ display:block }
     const aKind = a.dataset.kind, bKind = b.dataset.kind;
     a.innerHTML = bHTML; b.innerHTML = aHTML;
     // class の m/v/u/a を入れ替え（hostmatch は再計算でリセットするので一旦削除）
-    a.classList.remove('m','v','u','a','hostmatch'); a.classList.add(bKind);
-    b.classList.remove('m','v','u','a','hostmatch'); b.classList.add(aKind);
+    a.classList.remove('m','v','u','a','e','hostmatch'); a.classList.add(bKind);
+    b.classList.remove('m','v','u','a','e','hostmatch'); b.classList.add(aKind);
     a.dataset.kind = bKind; b.dataset.kind = aKind;
     // 入れ替えで卓のメンバー構成が変わるため、両卓全席のメタを再計算
     const tableA = a.closest('.table-wrap');
     const tableB = b.closest('.table-wrap');
     refreshTableMeta(tableA);
     if (tableB && tableB !== tableA) refreshTableMeta(tableB);
+    if (tableA) updateTableCount(tableA);
+    if (tableB && tableB !== tableA) updateTableCount(tableB);
     updateCounter();
   }
 
   // -------- localStorage 保存・復元 --------
   // ベース配置の version。生成側で更新したら古い localStorage を破棄する。
-  const STORAGE_KEY = 'seating2-edits-v4';
+  const STORAGE_KEY = 'seating2-edits-v5';
   // 旧キーは破棄（配置が変わるたびに古い編集が再表示される事故を防止）
   try {
-    ['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3'].forEach(k => localStorage.removeItem(k));
+    ['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4'].forEach(k => localStorage.removeItem(k));
   } catch(_){}
 
   function save(){
@@ -867,10 +999,14 @@ body.edit-mode .pair-section{ display:block }
       const ss = sec.querySelectorAll('.seat-c');
       data[label].forEach((d, i) => {
         const s = ss[i]; if (!s) return;
-        s.classList.remove('m','v','u','a','hostmatch'); s.classList.add(d.kind);
+        s.classList.remove('m','v','u','a','e','hostmatch'); s.classList.add(d.kind);
         s.dataset.kind = d.kind;
-        const nm = s.querySelector('.nm');
-        if (nm) nm.textContent = d.name;
+        if (d.kind === 'e'){
+          s.innerHTML = '<span class="nm"></span><span class="sm empty-lbl">空席</span>';
+        } else {
+          const nm = s.querySelector('.nm');
+          if (nm) nm.textContent = d.name;
+        }
       });
       // 復元後、すべての卓のメタ（招待者ツールチップ・hostmatch）を再計算
       sec.querySelectorAll('.table-wrap').forEach(refreshTableMeta);
@@ -922,9 +1058,9 @@ body.edit-mode .pair-section{ display:block }
         wrap.querySelectorAll('.seat-c').forEach(s => {
           const name = s.querySelector('.nm')?.textContent.trim() || '';
           const kind = s.dataset.kind;
-          if (!name) return;
+          if (kind === 'e' || !name) return;
           if (kind === 'v') visitors.push(name);
-          else members.push(name);
+          else if (kind === 'm' || kind === 'a') members.push(name);
         });
         return { table: tableIdx, members, visitors };
       });
