@@ -86,6 +86,7 @@ body{
 .legend i.u{background:var(--unknown); border-color:var(--unknown-bd)}
 .legend i.a{background:var(--axis); border-color:var(--axis-bd); box-shadow:0 0 0 1px var(--axis-bd) inset}
 .legend i.hm{background:#e8f5ec; border-color:#7fbf94; box-shadow:0 0 0 1px #7fbf94 inset}
+.legend i.b{background:#fff8eb; border-color:#d4a855; box-shadow:0 0 0 1px #d4a855 inset}
 .legend i.e{background:#f5f5f5; border:1.5px dashed #bbb}
 
 /* テーブルレイアウト */
@@ -95,6 +96,75 @@ body{
 .tables-row-2{
   grid-template-columns:repeat(2, minmax(0,1fr));
   max-width:820px; margin-left:auto; margin-right:auto;
+}
+
+/* 出店ブース（会場後方・横並び） */
+.vendor-section{
+  max-width:1240px; margin:8px auto 36px; padding:0 16px;
+}
+.vendor-mark{
+  text-align:center; font-size:11px; font-weight:700; letter-spacing:3px;
+  color:var(--amber); text-transform:uppercase; margin:20px 0 12px;
+}
+.vendor-row{
+  display:grid;
+  grid-template-columns:repeat(13, minmax(0, 1fr));
+  gap:8px;
+}
+.vendor-booth{
+  position:relative;
+  aspect-ratio:1;
+  min-height:68px;
+  border-radius:10px;
+  border:2px solid var(--member-bd);
+  background:var(--member);
+  padding:18px 4px 6px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; line-height:1.2;
+  box-shadow:0 2px 8px rgba(15,27,45,.05);
+}
+.vendor-booth.v{
+  background:var(--visitor);
+  border-color:var(--visitor-bd);
+}
+.vendor-booth.x{
+  background:#f7f7f7;
+  border:2px dashed #bbb;
+  color:var(--muted);
+}
+.vendor-booth .booth-num{
+  position:absolute; top:4px; left:6px;
+  font-size:9px; font-weight:800; color:var(--amber); letter-spacing:1px;
+}
+.vendor-booth .nm{
+  display:block; font-size:clamp(9px, 1vw, 11px); font-weight:700;
+  color:var(--ink); word-break:break-word;
+}
+.vendor-booth .nm.cancelled{
+  font-size:clamp(8px, .95vw, 10px); color:#888; text-decoration:line-through;
+}
+.vendor-booth .prod{
+  display:block; font-size:clamp(7px, .85vw, 9px); color:var(--muted);
+  margin-top:3px; letter-spacing:.02em;
+}
+.vendor-booth .sm{font-size:.72em; color:var(--muted); margin-top:1px}
+@media (max-width: 900px){
+  .vendor-row{
+    display:flex; flex-wrap:nowrap; overflow-x:auto;
+    gap:8px; padding-bottom:8px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .vendor-booth{ flex:0 0 88px; min-height:88px }
+}
+@media print{
+  .vendor-section{ padding:0 6mm; page-break-inside:avoid }
+  .vendor-row{ gap:2mm }
+  .vendor-booth{
+    min-height:52px; padding-top:14px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .vendor-booth.v{ background:#f4f7f5 !important; border:.6pt solid #777 !important }
+  .vendor-booth.x{ border-style:dashed !important }
 }
 
 /* 円卓 */
@@ -385,6 +455,7 @@ body.edit-mode .legend-edit-only{ display:inline }
   <span><i class="m"></i> メンバー</span>
   <span><i class="v"></i> ビジター</span>
   <span><i class="hm"></i> ビジター（招待メンバーと同卓）</span>
+  <span><i class="b"></i> 出店ブース</span>
   <span class="legend-edit-only"><i class="e"></i> 空席（編集モードのみ操作可）</span>
 </div>
 
@@ -647,6 +718,25 @@ body.edit-mode .legend-edit-only{ display:inline }
 </section>
 </div>
 
+<section class="vendor-section" aria-label="出店ブース">
+  <p class="vendor-mark">— 会場後方 · 大人の文化祭 出店ブース —</p>
+  <div class="vendor-row">
+    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">堀内 健一</span><span class="prod">ジャーキー</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">澤口 奈緒美</span><span class="prod">ハンドメイド</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="3" data-kind="m"><span class="booth-num">3</span><span class="nm">永吉 佐千子</span><span class="prod">プロテインバー</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="4" data-kind="m"><span class="booth-num">4</span><span class="nm">佐藤 秀哉</span><span class="prod">鍼灸体験</span><span class="sm">様</span></div>
+    <div class="vendor-booth x" data-booth="5" aria-label="ブース5 出店取消"><span class="booth-num">5</span><span class="nm cancelled">滝口 肇</span><span class="prod">出店取消</span></div>
+    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">新井 絵美</span><span class="prod">オートネイル</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">山野井 信夫</span><span class="prod">美容シャンプー</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="8" data-kind="v"><span class="booth-num">8</span><span class="nm">松村 由華</span><span class="prod">ヘッドスパ</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="9" data-kind="v"><span class="booth-num">9</span><span class="nm">葛城 由美</span><span class="prod">どら焼き</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="10" data-kind="m"><span class="booth-num">10</span><span class="nm">新美 裕之</span><span class="prod">アフリカゆかた</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="11" data-kind="v"><span class="booth-num">11</span><span class="nm">成瀬 優</span><span class="prod">ブルー染物</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="12" data-kind="m"><span class="booth-num">12</span><span class="nm">大工原 葉子</span><span class="prod">着物リメイク</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="13" data-kind="v"><span class="booth-num">13</span><span class="nm">堀川 マサル</span><span class="prod">ネクタイ</span><span class="sm">様</span></div>
+  </div>
+</section>
+
 <section class="pair-section">
   <h2 class="pair-title">招待者対応表</h2>
   <p class="pair-sub">
@@ -676,7 +766,7 @@ body.edit-mode .legend-edit-only{ display:inline }
 
 <footer class="footer">
   <p>※ 配置・氏名は当日変更となる場合がございます。修正の場合は編集モード（?edit=1）でドラッグ＆ドロップ → 保存して反映。</p>
-  <p>2部不参加：小林 実穂 様 / 岡崎 厚子 様 ｜ 1部・2部とも欠席：金指 佐江子 様 / 川戸 恒吾 様 / 梅原 様 ｜ 1ターン目（A）限定：佐藤 秀哉 様 / 新井D 様 ｜ 冨澤 里子 様：ビジター（1ターン目のみ） ｜ 中山 朋子 様：〜13:30 途中退席</p>
+  <p>2部不参加：小林 実穂 様 / 岡崎 厚子 様 ｜ 1部・2部とも欠席：金指 佐江子 様 / 川戸 恒吾 様 / 梅原 様 ｜ 1ターン目（A）限定：佐藤 秀哉 様 / 新井D 様 ｜ 冨澤 里子 様：ビジター（1ターン目のみ） ｜ 中山 朋子 様：〜13:30 途中退席 ｜ 滝口 肇 様：出店取消</p>
   <p>BNI Grano Chapter — Business Open Day 2026 / 第2部 円卓席次</p>
 </footer>
 
