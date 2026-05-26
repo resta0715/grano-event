@@ -830,22 +830,21 @@ body.edit-mode .legend-edit-only{ display:inline }
 
 <script>
 (function(){
-  // -------- 座席を円周上に配置 --------
+  // -------- 座席を円周上に配置（%単位で table-wrap に追従） --------
   function placeSeats(){
     document.querySelectorAll('.table-wrap').forEach(wrap => {
       const seats = wrap.querySelectorAll('.seat-c');
       const total = seats.length;
       if (!total) return;
-      const w = wrap.clientWidth;
-      // 円卓の半径（外側） — table-wrap の42%
-      const r = w * 0.42;
+      // 半径は table-wrap の 42%（% で指定すれば印刷時の縮小にも追従）
+      const rPct = 42;
       seats.forEach((seat, i) => {
         const angle = (360 / total) * i - 90;
         const rad = angle * Math.PI / 180;
-        const x = Math.cos(rad) * r;
-        const y = Math.sin(rad) * r;
-        seat.style.left = `calc(50% + ${x.toFixed(1)}px)`;
-        seat.style.top  = `calc(50% + ${y.toFixed(1)}px)`;
+        const xPct = Math.cos(rad) * rPct;
+        const yPct = Math.sin(rad) * rPct;
+        seat.style.left = `calc(50% + ${xPct.toFixed(2)}%)`;
+        seat.style.top  = `calc(50% + ${yPct.toFixed(2)}%)`;
       });
     });
   }
