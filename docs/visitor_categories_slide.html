@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ビジター一覧｜BOD 2026 — 専門分野</title>
+<meta name="description" content="Business Open Day 2026 ビジター全員の名前とお仕事の専門分野（プロジェクター投影用）">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F1B2D; --navy-2:#1C3048;
+  --amber:#C8943E; --amber-pale:#FBF5EB;
+  --paper:#FFFDF8; --cream:#FAF6EE;
+  --ink:#1A1A1A; --muted:#5c5348;
+  --line:#E2DCCD;
+}
+html,body{
+  width:100%; height:100%; overflow:hidden;
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI",YuGothic,Meiryo,system-ui,sans-serif;
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+}
+.slide{
+  width:100vw; height:100vh;
+  display:flex; flex-direction:column;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255,255,255,.85), transparent 55%),
+    linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+  padding:clamp(10px, 1.6vh, 20px) clamp(14px, 2vw, 32px) clamp(8px, 1.2vh, 16px);
+}
+.head{
+  flex:0 0 auto;
+  text-align:center;
+  padding-bottom:clamp(6px, 1vh, 12px);
+  border-bottom:3px solid var(--navy);
+  margin-bottom:clamp(6px, 1vh, 12px);
+}
+.eyebrow{
+  font-size:clamp(10px, 1.2vw, 14px);
+  font-weight:700; letter-spacing:.28em;
+  color:var(--amber); text-transform:uppercase;
+}
+.title{
+  font-size:clamp(22px, 3.8vw, 42px);
+  font-weight:800; color:var(--navy);
+  letter-spacing:.06em; line-height:1.15;
+  margin-top:.15em;
+}
+.subtitle{
+  font-size:clamp(11px, 1.35vw, 16px);
+  color:var(--muted); margin-top:.35em;
+}
+.grid-wrap{
+  flex:1 1 auto; min-height:0;
+  overflow:hidden;
+}
+.grid{
+  list-style:none;
+  height:100%;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  grid-auto-flow:column;
+  grid-template-rows:repeat(var(--rows, 11), minmax(0, 1fr));
+  gap:clamp(3px, .45vh, 6px) clamp(8px, 1.2vw, 18px);
+  align-content:stretch;
+}
+.item{
+  display:flex; flex-direction:column; justify-content:center;
+  background:rgba(255,255,255,.72);
+  border:1px solid var(--line);
+  border-left:4px solid var(--amber);
+  border-radius:6px;
+  padding:clamp(2px, .35vh, 5px) clamp(6px, .8vw, 12px);
+  min-height:0;
+}
+.name{
+  font-size:var(--name-size, clamp(12px, 1.55vh, 18px));
+  font-weight:800; color:var(--ink);
+  line-height:1.2;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.hon{ font-weight:600; font-size:.82em; color:var(--muted) }
+.cat{
+  font-size:var(--cat-size, clamp(9px, 1.15vh, 13px));
+  color:var(--muted);
+  line-height:1.25;
+  margin-top:1px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.foot{
+  flex:0 0 auto;
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top:clamp(4px, .8vh, 10px);
+  font-size:clamp(9px, 1.1vw, 12px);
+  color:var(--muted);
+}
+.count{ font-weight:700; color:var(--navy) }
+@media print{
+  html,body{ overflow:visible }
+  .slide{ width:297mm; height:210mm; page-break-inside:avoid }
+}
+</style>
+</head>
+<body>
+<div class="slide" id="slide">
+  <header class="head">
+    <p class="eyebrow">Business Open Day 2026 — BNI Grano</p>
+    <h1 class="title">ビジター一覧</h1>
+    <p class="subtitle">お名前 ＆ お仕事の専門分野</p>
+  </header>
+  <div class="grid-wrap">
+    <ol class="grid" id="grid" aria-label="ビジター一覧">
+      <li class="item">
+        <span class="name">麻生 恵里<span class="hon"> 様</span></span>
+        <span class="cat">エステサロン</span>
+      </li>
+      <li class="item">
+        <span class="name">小林 良<span class="hon"> 様</span></span>
+        <span class="cat">居酒屋</span>
+      </li>
+      <li class="item">
+        <span class="name">藤平 ゆか<span class="hon"> 様</span></span>
+        <span class="cat">ライフキャリアコーチ、研修講師</span>
+      </li>
+      <li class="item">
+        <span class="name">武富 裕一<span class="hon"> 様</span></span>
+        <span class="cat">介護関係</span>
+      </li>
+      <li class="item">
+        <span class="name">﨏田 美咲<span class="hon"> 様</span></span>
+        <span class="cat">日本料理</span>
+      </li>
+      <li class="item">
+        <span class="name">堀内 健一<span class="hon"> 様</span></span>
+        <span class="cat">食肉加工卸売り 飲食業</span>
+      </li>
+      <li class="item">
+        <span class="name">NGUYEN VAN LONG<span class="hon"> 様</span></span>
+        <span class="cat">外国人の採用、サポート、通訳</span>
+      </li>
+      <li class="item">
+        <span class="name">木下 貴子<span class="hon"> 様</span></span>
+        <span class="cat">不動産</span>
+      </li>
+      <li class="item">
+        <span class="name">山下 翼<span class="hon"> 様</span></span>
+        <span class="cat">建設（瀬谷の娘婿）</span>
+      </li>
+      <li class="item">
+        <span class="name">山口 えま<span class="hon"> 様</span></span>
+        <span class="cat">保育士、エステサロン、セラピスト</span>
+      </li>
+      <li class="item">
+        <span class="name">山坂 秀樹<span class="hon"> 様</span></span>
+        <span class="cat">イベント企画運営</span>
+      </li>
+      <li class="item">
+        <span class="name">近藤 朱莉<span class="hon"> 様</span></span>
+        <span class="cat">会員制ホテル</span>
+      </li>
+      <li class="item">
+        <span class="name">新井 絵美<span class="hon"> 様</span></span>
+        <span class="cat">ネイルサロン</span>
+      </li>
+      <li class="item">
+        <span class="name">岩渕 元気<span class="hon"> 様</span></span>
+        <span class="cat">美容室</span>
+      </li>
+      <li class="item">
+        <span class="name">澤口 奈緒美<span class="hon"> 様</span></span>
+        <span class="cat">サロン業、クリスタルアクセサリー販売</span>
+      </li>
+      <li class="item">
+        <span class="name">松村 由華<span class="hon"> 様</span></span>
+        <span class="cat">ヘッドスパ、エステ</span>
+      </li>
+      <li class="item">
+        <span class="name">岸 翔麻<span class="hon"> 様</span></span>
+        <span class="cat">演奏</span>
+      </li>
+      <li class="item">
+        <span class="name">細谷 政徳<span class="hon"> 様</span></span>
+        <span class="cat">税理士</span>
+      </li>
+      <li class="item">
+        <span class="name">橋本 香織<span class="hon"> 様</span></span>
+        <span class="cat">不動産仲介</span>
+      </li>
+      <li class="item">
+        <span class="name">堀川 マサル<span class="hon"> 様</span></span>
+        <span class="cat">買取、遺品整理、解体</span>
+      </li>
+      <li class="item">
+        <span class="name">藤井 光樹<span class="hon"> 様</span></span>
+        <span class="cat">経理代行</span>
+      </li>
+      <li class="item">
+        <span class="name">清島 有紗<span class="hon"> 様</span></span>
+        <span class="cat">LP,webデザイナー、イラストレーター</span>
+      </li>
+      <li class="item">
+        <span class="name">永井 尋己<span class="hon"> 様</span></span>
+        <span class="cat">映像制作</span>
+      </li>
+      <li class="item">
+        <span class="name">高野 なおみ<span class="hon"> 様</span></span>
+        <span class="cat">整体</span>
+      </li>
+      <li class="item">
+        <span class="name">葛城 由美<span class="hon"> 様</span></span>
+        <span class="cat">食品製造販売</span>
+      </li>
+      <li class="item">
+        <span class="name">井出 康平<span class="hon"> 様</span></span>
+        <span class="cat">農家</span>
+      </li>
+      <li class="item">
+        <span class="name">成瀬 優<span class="hon"> 様</span></span>
+        <span class="cat">染色・アパレル制作</span>
+      </li>
+      <li class="item">
+        <span class="name">保利 澄香<span class="hon"> 様</span></span>
+        <span class="cat">行政書士</span>
+      </li>
+      <li class="item">
+        <span class="name">田代 祐司<span class="hon"> 様</span></span>
+        <span class="cat">飲食店</span>
+      </li>
+      <li class="item">
+        <span class="name">滝口 肇<span class="hon"> 様</span></span>
+        <span class="cat">植物のお医者さん、植物サブリース</span>
+      </li>
+      <li class="item">
+        <span class="name">辻下 敏夫<span class="hon"> 様</span></span>
+        <span class="cat">中小企業の支援事業</span>
+      </li>
+      <li class="item">
+        <span class="name">松永 洋忠<span class="hon"> 様</span></span>
+        <span class="cat">伝え方力 聴く力 仕事 人生 子育てお悩み相談</span>
+      </li>
+      <li class="item">
+        <span class="name">冨澤 智子<span class="hon"> 様</span></span>
+        <span class="cat">—</span>
+      </li>
+    </ol>
+  </div>
+  <footer class="foot">
+    <span class="count">33 名</span>
+    <span>2026.5.27（水）大人の文化祭</span>
+    <span>更新: 2026-05-26 10:48</span>
+  </footer>
+</div>
+<script id="visitorData" type="application/json">[{"name": "麻生 恵里", "category": "エステサロン"}, {"name": "小林 良", "category": "居酒屋"}, {"name": "藤平 ゆか", "category": "ライフキャリアコーチ、研修講師"}, {"name": "武富 裕一", "category": "介護関係"}, {"name": "﨏田 美咲", "category": "日本料理"}, {"name": "堀内 健一", "category": "食肉加工卸売り 飲食業"}, {"name": "NGUYEN VAN LONG", "category": "外国人の採用、サポート、通訳"}, {"name": "木下 貴子", "category": "不動産"}, {"name": "山下 翼", "category": "建設（瀬谷の娘婿）"}, {"name": "山口 えま", "category": "保育士、エステサロン、セラピスト"}, {"name": "山坂 秀樹", "category": "イベント企画運営"}, {"name": "近藤 朱莉", "category": "会員制ホテル"}, {"name": "新井 絵美", "category": "ネイルサロン"}, {"name": "岩渕 元気", "category": "美容室"}, {"name": "澤口 奈緒美", "category": "サロン業、クリスタルアクセサリー販売"}, {"name": "松村 由華", "category": "ヘッドスパ、エステ"}, {"name": "岸 翔麻", "category": "演奏"}, {"name": "細谷 政徳", "category": "税理士"}, {"name": "橋本 香織", "category": "不動産仲介"}, {"name": "堀川 マサル", "category": "買取、遺品整理、解体"}, {"name": "藤井 光樹", "category": "経理代行"}, {"name": "清島 有紗", "category": "LP,webデザイナー、イラストレーター"}, {"name": "永井 尋己", "category": "映像制作"}, {"name": "高野 なおみ", "category": "整体"}, {"name": "葛城 由美", "category": "食品製造販売"}, {"name": "井出 康平", "category": "農家"}, {"name": "成瀬 優", "category": "染色・アパレル制作"}, {"name": "保利 澄香", "category": "行政書士"}, {"name": "田代 祐司", "category": "飲食店"}, {"name": "滝口 肇", "category": "植物のお医者さん、植物サブリース"}, {"name": "辻下 敏夫", "category": "中小企業の支援事業"}, {"name": "松永 洋忠", "category": "伝え方力 聴く力 仕事 人生 子育てお悩み相談"}, {"name": "冨澤 智子", "category": "—"}]</script>
+<script>
+(function(){
+  const grid = document.getElementById('grid');
+  const n = grid.children.length;
+  const cols = 3;
+  const rows = Math.ceil(n / cols);
+  grid.style.setProperty('--rows', rows);
+
+  function fit() {
+    const wrap = grid.parentElement;
+    const head = document.querySelector('.head');
+    const foot = document.querySelector('.foot');
+    const avail = wrap.clientHeight;
+    if (avail < 40) return;
+    let namePx = Math.min(18, Math.max(11, avail / rows * 0.42));
+    let catPx = Math.max(9, namePx * 0.72);
+    grid.style.setProperty('--name-size', namePx + 'px');
+    grid.style.setProperty('--cat-size', catPx + 'px');
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  document.addEventListener('fullscreenchange', fit);
+})();
+</script>
+</body>
+</html>
