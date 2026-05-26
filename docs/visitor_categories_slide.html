@@ -27,29 +27,28 @@ html,body{
   background:
     radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255,255,255,.85), transparent 55%),
     linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
-  padding:clamp(10px, 1.6vh, 20px) clamp(14px, 2vw, 32px) clamp(8px, 1.2vh, 16px);
+  padding:clamp(8px, 1.2vh, 16px) clamp(14px, 2vw, 32px) clamp(6px, .8vh, 12px);
 }
 .head{
   flex:0 0 auto;
-  text-align:center;
-  padding-bottom:clamp(6px, 1vh, 12px);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:clamp(12px, 2vw, 28px);
+  padding-bottom:clamp(4px, .7vh, 8px);
   border-bottom:3px solid var(--navy);
-  margin-bottom:clamp(6px, 1vh, 12px);
+  margin-bottom:clamp(4px, .7vh, 8px);
 }
+.head-l{ text-align:left }
+.head-r{ text-align:right; color:var(--muted); font-size:clamp(10px, 1.1vw, 14px) }
 .eyebrow{
-  font-size:clamp(10px, 1.2vw, 14px);
+  font-size:clamp(10px, 1.05vw, 13px);
   font-weight:700; letter-spacing:.28em;
   color:var(--amber); text-transform:uppercase;
 }
 .title{
-  font-size:clamp(22px, 3.8vw, 42px);
+  font-size:clamp(20px, 3vw, 36px);
   font-weight:800; color:var(--navy);
-  letter-spacing:.06em; line-height:1.15;
-  margin-top:.15em;
-}
-.subtitle{
-  font-size:clamp(11px, 1.35vw, 16px);
-  color:var(--muted); margin-top:.35em;
+  letter-spacing:.06em; line-height:1.1;
+  margin-top:.1em;
 }
 .grid-wrap{
   flex:1 1 auto; min-height:0;
@@ -59,43 +58,48 @@ html,body{
   list-style:none;
   height:100%;
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
+  grid-template-columns:repeat(2, 1fr);
   grid-auto-flow:column;
-  grid-template-rows:repeat(var(--rows, 11), minmax(0, 1fr));
-  gap:clamp(3px, .45vh, 6px) clamp(8px, 1.2vw, 18px);
+  grid-template-rows:repeat(var(--rows, 17), minmax(0, 1fr));
+  gap:clamp(4px, .55vh, 8px) clamp(10px, 1.4vw, 24px);
   align-content:stretch;
 }
 .item{
-  display:flex; flex-direction:column; justify-content:center;
-  background:rgba(255,255,255,.72);
+  display:flex; flex-direction:row; align-items:center;
+  gap:clamp(8px, 1vw, 16px);
+  background:rgba(255,255,255,.78);
   border:1px solid var(--line);
-  border-left:4px solid var(--amber);
+  border-left:5px solid var(--amber);
   border-radius:6px;
-  padding:clamp(2px, .35vh, 5px) clamp(6px, .8vw, 12px);
+  padding:clamp(2px, .4vh, 6px) clamp(8px, 1vw, 16px);
   min-height:0;
 }
 .name{
-  font-size:var(--name-size, clamp(12px, 1.55vh, 18px));
+  flex:0 0 auto;
+  font-size:var(--name-size, 26px);
   font-weight:800; color:var(--ink);
-  line-height:1.2;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  line-height:1.15;
+  white-space:nowrap;
+  min-width:7.5em;
 }
-.hon{ font-weight:600; font-size:.82em; color:var(--muted) }
+.hon{ font-weight:600; font-size:.7em; color:var(--muted); margin-left:.15em }
 .cat{
-  font-size:var(--cat-size, clamp(9px, 1.15vh, 13px));
+  flex:1 1 auto;
+  font-size:var(--cat-size, 18px);
   color:var(--muted);
-  line-height:1.25;
-  margin-top:1px;
+  font-weight:500;
+  line-height:1.2;
   display:-webkit-box;
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
   overflow:hidden;
+  text-align:right;
 }
 .foot{
   flex:0 0 auto;
   display:flex; justify-content:space-between; align-items:center;
-  padding-top:clamp(4px, .8vh, 10px);
-  font-size:clamp(9px, 1.1vw, 12px);
+  padding-top:clamp(3px, .6vh, 8px);
+  font-size:clamp(10px, 1.1vw, 13px);
   color:var(--muted);
 }
 .count{ font-weight:700; color:var(--navy) }
@@ -108,9 +112,14 @@ html,body{
 <body>
 <div class="slide" id="slide">
   <header class="head">
-    <p class="eyebrow">Business Open Day 2026 — BNI Grano</p>
-    <h1 class="title">ビジター一覧</h1>
-    <p class="subtitle">お名前 ＆ お仕事の専門分野</p>
+    <div class="head-l">
+      <p class="eyebrow">Business Open Day 2026 — BNI Grano</p>
+      <h1 class="title">ビジター一覧 — お仕事の専門分野</h1>
+    </div>
+    <div class="head-r">
+      <div><strong style="color:var(--navy);font-size:1.2em">33</strong> 名</div>
+      <div>2026.5.27（水）</div>
+    </div>
   </header>
   <div class="grid-wrap">
     <ol class="grid" id="grid" aria-label="ビジター一覧">
@@ -251,7 +260,7 @@ html,body{
   <footer class="foot">
     <span class="count">33 名</span>
     <span>2026.5.27（水）大人の文化祭</span>
-    <span>更新: 2026-05-26 10:48</span>
+    <span>更新: 2026-05-26 10:55</span>
   </footer>
 </div>
 <script id="visitorData" type="application/json">[{"name": "麻生 恵里", "category": "エステサロン"}, {"name": "小林 良", "category": "居酒屋"}, {"name": "藤平 ゆか", "category": "ライフキャリアコーチ、研修講師"}, {"name": "武富 裕一", "category": "介護関係"}, {"name": "﨏田 美咲", "category": "日本料理"}, {"name": "堀内 健一", "category": "食肉加工卸売り 飲食業"}, {"name": "NGUYEN VAN LONG", "category": "外国人の採用、サポート、通訳"}, {"name": "木下 貴子", "category": "不動産"}, {"name": "山下 翼", "category": "建設（瀬谷の娘婿）"}, {"name": "山口 えま", "category": "保育士、エステサロン、セラピスト"}, {"name": "山坂 秀樹", "category": "イベント企画運営"}, {"name": "近藤 朱莉", "category": "会員制ホテル"}, {"name": "新井 絵美", "category": "ネイルサロン"}, {"name": "岩渕 元気", "category": "美容室"}, {"name": "澤口 奈緒美", "category": "サロン業、クリスタルアクセサリー販売"}, {"name": "松村 由華", "category": "ヘッドスパ、エステ"}, {"name": "岸 翔麻", "category": "演奏"}, {"name": "細谷 政徳", "category": "税理士"}, {"name": "橋本 香織", "category": "不動産仲介"}, {"name": "堀川 マサル", "category": "買取、遺品整理、解体"}, {"name": "藤井 光樹", "category": "経理代行"}, {"name": "清島 有紗", "category": "LP,webデザイナー、イラストレーター"}, {"name": "永井 尋己", "category": "映像制作"}, {"name": "高野 なおみ", "category": "整体"}, {"name": "葛城 由美", "category": "食品製造販売"}, {"name": "井出 康平", "category": "農家"}, {"name": "成瀬 優", "category": "染色・アパレル制作"}, {"name": "保利 澄香", "category": "行政書士"}, {"name": "田代 祐司", "category": "飲食店"}, {"name": "滝口 肇", "category": "植物のお医者さん、植物サブリース"}, {"name": "辻下 敏夫", "category": "中小企業の支援事業"}, {"name": "松永 洋忠", "category": "伝え方力 聴く力 仕事 人生 子育てお悩み相談"}, {"name": "冨澤 智子", "category": "—"}]</script>
@@ -259,18 +268,17 @@ html,body{
 (function(){
   const grid = document.getElementById('grid');
   const n = grid.children.length;
-  const cols = 3;
+  const cols = 2;
   const rows = Math.ceil(n / cols);
   grid.style.setProperty('--rows', rows);
 
   function fit() {
     const wrap = grid.parentElement;
-    const head = document.querySelector('.head');
-    const foot = document.querySelector('.foot');
     const avail = wrap.clientHeight;
-    if (avail < 40) return;
-    let namePx = Math.min(18, Math.max(11, avail / rows * 0.42));
-    let catPx = Math.max(9, namePx * 0.72);
+    if (avail < 80) return;
+    const rowH = avail / rows;
+    let namePx = Math.min(34, Math.max(16, rowH * 0.55));
+    let catPx = Math.max(13, namePx * 0.72);
     grid.style.setProperty('--name-size', namePx + 'px');
     grid.style.setProperty('--cat-size', catPx + 'px');
   }
