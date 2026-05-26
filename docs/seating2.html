@@ -8,6 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -374,28 +375,75 @@ body.edit-mode .pair-section{ display:block }
 .legend-edit-only{ display:none }
 body.edit-mode .legend-edit-only{ display:inline }
 
+/* 印刷ドロップダウン */
+.print-menu{ position:relative }
+.print-pop{
+  position:absolute; right:0; top:calc(100% + 6px);
+  background:#fff; border:1px solid var(--border); border-radius:8px;
+  padding:4px; min-width:240px; z-index:60;
+  box-shadow:0 8px 24px rgba(15,27,45,.18);
+  display:flex; flex-direction:column; gap:2px;
+}
+.print-pop[hidden]{ display:none }
+.print-pop button{
+  font-family:inherit; font-size:12px; font-weight:600;
+  padding:8px 12px; text-align:left; border:0; color:var(--ink);
+  background:transparent; cursor:pointer; border-radius:5px;
+}
+.print-pop button:hover{ background:var(--paper-2, #f6f2ea); color:var(--navy) }
+.print-pop hr{ border:0; border-top:1px solid var(--border); margin:3px 2px }
+.print-pop-head{ font-size:10px; font-weight:700; letter-spacing:1.5px; color:var(--muted); padding:6px 10px 2px; text-transform:uppercase }
+
 /* print */
 @media print{
-  @page{ size: A4 landscape; margin: 8mm }
+  /* @page サイズは #pageSize スタイルで動的切替 */
   body{ background:#fff; color:#000 }
-  .bar, .legend, .edit-toolbar, .pattern-switch, .footer-actions{ display:none !important }
-  .hero{ padding:0 0 4px }
-  .hero h1{ font-size:18px }
-  .pattern-label{ font-size:10px; margin-bottom:8px }
-  .tables-wrap{ padding:0 6mm }
-  .tables-row{ gap:8mm; margin-bottom:8mm }
-  .table-wrap{ max-width:100% }
+  .bar, .legend, .edit-toolbar, .pattern-switch, .footer-actions, .pair-section, .print-pop{ display:none !important }
+  .hero{ padding:0 0 2mm; text-align:center }
+  .hero-pre{ font-size:8pt; margin-bottom:1mm }
+  .hero h1{ font-size:14pt; margin-bottom:1mm }
+  .hero-sub{ font-size:8pt }
+  .pattern-label{ font-size:10pt; margin:0 0 3mm; font-weight:700; color:#000 }
+  .tables-wrap{ padding:0 4mm; max-width:100% }
+  .tables-row{ gap:4mm; margin-bottom:4mm }
+  .tables-row-2{ max-width:62%; margin-left:auto; margin-right:auto }
+  .table-wrap{ max-width:78mm }
   .table-circle{ background:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact }
   .seat-c{
     background:#fff !important;
-    border:.6pt solid #555 !important;
+    border:.5pt solid #555 !important;
     box-shadow:none !important;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
-    font-size:8.5pt;
+    font-size:7.5pt;
   }
-  .seat-c.v{ background:#f4f7f5 !important; border:.6pt solid #777 !important }
-  .seat-c.u{ background:#fff !important; border:.6pt dashed #888 !important }
+  .seat-c .nm{ font-size:7.5pt }
+  .seat-c .sm{ font-size:6pt }
+  .seat-c.v{ background:#f4f7f5 !important; border:.5pt solid #777 !important }
+  .seat-c.a{ background:#fff4dc !important; border:.7pt solid #c8943e !important; color:#7a5418 !important }
+  .seat-c.v.hostmatch{ background:#eaf3ee !important; border:.6pt solid #6a9b80 !important }
+  .seat-c.u{ background:#fff !important; border:.5pt dashed #888 !important }
+  .vendor-section{ padding:0 4mm; margin-top:3mm }
+  .vendor-row{ grid-template-columns:repeat(11, minmax(0, 1fr)); gap:1.5mm }
+  .vendor-mark{ font-size:8pt; margin:2mm 0 2mm }
+
+  /* 単一パターンモード: 非表示パターンを除外 */
+  body:not(.print-both) .tables-pattern{ display:none }
+  body:not(.print-both) .tables-pattern.print-on{ display:block }
+
+  /* A・B 両方モード: A→改ページ→B */
+  body.print-both .tables-pattern{ display:block !important }
+  body.print-both .tables-pattern[data-pattern="B"]{ page-break-before:always; break-before:page }
+  body.print-both .pattern-page-label{ display:block !important; font-size:11pt; font-weight:800; color:#000; text-align:center; margin:0 0 3mm; letter-spacing:.04em }
+
+  /* A3 横モード: 余裕があるので大きめに */
+  body.print-a3 .table-wrap{ max-width:100mm }
+  body.print-a3 .seat-c{ font-size:9pt }
+  body.print-a3 .seat-c .nm{ font-size:9pt }
+  body.print-a3 .seat-c .sm{ font-size:7pt }
+  body.print-a3 .hero h1{ font-size:18pt }
+  body.print-a3 .pattern-label{ font-size:12pt }
 }
+.pattern-page-label{ display:none }
 </style>
 </head>
 <body>
@@ -409,7 +457,17 @@ body.edit-mode .legend-edit-only{ display:inline }
     <a class="bar-btn" href="seating.html">第1部</a>
     <a class="bar-btn" href="announcement_page.html">Event</a>
     <a class="bar-btn" href="members.html">Members</a>
-    <button class="bar-btn" type="button" onclick="window.print()">印刷 / PDF</button>
+    <span class="print-menu">
+      <button class="bar-btn" type="button" id="printToggle" aria-haspopup="true" aria-expanded="false">印刷 / PDF ▾</button>
+      <div class="print-pop" id="printPop" hidden role="menu">
+        <div class="print-pop-head">用紙サイズ × 範囲</div>
+        <button type="button" data-print="a4-current" role="menuitem">A4 横 — 現在のパターン</button>
+        <button type="button" data-print="a3-current" role="menuitem">A3 横 — 現在のパターン</button>
+        <hr>
+        <button type="button" data-print="a4-both" role="menuitem">A4 横 — A・B 両方（2ページ）</button>
+        <button type="button" data-print="a3-both" role="menuitem">A3 横 — A・B 両方（2ページ）</button>
+      </div>
+    </span>
     <a class="bar-btn" id="barEditEntry" href="?edit=1">編集モード</a>
   </nav>
 </header>
@@ -461,6 +519,7 @@ body.edit-mode .legend-edit-only{ display:inline }
 
 <div class="tables-wrap">
 <section class="tables-pattern" data-pattern="A">
+  <p class="pattern-page-label" aria-hidden="true">パターン A — 第2部 開始時</p>
   <div class="tables-row tables-row-3">
     <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
@@ -589,6 +648,7 @@ body.edit-mode .legend-edit-only{ display:inline }
   </div>
 </section>
 <section class="tables-pattern" data-pattern="B" style="display:none">
+  <p class="pattern-page-label" aria-hidden="true">席替え後（パターン B）</p>
   <div class="tables-row tables-row-3">
     <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
@@ -823,6 +883,58 @@ body.edit-mode .legend-edit-only{ display:inline }
     requestAnimationFrame(placeSeats);
   }
   patternBtns.forEach(b => b.addEventListener('click', () => setPattern(b.dataset.target)));
+
+  // -------- 印刷ドロップダウン --------
+  const pageSizeStyle = document.getElementById('pageSize');
+  const printToggle = document.getElementById('printToggle');
+  const printPop = document.getElementById('printPop');
+  function closePop(){ if (printPop){ printPop.hidden = true; printToggle.setAttribute('aria-expanded','false'); } }
+  if (printToggle && printPop) {
+    printToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = printPop.hidden;
+      printPop.hidden = !willOpen;
+      printToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', closePop);
+    printPop.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-print]');
+      if (!btn) { e.stopPropagation(); return; }
+      const opt = btn.dataset.print;
+      closePop();
+      doPrint(opt);
+    });
+  }
+
+  function doPrint(opt){
+    const isA3 = opt.startsWith('a3');
+    const isBoth = opt.endsWith('both');
+    pageSizeStyle.textContent = `@page { size: ${isA3 ? 'A3' : 'A4'} landscape; margin: 8mm }`;
+    document.body.classList.toggle('print-a3', isA3);
+    document.body.classList.toggle('print-both', isBoth);
+
+    if (isBoth) {
+      patternSections.forEach(s => { s.style.display = ''; s.classList.remove('print-on'); });
+    } else {
+      patternSections.forEach(s => {
+        const on = s.dataset.pattern === currentPattern;
+        s.classList.toggle('print-on', on);
+        s.style.display = on ? '' : 'none';
+      });
+    }
+
+    requestAnimationFrame(() => {
+      placeSeats();
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          document.body.classList.remove('print-a3', 'print-both');
+          patternSections.forEach(s => s.classList.remove('print-on'));
+          setPattern(currentPattern);
+        }, 250);
+      }, 120);
+    });
+  }
 
   // -------- 編集モードチェック --------
   const params = new URLSearchParams(location.search);
