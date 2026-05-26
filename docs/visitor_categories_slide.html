@@ -9,11 +9,10 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0F1B2D; --navy-2:#1C3048;
-  --amber:#C8943E; --amber-pale:#FBF5EB;
+  --navy:#0F1B2D; --amber:#C8943E;
   --paper:#FFFDF8; --cream:#FAF6EE;
   --ink:#1A1A1A; --muted:#5c5348;
-  --line:#E2DCCD;
+  --line:#D8CFB8; --line-soft:#EDE5D2;
 }
 html,body{
   width:100%; height:100%; overflow:hidden;
@@ -24,268 +23,118 @@ html,body{
 .slide{
   width:100vw; height:100vh;
   display:flex; flex-direction:column;
-  background:
-    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255,255,255,.85), transparent 55%),
-    linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
-  padding:clamp(8px, 1.2vh, 16px) clamp(14px, 2vw, 32px) clamp(6px, .8vh, 12px);
+  background:linear-gradient(180deg,var(--paper) 0%,var(--cream) 100%);
+  padding:1.4vh 2vw 1.2vh;
 }
 .head{
   flex:0 0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  gap:clamp(12px, 2vw, 28px);
-  padding-bottom:clamp(4px, .7vh, 8px);
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:1.6vw;
+  padding-bottom:.6vh;
   border-bottom:3px solid var(--navy);
-  margin-bottom:clamp(4px, .7vh, 8px);
+  margin-bottom:.8vh;
 }
-.head-l{ text-align:left }
-.head-r{ text-align:right; color:var(--muted); font-size:clamp(10px, 1.1vw, 14px) }
 .eyebrow{
-  font-size:clamp(10px, 1.05vw, 13px);
+  font-size:1.05vw;
   font-weight:700; letter-spacing:.28em;
   color:var(--amber); text-transform:uppercase;
+  margin-bottom:.15em;
 }
 .title{
-  font-size:clamp(20px, 3vw, 36px);
+  font-size:2.6vw;
   font-weight:800; color:var(--navy);
-  letter-spacing:.06em; line-height:1.1;
-  margin-top:.1em;
+  letter-spacing:.04em; line-height:1.05;
 }
-.grid-wrap{
-  flex:1 1 auto; min-height:0;
-  overflow:hidden;
+.head-r{ text-align:right; color:var(--muted); font-size:1.1vw; line-height:1.3 }
+.head-r b{ color:var(--navy); font-size:1.5em }
+.tbl-wrap{ flex:1 1 auto; min-height:0; overflow:hidden }
+table.tbl{
+  width:100%; height:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
 }
-.grid{
-  list-style:none;
-  height:100%;
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  grid-auto-flow:column;
-  grid-template-rows:repeat(var(--rows, 17), minmax(0, 1fr));
-  gap:clamp(4px, .55vh, 8px) clamp(10px, 1.4vw, 24px);
-  align-content:stretch;
-}
-.item{
-  display:flex; flex-direction:row; align-items:center;
-  gap:clamp(8px, 1vw, 16px);
-  background:rgba(255,255,255,.78);
-  border:1px solid var(--line);
-  border-left:5px solid var(--amber);
-  border-radius:6px;
-  padding:clamp(2px, .4vh, 6px) clamp(8px, 1vw, 16px);
-  min-height:0;
-}
-.name{
-  flex:0 0 auto;
-  font-size:var(--name-size, 26px);
-  font-weight:800; color:var(--ink);
-  line-height:1.15;
+table.tbl tr{ height:calc(100% / var(--rows, 17)) }
+table.tbl td{
+  border-bottom:1px solid var(--line-soft);
+  padding:.4vh .7vw;
+  vertical-align:middle;
   white-space:nowrap;
-  min-width:7.5em;
-}
-.hon{ font-weight:600; font-size:.7em; color:var(--muted); margin-left:.15em }
-.cat{
-  flex:1 1 auto;
-  font-size:var(--cat-size, 18px);
-  color:var(--muted);
-  font-weight:500;
-  line-height:1.2;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
   overflow:hidden;
-  text-align:right;
+  text-overflow:ellipsis;
 }
+table.tbl tr:last-child td{ border-bottom:none }
+.name{
+  width:18%;
+  font-weight:800;
+  color:var(--ink);
+  font-size:var(--name-size, 1.6vw);
+  letter-spacing:.01em;
+}
+.name.empty{ background:transparent }
+.hon{ font-weight:500; font-size:.65em; color:var(--muted); margin-left:.25em }
+.cat{
+  width:32%;
+  color:var(--muted);
+  font-size:var(--cat-size, 1.35vw);
+  font-weight:500;
+  border-right:1px solid var(--line);
+}
+.cat.empty{ border-right:none }
+table.tbl td:nth-child(3){ padding-left:1.5vw }
+table.tbl td:last-child{ border-right:none }
 .foot{
   flex:0 0 auto;
   display:flex; justify-content:space-between; align-items:center;
-  padding-top:clamp(3px, .6vh, 8px);
-  font-size:clamp(10px, 1.1vw, 13px);
+  padding-top:.6vh;
+  font-size:1vw;
   color:var(--muted);
 }
 .count{ font-weight:700; color:var(--navy) }
-@media print{
-  html,body{ overflow:visible }
-  .slide{ width:297mm; height:210mm; page-break-inside:avoid }
+@media (max-aspect-ratio: 4/5){
+  .name{ font-size:2.6vw }
+  .cat{ font-size:2.2vw }
 }
 </style>
 </head>
 <body>
-<div class="slide" id="slide">
+<div class="slide">
   <header class="head">
-    <div class="head-l">
+    <div>
       <p class="eyebrow">Business Open Day 2026 — BNI Grano</p>
       <h1 class="title">ビジター一覧 — お仕事の専門分野</h1>
     </div>
     <div class="head-r">
-      <div><strong style="color:var(--navy);font-size:1.2em">33</strong> 名</div>
+      <div><b>33</b> 名</div>
       <div>2026.5.27（水）</div>
     </div>
   </header>
-  <div class="grid-wrap">
-    <ol class="grid" id="grid" aria-label="ビジター一覧">
-      <li class="item">
-        <span class="name">麻生 恵里<span class="hon"> 様</span></span>
-        <span class="cat">エステサロン</span>
-      </li>
-      <li class="item">
-        <span class="name">小林 良<span class="hon"> 様</span></span>
-        <span class="cat">居酒屋</span>
-      </li>
-      <li class="item">
-        <span class="name">藤平 ゆか<span class="hon"> 様</span></span>
-        <span class="cat">ライフキャリアコーチ、研修講師</span>
-      </li>
-      <li class="item">
-        <span class="name">武富 裕一<span class="hon"> 様</span></span>
-        <span class="cat">介護関係</span>
-      </li>
-      <li class="item">
-        <span class="name">﨏田 美咲<span class="hon"> 様</span></span>
-        <span class="cat">日本料理</span>
-      </li>
-      <li class="item">
-        <span class="name">堀内 健一<span class="hon"> 様</span></span>
-        <span class="cat">食肉加工卸売り 飲食業</span>
-      </li>
-      <li class="item">
-        <span class="name">NGUYEN VAN LONG<span class="hon"> 様</span></span>
-        <span class="cat">外国人の採用、サポート、通訳</span>
-      </li>
-      <li class="item">
-        <span class="name">木下 貴子<span class="hon"> 様</span></span>
-        <span class="cat">不動産</span>
-      </li>
-      <li class="item">
-        <span class="name">山下 翼<span class="hon"> 様</span></span>
-        <span class="cat">建設（瀬谷の娘婿）</span>
-      </li>
-      <li class="item">
-        <span class="name">山口 えま<span class="hon"> 様</span></span>
-        <span class="cat">保育士、エステサロン、セラピスト</span>
-      </li>
-      <li class="item">
-        <span class="name">山坂 秀樹<span class="hon"> 様</span></span>
-        <span class="cat">イベント企画運営</span>
-      </li>
-      <li class="item">
-        <span class="name">近藤 朱莉<span class="hon"> 様</span></span>
-        <span class="cat">会員制ホテル</span>
-      </li>
-      <li class="item">
-        <span class="name">新井 絵美<span class="hon"> 様</span></span>
-        <span class="cat">ネイルサロン</span>
-      </li>
-      <li class="item">
-        <span class="name">岩渕 元気<span class="hon"> 様</span></span>
-        <span class="cat">美容室</span>
-      </li>
-      <li class="item">
-        <span class="name">澤口 奈緒美<span class="hon"> 様</span></span>
-        <span class="cat">サロン業、クリスタルアクセサリー販売</span>
-      </li>
-      <li class="item">
-        <span class="name">松村 由華<span class="hon"> 様</span></span>
-        <span class="cat">ヘッドスパ、エステ</span>
-      </li>
-      <li class="item">
-        <span class="name">岸 翔麻<span class="hon"> 様</span></span>
-        <span class="cat">演奏</span>
-      </li>
-      <li class="item">
-        <span class="name">細谷 政徳<span class="hon"> 様</span></span>
-        <span class="cat">税理士</span>
-      </li>
-      <li class="item">
-        <span class="name">橋本 香織<span class="hon"> 様</span></span>
-        <span class="cat">不動産仲介</span>
-      </li>
-      <li class="item">
-        <span class="name">堀川 マサル<span class="hon"> 様</span></span>
-        <span class="cat">買取、遺品整理、解体</span>
-      </li>
-      <li class="item">
-        <span class="name">藤井 光樹<span class="hon"> 様</span></span>
-        <span class="cat">経理代行</span>
-      </li>
-      <li class="item">
-        <span class="name">清島 有紗<span class="hon"> 様</span></span>
-        <span class="cat">LP,webデザイナー、イラストレーター</span>
-      </li>
-      <li class="item">
-        <span class="name">永井 尋己<span class="hon"> 様</span></span>
-        <span class="cat">映像制作</span>
-      </li>
-      <li class="item">
-        <span class="name">高野 なおみ<span class="hon"> 様</span></span>
-        <span class="cat">整体</span>
-      </li>
-      <li class="item">
-        <span class="name">葛城 由美<span class="hon"> 様</span></span>
-        <span class="cat">食品製造販売</span>
-      </li>
-      <li class="item">
-        <span class="name">井出 康平<span class="hon"> 様</span></span>
-        <span class="cat">農家</span>
-      </li>
-      <li class="item">
-        <span class="name">成瀬 優<span class="hon"> 様</span></span>
-        <span class="cat">染色・アパレル制作</span>
-      </li>
-      <li class="item">
-        <span class="name">保利 澄香<span class="hon"> 様</span></span>
-        <span class="cat">行政書士</span>
-      </li>
-      <li class="item">
-        <span class="name">田代 祐司<span class="hon"> 様</span></span>
-        <span class="cat">飲食店</span>
-      </li>
-      <li class="item">
-        <span class="name">滝口 肇<span class="hon"> 様</span></span>
-        <span class="cat">植物のお医者さん、植物サブリース</span>
-      </li>
-      <li class="item">
-        <span class="name">辻下 敏夫<span class="hon"> 様</span></span>
-        <span class="cat">中小企業の支援事業</span>
-      </li>
-      <li class="item">
-        <span class="name">松永 洋忠<span class="hon"> 様</span></span>
-        <span class="cat">伝え方力 聴く力 仕事 人生 子育てお悩み相談</span>
-      </li>
-      <li class="item">
-        <span class="name">冨澤 智子<span class="hon"> 様</span></span>
-        <span class="cat">—</span>
-      </li>
-    </ol>
+  <div class="tbl-wrap">
+    <table class="tbl" style="--rows:17">
+      <tbody>
+      <tr><td class="name">麻生 恵里<span class="hon">様</span></td><td class="cat">エステサロン</td><td class="name">細谷 政徳<span class="hon">様</span></td><td class="cat">税理士</td></tr>
+      <tr><td class="name">小林 良<span class="hon">様</span></td><td class="cat">居酒屋</td><td class="name">橋本 香織<span class="hon">様</span></td><td class="cat">不動産仲介</td></tr>
+      <tr><td class="name">藤平 ゆか<span class="hon">様</span></td><td class="cat">ライフキャリアコーチ、研修講師</td><td class="name">堀川 マサル<span class="hon">様</span></td><td class="cat">買取、遺品整理、解体</td></tr>
+      <tr><td class="name">武富 裕一<span class="hon">様</span></td><td class="cat">介護関係</td><td class="name">藤井 光樹<span class="hon">様</span></td><td class="cat">経理代行</td></tr>
+      <tr><td class="name">﨏田 美咲<span class="hon">様</span></td><td class="cat">日本料理</td><td class="name">清島 有紗<span class="hon">様</span></td><td class="cat">LP,webデザイナー、イラストレーター</td></tr>
+      <tr><td class="name">堀内 健一<span class="hon">様</span></td><td class="cat">食肉加工卸売り 飲食業</td><td class="name">永井 尋己<span class="hon">様</span></td><td class="cat">映像制作</td></tr>
+      <tr><td class="name">NGUYEN VAN LONG<span class="hon">様</span></td><td class="cat">外国人の採用、サポート、通訳</td><td class="name">高野 なおみ<span class="hon">様</span></td><td class="cat">整体</td></tr>
+      <tr><td class="name">木下 貴子<span class="hon">様</span></td><td class="cat">不動産</td><td class="name">葛城 由美<span class="hon">様</span></td><td class="cat">食品製造販売</td></tr>
+      <tr><td class="name">山下 翼<span class="hon">様</span></td><td class="cat">建設（瀬谷の娘婿）</td><td class="name">井出 康平<span class="hon">様</span></td><td class="cat">農家</td></tr>
+      <tr><td class="name">山口 えま<span class="hon">様</span></td><td class="cat">保育士、エステサロン、セラピスト</td><td class="name">成瀬 優<span class="hon">様</span></td><td class="cat">染色・アパレル制作</td></tr>
+      <tr><td class="name">山坂 秀樹<span class="hon">様</span></td><td class="cat">イベント企画運営</td><td class="name">保利 澄香<span class="hon">様</span></td><td class="cat">行政書士</td></tr>
+      <tr><td class="name">近藤 朱莉<span class="hon">様</span></td><td class="cat">会員制ホテル</td><td class="name">田代 祐司<span class="hon">様</span></td><td class="cat">飲食店</td></tr>
+      <tr><td class="name">新井 絵美<span class="hon">様</span></td><td class="cat">ネイルサロン</td><td class="name">滝口 肇<span class="hon">様</span></td><td class="cat">植物のお医者さん、植物サブリース</td></tr>
+      <tr><td class="name">岩渕 元気<span class="hon">様</span></td><td class="cat">美容室</td><td class="name">辻下 敏夫<span class="hon">様</span></td><td class="cat">中小企業の支援事業</td></tr>
+      <tr><td class="name">澤口 奈緒美<span class="hon">様</span></td><td class="cat">サロン業、クリスタルアクセサリー販売</td><td class="name">松永 洋忠<span class="hon">様</span></td><td class="cat">伝え方力 聴く力 仕事 人生 子育てお悩み相談</td></tr>
+      <tr><td class="name">松村 由華<span class="hon">様</span></td><td class="cat">ヘッドスパ、エステ</td><td class="name">冨澤 智子<span class="hon">様</span></td><td class="cat">—</td></tr>
+      <tr><td class="name">岸 翔麻<span class="hon">様</span></td><td class="cat">演奏</td><td class="name empty"></td><td class="cat empty"></td></tr>
+      </tbody>
+    </table>
   </div>
   <footer class="foot">
-    <span class="count">33 名</span>
-    <span>2026.5.27（水）大人の文化祭</span>
-    <span>更新: 2026-05-26 10:55</span>
+    <span class="count">大人の文化祭 — Business Open Day 2026</span>
+    <span>更新: 2026-05-26 11:00</span>
   </footer>
 </div>
-<script id="visitorData" type="application/json">[{"name": "麻生 恵里", "category": "エステサロン"}, {"name": "小林 良", "category": "居酒屋"}, {"name": "藤平 ゆか", "category": "ライフキャリアコーチ、研修講師"}, {"name": "武富 裕一", "category": "介護関係"}, {"name": "﨏田 美咲", "category": "日本料理"}, {"name": "堀内 健一", "category": "食肉加工卸売り 飲食業"}, {"name": "NGUYEN VAN LONG", "category": "外国人の採用、サポート、通訳"}, {"name": "木下 貴子", "category": "不動産"}, {"name": "山下 翼", "category": "建設（瀬谷の娘婿）"}, {"name": "山口 えま", "category": "保育士、エステサロン、セラピスト"}, {"name": "山坂 秀樹", "category": "イベント企画運営"}, {"name": "近藤 朱莉", "category": "会員制ホテル"}, {"name": "新井 絵美", "category": "ネイルサロン"}, {"name": "岩渕 元気", "category": "美容室"}, {"name": "澤口 奈緒美", "category": "サロン業、クリスタルアクセサリー販売"}, {"name": "松村 由華", "category": "ヘッドスパ、エステ"}, {"name": "岸 翔麻", "category": "演奏"}, {"name": "細谷 政徳", "category": "税理士"}, {"name": "橋本 香織", "category": "不動産仲介"}, {"name": "堀川 マサル", "category": "買取、遺品整理、解体"}, {"name": "藤井 光樹", "category": "経理代行"}, {"name": "清島 有紗", "category": "LP,webデザイナー、イラストレーター"}, {"name": "永井 尋己", "category": "映像制作"}, {"name": "高野 なおみ", "category": "整体"}, {"name": "葛城 由美", "category": "食品製造販売"}, {"name": "井出 康平", "category": "農家"}, {"name": "成瀬 優", "category": "染色・アパレル制作"}, {"name": "保利 澄香", "category": "行政書士"}, {"name": "田代 祐司", "category": "飲食店"}, {"name": "滝口 肇", "category": "植物のお医者さん、植物サブリース"}, {"name": "辻下 敏夫", "category": "中小企業の支援事業"}, {"name": "松永 洋忠", "category": "伝え方力 聴く力 仕事 人生 子育てお悩み相談"}, {"name": "冨澤 智子", "category": "—"}]</script>
-<script>
-(function(){
-  const grid = document.getElementById('grid');
-  const n = grid.children.length;
-  const cols = 2;
-  const rows = Math.ceil(n / cols);
-  grid.style.setProperty('--rows', rows);
-
-  function fit() {
-    const wrap = grid.parentElement;
-    const avail = wrap.clientHeight;
-    if (avail < 80) return;
-    const rowH = avail / rows;
-    let namePx = Math.min(34, Math.max(16, rowH * 0.55));
-    let catPx = Math.max(13, namePx * 0.72);
-    grid.style.setProperty('--name-size', namePx + 'px');
-    grid.style.setProperty('--cat-size', catPx + 'px');
-  }
-  fit();
-  window.addEventListener('resize', fit);
-  document.addEventListener('fullscreenchange', fit);
-})();
-</script>
 </body>
 </html>
