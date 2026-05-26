@@ -398,33 +398,47 @@ body.edit-mode .legend-edit-only{ display:inline }
 @media print{
   /* @page サイズは #pageSize スタイルで動的切替 */
   body{ background:#fff; color:#000 }
-  .bar, .legend, .edit-toolbar, .pattern-switch, .footer-actions, .pair-section, .print-pop{ display:none !important }
-  .hero{ padding:0 0 2mm; text-align:center }
-  .hero-pre{ font-size:8pt; margin-bottom:1mm }
-  .hero h1{ font-size:14pt; margin-bottom:1mm }
-  .hero-sub{ font-size:8pt }
-  .pattern-label{ font-size:10pt; margin:0 0 3mm; font-weight:700; color:#000 }
-  .tables-wrap{ padding:0 4mm; max-width:100% }
-  .tables-row{ gap:4mm; margin-bottom:4mm }
-  .tables-row-2{ max-width:62%; margin-left:auto; margin-right:auto }
-  .table-wrap{ max-width:78mm }
-  .table-circle{ background:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .bar, .legend, .edit-toolbar, .pattern-switch, .pattern-label, .footer-actions, .pair-section, .print-pop, .footer{ display:none !important }
+  .hero{ padding:0; text-align:center; margin-bottom:1mm }
+  .hero-pre{ font-size:6.5pt; margin-bottom:0; letter-spacing:2px }
+  .hero h1{ font-size:11pt; margin-bottom:0; line-height:1.1 }
+  .hero-sub{ font-size:6.5pt }
+  .tables-wrap{ padding:0 3mm; max-width:100%; margin:0 auto }
+  .tables-row{ gap:2mm; margin-bottom:2mm }
+  .tables-row-2{ max-width:46%; margin:0 auto 2mm }
+  .table-wrap{ max-width:48mm; margin:0 auto }
+  .table-circle{
+    inset:26%;
+    background:#fff !important;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .table-name{ font-size:11pt }
+  .table-count{ font-size:7pt }
   .seat-c{
     background:#fff !important;
-    border:.5pt solid #555 !important;
+    border:.4pt solid #555 !important;
     box-shadow:none !important;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
-    font-size:7.5pt;
+    font-size:6pt;
+    width:35%; height:14%;
+    padding:1px 2px;
+    border-radius:3px;
   }
-  .seat-c .nm{ font-size:7.5pt }
-  .seat-c .sm{ font-size:6pt }
-  .seat-c.v{ background:#f4f7f5 !important; border:.5pt solid #777 !important }
-  .seat-c.a{ background:#fff4dc !important; border:.7pt solid #c8943e !important; color:#7a5418 !important }
-  .seat-c.v.hostmatch{ background:#eaf3ee !important; border:.6pt solid #6a9b80 !important }
-  .seat-c.u{ background:#fff !important; border:.5pt dashed #888 !important }
-  .vendor-section{ padding:0 4mm; margin-top:3mm }
-  .vendor-row{ grid-template-columns:repeat(11, minmax(0, 1fr)); gap:1.5mm }
-  .vendor-mark{ font-size:8pt; margin:2mm 0 2mm }
+  .seat-c .nm{ font-size:6pt; line-height:1.05 }
+  .seat-c .sm{ font-size:4.8pt }
+  .seat-c.v{ background:#f4f7f5 !important; border:.4pt solid #777 !important }
+  .seat-c.a{ background:#fff4dc !important; border:.6pt solid #c8943e !important; color:#7a5418 !important }
+  .seat-c.v.hostmatch{ background:#eaf3ee !important; border:.5pt solid #6a9b80 !important }
+  .seat-c.v.hostmatch::after{ display:none }
+  .seat-c.u{ background:#fff !important; border:.4pt dashed #888 !important }
+  .vendor-section{ padding:0 3mm; margin:1mm auto 0; max-width:100% }
+  .vendor-row{ grid-template-columns:repeat(11, minmax(0, 1fr)); gap:1mm }
+  .vendor-mark{ font-size:6.5pt; margin:1mm 0; letter-spacing:1.5px }
+  .vendor-booth{ min-height:10mm; padding:5px 1px 1px; font-size:6pt }
+  .vendor-booth .booth-num{ font-size:6.5pt; top:1px; left:2px }
+  .vendor-booth .nm{ font-size:6pt; line-height:1.05 }
+  .vendor-booth .prod{ font-size:5pt; line-height:1.05 }
+  .vendor-booth .sm{ font-size:4.5pt }
 
   /* 単一パターンモード: 非表示パターンを除外 */
   body:not(.print-both) .tables-pattern{ display:none }
@@ -433,15 +447,23 @@ body.edit-mode .legend-edit-only{ display:inline }
   /* A・B 両方モード: A→改ページ→B */
   body.print-both .tables-pattern{ display:block !important }
   body.print-both .tables-pattern[data-pattern="B"]{ page-break-before:always; break-before:page }
-  body.print-both .pattern-page-label{ display:block !important; font-size:11pt; font-weight:800; color:#000; text-align:center; margin:0 0 3mm; letter-spacing:.04em }
+  body.print-both .pattern-page-label{ display:block !important; font-size:9pt; font-weight:800; color:#000; text-align:center; margin:0 0 1mm; letter-spacing:.04em }
 
   /* A3 横モード: 余裕があるので大きめに */
-  body.print-a3 .table-wrap{ max-width:100mm }
-  body.print-a3 .seat-c{ font-size:9pt }
-  body.print-a3 .seat-c .nm{ font-size:9pt }
-  body.print-a3 .seat-c .sm{ font-size:7pt }
-  body.print-a3 .hero h1{ font-size:18pt }
-  body.print-a3 .pattern-label{ font-size:12pt }
+  body.print-a3 .table-wrap{ max-width:78mm }
+  body.print-a3 .tables-row{ gap:5mm; margin-bottom:5mm }
+  body.print-a3 .tables-row-2{ max-width:55% }
+  body.print-a3 .seat-c{ font-size:8pt; padding:2px 4px; border-radius:5px }
+  body.print-a3 .seat-c .nm{ font-size:8pt }
+  body.print-a3 .seat-c .sm{ font-size:6.5pt }
+  body.print-a3 .hero h1{ font-size:16pt }
+  body.print-a3 .hero-pre, body.print-a3 .hero-sub{ font-size:8.5pt }
+  body.print-a3 .vendor-booth{ min-height:14mm; font-size:8pt }
+  body.print-a3 .vendor-booth .nm{ font-size:8pt }
+  body.print-a3 .vendor-booth .prod{ font-size:7pt }
+  body.print-a3 .vendor-mark{ font-size:9pt }
+  body.print-a3 .table-name{ font-size:14pt }
+  body.print-a3 .table-count{ font-size:9pt }
 }
 .pattern-page-label{ display:none }
 </style>
