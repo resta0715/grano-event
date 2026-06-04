@@ -7,53 +7,125 @@
 <meta name="description" content="BNI Grano Chapter — Business Open Day 2026 第2回（2026.8.26 水）に関するハブページ">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Business Open Day 2026 第2回｜BNI Grano Chapter">
-<meta property="og:description" content="大人の文化祭、ふたたび — 2026.8.26（水）開催">
+<meta property="og:description" content="大人の夏祭り、はじまる — 2026.8.26（水）開催">
 <meta property="og:image" content="https://resta0715.github.io/grano-event/ogp_announcement.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 /* DESIGN: A - 和モダン (Wamodern) */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#1B2845;--navy-deep:#121A30;--navy-light:#2A3B5C;
+  --navy:#1B2845;--navy-deep:#0A1424;--navy-mid:#121A30;--navy-light:#2A3B5C;
   --vermilion:#D94A38;--vermilion-deep:#A8362A;
   --gold:#D4A055;--gold-light:#E8C078;
   --cream:#F5EFE6;
-  --ff-serif: "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
-  --ff-sans: system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  --ff-serif: "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --ff-sans: "Noto Sans JP", system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
 }
+html{font-size:18px}
+@media(min-width:1200px){html{font-size:19px}}
 body{
   font-family:var(--ff-sans);
-  background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(ellipse at 50% 18%, rgba(217,74,56,.18), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(212,160,85,.12), transparent 60%),
+    linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 55%, var(--navy) 100%);
+  min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
   -webkit-font-smoothing:antialiased;
   color:var(--cream);
   position:relative;overflow-x:hidden;
+  padding:120px 16px 60px;
 }
-/* 提灯（背景に小さく散らす） */
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  background-image:
-    radial-gradient(circle at 8% 12%, rgba(217,74,56,.18) 0, transparent 28px),
-    radial-gradient(circle at 92% 18%, rgba(217,74,56,.15) 0, transparent 32px),
-    radial-gradient(circle at 6% 88%, rgba(212,160,85,.18) 0, transparent 30px),
-    radial-gradient(circle at 95% 82%, rgba(217,74,56,.12) 0, transparent 26px);
-}
+/* 微細ノイズ */
 body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:
-    radial-gradient(circle at 50% 100%, transparent 22px, rgba(212,160,85,.04) 23px, rgba(212,160,85,.04) 24px, transparent 25px),
-    radial-gradient(circle at 0 100%, transparent 22px, rgba(212,160,85,.04) 23px, rgba(212,160,85,.04) 24px, transparent 25px),
-    radial-gradient(circle at 100% 100%, transparent 22px, rgba(212,160,85,.04) 23px, rgba(212,160,85,.04) 24px, transparent 25px);
-  background-size:50px 25px;
+    radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,.18) 1px, transparent 1px);
+  background-size:3px 3px, 7px 7px;
+  background-position:0 0, 1px 1px;
+  opacity:.4;mix-blend-mode:overlay;
 }
-.c{text-align:center;padding:48px 24px;max-width:600px;width:100%;position:relative;z-index:1}
-.logo{font-family:var(--ff-serif);font-size:14px;font-weight:700;letter-spacing:6px;color:var(--gold);margin-bottom:6px}
+
+/* 提灯ガーランド（固定・上部） */
+.hub-lanterns{
+  position:fixed;top:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:0 clamp(8px,3vw,56px);
+  pointer-events:none;z-index:2;
+}
+.hub-lanterns::before{
+  content:"";position:absolute;left:4%;right:4%;top:14px;height:2px;
+  background:linear-gradient(90deg, transparent, rgba(212,160,85,.5) 8%, rgba(212,160,85,.5) 92%, transparent);
+  border-radius:1px;
+}
+.hub-lan{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  width:clamp(50px,8vw,100px);
+  transform-origin:top center;
+  animation:hub-sway 5s ease-in-out infinite;
+}
+.hub-lan img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(217,74,56,.4))}
+.hub-lan.s{width:clamp(42px,6.5vw,80px)}
+.hub-lan.m{width:clamp(48px,7.5vw,92px)}
+.hub-lan.l{width:clamp(58px,9vw,110px)}
+.hub-lan:nth-child(1){animation-delay:0s}
+.hub-lan:nth-child(2){animation-delay:.4s}
+.hub-lan:nth-child(3){animation-delay:.8s}
+.hub-lan:nth-child(4){animation-delay:.2s}
+.hub-lan:nth-child(5){animation-delay:.6s}
+.hub-lan:nth-child(6){animation-delay:1s}
+@keyframes hub-sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@media(max-width:560px){
+  .hub-lanterns{padding:0 4px}
+  .hub-lan.s{width:36px}.hub-lan.m{width:42px}.hub-lan.l{width:48px}
+}
+
+/* 屋台シルエット（背景下部、画面全幅・固定） */
+.hub-yatai{
+  position:fixed;left:0;right:0;bottom:0;width:100%;
+  pointer-events:none;z-index:0;opacity:.4;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+          mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+}
+.hub-yatai img{display:block;width:100%;height:auto;filter:drop-shadow(0 -8px 24px rgba(0,0,0,.6))}
+
+/* コーナーの青海波 */
+.hub-seigaiha{position:fixed;width:clamp(160px,20vw,260px);pointer-events:none;z-index:0;opacity:.15}
+.hub-seigaiha img{width:100%;height:auto;display:block}
+.hub-seigaiha.bl{left:-30px;bottom:-30px;transform:rotate(8deg)}
+.hub-seigaiha.br{right:-30px;bottom:-30px;transform:rotate(-8deg) scaleX(-1)}
+
+.c{text-align:center;padding:24px 24px 48px;max-width:640px;width:100%;position:relative;z-index:1}
+.logo{font-family:var(--ff-serif);font-size:clamp(13px,1.4vw,16px);font-weight:700;letter-spacing:6px;color:var(--gold);margin-bottom:8px}
 .logo .dot{color:var(--vermilion);margin:0 4px}
-.sub{font-size:11px;color:rgba(245,239,230,.4);letter-spacing:4px;margin-bottom:10px;text-transform:uppercase}
+.sub{font-size:clamp(11px,1.1vw,13px);color:rgba(245,239,230,.5);letter-spacing:5px;margin-bottom:18px;text-transform:uppercase;font-weight:500}
+
+/* タイトル: 大人の夏祭り */
+.hub-title{
+  font-family:var(--ff-serif);
+  font-size:clamp(48px, 10vw, 120px);
+  font-weight:700;letter-spacing:.1em;
+  color:var(--vermilion);
+  line-height:1.05;margin:8px 0 12px;
+  text-shadow:0 2px 0 rgba(0,0,0,.4), 0 0 32px rgba(217,74,56,.45), 0 0 80px rgba(217,74,56,.2);
+  padding-left:.1em;
+}
+.hub-title-en{
+  font-family:var(--ff-serif);
+  font-size:clamp(20px, 2.8vw, 34px);
+  font-weight:500;letter-spacing:.05em;
+  color:var(--cream);
+  margin-bottom:8px;line-height:1.25;
+}
+.hub-title-en .year{color:var(--vermilion);font-weight:700}
+
 .eyebrow{
   display:inline-block;font-family:var(--ff-serif);
-  font-size:12px;color:var(--cream);letter-spacing:5px;
-  padding:8px 22px;border:1px solid var(--gold);border-radius:2px;
-  margin-bottom:36px;
+  font-size:clamp(13px,1.3vw,15px);color:var(--cream);letter-spacing:6px;font-weight:500;
+  padding:10px 26px;border:1px solid var(--gold);border-radius:2px;
+  margin:18px 0 36px;
 }
 .eyebrow b{color:var(--vermilion);font-weight:700;margin-left:6px}
 
@@ -65,15 +137,17 @@ body::after{
 }
 .divider:first-of-type{margin-top:0}
 
-.links{display:flex;flex-direction:column;gap:12px}
+.links{display:flex;flex-direction:column;gap:14px}
 .link{
-  display:block;padding:22px 28px;
+  display:block;padding:24px 30px;
   background:rgba(245,239,230,.04);
   border:1px solid rgba(212,160,85,.18);
   text-decoration:none;color:var(--cream);
-  font-weight:600;font-size:15px;text-align:left;
+  font-weight:700;font-size:clamp(15px,1.5vw,17px);text-align:left;
   transition:all .3s;border-radius:2px;
   position:relative;
+  font-family:var(--ff-sans);
+  backdrop-filter:blur(4px);
 }
 .link:hover{
   background:rgba(245,239,230,.07);
@@ -88,10 +162,10 @@ body::after{
   content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--vermilion);
 }
 .link.featured:hover{border-color:rgba(217,74,56,.8)}
-.link small{display:block;font-size:12px;color:rgba(245,239,230,.5);font-weight:400;margin-top:5px;letter-spacing:.5px}
+.link small{display:block;font-size:clamp(12px,1.2vw,14px);color:rgba(245,239,230,.55);font-weight:400;margin-top:6px;letter-spacing:.5px;font-family:var(--ff-sans)}
 .link .label{
-  font-family:var(--ff-serif);font-size:10px;font-weight:600;letter-spacing:3px;
-  color:var(--gold);text-transform:uppercase;margin-bottom:4px;display:block;
+  font-family:var(--ff-serif);font-size:11px;font-weight:600;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:6px;display:block;
 }
 .link.featured .label{color:var(--vermilion)}
 .link.muted{opacity:.5;cursor:not-allowed;pointer-events:none}
@@ -113,15 +187,35 @@ body::after{
 </style>
 </head>
 <body>
+
+<!-- 提灯ガーランド (全画面共通) -->
+<div class="hub-lanterns" aria-hidden="true">
+  <div class="hub-lan s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+  <div class="hub-lan m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
+  <div class="hub-lan l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
+  <div class="hub-lan l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
+  <div class="hub-lan m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
+  <div class="hub-lan s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+</div>
+<!-- コーナーの青海波 -->
+<div class="hub-seigaiha bl" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
+<div class="hub-seigaiha br" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
+<!-- 屋台シルエット -->
+<div class="hub-yatai" aria-hidden="true"><img src="assets/yatai-silhouette.png" alt=""></div>
+
 <div class="c">
   <div class="logo">BNI Grano <span class="dot">·</span> BOD #2</div>
   <p class="sub">Yokohama Central Region</p>
+
+  <p class="hub-title-en">Business Open Day <span class="year">2026</span></p>
+  <h1 class="hub-title">大人の夏祭り</h1>
+
   <p class="eyebrow">第 二 回 <b>·</b> 2026.8.26 (水)</p>
 
   <div class="divider"><span class="line"></span><span class="label">Public</span><span class="line"></span></div>
 
   <div class="links">
-    <a class="link featured" href="announcement.html"><span class="label">Event</span>Business Open Day 2026 第2回<small>大人の文化祭、ふたたび — 2026.8.26（水）</small></a>
+    <a class="link featured" href="announcement.html"><span class="label">Event</span>Business Open Day 2026 第2回<small>大人の夏祭り、はじまる — 2026.8.26（水）</small></a>
     <a class="link" href="slide_part2.html"><span class="label">Slide · 2部</span>第2部 開始スライド<small>プロジェクター投影用（16:9）</small></a>
     <a class="link muted" href="flyer.html"><span class="label">Flyer</span>チラシ（HTML / A4印刷用）<small>第2回のチラシ</small></a>
     <a class="link muted" href="seating_part1.html"><span class="label">Seating · 1部</span>第1部 席次表<small>会場レイアウト</small></a>

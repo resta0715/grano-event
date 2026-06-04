@@ -6,11 +6,14 @@
 <meta name="robots" content="noindex,nofollow">
 <title>【メンバー専用】BOD 2026 第2回｜BNI Grano Chapter</title>
 <meta name="description" content="BNI Grano Chapter メンバー向け / Business Open Day 2026 第2回（2026.8.26 水）の進捗・スケジュール・情報共有ページ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   /* 和モダン (Design A) — トーン揃え */
-  --navy:#1B2845;--navy-light:#2A3B5C;
+  --navy:#1B2845;--navy-light:#2A3B5C;--navy-deep:#0A1424;
   --amber:#D4A055;--amber-light:#E8C078;--amber-pale:#F5E4C0;
   --warm:#F5EFE6;--warm2:#EDE2CC;
   --white:#FAF6EE;
@@ -21,20 +24,89 @@
   --red:#D94A38;--red-pale:#FBE0DC;
   --gray:#7A7A7A;--gray-pale:#EFEDE8;
   --blue:#3D5A80;--blue-pale:#E0E6F0;
-  --ff-sans: system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
-  --ff-serif: "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --ff-sans: "Noto Sans JP", system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  --ff-serif: "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6}
+html{scroll-behavior:smooth;font-size:18px}
+@media(min-width:1200px){html{font-size:19px}}
+body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.7;font-size:.85rem}
 
-.page-header{background:var(--navy);color:#fff;padding:48px 24px 32px;text-align:center;position:relative}
-.page-header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,148,62,.2),transparent 60%)}
-.page-header > *{position:relative;z-index:1}
-.eyebrow{font-size:11px;letter-spacing:4px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:6px}
-.page-title{font-family:var(--ff-serif);font-size:clamp(22px,3.5vw,32px);font-weight:700;margin-bottom:8px}
+/* ============== PAGE HEADER (unified hero: 提灯ガーランド + 屋台 + 青海波) ============== */
+.page-header{
+  background:
+    radial-gradient(ellipse at 50% 25%, rgba(217,74,56,.18), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(212,160,85,.12), transparent 60%),
+    linear-gradient(180deg, #0A1424 0%, #121A30 55%, #1B2845 100%);
+  color:#fff;
+  padding:120px 24px 80px;
+  text-align:center;position:relative;overflow:hidden;isolation:isolate;
+  min-height:62vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.page-header::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,.18) 1px, transparent 1px);
+  background-size:3px 3px, 7px 7px;background-position:0 0, 1px 1px;
+  opacity:.45;mix-blend-mode:overlay;z-index:1;
+}
+.page-header > *{position:relative;z-index:4}
+/* 提灯ガーランド */
+.ph-lanterns{
+  position:absolute;top:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:0 clamp(8px,3vw,56px);pointer-events:none;z-index:3;
+}
+.ph-lanterns::before{
+  content:"";position:absolute;left:4%;right:4%;top:14px;height:2px;
+  background:linear-gradient(90deg, transparent, rgba(212,160,85,.5) 8%, rgba(212,160,85,.5) 92%, transparent);
+  border-radius:1px;
+}
+.ph-lan{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  width:clamp(56px,9vw,120px);transform-origin:top center;
+  animation:ph-sway 5s ease-in-out infinite;
+}
+.ph-lan img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(217,74,56,.4))}
+.ph-lan.s{width:clamp(46px,7vw,90px)}
+.ph-lan.m{width:clamp(54px,8.5vw,108px)}
+.ph-lan.l{width:clamp(64px,10vw,130px)}
+.ph-lan:nth-child(1){animation-delay:0s}
+.ph-lan:nth-child(2){animation-delay:.4s}
+.ph-lan:nth-child(3){animation-delay:.8s}
+.ph-lan:nth-child(4){animation-delay:.2s}
+.ph-lan:nth-child(5){animation-delay:.6s}
+.ph-lan:nth-child(6){animation-delay:1s}
+@keyframes ph-sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@media(max-width:560px){
+  .ph-lanterns{padding:0 4px}
+  .ph-lan.s{width:40px}.ph-lan.m{width:46px}.ph-lan.l{width:56px}
+}
+.ph-yatai{
+  position:absolute;left:0;right:0;bottom:0;width:100%;pointer-events:none;
+  z-index:1;opacity:.45;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+          mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+}
+.ph-yatai img{display:block;width:100%;height:auto;filter:drop-shadow(0 -8px 24px rgba(0,0,0,.6))}
+.ph-seigaiha{position:absolute;width:clamp(160px,20vw,240px);pointer-events:none;z-index:1;opacity:.13}
+.ph-seigaiha img{width:100%;height:auto;display:block}
+.ph-seigaiha.bl{left:-30px;bottom:-30px;transform:rotate(8deg)}
+.ph-seigaiha.br{right:-30px;bottom:-30px;transform:rotate(-8deg) scaleX(-1)}
+
+.eyebrow{font-family:var(--ff-serif);font-size:clamp(11px,1.1vw,13px);letter-spacing:6px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:14px}
+.page-title{font-family:var(--ff-serif);font-size:clamp(28px,4vw,52px);font-weight:700;margin-bottom:14px;letter-spacing:.05em;line-height:1.4}
 .page-title em{font-style:normal;color:var(--amber)}
-.event-date{font-size:14px;color:rgba(255,255,255,.7);letter-spacing:2px;margin-bottom:16px}
-.member-only-badge{display:inline-block;padding:6px 16px;background:rgba(200,148,62,.18);border:1px solid rgba(200,148,62,.5);color:var(--amber);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px}
+.page-title .ja{
+  display:block;font-family:var(--ff-serif);font-weight:700;
+  font-size:clamp(38px,7vw,96px);letter-spacing:.1em;
+  color:var(--red);
+  text-shadow:0 2px 0 rgba(0,0,0,.4), 0 0 32px rgba(217,74,56,.45);
+  margin-top:8px;line-height:1.05;
+}
+.event-date{font-family:var(--ff-serif);font-size:clamp(16px,1.8vw,20px);color:rgba(255,255,255,.78);letter-spacing:4px;margin-bottom:22px;font-weight:500}
+.member-only-badge{display:inline-block;padding:8px 18px;background:rgba(200,148,62,.18);border:1px solid rgba(200,148,62,.5);color:var(--amber);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:2px}
 
 /* SHEET SYNC BAR */
 .sync-bar{padding:12px 24px;font-size:12px;text-align:center;border-bottom:1px solid var(--border);display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
@@ -553,17 +625,73 @@ tr:hover td{background:rgba(200,148,62,.04)}
 
 @media print{
   body{background:#fff}
-  .toc,.countdown,.page-header::before,.sync-bar,.sec-edit{display:none}
+  .toc,.countdown,.page-header::before,.sync-bar,.sec-edit,.bgm-btn{display:none}
   section{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+}
+
+/* ============== BGM FLOATING BUTTON (unified with announcement) ============== */
+.bgm-btn{
+  position:fixed;right:20px;bottom:20px;
+  width:64px;height:64px;border-radius:50%;
+  background:var(--red);color:#fff;
+  border:2px solid rgba(255,255,255,.25);
+  box-shadow:0 6px 20px rgba(217,74,56,.5), 0 2px 4px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;line-height:1;cursor:pointer;
+  z-index:9999;
+  transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+  font-family:var(--ff-sans);
+  -webkit-tap-highlight-color:transparent;
+}
+.bgm-btn:hover{transform:scale(1.06);box-shadow:0 10px 26px rgba(217,74,56,.6), 0 2px 4px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.2)}
+.bgm-btn:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.bgm-btn.is-playing{background:var(--amber);color:var(--navy-deep);animation:bgm-pulse 1.6s ease-in-out infinite}
+.bgm-btn .bgm-eq{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);display:none;gap:2px;align-items:flex-end;height:8px}
+.bgm-btn.is-playing .bgm-icon{font-size:24px}
+.bgm-btn.is-playing .bgm-eq{display:flex}
+.bgm-btn .bgm-eq span{display:block;width:2px;background:var(--navy-deep);border-radius:1px;animation:bgm-eq 1s ease-in-out infinite}
+.bgm-btn .bgm-eq span:nth-child(1){height:4px;animation-delay:0s}
+.bgm-btn .bgm-eq span:nth-child(2){height:7px;animation-delay:.2s}
+.bgm-btn .bgm-eq span:nth-child(3){height:5px;animation-delay:.4s}
+@keyframes bgm-pulse{
+  0%,100%{box-shadow:0 6px 20px rgba(212,160,85,.55), 0 0 0 0 rgba(212,160,85,.5)}
+  50%{box-shadow:0 6px 20px rgba(212,160,85,.55), 0 0 0 14px rgba(212,160,85,0)}
+}
+@keyframes bgm-eq{0%,100%{transform:scaleY(1)}50%{transform:scaleY(2.2)}}
+.bgm-btn .bgm-label{
+  position:absolute;right:74px;top:50%;transform:translateY(-50%) translateX(8px);
+  background:rgba(27,40,69,.92);color:var(--warm);
+  font-size:11px;letter-spacing:2px;padding:6px 12px;border-radius:3px;
+  white-space:nowrap;opacity:0;pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  border:1px solid rgba(212,160,85,.3);
+  font-family:var(--ff-sans);font-weight:600;
+}
+.bgm-btn:hover .bgm-label{opacity:1;transform:translateY(-50%) translateX(0)}
+@media(max-width:520px){
+  .bgm-btn{width:56px;height:56px;right:14px;bottom:14px;font-size:26px}
+  .bgm-btn .bgm-label{display:none}
 }
 </style>
 </head>
 <body>
 
 <header class="page-header">
+  <div class="ph-lanterns" aria-hidden="true">
+    <div class="ph-lan s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+    <div class="ph-lan m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
+    <div class="ph-lan l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
+    <div class="ph-lan l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
+    <div class="ph-lan m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
+    <div class="ph-lan s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+  </div>
+  <div class="ph-seigaiha bl" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
+  <div class="ph-seigaiha br" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
+  <div class="ph-yatai" aria-hidden="true"><img src="assets/yatai-silhouette.png" alt=""></div>
+
   <p class="eyebrow">BNI Grano Chapter · Internal</p>
-  <h1 class="page-title"><em>Business Open Day 2026</em><br>第 2 回 メンバー専用ページ</h1>
-  <p class="event-date">2026.8.26 (水) · 大人の文化祭、ふたたび。</p>
+  <h1 class="page-title"><em>Business Open Day 2026</em><br>第 2 回 メンバー専用ページ<span class="ja">大人の夏祭り</span></h1>
+  <p class="event-date">2026.8.26 (水) · 大人の夏祭り、はじまる。</p>
   <span class="member-only-badge">Members Only · Unlisted</span>
   <p class="visitor-cta">
     <a href="announcement.html" target="_blank" rel="noopener">
@@ -778,7 +906,7 @@ tr:hover td{background:rgba(200,148,62,.04)}
 
   <ul class="checklist" id="checklist">
     <li><span class="check checked"></span><div><div class="task-text done">会場（HOTEL PLUMM 横浜）再予約</div><div class="task-meta">担当：会場担当 / 期限：6/24</div></div></li>
-    <li><span class="check checked"></span><div><div class="task-text done">第2回 BOD コンセプト確認（大人の文化祭 継続）</div><div class="task-meta">担当：運営チーム / 期限：6/10</div></div></li>
+    <li><span class="check checked"></span><div><div class="task-text done">第2回 BOD コンセプト確認（大人の夏祭り）</div><div class="task-meta">担当：運営チーム / 期限：6/10</div></div></li>
     <li><span class="check checked"></span><div><div class="task-text done">告知ページ・ハブの仮組み</div><div class="task-meta">担当：広報担当 / 期限：7/1</div></div></li>
   </ul>
 </section>
@@ -1339,7 +1467,52 @@ syncFromSheet();
 if (CONFIG.REFRESH_INTERVAL_MS > 0) {
   setInterval(syncFromSheet, CONFIG.REFRESH_INTERVAL_MS);
 }
+
+/* ---- BGM: 祭囃子 floating button ---- */
+(function(){
+  const audio = document.getElementById('bgm-audio');
+  const btn   = document.getElementById('bgm-btn');
+  if(!audio || !btn) return;
+  const KEY = 'bod2-bgm-playing';
+  audio.volume = 0.35;
+  function setUI(playing){
+    btn.classList.toggle('is-playing', playing);
+    btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    btn.setAttribute('aria-label', playing ? 'BGM 停止' : 'BGM 再生');
+  }
+  btn.addEventListener('click', () => {
+    if(audio.paused){
+      audio.play().then(() => {
+        setUI(true);
+        try{ localStorage.setItem(KEY, '1'); }catch(_){}
+      }).catch(() => { setUI(false); });
+    } else {
+      audio.pause();
+      setUI(false);
+      try{ localStorage.setItem(KEY, '0'); }catch(_){}
+    }
+  });
+  audio.addEventListener('play', () => setUI(true));
+  audio.addEventListener('pause', () => setUI(false));
+  audio.addEventListener('ended', () => setUI(false));
+  try{
+    if(localStorage.getItem(KEY) === '1'){
+      setUI(false);
+    }
+  }catch(_){}
+})();
 </script>
+
+<!-- ============== BGM FLOATING BUTTON ============== -->
+<audio id="bgm-audio" loop preload="none" src="assets/audio/matsuri-bgm.mp3"></audio>
+<!-- Music: お祭囃子 / The Azuma Kabuki Musicians (1956 Columbia recording).
+     Public Domain via Internet Archive.
+     File can be replaced manually with another track (keep filename matsuri-bgm.mp3) -->
+<button id="bgm-btn" class="bgm-btn" type="button" aria-pressed="false" aria-label="BGM 再生 / 停止">
+  <span class="bgm-icon" aria-hidden="true">🏮</span>
+  <span class="bgm-eq" aria-hidden="true"><span></span><span></span><span></span></span>
+  <span class="bgm-label">BGM ON / OFF</span>
+</button>
 
 </body>
 </html>
