@@ -132,22 +132,8 @@ body{
     min-height:46px;padding:10px 18px;font-size:11px;letter-spacing:.12em;
   }
 }
-/* スクロールガイド（CTA より上） */
-.hero-mock-scroll{
-  position:absolute;
-  left:50%;
-  bottom:clamp(70px, 7vw, 100px);
-  transform:translateX(-50%);
-  display:none;
-  font-family:var(--ff-serif);
-  color:rgba(245,239,230,.78);
-  font-size:11px;letter-spacing:.45em;
-  z-index:5;
-  pointer-events:none;
-}
-@media(min-width:1280px){
-  .hero-mock-scroll{display:inline-block;animation:fadeIn 1.2s ease 1.2s forwards;opacity:0;}
-}
+/* スクロールガイドは画像の「8.26」と被るため削除 */
+.hero-mock-scroll{display:none !important}
 
 /* ============== HERO (image-asset based, legacy/unused) ============== */
 .hero{
@@ -778,9 +764,9 @@ section{padding:160px 24px;max-width:1320px;margin:0 auto;position:relative}
 .pillar:nth-child(3) .pillar-num{color:var(--navy)}
 .pillar-title{
   font-family:var(--ff-display);
-  font-size:clamp(1.5rem, 2.4vw, 2rem);color:var(--navy);font-weight:600;
+  font-size:clamp(1.4rem, 2.2vw, 1.85rem);color:var(--navy);font-weight:600;
   margin-bottom:20px;
-  letter-spacing:.08em;line-height:1.5;
+  letter-spacing:.04em;line-height:1.5;
 }
 .pillar-desc{font-family:var(--ff-serif);font-size:clamp(1rem, 1.4vw, 1.2rem);color:var(--ink-sub);line-height:2.0;letter-spacing:.02em}
 
