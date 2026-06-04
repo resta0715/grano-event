@@ -150,6 +150,13 @@ body{
   letter-spacing:.22em;
   box-shadow:0 8px 0 var(--vermilion-deep), 0 18px 44px rgba(217,74,56,.55), inset 0 1px 0 rgba(255,255,255,.22);
 }
+/* PC: 画像下端の「2026.8.26 水」と CTA の間に十分な余白を確保 */
+@media(min-width:769px){
+  .hero-cta-band{
+    padding-top:clamp(80px,7vw,128px);
+    padding-bottom:clamp(64px,6vw,100px);
+  }
+}
 @media(max-width:768px){
   .hero-cta-band{padding:22px 16px}
   .hero-cta-band .btn-primary,
