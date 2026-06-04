@@ -6,10 +6,17 @@
 <title>Business Open Day 2026 第2回 | BNI Grano Chapter</title>
 <meta name="description" content="BNI Grano Chapter — Business Open Day 2026 第2回（2026.8.26 水）大人の夏祭り、はじまる。">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="BNI Grano Chapter">
+<meta property="og:url" content="https://resta0715.github.io/grano-event/bod2/announcement.html">
 <meta property="og:title" content="Business Open Day 2026 第2回｜BNI Grano Chapter">
-<meta property="og:description" content="大人の夏祭り、はじまる。2026.8.26（水）開催。">
-<meta property="og:image" content="https://resta0715.github.io/grano-event/ogp_announcement.jpg">
+<meta property="og:description" content="大人の夏祭り、はじまる。2026.8.26（水） HOTEL PLUMM 横浜にて開催。">
+<meta property="og:image" content="https://resta0715.github.io/grano-event/bod2/assets/ogp-bod2-2026.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Business Open Day 2026 第2回｜BNI Grano Chapter">
+<meta name="twitter:description" content="大人の夏祭り、はじまる。2026.8.26（水）開催。">
+<meta name="twitter:image" content="https://resta0715.github.io/grano-event/bod2/assets/ogp-bod2-2026.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
@@ -122,31 +129,30 @@ body{
     object-position:center center;
   }
 }
-/* CTA を画像下部に重ねる */
-.hero-mock-cta-wrap{
-  position:absolute;
-  left:0;right:0;
-  bottom:clamp(14px, 2vw, 36px);
-  display:flex;justify-content:center;
-  z-index:6;
-  pointer-events:none;
+/* CTA を画像直下の navy バンドに配置（画像とは重ねない） */
+.hero-cta-band{
+  background:#0E1B3A;
+  width:100%;
+  padding:clamp(28px,4vw,56px) clamp(24px,4vw,64px);
+  display:flex;justify-content:center;align-items:center;
 }
-.hero-mock-cta-wrap > *{pointer-events:auto}
-.hero-mock-cta-wrap .btn-primary{
+.hero-cta-band .btn-primary,
+.hero-cta-band .hero-line-cta{
   min-height:64px;
-  padding:clamp(1.15rem, 1.5vw, 1.4rem) clamp(2.8rem, 4vw, 3.8rem);
-  font-size:clamp(1.1rem, 1.45vw, 1.3rem);
+  padding:clamp(1.1rem,1.4vw,1.35rem) clamp(2.6rem,3.8vw,3.6rem);
+  font-size:clamp(1.05rem,1.4vw,1.25rem);
   letter-spacing:.22em;
-  box-shadow:0 8px 0 var(--vermilion-deep), 0 18px 44px rgba(217,74,56,.6), inset 0 1px 0 rgba(255,255,255,.22);
+  box-shadow:0 8px 0 var(--vermilion-deep), 0 18px 44px rgba(217,74,56,.55), inset 0 1px 0 rgba(255,255,255,.22);
 }
-@media(max-width:720px){
-  .hero-mock-cta-wrap{bottom:10px}
-  .hero-mock-cta-wrap .btn-primary{
-    min-height:52px;padding:1rem 2.2rem;font-size:1.05rem;letter-spacing:.14em;
+@media(max-width:768px){
+  .hero-cta-band{padding:22px 16px}
+  .hero-cta-band .btn-primary,
+  .hero-cta-band .hero-line-cta{
+    min-height:52px;padding:.9rem 1.9rem;font-size:1rem;letter-spacing:.14em;
   }
 }
-/* legacy 要素 (no-op) */
-.hero-theme-override,.hero-mock-scroll{display:none !important}
+/* legacy 要素 (no-op) — 旧 absolute オーバーレイは廃止 */
+.hero-mock-cta-wrap,.hero-theme-override,.hero-mock-scroll{display:none !important}
 
 /* ============== HERO (image-asset based, legacy/unused) ============== */
 .hero{
@@ -908,8 +914,9 @@ section{padding:clamp(112px, 13vw, 176px) clamp(24px, 4vw, 64px);max-width:none;
 .cta-section .sec-title{font-size:clamp(2.6rem, 5.2vw, 4.6rem);line-height:1.5}
 .cta-section .btn-primary{padding:clamp(1.15rem, 1.5vw, 1.4rem) clamp(2.8rem, 4vw, 3.8rem);font-size:clamp(1.1rem, 1.45vw, 1.3rem);letter-spacing:.22em;box-shadow:0 14px 38px rgba(217,74,56,.4), 0 8px 0 var(--vermilion-deep), inset 0 1px 0 rgba(255,255,255,.22)}
 @media(max-width:720px){.cta-section{padding:88px 20px}.cta-section .btn-primary{padding:1rem 2.2rem;font-size:1.05rem;letter-spacing:.14em}}
-.cta-tags{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:36px 0 56px}
-.cta-tag{padding:0.65em 1.6em;border:1px solid rgba(212,160,85,.55);font-size:clamp(0.95rem, 1.3vw, 1.15rem);font-weight:500;color:var(--ink-sub);background:var(--cream-paper);border-radius:2px;letter-spacing:.18em;font-family:var(--ff-serif)}
+.cta-tags{display:flex;flex-wrap:wrap;gap:clamp(10px,1vw,16px);justify-content:center;margin:clamp(28px,3vw,44px) auto clamp(40px,4vw,60px);max-width:1080px;padding:0 24px}
+.cta-tag{padding:.55em 1.35em;border:1px solid rgba(201,162,76,.6);font-size:clamp(.95rem,1.2vw,1.1rem);font-weight:500;color:var(--ink-sub);background:rgba(255,255,255,.55);border-radius:999px;letter-spacing:.14em;font-family:var(--ff-serif);white-space:nowrap}
+@media(max-width:768px){.cta-tags{gap:8px;padding:0 16px}.cta-tag{font-size:.9rem;padding:.45em 1.05em;letter-spacing:.08em}}
 
 /* FOOTER */
 .footer{text-align:center;padding:clamp(64px, 10vw, 120px) 24px;background:var(--navy-deep);color:rgba(245,239,230,.85)}
@@ -1078,10 +1085,9 @@ section{padding:clamp(112px, 13vw, 176px) clamp(24px, 4vw, 64px);max-width:none;
   <span class="hero-mock-spacer" aria-hidden="true"></span>
   <div class="hero-mock-frame">
     <img class="hero-mock-img" src="assets/hero-mock-natsumatsuri.png" alt="Business Open Day 2026 大人の夏祭り — 2026.8.26（水）" width="1536" height="1024" fetchpriority="high">
-
-    <div class="hero-mock-cta-wrap">
-      <a class="btn-primary" href="https://liff.line.me/2006557015-NBnEmorX/top/list?liff_id=2006557015-NBnEmorX&amp;group_id=105560" target="_blank" rel="noopener">LINE公式よりお申込み <span class="arrow">›</span></a>
-    </div>
+  </div>
+  <div class="hero-cta-band">
+    <a class="btn-primary hero-line-cta" href="https://liff.line.me/2006557015-NBnEmorX/top/list?liff_id=2006557015-NBnEmorX&amp;group_id=105560" target="_blank" rel="noopener">LINE公式よりお申込み <span class="arrow">›</span></a>
   </div>
 </header>
 
@@ -1270,7 +1276,12 @@ section{padding:clamp(112px, 13vw, 176px) clamp(24px, 4vw, 64px);max-width:none;
   <div class="cta-tags">
     <span class="cta-tag">経営者</span>
     <span class="cta-tag">個人事業主</span>
-    <span class="cta-tag">集客に課題がある方</span>
+    <span class="cta-tag">集客に課題のある方</span>
+    <span class="cta-tag">ビジネススキルを上げたい方</span>
+    <span class="cta-tag">人脈を広げたい方</span>
+    <span class="cta-tag">紹介での売上を増やしたい方</span>
+    <span class="cta-tag">起業準備中の方</span>
+    <span class="cta-tag">信頼で繋がるビジネスがしたい方</span>
   </div>
   <a class="btn-primary" href="https://liff.line.me/2006557015-NBnEmorX/top/list?liff_id=2006557015-NBnEmorX&amp;group_id=105560" target="_blank" rel="noopener">LINE公式よりお申込み <span class="arrow">›</span></a>
 </div>
