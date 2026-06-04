@@ -1,0 +1,11 @@
+category,label,url,type
+bod2,告知ページ（第2回）,announcement.html,HTML
+bod2,第2部 開始スライド,slide_part2.html,HTML
+bod2,第2回 ハブページ,index.html,URL
+bod1,告知ページ（第1回・参考）,../announcement_page.html,HTML
+bod1,チラシ A4（第1回）,../flyer_a4.html,HTML
+bod1,チラシ画像（第1回）,../flyer_a4.jpg,JPG
+bod1,第1部 席次表（第1回）,../seating.html,HTML
+bod1,第2部 円卓席次（第1回）,../seating2.html,HTML
+bod1,第2部 開始スライド（第1回）,../bod_part2_slide.html,HTML
+bod1,ビジター一覧 PowerPoint（第1回）,../visitor_categories.pptx,PPTX

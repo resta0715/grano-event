@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2部 開始｜BOD 2026 第2回 — 大人の文化祭</title>
+<meta name="description" content="Business Open Day 2026 第2回 第2部 プロジェクター投影用スライド（2026.8.26）">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* 和モダン (Design A) — トーン揃え */
+  --cream:#F5EFE6; --paper:#EDE2CC;
+  --ink:#1B2845; --muted:#5C6680;
+  --navy:#1B2845; --navy-deep:#121A30;
+  --vermilion:#D94A38; --vermilion-deep:#A8362A;
+  --gold:#D4A055; --gold-light:#E8C078;
+  /* 和の伝統色（ガーランド・装飾用） */
+  --indigo:#3D5A80; --crimson:#B5283A; --moss:#7B8B5F;
+  --persimmon:#D97A4A; --murasaki:#7A6A99; --uguisu:#A89C5B;
+  --ribbon:#D94A38; --ribbon-dark:#A8362A;
+}
+html,body{
+  width:100%; height:100%; overflow:hidden;
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI",YuGothic,Meiryo,system-ui,sans-serif;
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+}
+
+.slide{
+  width:100vw; height:100vh;
+  max-width:none; max-height:none;
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(255,253,248,.6), transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(212,160,85,.18), transparent 40%),
+    radial-gradient(circle at 92% 85%, rgba(217,74,56,.12), transparent 35%),
+    linear-gradient(180deg, #FFFDF8 0%, var(--cream) 45%, var(--paper) 100%);
+  display:flex; flex-direction:column;
+  align-items:stretch; justify-content:center;
+  text-align:center;
+  padding:clamp(12px, 2vh, 28px) clamp(2vw, 2.5vw, 40px);
+}
+
+.garland{
+  position:absolute; top:0; left:0; right:0;
+  height:clamp(28px, 5vh, 52px);
+  display:flex; justify-content:space-evenly; align-items:flex-start;
+  padding:0 1vw;
+  pointer-events:none; z-index:1;
+}
+.garland span{
+  width:0; height:0;
+  border-left:clamp(16px, 2.8vw, 36px) solid transparent;
+  border-right:clamp(16px, 2.8vw, 36px) solid transparent;
+  border-top:clamp(22px, 4.5vh, 48px) solid var(--c);
+  margin:0;
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.08));
+  animation:sway 3s ease-in-out infinite;
+}
+/* 和の伝統色ベースのガーランド */
+.garland span:nth-child(1){--c:var(--vermilion); animation-delay:0s}
+.garland span:nth-child(2){--c:var(--gold); animation-delay:.15s}
+.garland span:nth-child(3){--c:var(--indigo); animation-delay:.3s}
+.garland span:nth-child(4){--c:var(--crimson); animation-delay:.45s}
+.garland span:nth-child(5){--c:var(--persimmon); animation-delay:.6s}
+.garland span:nth-child(6){--c:var(--moss); animation-delay:.75s}
+.garland span:nth-child(7){--c:var(--vermilion); animation-delay:.9s}
+.garland span:nth-child(8){--c:var(--gold); animation-delay:1.05s}
+.garland span:nth-child(9){--c:var(--murasaki); animation-delay:1.2s}
+.garland span:nth-child(10){--c:var(--persimmon); animation-delay:1.35s}
+.garland span:nth-child(11){--c:var(--indigo); animation-delay:1.5s}
+.garland span:nth-child(12){--c:var(--vermilion); animation-delay:1.65s}
+.garland span:nth-child(13){--c:var(--gold); animation-delay:.2s}
+.garland span:nth-child(14){--c:var(--moss); animation-delay:.35s}
+.garland span:nth-child(15){--c:var(--crimson); animation-delay:.5s}
+.garland span:nth-child(16){--c:var(--murasaki); animation-delay:.65s}
+.garland span:nth-child(17){--c:var(--persimmon); animation-delay:.8s}
+.garland span:nth-child(18){--c:var(--vermilion); animation-delay:.95s}
+.garland span:nth-child(19){--c:var(--gold); animation-delay:1.1s}
+.garland span:nth-child(20){--c:var(--indigo); animation-delay:1.25s}
+.garland span:nth-child(21){--c:var(--crimson); animation-delay:1.4s}
+.garland span:nth-child(22){--c:var(--moss); animation-delay:1.55s}
+.garland span:nth-child(23){--c:var(--persimmon); animation-delay:1.7s}
+.garland span:nth-child(24){--c:var(--gold); animation-delay:1.85s}
+@keyframes sway{
+  0%,100%{ transform:rotate(-2deg) }
+  50%{ transform:rotate(2deg) }
+}
+
+.deco{
+  position:absolute; pointer-events:none; opacity:.55; z-index:0;
+}
+.deco-leaf-l{
+  left:clamp(0px, 1vw, 24px); bottom:clamp(40px, 8vh, 100px);
+  width:clamp(80px, 12vw, 160px); height:clamp(100px, 15vh, 200px);
+  background:radial-gradient(ellipse 60% 80% at 30% 50%, rgba(123,139,95,.35), transparent 70%);
+  border-radius:0 80% 0 80%;
+  transform:rotate(-15deg);
+}
+.deco-leaf-r{
+  right:clamp(0px, 2vw, 32px); bottom:clamp(20px, 5vh, 60px);
+  width:clamp(100px, 14vw, 180px); height:clamp(80px, 12vh, 140px);
+  background:radial-gradient(ellipse 70% 60% at 70% 40%, rgba(61,90,128,.3), transparent 65%);
+  border-radius:80% 0 80% 0;
+  transform:rotate(10deg);
+}
+
+/* 提灯（赤い丸） */
+.chouchin{
+  position:absolute; pointer-events:none; z-index:1;
+}
+.chouchin .lt{
+  width:clamp(36px,5vw,72px); height:clamp(48px,6.5vw,96px);
+  background:linear-gradient(180deg, var(--vermilion) 0%, var(--vermilion-deep) 100%);
+  border-radius:50% / 38%;
+  box-shadow:0 0 30px rgba(217,74,56,.45), inset 0 -6px 12px rgba(0,0,0,.25);
+  position:relative;
+}
+.chouchin .lt::before{
+  content:"";position:absolute;left:8%;right:8%;top:14%;bottom:14%;
+  background:repeating-linear-gradient(180deg, transparent 0 7px, rgba(0,0,0,.18) 7px 8px);
+  border-radius:50% / 38%;
+}
+.chouchin .lt::after{
+  content:"";position:absolute;left:50%;bottom:-12px;width:4px;height:14px;
+  background:var(--gold);transform:translateX(-50%);box-shadow:0 4px 0 var(--gold-light);
+}
+.chouchin-l{left:clamp(12px,2vw,40px); top:clamp(60px,10vh,120px)}
+.chouchin-r{right:clamp(12px,2vw,40px); top:clamp(60px,10vh,120px)}
+
+.stall{
+  position:absolute; right:clamp(12px, 2vw, 40px); bottom:clamp(12px, 2vh, 28px);
+  width:clamp(72px, 10vw, 120px); z-index:1; pointer-events:none;
+}
+.stall-awning{
+  height:clamp(18px, 3vh, 32px);
+  background:repeating-linear-gradient(90deg, var(--vermilion) 0 14%, #FFF 14% 28%, var(--gold) 28% 42%, #FFF 42% 56%, var(--indigo) 56% 70%, #FFF 70% 84%, var(--crimson) 84% 100%);
+  border-radius:8px 8px 0 0;
+  border:3px solid var(--ink); border-bottom:none;
+}
+.stall-body{
+  background:#FFFDF8; border:3px solid var(--ink); border-radius:0 0 10px 10px;
+  padding:clamp(6px, 1vh, 12px) 4px;
+  font-size:clamp(10px, 1.4vw, 16px); font-weight:800; color:var(--pink);
+  letter-spacing:.05em;
+}
+
+.content{
+  position:relative; z-index:2;
+  width:100%;
+  flex:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:clamp(6px, 1.5vh, 18px);
+}
+
+.ribbon{
+  display:inline-block;
+  background:linear-gradient(180deg, var(--ribbon) 0%, var(--ribbon-dark) 100%);
+  color:#fff;
+  font-size:clamp(18px, 2.8vw, 44px);
+  font-weight:800;
+  letter-spacing:.12em;
+  padding:clamp(10px, 1.4vh, 20px) clamp(40px, 8vw, 120px);
+  border-radius:4px;
+  box-shadow:0 4px 0 rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.25);
+  position:relative;
+  max-width:96vw;
+}
+.ribbon::before,.ribbon::after{
+  content:""; position:absolute; top:50%; transform:translateY(-50%);
+  width:0; height:0; border-style:solid;
+}
+.ribbon::before{
+  left:clamp(-14px, -1.5vw, -10px);
+  border-width:clamp(14px, 2vh, 22px) clamp(14px, 2vw, 22px) clamp(14px, 2vh, 22px) 0;
+  border-color:transparent var(--ribbon-dark) transparent transparent;
+}
+.ribbon::after{
+  right:clamp(-14px, -1.5vw, -10px);
+  border-width:clamp(14px, 2vh, 22px) 0 clamp(14px, 2vh, 22px) clamp(14px, 2vw, 22px);
+  border-color:transparent transparent transparent var(--ribbon-dark);
+}
+
+.festival-wrap{ line-height:1; margin:clamp(2px, .8vh, 10px) 0; width:100% }
+.festival-pre{
+  display:block;
+  font-size:clamp(32px, 5.5vw, 88px);
+  font-weight:800; color:var(--ink);
+  letter-spacing:.3em;
+  margin-bottom:clamp(2px, .6vh, 8px);
+}
+.festival-main{
+  display:flex; justify-content:center; align-items:baseline;
+  gap:clamp(8px, 2.5vw, 40px);
+  width:100%;
+}
+.festival-main span{
+  font-size:clamp(72px, 16vw, 220px);
+  font-weight:900;
+  line-height:1;
+  text-shadow:4px 5px 0 rgba(0,0,0,.06);
+  -webkit-text-stroke:2px rgba(255,255,255,.5);
+}
+.festival-main .c1{ color:var(--indigo) }
+.festival-main .c2{ color:var(--gold) }
+.festival-main .c3{ color:var(--vermilion) }
+
+.start-msg{
+  font-size:clamp(44px, 9vw, 128px);
+  font-weight:900;
+  color:var(--ink);
+  line-height:1.12;
+  letter-spacing:.05em;
+  margin:clamp(0px, .8vh, 6px) 0;
+  width:100%;
+  white-space:nowrap;
+}
+.start-msg em{
+  font-style:normal;
+  color:var(--ribbon);
+  font-size:1.08em;
+  margin:0 .06em;
+}
+
+.speech{
+  position:relative;
+  background:#fff;
+  border:clamp(3px, .35vw, 5px) solid var(--ink);
+  border-radius:clamp(20px, 2.5vw, 40px);
+  padding:clamp(14px, 2vh, 28px) clamp(24px, 5vw, 80px);
+  width:96vw;
+  max-width:none;
+  font-size:clamp(22px, 3.6vw, 52px);
+  font-weight:700;
+  color:var(--ink);
+  line-height:1.45;
+  box-shadow:4px 5px 0 rgba(0,0,0,.08);
+}
+.speech::after{
+  content:""; position:absolute; bottom:clamp(-18px, -2.5vh, -24px); left:50%;
+  transform:translateX(-50%);
+  width:clamp(20px, 3vw, 32px); height:clamp(20px, 3vw, 32px);
+  background:#fff;
+  border-right:4px solid var(--ink); border-bottom:4px solid var(--ink);
+  rotate:45deg;
+}
+
+.highlights{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:clamp(10px, 1.8vw, 24px);
+  width:96vw;
+  max-width:none;
+  margin-top:clamp(4px, 1.5vh, 16px);
+}
+.hl{
+  background:#fff;
+  border:clamp(3px, .35vw, 5px) solid var(--ink);
+  border-radius:clamp(14px, 2vw, 28px);
+  padding:clamp(16px, 2.8vh, 36px) clamp(10px, 1.5vw, 20px);
+  box-shadow:5px 6px 0 rgba(0,0,0,.07);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  min-height:clamp(90px, 16vh, 180px);
+}
+.hl-icon{
+  font-size:clamp(40px, 6.5vw, 88px);
+  line-height:1;
+  margin-bottom:clamp(6px, 1.2vh, 14px);
+}
+.hl-text{
+  font-size:clamp(22px, 3.4vw, 56px);
+  font-weight:900;
+  color:var(--ink);
+  line-height:1.3;
+  letter-spacing:.03em;
+}
+.hl:nth-child(1){ background:linear-gradient(180deg, #FFF9F0, #fff); border-color:var(--gold) }
+.hl:nth-child(2){ background:linear-gradient(180deg, #FBF1ED, #fff); border-color:var(--vermilion) }
+.hl:nth-child(3){ background:linear-gradient(180deg, #F0F4F8, #fff); border-color:var(--indigo) }
+
+.footer-msg{
+  font-size:clamp(14px, 2vw, 32px);
+  font-weight:700;
+  color:var(--muted);
+  letter-spacing:.08em;
+  margin-top:clamp(2px, .8vh, 10px);
+  width:100%;
+}
+.footer-msg b{
+  color:var(--ribbon-dark);
+  letter-spacing:.15em;
+}
+
+@media (max-width: 900px){
+  .highlights{ grid-template-columns:1fr; max-width:520px }
+  .hl{ min-height:auto; padding:20px 16px }
+  .garland span{ border-left-width:10px; border-right-width:10px; border-top-width:18px }
+  .stall{ display:none }
+}
+
+@media print{
+  @page{ size: landscape; margin:0 }
+  .slide{ width:100%; height:100%; max-width:none; max-height:none }
+}
+</style>
+</head>
+<body>
+<div class="slide" role="img" aria-label="Business Open Day 2026 第2回 第2部 開始スライド">
+
+  <div class="garland" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="deco deco-leaf-l" aria-hidden="true"></div>
+  <div class="deco deco-leaf-r" aria-hidden="true"></div>
+
+  <div class="chouchin chouchin-l" aria-hidden="true"><div class="lt"></div></div>
+  <div class="chouchin chouchin-r" aria-hidden="true"><div class="lt"></div></div>
+
+  <div class="stall" aria-hidden="true">
+    <div class="stall-awning"></div>
+    <div class="stall-body">Enjoy!</div>
+  </div>
+
+  <div class="content">
+    <div class="ribbon">Business Open Day 2026 · 第2回 · 第2部</div>
+
+    <div class="festival-wrap">
+      <span class="festival-pre">大人の</span>
+      <div class="festival-main" aria-label="大人の文化祭">
+        <span class="c1">文</span>
+        <span class="c2">化</span>
+        <span class="c3">祭</span>
+      </div>
+    </div>
+
+    <p class="start-msg">これから<em>第2部</em>が始まります！</p>
+
+    <div class="speech">
+      見て、ふれて、体験して — ワクワクの午後、スタートです！
+    </div>
+
+    <div class="highlights">
+      <div class="hl">
+        <div class="hl-icon" aria-hidden="true">🍽️</div>
+        <p class="hl-text">美味しい<br>ランチ</p>
+      </div>
+      <div class="hl">
+        <div class="hl-icon" aria-hidden="true">💡</div>
+        <p class="hl-text">ビジネス<br>チャンスの発見</p>
+      </div>
+      <div class="hl">
+        <div class="hl-icon" aria-hidden="true">✨</div>
+        <p class="hl-text">魅力的なサービスを体験できる出店ブース</p>
+      </div>
+    </div>
+
+    <p class="footer-msg"><b>BNI GRANO CHAPTER</b> — 2026.8.26（水）· 第2回 BOD · 大人の文化祭</p>
+  </div>
+</div>
+</body>
+</html>

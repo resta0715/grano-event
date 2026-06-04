@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>【メンバー専用】BOD 2026 第2回｜BNI Grano Chapter</title>
+<meta name="description" content="BNI Grano Chapter メンバー向け / Business Open Day 2026 第2回（2026.8.26 水）の進捗・スケジュール・情報共有ページ">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* 和モダン (Design A) — トーン揃え */
+  --navy:#1B2845;--navy-light:#2A3B5C;
+  --amber:#D4A055;--amber-light:#E8C078;--amber-pale:#F5E4C0;
+  --warm:#F5EFE6;--warm2:#EDE2CC;
+  --white:#FAF6EE;
+  --text:#1A1A1A;--text-sub:#555;--text-muted:#888;
+  --border:rgba(212,160,85,.25);
+  --green:#5C7A4A;--green-pale:#E5EBDC;
+  --orange:#D97A4A;--orange-pale:#FBE5D6;
+  --red:#D94A38;--red-pale:#FBE0DC;
+  --gray:#7A7A7A;--gray-pale:#EFEDE8;
+  --blue:#3D5A80;--blue-pale:#E0E6F0;
+  --ff-sans: system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  --ff-serif: "Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6}
+
+.page-header{background:var(--navy);color:#fff;padding:48px 24px 32px;text-align:center;position:relative}
+.page-header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,148,62,.2),transparent 60%)}
+.page-header > *{position:relative;z-index:1}
+.eyebrow{font-size:11px;letter-spacing:4px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.page-title{font-family:var(--ff-serif);font-size:clamp(22px,3.5vw,32px);font-weight:700;margin-bottom:8px}
+.page-title em{font-style:normal;color:var(--amber)}
+.event-date{font-size:14px;color:rgba(255,255,255,.7);letter-spacing:2px;margin-bottom:16px}
+.member-only-badge{display:inline-block;padding:6px 16px;background:rgba(200,148,62,.18);border:1px solid rgba(200,148,62,.5);color:var(--amber);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px}
+
+/* SHEET SYNC BAR */
+.sync-bar{padding:12px 24px;font-size:12px;text-align:center;border-bottom:1px solid var(--border);display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.sync-bar.ok{background:var(--green-pale);color:var(--green)}
+.sync-bar.warn{background:#FFF8E0;color:#8a6a00;border-bottom-color:#e8c97c}
+.sync-bar.error{background:var(--red-pale);color:var(--red)}
+.sync-bar a{color:inherit;text-decoration:underline;font-weight:600}
+.sync-bar button{padding:4px 12px;background:#fff;border:1px solid currentColor;border-radius:14px;color:inherit;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:1px}
+.sync-bar button:hover{background:rgba(255,255,255,.5)}
+.sync-bar .spinner{display:inline-block;width:12px;height:12px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-2px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.countdown{background:#fff;border-bottom:1px solid var(--border);padding:18px 24px;text-align:center}
+.countdown-num{font-size:28px;font-weight:700;color:var(--amber);font-family:var(--ff-sans)}
+.countdown-label{font-size:12px;color:var(--text-muted);letter-spacing:2px;margin-left:6px}
+
+.toc{max-width:880px;margin:24px auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.toc a{display:inline-block;padding:8px 14px;background:#fff;border:1px solid var(--border);border-radius:24px;text-decoration:none;color:var(--navy);font-size:12px;font-weight:600;transition:all .2s}
+.toc a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+.main{max-width:880px;margin:0 auto;padding:24px}
+section{background:#fff;border:1px solid var(--border);border-radius:6px;padding:28px 24px;margin-bottom:24px;box-shadow:0 1px 0 rgba(0,0,0,.03);position:relative}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;border-bottom:2px solid var(--amber-pale);padding-bottom:12px}
+.sec-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--amber);color:#fff;font-weight:700;font-size:14px;border-radius:50%;flex-shrink:0}
+.sec-title{font-family:var(--ff-serif);font-size:20px;font-weight:700;color:var(--navy);flex:1}
+.sec-sub{font-size:12px;color:var(--text-muted);font-weight:400;display:block;margin-top:2px}
+.sec-edit{font-size:11px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:12px}
+.sec-edit:hover{color:var(--amber);border-color:var(--amber)}
+.sec-edit.hidden{display:none}
+
+.note{background:var(--amber-pale);border-left:4px solid var(--amber);padding:12px 16px;font-size:13px;color:var(--text-sub);margin-bottom:10px;border-radius:0 4px 4px 0}
+.note.important{background:var(--blue-pale);border-left-color:var(--blue);color:#1a3a5a}
+.note strong{color:var(--navy)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--warm2);font-weight:700;color:var(--navy);font-size:12px;text-transform:uppercase;letter-spacing:1px}
+tr:hover td{background:rgba(200,148,62,.04)}
+.col-date{width:120px;white-space:nowrap;font-weight:600;color:var(--navy)}
+.col-status{width:110px}
+.col-owner{width:110px}
+
+.badge{display:inline-block;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.5px;border-radius:12px;text-transform:uppercase}
+.badge.done{background:var(--green-pale);color:var(--green)}
+.badge.doing{background:var(--orange-pale);color:var(--orange)}
+.badge.todo{background:var(--gray-pale);color:var(--gray)}
+.badge.urgent{background:var(--red-pale);color:var(--red)}
+.badge.confirmed{background:var(--green-pale);color:var(--green)}
+.badge.pending{background:var(--orange-pale);color:var(--orange)}
+.badge.declined{background:var(--red-pale);color:var(--red)}
+
+.progress-wrap{margin:8px 0 24px;background:var(--gray-pale);border-radius:8px;height:10px;overflow:hidden;position:relative}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--green) 0%,var(--amber) 100%);border-radius:8px;transition:width .8s ease}
+.progress-text{display:flex;justify-content:space-between;font-size:12px;color:var(--text-sub);margin-top:6px}
+
+.checklist{list-style:none;padding:0}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px dashed var(--border)}
+.checklist li:last-child{border-bottom:none}
+.check{width:18px;height:18px;flex-shrink:0;margin-top:2px;border:2px solid var(--border);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;background:#fff;cursor:pointer}
+.check.checked{background:var(--green);border-color:var(--green);color:#fff;font-weight:bold}
+.check.checked::after{content:"✓";font-size:12px}
+.task-text{flex:1;font-size:14px}
+.task-text.done{text-decoration:line-through;color:var(--text-muted)}
+.task-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
+
+.info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.info-card{background:var(--warm);border:1px solid var(--border);border-radius:6px;padding:16px 18px}
+.info-card h4{font-size:11px;color:var(--amber);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.info-card p{font-size:13px;color:var(--text-sub);line-height:1.7}
+.info-card .key{font-weight:700;color:var(--navy);font-size:15px}
+
+.file-list{list-style:none;padding:0}
+.file-list li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:4px;transition:background .2s}
+.file-list li:hover{background:var(--warm2)}
+.file-list a{flex:1;text-decoration:none;color:var(--navy);font-weight:600;font-size:14px}
+.file-list a:hover{color:var(--amber)}
+.file-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--amber-pale);color:var(--amber);font-weight:700;font-size:11px;border-radius:4px;flex-shrink:0}
+.file-meta{font-size:11px;color:var(--text-muted)}
+
+.faq details{border-bottom:1px solid var(--border);padding:14px 0}
+.faq details:last-child{border-bottom:none}
+.faq summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:15px;list-style:none;display:flex;align-items:center;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--amber);color:#fff;border-radius:50%;font-size:12px;font-weight:700;flex-shrink:0}
+.faq details[open] summary{color:var(--amber)}
+.faq .answer{margin:10px 0 4px 34px;font-size:14px;color:var(--text-sub);line-height:1.9;white-space:pre-line}
+
+.visitor-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.stat{background:var(--warm);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center}
+.stat-num{font-size:24px;font-weight:700;color:var(--navy)}
+.stat-label{font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.stat.green .stat-num{color:var(--green)}
+.stat.orange .stat-num{color:var(--orange)}
+.stat.red .stat-num{color:var(--red)}
+
+.venue-list{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:600px){.venue-list{grid-template-columns:1fr}.visitor-stats{grid-template-columns:repeat(2,1fr)}}
+
+.updates{list-style:none;padding:0}
+.updates li{padding:10px 0;border-bottom:1px dashed var(--border);display:grid;grid-template-columns:90px 1fr;gap:14px;font-size:13px}
+.updates .when{color:var(--amber);font-weight:600;font-size:12px}
+.updates .what{color:var(--text-sub)}
+
+.footer{text-align:center;padding:32px 24px;color:var(--text-muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.footer a{color:var(--amber);text-decoration:none;margin:0 8px}
+
+.empty-state{text-align:center;color:var(--text-muted);font-size:13px;padding:20px;background:var(--warm);border:1px dashed var(--border);border-radius:4px}
+
+/* ====== VISITOR PAGE LINK (page-header 内のリンクCTA) ====== */
+.visitor-cta{
+  margin-top:18px;
+}
+.visitor-cta a{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px 9px 16px;
+  background:rgba(245,239,230,.06);
+  border:1px solid rgba(212,160,85,.55);
+  color:var(--amber);
+  font-family:var(--ff-sans);
+  font-size:12px;font-weight:600;letter-spacing:2px;
+  text-decoration:none;border-radius:2px;
+  transition:all .25s ease;
+}
+.visitor-cta a:hover{
+  background:var(--amber);color:var(--navy);
+  border-color:var(--amber);
+}
+.visitor-cta a .vc-icon{font-size:14px;line-height:1}
+.visitor-cta a .vc-arrow{font-size:11px;opacity:.7}
+
+/* ====== LEGENDARY HERO (20期 第一回 伝説のBOD お礼) ====== */
+.legendary-hero{
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(217,74,56,.18), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(212,160,85,.18), transparent 55%),
+    linear-gradient(180deg, #0F1B2D 0%, var(--navy) 55%, #14223A 100%);
+  color:var(--warm);
+  padding:64px 24px 72px;
+  position:relative;overflow:hidden;
+  border-top:4px solid var(--red);
+  border-bottom:4px solid var(--red);
+  border-left:none;border-right:none;
+  border-radius:0;
+  margin:0 0 24px;
+  text-align:center;
+  box-shadow:none;
+}
+.legendary-hero::before,.legendary-hero::after{
+  content:"";position:absolute;left:0;right:0;height:3px;
+  background-image:repeating-linear-gradient(90deg,var(--amber) 0 5px,transparent 5px 10px);
+  opacity:.55;
+}
+.legendary-hero::before{top:4px}
+.legendary-hero::after{bottom:4px}
+
+.lh-inner{max-width:880px;margin:0 auto;position:relative}
+.lh-eyebrow{
+  font-family:var(--ff-serif);
+  font-size:11px;letter-spacing:6px;font-weight:700;
+  color:var(--amber);text-transform:uppercase;
+  margin-bottom:18px;
+}
+.lh-eyebrow .dot{margin:0 8px;color:rgba(212,160,85,.5)}
+.lh-title{
+  font-family:var(--ff-serif);
+  font-size:clamp(28px,5vw,46px);
+  font-weight:700;line-height:1.45;
+  color:var(--warm);
+  margin-bottom:8px;
+  letter-spacing:.03em;
+}
+.lh-title .glow{
+  color:var(--amber);
+  text-shadow:0 0 20px rgba(212,160,85,.35);
+}
+.lh-title .legend{
+  color:var(--red);
+  font-size:1.15em;
+  position:relative;
+  padding:0 .15em;
+  letter-spacing:.08em;
+}
+.lh-title .legend::before,.lh-title .legend::after{
+  content:"";position:absolute;top:50%;width:32px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--red));
+  opacity:.6;
+}
+.lh-title .legend::before{right:100%;background:linear-gradient(90deg,transparent,var(--red))}
+.lh-title .legend::after{left:100%;background:linear-gradient(90deg,var(--red),transparent)}
+.lh-subtitle{
+  font-family:var(--ff-serif);
+  font-size:clamp(14px,1.7vw,17px);
+  color:rgba(245,239,230,.65);
+  letter-spacing:3px;margin-top:6px;margin-bottom:36px;
+}
+
+/* Seals row in hero (左右に朱印) */
+.lh-seals{
+  display:flex;justify-content:center;align-items:center;
+  gap:32px;flex-wrap:wrap;margin:0 auto 32px;
+}
+.lh-seal{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:96px;height:96px;
+  background:var(--red);color:var(--warm);
+  border:3px double var(--warm);
+  outline:3px solid var(--red);
+  outline-offset:-9px;
+  font-family:var(--ff-serif);
+  font-weight:900;font-size:19px;line-height:1.15;
+  letter-spacing:3px;text-align:center;
+  box-shadow:0 6px 20px rgba(217,74,56,.4), inset 0 0 0 1px rgba(0,0,0,.15);
+  flex-shrink:0;
+}
+.lh-seal.left{transform:rotate(-7deg)}
+.lh-seal.right{transform:rotate(7deg)}
+.lh-seal.center-msg{
+  width:auto;height:auto;
+  padding:18px 28px;
+  background:transparent;border:none;outline:none;
+  font-family:var(--ff-serif);font-weight:700;
+  font-size:clamp(18px,2.4vw,22px);
+  letter-spacing:.08em;color:var(--warm);line-height:1.6;
+  text-align:center;
+  box-shadow:none;
+  transform:none;
+}
+.lh-seal.center-msg strong{color:var(--amber);font-weight:700}
+
+.lh-body{
+  font-family:var(--ff-serif);
+  font-size:clamp(15px,1.8vw,17px);
+  line-height:2.2;
+  color:rgba(245,239,230,.92);
+  max-width:680px;margin:0 auto 32px;
+}
+.lh-body p+p{margin-top:14px}
+.lh-body strong{color:var(--amber);font-weight:700}
+.lh-body .red{color:var(--red);font-weight:700}
+
+.lh-cta{
+  display:inline-block;
+  margin-top:8px;
+  padding:14px 28px;
+  border:1px solid var(--amber);
+  border-radius:2px;
+  font-family:var(--ff-serif);
+  font-size:clamp(15px,1.9vw,18px);
+  font-weight:700;
+  letter-spacing:.15em;
+  color:var(--amber);
+  background:linear-gradient(180deg, rgba(212,160,85,.08), rgba(212,160,85,.02));
+  position:relative;
+}
+.lh-cta::before,.lh-cta::after{
+  content:"";position:absolute;top:50%;width:24px;height:1px;
+  background:var(--amber);opacity:.6;
+}
+.lh-cta::before{right:calc(100% + 16px)}
+.lh-cta::after{left:calc(100% + 16px)}
+
+.lh-sign{
+  margin-top:36px;
+  font-size:11px;letter-spacing:4px;
+  color:rgba(212,160,85,.7);
+  font-weight:700;
+}
+
+@media(max-width:600px){
+  .legendary-hero{padding:48px 20px 56px}
+  .lh-title .legend::before,.lh-title .legend::after{display:none}
+  .lh-cta::before,.lh-cta::after{display:none}
+  .lh-seal{width:78px;height:78px;font-size:15px}
+}
+
+/* ====== RECAP (第1回 BOD 御礼セクション) ====== */
+.recap{
+  background:linear-gradient(180deg, var(--warm) 0%, var(--warm2) 100%);
+  border:1px solid rgba(217,74,56,.2);
+  border-top:4px solid var(--red);
+  border-bottom:4px solid var(--red);
+  border-radius:6px;
+  padding:36px 28px 32px;
+  margin:24px auto 0;
+  max-width:880px;
+  position:relative;
+  overflow:hidden;
+}
+.recap::before,.recap::after{
+  content:"";position:absolute;left:0;right:0;height:3px;
+  background-image:repeating-linear-gradient(90deg,var(--amber) 0 4px,transparent 4px 8px);
+  opacity:.6;
+}
+.recap::before{top:4px}
+.recap::after{bottom:4px}
+.recap-eyebrow{
+  font-family:var(--ff-serif);
+  font-size:11px;letter-spacing:5px;
+  color:var(--red);font-weight:700;
+  text-align:center;margin-bottom:8px;
+}
+.recap-title{
+  font-family:var(--ff-serif);
+  font-size:clamp(22px,3.6vw,30px);
+  font-weight:700;color:var(--navy);
+  text-align:center;line-height:1.5;margin-bottom:12px;
+}
+.recap-title em{font-style:normal;color:var(--red)}
+.recap-lead{
+  text-align:center;font-size:14px;line-height:2;
+  color:var(--text-sub);max-width:640px;margin:0 auto 28px;
+  font-family:var(--ff-serif);
+}
+.recap-lead strong{color:var(--navy);font-weight:700}
+
+/* 朱印 (Seal) — members.html 用に red を使用 */
+.recap-seal{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:84px;height:84px;
+  background:var(--red);color:var(--warm);
+  border:3px double var(--warm);
+  outline:3px solid var(--red);
+  outline-offset:-8px;
+  font-family:var(--ff-serif);
+  font-weight:900;font-size:17px;line-height:1.15;
+  letter-spacing:2px;text-align:center;
+  transform:rotate(-7deg);
+  box-shadow:2px 4px 8px rgba(0,0,0,.18);
+  flex-shrink:0;
+}
+.recap-seal.small{width:62px;height:62px;font-size:13px;outline-offset:-7px;letter-spacing:1px}
+
+.recap-seals-row{
+  display:flex;justify-content:center;align-items:center;gap:24px;
+  flex-wrap:wrap;margin:0 auto 24px;
+}
+.recap-seals-row .seal-text{
+  font-family:var(--ff-serif);
+  font-size:13px;color:var(--text-sub);
+  max-width:380px;line-height:1.9;text-align:center;
+}
+.recap-seals-row .seal-text b{color:var(--navy);font-weight:700}
+
+/* Stats Grid (第1回 既知の数字) */
+.recap-section-label{
+  font-family:var(--ff-serif);
+  font-size:11px;letter-spacing:4px;
+  color:var(--amber);font-weight:700;
+  text-align:center;margin:24px 0 12px;
+  text-transform:uppercase;
+}
+.recap-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+  margin-bottom:20px;
+  box-shadow:0 2px 12px rgba(27,40,69,.05);
+}
+.recap-stats .r-stat{
+  padding:20px 12px;text-align:center;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.recap-stats .r-stat:nth-child(4n){border-right:none}
+.recap-stats .r-stat:nth-last-child(-n+4){border-bottom:none}
+@media(max-width:600px){
+  .recap-stats{grid-template-columns:repeat(2,1fr)}
+  .recap-stats .r-stat{border-right:1px solid var(--border) !important;border-bottom:1px solid var(--border) !important}
+  .recap-stats .r-stat:nth-child(2n){border-right:none !important}
+  .recap-stats .r-stat:nth-last-child(-n+2){border-bottom:none !important}
+}
+.r-stat-label-en{
+  font-family:var(--ff-serif);
+  font-size:10px;letter-spacing:2px;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.r-stat-label-ja{
+  font-size:11px;color:var(--text-sub);
+  margin-bottom:6px;font-weight:500;
+}
+.r-stat-value{
+  font-family:var(--ff-serif);
+  font-size:clamp(26px,4.2vw,36px);
+  font-weight:700;
+  color:var(--navy);
+  line-height:1;letter-spacing:.02em;
+}
+.r-stat-value .unit{font-size:.5em;color:var(--text-muted);margin-left:3px;font-weight:500}
+.recap-stats .r-stat.seal-cell{background:#FBE0DC;padding:10px}
+.recap-stats .r-stat.seal-cell .seal-wrap{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;
+}
+.recap-stats .r-stat.seal-cell .seal-cap{
+  font-size:10px;color:var(--text-sub);letter-spacing:1px;
+}
+
+/* Featured 51.7% block (来場者の過半数が入会) */
+.recap-featured{
+  background:linear-gradient(180deg, var(--navy) 0%, #142036 100%);
+  color:var(--warm);
+  padding:28px 24px;
+  text-align:center;
+  border-radius:4px;
+  margin:0 auto 24px;
+  max-width:560px;
+  position:relative;
+  overflow:hidden;
+}
+.recap-featured .seal-corner{
+  position:absolute;top:10px;right:14px;
+}
+.recap-featured .seal-corner .recap-seal{
+  transform:rotate(8deg);
+}
+.recap-featured .ft-en{
+  font-family:var(--ff-serif);
+  font-size:11px;letter-spacing:4px;color:var(--amber);
+  margin-bottom:6px;
+}
+.recap-featured .ft-ja{
+  font-size:12px;color:rgba(245,239,230,.7);margin-bottom:10px;
+}
+.recap-featured .ft-num{
+  font-family:var(--ff-serif);
+  font-size:clamp(48px,8vw,72px);
+  font-weight:700;color:var(--amber);
+  line-height:1;letter-spacing:.02em;
+}
+.recap-featured .ft-num .pct{font-size:.55em;color:var(--warm)}
+.recap-featured .ft-detail{
+  font-size:11px;color:rgba(245,239,230,.55);
+  margin-top:10px;letter-spacing:1px;
+}
+
+/* footnote (補足数字) */
+.recap-footnote{
+  text-align:center;font-size:12px;color:var(--text-muted);
+  letter-spacing:1px;margin:14px 0 28px;
+}
+.recap-footnote span{margin:0 10px;white-space:nowrap}
+.recap-footnote span b{color:var(--navy);font-weight:600}
+
+/* Placeholder: 追加実績は更新中 */
+.recap-placeholder{
+  border:2px dashed rgba(212,160,85,.55);
+  background:rgba(245,228,192,.25);
+  border-radius:6px;
+  padding:24px 20px;
+  margin:0 auto 28px;
+  max-width:720px;
+  text-align:center;
+}
+.recap-placeholder-title{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--ff-serif);
+  font-size:14px;font-weight:700;color:var(--navy);
+  margin-bottom:10px;
+}
+.recap-placeholder-title::before{
+  content:"…";display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--amber);color:#fff;font-weight:700;
+  font-size:14px;line-height:1;padding-bottom:6px;
+}
+.recap-placeholder-body{
+  font-size:13px;color:var(--text-sub);line-height:1.9;
+}
+.recap-placeholder-body code{
+  font-family:var(--ff-sans);
+  background:rgba(27,40,69,.06);
+  color:var(--navy);
+  padding:1px 6px;border-radius:3px;font-size:.9em;font-weight:600;
+}
+.recap-placeholder-list{
+  list-style:none;padding:0;margin-top:12px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;
+  text-align:left;
+}
+.recap-placeholder-list li{
+  background:#fff;border:1px solid var(--border);
+  padding:10px 14px;border-radius:4px;
+  font-size:12px;color:var(--text-sub);
+}
+.recap-placeholder-list li b{color:var(--navy);display:block;margin-bottom:2px;font-size:11px;letter-spacing:1px}
+.recap-placeholder-list li .ph-value{color:var(--text-muted);font-style:italic}
+
+/* 締めのメッセージ */
+.recap-closing{
+  text-align:center;
+  font-family:var(--ff-serif);
+  font-size:14px;line-height:2;color:var(--text-sub);
+  max-width:600px;margin:0 auto;
+  padding-top:24px;
+  border-top:1px solid rgba(212,160,85,.25);
+}
+.recap-closing strong{color:var(--navy);font-weight:700}
+.recap-closing .sign{
+  margin-top:14px;font-size:12px;letter-spacing:3px;
+  color:var(--amber);font-weight:700;
+}
+
+@media(max-width:600px){
+  table{font-size:12px}
+  th,td{padding:8px 6px}
+  .sec-title{font-size:17px}
+  .col-date{width:80px}
+  .col-status,.col-owner{width:auto}
+}
+
+@media print{
+  body{background:#fff}
+  .toc,.countdown,.page-header::before,.sync-bar,.sec-edit{display:none}
+  section{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <p class="eyebrow">BNI Grano Chapter · Internal</p>
+  <h1 class="page-title"><em>Business Open Day 2026</em><br>第 2 回 メンバー専用ページ</h1>
+  <p class="event-date">2026.8.26 (水) · 大人の文化祭、ふたたび。</p>
+  <span class="member-only-badge">Members Only · Unlisted</span>
+  <p class="visitor-cta">
+    <a href="announcement.html" target="_blank" rel="noopener">
+      <span class="vc-icon">📢</span>
+      <span>ビジター用 告知ページ（公開版）を見る</span>
+      <span class="vc-arrow">↗</span>
+    </a>
+  </p>
+</header>
+
+<!-- ============== LEGENDARY HERO (20期 第一回 伝説のBOD お礼) ============== -->
+<section class="legendary-hero" aria-label="20期 第1回 BOD 伝説のBODへの感謝">
+  <div class="lh-inner">
+    <p class="lh-eyebrow">20TH GENERATION <span class="dot">·</span> FIRST EDITION <span class="dot">·</span> 2026.5.27</p>
+    <h2 class="lh-title"><span class="glow">20期 第一回</span><br><span class="legend">伝説のBOD</span>、ありがとう。</h2>
+    <p class="lh-subtitle">— あの一日を、あの熱量を、忘れない。</p>
+
+    <div class="lh-seals">
+      <div class="lh-seal left">満員<br>御礼</div>
+      <div class="lh-seal center-msg">
+        来場 <strong>29 名</strong>、入会 <strong>15 名</strong>。<br>
+        <strong>来場者の過半数が、新たな仲間に。</strong>
+      </div>
+      <div class="lh-seal right">偉業<br>達成</div>
+    </div>
+
+    <div class="lh-body">
+      <p>
+        準備に走り、現場で動き、声をかけ、頭を下げ、笑顔で迎えた、<br>
+        メンバー <strong>一人ひとりの仕事</strong> が、あの日を作りました。
+      </p>
+      <p>
+        来場者の <strong>過半数</strong> がその場で入会を決める ―<br>
+        通常では考えられない、まさに <span class="red">偉業</span> です。<br>
+        この景色を、僕たちは確かに、見ました。
+      </p>
+      <p>
+        あの熱を、ここで終わらせる理由はひとつも無い。<br>
+        <strong>第2回 BOD（2026.8.26 水）</strong>、もう一度、全員で。
+      </p>
+    </div>
+
+    <div class="lh-cta">あの熱量を、もう一度。第2回も、全員で。</div>
+
+    <p class="lh-sign">— BNI GRANO CHAPTER · 20TH GEN —</p>
+  </div>
+</section>
+
+<div id="sync-bar" class="sync-bar warn">
+  <span><strong>Google Sheet 未設定</strong> — 現在はサンプルデータ表示中。<a href="setup.html">セットアップガイドを開く →</a></span>
+</div>
+
+<div class="countdown">
+  <span class="countdown-num" id="countdown-num">—</span>
+  <span class="countdown-label">days to BOD #2</span>
+</div>
+
+<nav class="toc" aria-label="目次">
+  <a href="#recap">⓪ 第1回 御礼</a>
+  <a href="#schedule">① スケジュール</a>
+  <a href="#progress">② 進捗</a>
+  <a href="#info">③ 情報共有</a>
+  <a href="#roster">④ メンバー名簿</a>
+  <a href="#visitors">⑤ ビジター招待</a>
+  <a href="#venue">⑥ 会場・備品</a>
+  <a href="#documents">⑦ 資料</a>
+  <a href="#faq">⑧ FAQ</a>
+</nav>
+
+<!-- ============== 0. RECAP / 第1回 BOD 御礼 ============== -->
+<section id="recap" class="recap" style="background:linear-gradient(180deg, var(--warm) 0%, var(--warm2) 100%)">
+  <p class="recap-eyebrow">FIRST EDITION — 2026.5.27 (TUE)</p>
+  <h2 class="recap-title">第1回 BOD、<br><em>ありがとうございました。</em></h2>
+
+  <p class="recap-lead">
+    先日の Business Open Day 第1回は、<br>
+    メンバー皆さま <strong>お一人お一人のご尽力</strong> によって、<br>
+    本当に「めちゃくちゃいい会」になりました。<br>
+    心より、御礼申し上げます。
+  </p>
+
+  <!-- 朱印 + 短いメッセージ -->
+  <div class="recap-seals-row">
+    <div class="recap-seal">満員<br>御礼</div>
+    <div class="seal-text">
+      ビジター <b>34名</b> のお申し込み、<br>
+      <b>29名</b> のご来場、<br>
+      そのうち <b>15名</b> が新たな仲間に。<br>
+      <b style="color:var(--red)">来場者の過半数が入会</b>するという、偉業。
+    </div>
+    <div class="recap-seal">大成功</div>
+  </div>
+
+  <!-- 数字でみる第1回 -->
+  <p class="recap-section-label">数字でみる、第1回</p>
+  <div class="recap-stats">
+    <div class="r-stat">
+      <p class="r-stat-label-en">VISITORS</p>
+      <p class="r-stat-label-ja">ビジター申込</p>
+      <p class="r-stat-value">34<span class="unit">名</span></p>
+    </div>
+    <div class="r-stat">
+      <p class="r-stat-label-en">ATTENDED</p>
+      <p class="r-stat-label-ja">当日参加</p>
+      <p class="r-stat-value">29<span class="unit">名</span></p>
+    </div>
+    <div class="r-stat">
+      <p class="r-stat-label-en">JOINED</p>
+      <p class="r-stat-label-ja">合計申込</p>
+      <p class="r-stat-value">15<span class="unit">名</span></p>
+    </div>
+    <div class="r-stat seal-cell">
+      <div class="seal-wrap">
+        <div class="recap-seal small">満員<br>御礼</div>
+        <p class="seal-cap">出店ブース</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured: 来場者入会率 51.7% （偉業 = 過半数が入会） -->
+  <div class="recap-featured">
+    <div class="seal-corner"><div class="recap-seal small">偉業</div></div>
+    <p class="ft-en">VISITOR-TO-MEMBER CONVERSION</p>
+    <p class="ft-ja">来場者の、入会率</p>
+    <p class="ft-num">51.7<span class="pct">%</span></p>
+    <p class="ft-detail">来場 29 名 中 15 名 が入会 — <b style="color:var(--amber)">来場者の、過半数が新たな仲間に。</b></p>
+  </div>
+
+  <!-- 補足数字（内訳） -->
+  <p class="recap-footnote">
+    <span>事前申込 <b>2</b> 名</span>·<span>当日申込 <b>13</b> 名</span>·<span>合計入会 <b>15</b> 名</span>·<span>当日入金 <b>4</b> 名</span>
+  </p>
+
+  <!-- 追加実績プレースホルダ -->
+  <div class="recap-placeholder">
+    <p class="recap-placeholder-title">追加実績は集計中・更新予定</p>
+    <p class="recap-placeholder-body">
+      ビジター入会後の活動状況、紹介発生件数、Thank You Note、TYFCB など、<br>
+      第1回から派生した <strong style="color:var(--navy)">「その後」</strong> のデータを順次まとめてここに掲載します。<br>
+      <span style="font-size:12px;color:var(--text-muted)">※ 親エージェント（運営）からデータが届き次第更新します。</span>
+    </p>
+    <ul class="recap-placeholder-list">
+      <li><b>TYFCB</b><span class="ph-value">— 集計中</span></li>
+      <li><b>紹介発生件数</b><span class="ph-value">— 集計中</span></li>
+      <li><b>Thank You Note</b><span class="ph-value">— 集計中</span></li>
+      <li><b>1to1 ミーティング</b><span class="ph-value">— 集計中</span></li>
+      <li><b>ビジター継続参加</b><span class="ph-value">— 集計中</span></li>
+      <li><b>そのほか</b><span class="ph-value">— 順次追加</span></li>
+    </ul>
+  </div>
+
+  <!-- 締めのメッセージ -->
+  <div class="recap-closing">
+    <p>
+      この熱量を、ここで終わらせるわけにはいきません。<br>
+      <strong>第2回 BOD（2026.8.26 水）</strong> でも、<br>
+      また皆さまと、<strong>最高のチーム</strong> として迎えたいと思っています。<br>
+      引き続き、どうぞよろしくお願いいたします。
+    </p>
+    <p class="sign">— BNI GRANO CHAPTER · BOD 運営 —</p>
+  </div>
+</section>
+
+<main class="main">
+
+<!-- ============== 1. SCHEDULE ============== -->
+<section id="schedule">
+  <div class="sec-head">
+    <span class="sec-num">1</span>
+    <div style="flex:1">
+      <h2 class="sec-title">当日までのスケジュール
+        <span class="sec-sub">マイルストーン・タイムライン</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="schedule" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th class="col-date">日付</th><th>マイルストーン</th><th class="col-owner">担当</th><th class="col-status">状態</th></tr>
+    </thead>
+    <tbody id="schedule-body">
+      <tr><td class="col-date">2026.6.10 (水)</td><td>第2回 BOD キックオフ会議</td><td>運営チーム</td><td><span class="badge done">完了</span></td></tr>
+      <tr><td class="col-date">2026.6.24 (水)</td><td>会場再予約・確認</td><td>会場担当</td><td><span class="badge done">完了</span></td></tr>
+      <tr><td class="col-date">2026.7.8 (水)</td><td>登壇者選定・依頼開始</td><td>プログラム担当</td><td><span class="badge doing">進行中</span></td></tr>
+      <tr><td class="col-date">2026.7.15 (水)</td><td>チラシ・告知ページ更新</td><td>広報担当</td><td><span class="badge doing">進行中</span></td></tr>
+      <tr><td class="col-date">2026.7.22 (水)</td><td>ビジター招待リスト確定</td><td>全メンバー</td><td><span class="badge todo">未着手</span></td></tr>
+      <tr><td class="col-date">2026.8.5 (水)</td><td>登壇者リハーサル</td><td>登壇者</td><td><span class="badge todo">未着手</span></td></tr>
+      <tr><td class="col-date">2026.8.12 (水)</td><td>席次表（1部・2部）確定</td><td>会場担当</td><td><span class="badge todo">未着手</span></td></tr>
+      <tr><td class="col-date">2026.8.19 (水)</td><td>最終確認会議（1週前）</td><td>運営チーム</td><td><span class="badge todo">未着手</span></td></tr>
+      <tr><td class="col-date">2026.8.25 (火)</td><td>備品搬入・会場下見</td><td>会場担当</td><td><span class="badge todo">未着手</span></td></tr>
+      <tr><td class="col-date" style="color:var(--amber)">2026.8.26 (水)</td><td><strong>BOD 第2回 本番</strong></td><td>全員</td><td><span class="badge urgent">本番</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============== 2. PROGRESS / TODO ============== -->
+<section id="progress">
+  <div class="sec-head">
+    <span class="sec-num">2</span>
+    <div style="flex:1">
+      <h2 class="sec-title">進捗チェックリスト
+        <span class="sec-sub">担当・状態のリアルタイム把握</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="tasks" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <p style="font-size:13px;color:var(--text-sub);margin-bottom:4px">全体進捗</p>
+  <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:25%"></div></div>
+  <div class="progress-text"><span><b id="progress-done">3</b> 件完了 / <b id="progress-total">12</b> 件</span><span id="progress-pct">25%</span></div>
+
+  <ul class="checklist" id="checklist">
+    <li><span class="check checked"></span><div><div class="task-text done">会場（HOTEL PLUMM 横浜）再予約</div><div class="task-meta">担当：会場担当 / 期限：6/24</div></div></li>
+    <li><span class="check checked"></span><div><div class="task-text done">第2回 BOD コンセプト確認（大人の文化祭 継続）</div><div class="task-meta">担当：運営チーム / 期限：6/10</div></div></li>
+    <li><span class="check checked"></span><div><div class="task-text done">告知ページ・ハブの仮組み</div><div class="task-meta">担当：広報担当 / 期限：7/1</div></div></li>
+  </ul>
+</section>
+
+<!-- ============== 3. INFO SHARING ============== -->
+<section id="info">
+  <div class="sec-head">
+    <span class="sec-num">3</span>
+    <div style="flex:1">
+      <h2 class="sec-title">情報共有エリア
+        <span class="sec-sub">議事録・連絡事項・更新履歴</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="announcements" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <h3 style="font-size:14px;color:var(--navy);margin-bottom:10px;font-weight:700">📌 連絡事項</h3>
+  <div id="announcements-list">
+    <div class="note important"><strong>【サンプル】</strong> Google Sheet を設定するとここに最新の連絡事項が表示されます。</div>
+  </div>
+
+  <h3 style="font-size:14px;color:var(--navy);margin:24px 0 10px;font-weight:700">📝 更新履歴</h3>
+  <ul class="updates" id="updates-list">
+    <li><span class="when">—</span><span class="what">サンプル：シート設定後にここへ反映されます</span></li>
+  </ul>
+</section>
+
+<!-- ============== 4. ROSTER ============== -->
+<section id="roster">
+  <div class="sec-head">
+    <span class="sec-num">4</span>
+    <div style="flex:1">
+      <h2 class="sec-title">メンバー名簿
+        <span class="sec-sub">役割・連絡先・グループLINEリンクなど</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="roster" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <div class="info-cards" id="roster-cards" style="margin-bottom:20px">
+    <div class="info-card"><h4>会長</h4><p class="key">（氏名）</p><p>連絡先：—</p></div>
+    <div class="info-card"><h4>副会長</h4><p class="key">（氏名）</p><p>連絡先：—</p></div>
+    <div class="info-card"><h4>BOD 運営責任者</h4><p class="key">（氏名）</p><p>連絡先：—</p></div>
+    <div class="info-card"><h4>会場担当</h4><p class="key">（氏名）</p><p>連絡先：—</p></div>
+    <div class="info-card"><h4>広報担当</h4><p class="key">（氏名）</p><p>連絡先：—</p></div>
+    <div class="info-card"><h4>プログラム担当</h4><p class="key">（氏名）</p><p>連絡先：—</p></div>
+  </div>
+
+  <h3 style="font-size:14px;color:var(--navy);margin-bottom:10px;font-weight:700">🔗 グループ・関連リンク</h3>
+  <ul class="file-list" id="links-list">
+    <li><span class="file-icon">URL</span><a href="../members.html">メンバー紹介ページ（一般公開版）</a></li>
+  </ul>
+</section>
+
+<!-- ============== 5. VISITORS ============== -->
+<section id="visitors">
+  <div class="sec-head">
+    <span class="sec-num">5</span>
+    <div style="flex:1">
+      <h2 class="sec-title">招待ビジター 一覧・ステータス管理
+        <span class="sec-sub">招待中／確定／辞退の進捗を可視化</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="visitors" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <div class="visitor-stats">
+    <div class="stat"><div class="stat-num" id="vs-total">0</div><div class="stat-label">合計</div></div>
+    <div class="stat green"><div class="stat-num" id="vs-confirmed">0</div><div class="stat-label">確定</div></div>
+    <div class="stat orange"><div class="stat-num" id="vs-pending">0</div><div class="stat-label">招待中</div></div>
+    <div class="stat red"><div class="stat-num" id="vs-declined">0</div><div class="stat-label">辞退</div></div>
+  </div>
+
+  <table id="visitor-table">
+    <thead>
+      <tr><th>ビジター名</th><th>業種・分野</th><th class="col-owner">招待元</th><th class="col-status">ステータス</th></tr>
+    </thead>
+    <tbody id="visitors-body"></tbody>
+  </table>
+
+  <p style="font-size:12px;color:var(--text-muted);margin-top:10px">※ ビジターは各メンバーから個別に招待してください。確定したらシート（または運営チーム LINE）に連絡 → ステータス更新します。</p>
+</section>
+
+<!-- ============== 6. VENUE / EQUIPMENT ============== -->
+<section id="venue">
+  <div class="sec-head">
+    <span class="sec-num">6</span>
+    <div style="flex:1">
+      <h2 class="sec-title">会場・搬入・備品リスト
+        <span class="sec-sub">当日オペレーションの基本情報</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="venue" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <div class="venue-list" id="venue-info">
+    <div class="info-card">
+      <h4>会場</h4>
+      <p class="key">HOTEL PLUMM 横浜</p>
+      <p>〒220-0004 神奈川県横浜市西区北幸2-9-1<br>JR横浜駅西口 徒歩7分</p>
+    </div>
+    <div class="info-card">
+      <h4>利用時間（予約済み）</h4>
+      <p class="key">9:30 — 15:30</p>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px;color:var(--navy);margin:24px 0 10px;font-weight:700">📦 備品リスト</h3>
+  <table>
+    <thead><tr><th>項目</th><th>数量</th><th class="col-owner">担当</th><th class="col-status">状態</th></tr></thead>
+    <tbody id="equipment-body"></tbody>
+  </table>
+</section>
+
+<!-- ============== 7. DOCUMENTS ============== -->
+<section id="documents">
+  <div class="sec-head">
+    <span class="sec-num">7</span>
+    <div style="flex:1">
+      <h2 class="sec-title">資料・スライド・チラシ
+        <span class="sec-sub">ダウンロード・編集用リンク集</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="documents" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <h3 style="font-size:14px;color:var(--navy);margin-bottom:10px;font-weight:700">📄 第2回 BOD（2026.8.26）</h3>
+  <ul class="file-list" id="documents-bod2"></ul>
+
+  <h3 style="font-size:14px;color:var(--navy);margin:24px 0 10px;font-weight:700">📁 第1回 BOD（2026.5.27 / アーカイブ）</h3>
+  <ul class="file-list" id="documents-bod1"></ul>
+</section>
+
+<!-- ============== 8. FAQ ============== -->
+<section id="faq">
+  <div class="sec-head">
+    <span class="sec-num">8</span>
+    <div style="flex:1">
+      <h2 class="sec-title">FAQ / よくある質問
+        <span class="sec-sub">メンバー向けの基本事項</span>
+      </h2>
+    </div>
+    <a class="sec-edit hidden" data-edit="faq" href="#" target="_blank" rel="noopener">編集</a>
+  </div>
+
+  <div class="faq" id="faq-list"></div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>Members Only · BNI Grano Chapter · 2026 BOD #2</p>
+  <p style="margin-top:8px">
+    <a href="index.html">第2回 ハブ</a> ·
+    <a href="announcement.html">告知ページ</a> ·
+    <a href="../index.html">トップ</a> ·
+    <a href="setup.html">セットアップ</a>
+  </p>
+</footer>
+
+<script>
+/* =========================================================================
+ * 設定 — Google Sheet 連動の心臓部
+ * ここを編集して、Sheet と接続します
+ * 詳しい手順は setup.html を参照
+ * ========================================================================= */
+const CONFIG = {
+  // ↓ ↓ ↓ Google Sheet のIDをここに貼り付ける（URL の /d/ と /edit の間） ↓ ↓ ↓
+  SHEET_ID: '',
+  // 自動更新間隔（ミリ秒）。0 で無効。例: 5分なら 300000
+  REFRESH_INTERVAL_MS: 0,
+  // 各タブ名（Google Sheet 側のシート名と一致させる）
+  TABS: {
+    schedule: 'schedule',
+    tasks: 'tasks',
+    announcements: 'announcements',
+    updates: 'updates',
+    roster: 'roster',
+    links: 'links',
+    visitors: 'visitors',
+    venue: 'venue',
+    equipment: 'equipment',
+    documents: 'documents',
+    faq: 'faq',
+  },
+};
+
+/* ========================================================================= */
+
+const STATUS_LABEL = {
+  done: '完了', doing: '進行中', todo: '未着手', urgent: '本番',
+  confirmed: '確定', pending: '招待中', declined: '辞退',
+};
+
+const ICON_FOR_TYPE = {
+  HTML: 'HTML', PDF: 'PDF', JPG: 'JPG', PNG: 'PNG', PPTX: 'PPTX',
+  URL: 'URL', LINE: 'LINE', DOC: 'DOC', XLS: 'XLS',
+};
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+const esc = (s) => {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+};
+
+const sheetUrl = (sheetId, tabName, mode = 'view') => {
+  if (mode === 'edit') return `https://docs.google.com/spreadsheets/d/${sheetId}/edit?gid=0#gid=0&sheet=${encodeURIComponent(tabName)}`;
+  return `https://docs.google.com/spreadsheets/d/${sheetId}/edit#gid=0&sheet=${encodeURIComponent(tabName)}`;
+};
+
+/* ---- Google Sheet からデータ取得 (gviz API) ---- */
+async function fetchSheet(sheetId, tabName) {
+  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(tabName)}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP ${res.status} for tab "${tabName}"`);
+  const text = await res.text();
+  const m = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\);?/);
+  if (!m) throw new Error(`gviz parse error for tab "${tabName}"`);
+  const json = JSON.parse(m[1]);
+  if (json.status === 'error') {
+    const e = (json.errors && json.errors[0]) || { message: 'unknown error' };
+    throw new Error(`Sheet error (${tabName}): ${e.message || e.detailed_message || ''}`);
+  }
+  const cols = json.table.cols.map(c => (c.label || c.id || '').trim());
+  const rows = json.table.rows.map(r => {
+    const o = {};
+    (r.c || []).forEach((cell, i) => {
+      o[cols[i]] = cell ? (cell.f !== undefined && cell.f !== null ? cell.f : cell.v) : '';
+    });
+    return o;
+  });
+  return rows;
+}
+
+/* ---- 日付フォーマット ---- */
+function fmtDate(s) {
+  if (!s) return '';
+  if (typeof s === 'string' && /^Date\(/.test(s)) {
+    const m = s.match(/Date\((\d+),(\d+),(\d+)/);
+    if (m) s = new Date(+m[1], +m[2], +m[3]);
+  }
+  const d = (s instanceof Date) ? s : new Date(s);
+  if (isNaN(d.getTime())) return String(s);
+  const dow = ['日','月','火','水','木','金','土'][d.getDay()];
+  return `${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()} (${dow})`;
+}
+function fmtDateShort(s) {
+  if (!s) return '—';
+  const d = (s instanceof Date) ? s : new Date(s);
+  if (isNaN(d.getTime())) return String(s);
+  return `${d.getMonth()+1}/${d.getDate()}`;
+}
+
+/* ---- レンダラー群 ---- */
+function renderSchedule(rows) {
+  const tbody = $('#schedule-body');
+  if (!rows || !rows.length) { tbody.innerHTML = '<tr><td colspan="4" class="empty-state">スケジュールが未登録です</td></tr>'; return; }
+  tbody.innerHTML = rows.map(r => {
+    const isFinal = String(r.status).toLowerCase() === 'urgent';
+    const dateStyle = isFinal ? ' style="color:var(--amber)"' : '';
+    const milestone = isFinal ? `<strong>${esc(r.milestone)}</strong>` : esc(r.milestone);
+    return `<tr>
+      <td class="col-date"${dateStyle}>${esc(fmtDate(r.date))}</td>
+      <td>${milestone}</td>
+      <td>${esc(r.owner)}</td>
+      <td><span class="badge ${esc(r.status)}">${esc(STATUS_LABEL[r.status] || r.status)}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderTasks(rows) {
+  const ul = $('#checklist');
+  if (!rows || !rows.length) { ul.innerHTML = '<li class="empty-state">タスクが未登録です</li>'; return; }
+  ul.innerHTML = rows.map(r => {
+    const done = (r.done === true || String(r.done).toLowerCase() === 'true');
+    return `<li>
+      <span class="check ${done ? 'checked' : ''}"></span>
+      <div>
+        <div class="task-text ${done ? 'done' : ''}">${esc(r.task)}</div>
+        <div class="task-meta">担当：${esc(r.owner || '—')} / 期限：${esc(fmtDateShort(r.deadline))}</div>
+      </div>
+    </li>`;
+  }).join('');
+  bindChecklist();
+  updateProgress();
+}
+
+function renderAnnouncements(rows) {
+  const box = $('#announcements-list');
+  if (!rows || !rows.length) { box.innerHTML = '<div class="empty-state">連絡事項はありません</div>'; return; }
+  box.innerHTML = rows.map(r => {
+    const cls = String(r.level).toLowerCase() === 'important' ? 'note important' : 'note';
+    return `<div class="${cls}"><strong>【${esc(fmtDate(r.date) || '—')} 更新】</strong> ${esc(r.body)}</div>`;
+  }).join('');
+}
+
+function renderUpdates(rows) {
+  const ul = $('#updates-list');
+  if (!rows || !rows.length) { ul.innerHTML = '<li class="empty-state">更新履歴はありません</li>'; return; }
+  ul.innerHTML = rows.map(r => `
+    <li><span class="when">${esc(fmtDate(r.date))}</span><span class="what">${esc(r.change)}</span></li>
+  `).join('');
+}
+
+function renderRoster(rows) {
+  const box = $('#roster-cards');
+  if (!rows || !rows.length) { box.innerHTML = '<div class="empty-state">名簿が未登録です</div>'; return; }
+  box.innerHTML = rows.map(r => `
+    <div class="info-card">
+      <h4>${esc(r.role)}</h4>
+      <p class="key">${esc(r.name || '（氏名）')}</p>
+      <p>連絡先：${esc(r.contact || '—')}${r.note ? `<br>${esc(r.note)}` : ''}</p>
+    </div>
+  `).join('');
+}
+
+function renderLinks(rows) {
+  const ul = $('#links-list');
+  if (!rows || !rows.length) return;
+  ul.innerHTML = rows.map(r => `
+    <li>
+      <span class="file-icon">${esc(ICON_FOR_TYPE[r.icon] || r.icon || 'URL')}</span>
+      <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.label)}</a>
+    </li>
+  `).join('');
+}
+
+function renderVisitors(rows) {
+  const tbody = $('#visitors-body');
+  if (!rows || !rows.length) {
+    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">招待ビジターが未登録です</td></tr>';
+    updateVisitorStats([]);
+    return;
+  }
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td>${esc(r.name)}</td>
+      <td>${esc(r.category)}</td>
+      <td>${esc(r.inviter)}</td>
+      <td><span class="badge ${esc(r.status)}">${esc(STATUS_LABEL[r.status] || r.status)}</span></td>
+    </tr>
+  `).join('');
+  updateVisitorStats(rows);
+}
+
+function updateVisitorStats(rows) {
+  let total = rows.length, c = 0, p = 0, d = 0;
+  rows.forEach(r => {
+    const s = String(r.status).toLowerCase();
+    if (s === 'confirmed') c++;
+    else if (s === 'pending') p++;
+    else if (s === 'declined') d++;
+  });
+  $('#vs-total').textContent = total;
+  $('#vs-confirmed').textContent = c;
+  $('#vs-pending').textContent = p;
+  $('#vs-declined').textContent = d;
+}
+
+function renderVenue(rows) {
+  if (!rows || !rows.length) return;
+  const kv = {};
+  rows.forEach(r => { kv[r.key] = r.value; });
+  const box = $('#venue-info');
+  box.innerHTML = `
+    <div class="info-card">
+      <h4>会場</h4>
+      <p class="key">${esc(kv.venue_name || '—')}</p>
+      <p>${esc(kv.venue_address || '')}<br>${esc(kv.venue_access || '')}</p>
+      ${kv.venue_map_url ? `<p style="margin-top:8px"><a href="${esc(kv.venue_map_url)}" target="_blank" rel="noopener" style="color:var(--amber);text-decoration:none;font-weight:600;font-size:13px">📍 Googleマップ →</a></p>` : ''}
+    </div>
+    <div class="info-card">
+      <h4>利用時間（予約済み）</h4>
+      <p class="key">${esc(kv.hours_text || '—')}</p>
+      <p>${esc(kv.hours_detail || '').replace(/\\n/g, '<br>')}</p>
+    </div>
+    <div class="info-card">
+      <h4>搬入</h4>
+      <p>${esc(kv.load_in || '—').replace(/\\n/g, '<br>')}</p>
+    </div>
+    <div class="info-card">
+      <h4>会場担当者連絡先</h4>
+      <p>担当：${esc(kv.contact_name || '（氏名）')}<br>TEL：${esc(kv.contact_tel || '—')}<br>LINE：${esc(kv.contact_line || '—')}</p>
+    </div>
+  `;
+}
+
+function renderEquipment(rows) {
+  const tbody = $('#equipment-body');
+  if (!rows || !rows.length) { tbody.innerHTML = '<tr><td colspan="4" class="empty-state">備品が未登録です</td></tr>'; return; }
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td>${esc(r.item)}</td>
+      <td>${esc(r.qty || '—')}</td>
+      <td>${esc(r.owner || '—')}</td>
+      <td><span class="badge ${esc(r.status)}">${esc(STATUS_LABEL[r.status] || r.status)}</span></td>
+    </tr>
+  `).join('');
+}
+
+function renderDocuments(rows) {
+  if (!rows || !rows.length) return;
+  const bod2 = rows.filter(r => r.category === 'bod2');
+  const bod1 = rows.filter(r => r.category === 'bod1');
+  const fmt = arr => arr.map(r => `
+    <li>
+      <span class="file-icon">${esc(ICON_FOR_TYPE[r.type] || r.type || 'URL')}</span>
+      <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.label)}</a>
+    </li>
+  `).join('');
+  $('#documents-bod2').innerHTML = fmt(bod2);
+  $('#documents-bod1').innerHTML = fmt(bod1);
+}
+
+function renderFaq(rows) {
+  const box = $('#faq-list');
+  if (!rows || !rows.length) { box.innerHTML = '<div class="empty-state">FAQ がありません</div>'; return; }
+  box.innerHTML = rows.map(r => `
+    <details>
+      <summary>${esc(r.question)}</summary>
+      <p class="answer">${esc(r.answer)}</p>
+    </details>
+  `).join('');
+}
+
+/* ---- Checklist の見た目クリック（ローカルのみ・シートには書き戻らない） ---- */
+function bindChecklist() {
+  $$('#checklist .check').forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('checked');
+      const text = el.nextElementSibling?.querySelector('.task-text');
+      if (text) text.classList.toggle('done');
+      updateProgress();
+    });
+  });
+}
+
+function updateProgress() {
+  const items = $$('#checklist .check');
+  const done = $$('#checklist .check.checked').length;
+  const total = items.length;
+  const pct = total === 0 ? 0 : Math.round(done / total * 100);
+  $('#progress-bar').style.width = pct + '%';
+  $('#progress-done').textContent = done;
+  $('#progress-total').textContent = total;
+  $('#progress-pct').textContent = pct + '%';
+}
+
+/* ---- カウントダウン ---- */
+(function countdown() {
+  const target = new Date('2026-08-26T10:00:00+09:00');
+  function update() {
+    const now = new Date();
+    const diff = target - now;
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const el = $('#countdown-num');
+    if (diff < 0) {
+      el.textContent = 'event finished';
+      $('.countdown-label').textContent = '';
+    } else if (days === 0) {
+      el.textContent = '本日';
+      $('.countdown-label').textContent = '開催日です！';
+    } else {
+      el.textContent = days;
+    }
+  }
+  update();
+  setInterval(update, 60000);
+})();
+
+/* ---- 同期バー制御 ---- */
+function setSyncBar(state, html) {
+  const bar = $('#sync-bar');
+  bar.className = 'sync-bar ' + state;
+  bar.innerHTML = html;
+}
+
+/* ---- 編集リンクを各セクションに付与 ---- */
+function setEditLinks(sheetId) {
+  $$('[data-edit]').forEach(a => {
+    const tab = a.dataset.edit;
+    a.href = sheetUrl(sheetId, CONFIG.TABS[tab] || tab, 'edit');
+    a.classList.remove('hidden');
+    a.textContent = '✎ シートで編集';
+  });
+}
+
+/* ---- メイン同期処理 ---- */
+async function syncFromSheet() {
+  if (!CONFIG.SHEET_ID) {
+    setSyncBar('warn',
+      '<span><strong>Google Sheet 未設定</strong> — 現在はサンプルデータ表示中。' +
+      '<a href="setup.html">セットアップガイドを開く →</a></span>');
+    return;
+  }
+  setSyncBar('warn', '<span><span class="spinner"></span> シートからデータを取得中…</span>');
+
+  const tabs = CONFIG.TABS;
+  const fetches = {
+    schedule:      fetchSheet(CONFIG.SHEET_ID, tabs.schedule).catch(() => null),
+    tasks:         fetchSheet(CONFIG.SHEET_ID, tabs.tasks).catch(() => null),
+    announcements: fetchSheet(CONFIG.SHEET_ID, tabs.announcements).catch(() => null),
+    updates:       fetchSheet(CONFIG.SHEET_ID, tabs.updates).catch(() => null),
+    roster:        fetchSheet(CONFIG.SHEET_ID, tabs.roster).catch(() => null),
+    links:         fetchSheet(CONFIG.SHEET_ID, tabs.links).catch(() => null),
+    visitors:      fetchSheet(CONFIG.SHEET_ID, tabs.visitors).catch(() => null),
+    venue:         fetchSheet(CONFIG.SHEET_ID, tabs.venue).catch(() => null),
+    equipment:     fetchSheet(CONFIG.SHEET_ID, tabs.equipment).catch(() => null),
+    documents:     fetchSheet(CONFIG.SHEET_ID, tabs.documents).catch(() => null),
+    faq:           fetchSheet(CONFIG.SHEET_ID, tabs.faq).catch(() => null),
+  };
+
+  const results = await Promise.all(Object.values(fetches));
+  const keys = Object.keys(fetches);
+  const data = {};
+  keys.forEach((k, i) => data[k] = results[i]);
+
+  let okCount = 0, errCount = 0;
+  if (data.schedule)      { renderSchedule(data.schedule); okCount++; } else errCount++;
+  if (data.tasks)         { renderTasks(data.tasks); okCount++; } else errCount++;
+  if (data.announcements) { renderAnnouncements(data.announcements); okCount++; } else errCount++;
+  if (data.updates)       { renderUpdates(data.updates); okCount++; } else errCount++;
+  if (data.roster)        { renderRoster(data.roster); okCount++; } else errCount++;
+  if (data.links)         { renderLinks(data.links); okCount++; } else errCount++;
+  if (data.visitors)      { renderVisitors(data.visitors); okCount++; } else errCount++;
+  if (data.venue)         { renderVenue(data.venue); okCount++; } else errCount++;
+  if (data.equipment)     { renderEquipment(data.equipment); okCount++; } else errCount++;
+  if (data.documents)     { renderDocuments(data.documents); okCount++; } else errCount++;
+  if (data.faq)           { renderFaq(data.faq); okCount++; } else errCount++;
+
+  setEditLinks(CONFIG.SHEET_ID);
+
+  const now = new Date();
+  const ts = `${now.getFullYear()}/${(now.getMonth()+1).toString().padStart(2,'0')}/${now.getDate().toString().padStart(2,'0')} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+  if (errCount === 0) {
+    setSyncBar('ok',
+      `<span>✓ <strong>シート同期 OK</strong> (${okCount} タブ) — 最終更新: ${ts}</span>` +
+      `<button onclick="syncFromSheet()">再読み込み</button>` +
+      `<a href="${esc(sheetUrl(CONFIG.SHEET_ID, '', 'edit'))}" target="_blank" rel="noopener">シートを開く →</a>`);
+  } else if (okCount > 0) {
+    setSyncBar('warn',
+      `<span>⚠ 一部タブが取得できませんでした (${errCount} 個失敗 / ${okCount} 個OK) — タブ名や共有設定をご確認ください</span>` +
+      `<button onclick="syncFromSheet()">再読み込み</button>` +
+      `<a href="setup.html">設定を見直す</a>`);
+  } else {
+    setSyncBar('error',
+      '<span>✗ <strong>シートが読み取れません</strong> — シートIDか共有設定（リンクを知ってる全員：閲覧者）をご確認ください</span>' +
+      `<button onclick="syncFromSheet()">再試行</button>` +
+      `<a href="setup.html">セットアップガイド</a>`);
+  }
+}
+
+/* ---- 初期化 ---- */
+updateProgress();
+syncFromSheet();
+if (CONFIG.REFRESH_INTERVAL_MS > 0) {
+  setInterval(syncFromSheet, CONFIG.REFRESH_INTERVAL_MS);
+}
+</script>
+
+</body>
+</html>

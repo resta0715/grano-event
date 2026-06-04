@@ -1,0 +1,6 @@
+name,category,inviter,status
+サンプル 一郎,不動産,○○ 氏,confirmed
+サンプル 二郎,IT・Web,△△ 氏,pending
+サンプル 三郎,士業（税理士）,□□ 氏,pending
+サンプル 四郎,飲食店経営,◇◇ 氏,pending
+サンプル 五郎,建築・設計,☆☆ 氏,declined
