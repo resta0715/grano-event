@@ -42,7 +42,14 @@ body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit
   isolation:isolate;
   padding:0;min-height:0;
 }
-.page-header > *{position:relative;z-index:4}
+.page-header > .ph-top-strip{position:absolute;z-index:7}
+.page-header > *:not(.ph-top-strip):not(.ph-spacer){position:relative;z-index:4}
+.ph-spacer{display:block;width:100%;height:54px;background:#0A1424}
+@media(max-width:720px){
+  .ph-spacer{height:40px}
+}
+.ph-frame{position:relative;display:block;width:100%}
+.ph-frame{position:relative;display:block;width:100%}
 .ph-mock-img{
   display:block;width:100%;height:auto;margin:0;
   user-select:none;-webkit-user-drag:none;
@@ -742,14 +749,18 @@ tr:hover td{background:rgba(200,148,62,.04)}
     <span class="pts-badge">Members Only · Unlisted</span>
   </div>
 
-  <img class="ph-mock-img" src="assets/hero-mock-reference.png" alt="Business Open Day 2026 第2回 大人の夏祭り — 2026.8.26（水）" width="1024" height="464" fetchpriority="high">
+  <span class="ph-spacer" aria-hidden="true"></span>
 
-  <span class="ph-theme-override" aria-label="大人の夏祭り">大人の夏祭り</span>
+  <div class="ph-frame">
+    <img class="ph-mock-img" src="assets/hero-mock-reference.png" alt="Business Open Day 2026 第2回 大人の夏祭り — 2026.8.26（水）" width="1024" height="464" fetchpriority="high">
 
-  <div class="ph-member-band">
-    <span class="pm-label">第 二 回</span>
-    <span class="pm-title">メンバー専用ページ</span>
-    <span class="pm-label">2026.8.26 (水)</span>
+    <span class="ph-theme-override" aria-label="大人の夏祭り">大人の夏祭り</span>
+
+    <div class="ph-member-band">
+      <span class="pm-label">第 二 回</span>
+      <span class="pm-title">メンバー専用ページ</span>
+      <span class="pm-label">2026.8.26 (水)</span>
+    </div>
   </div>
 </header>
 
