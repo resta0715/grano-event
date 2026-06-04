@@ -63,24 +63,29 @@ body{
 }
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,16,30,.78);backdrop-filter:blur(14px);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:60px;border-bottom:1px solid rgba(212,160,85,.18)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,16,30,.78);backdrop-filter:blur(14px);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;min-height:64px;border-bottom:1px solid rgba(212,160,85,.18)}
 .nav.nav-on-hero{background:linear-gradient(180deg, rgba(8,14,26,.85) 0%, rgba(8,14,26,.55) 70%, rgba(8,14,26,0) 100%);backdrop-filter:blur(6px);border-bottom:none}
-@media(max-width:720px){
-  .nav{padding:0 14px;height:48px;background:rgba(10,16,30,.82)}
+.nav-logo{font-family:var(--ff-serif);font-size:clamp(0.9rem, 1.05vw, 1.1rem);font-weight:700;letter-spacing:.22em;color:var(--gold);text-decoration:none}
+.nav-logo .accent{color:var(--vermilion)}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.nav-links a{color:rgba(245,239,230,.78);text-decoration:none;font-size:clamp(0.95rem, 1.15vw, 1.2rem);font-weight:500;letter-spacing:.16em;padding:0.35em 0.9em;border-radius:2px;transition:color .3s, background .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(212,160,85,.06)}
+@media(max-width:960px){
+  .nav{padding:12px 20px}
+  .nav-links{gap:8px}
+  .nav-links a{font-size:0.95rem;letter-spacing:.12em;padding:0.4em 0.7em}
+}
+@media(max-width:768px){
+  .nav{padding:10px 14px;min-height:56px}
   .nav.nav-on-hero{background:linear-gradient(180deg, rgba(8,14,26,.88) 0%, rgba(8,14,26,.6) 80%, rgba(8,14,26,0) 100%)}
-  .nav-logo{font-size:11px;letter-spacing:2px}
-  .nav-links{gap:10px}
-  .nav-links a{font-size:10px;letter-spacing:1px}
+  .nav-logo{font-size:0.85rem;letter-spacing:.18em}
+  .nav-links{gap:4px}
+  .nav-links a{font-size:0.85rem;letter-spacing:.08em;padding:0.45em 0.55em}
 }
 @media(max-width:520px){
-  .nav-links{gap:8px}
-  .nav-links a{font-size:9.5px;letter-spacing:.5px}
+  .nav-links{gap:2px}
+  .nav-links a{font-size:0.75rem;letter-spacing:.04em;padding:0.5em 0.4em}
 }
-.nav-logo{font-family:var(--ff-serif);font-size:14px;font-weight:700;letter-spacing:4px;color:var(--gold);text-decoration:none}
-.nav-logo .accent{color:var(--vermilion)}
-.nav-links{display:flex;gap:24px;flex-wrap:wrap}
-.nav-links a{color:rgba(245,239,230,.65);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;transition:color .3s}
-.nav-links a:hover,.nav-links a.active{color:var(--gold)}
 
 /* ============== HERO (clean AI-generated 大人の夏祭り visual, full-bleed) ============== */
 .hero-mock{
@@ -92,10 +97,10 @@ body{
   isolation:isolate;
 }
 .hero-mock-spacer{
-  display:block;width:100%;height:60px;background:#0E1B3A;
+  display:block;width:100%;height:64px;background:#0E1B3A;
 }
-@media(max-width:720px){
-  .hero-mock-spacer{height:48px}
+@media(max-width:768px){
+  .hero-mock-spacer{height:56px}
 }
 .hero-mock-frame{
   position:relative;display:block;width:100%;
@@ -1024,7 +1029,7 @@ section{padding:160px 24px;max-width:1320px;margin:0 auto;position:relative}
     <a href="#concept">Concept</a>
     <a href="#schedule">流れ</a>
     <a href="#info">開催概要</a>
-    <a href="../members.html">メンバー紹介</a>
+    <a href="memberlist.html">メンバー紹介</a>
     <a href="index.html">Hub</a>
   </div>
 </nav>
@@ -1074,7 +1079,7 @@ section{padding:160px 24px;max-width:1320px;margin:0 auto;position:relative}
     <h2 class="sec-title"><span class="count-big">35 名</span>のプロフェッショナルが集うチャプター</h2>
     <div class="divider-knot"><span class="line"></span><span class="center"></span><span class="line"></span></div>
     <p class="sec-lead">業種が重ならない 35 名のメンバーが、紹介を通じて<br>互いのビジネスを支え合っています。一覧をご覧ください。</p>
-    <a class="btn-secondary" href="../members.html">メンバー紹介を見る <span class="arrow">›</span></a>
+    <a class="btn-secondary" href="memberlist.html">メンバー紹介を見る <span class="arrow">›</span></a>
   </div>
 </div>
 
