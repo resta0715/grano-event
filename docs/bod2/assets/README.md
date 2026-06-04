@@ -21,15 +21,14 @@
 
 ### `audio/matsuri-bgm.mp3`
 
-- **Title**: O-Matsuribayashi (Festival Music) / お祭囃子
-- **Performer**: The Azuma Kabuki Musicians
-- **Source**: Internet Archive — `lp_nagauta-music-and-original-music-and-ar_the-azuma-kabuki-musicians`
-  ( https://archive.org/details/lp_nagauta-music-and-original-music-and-ar_the-azuma-kabuki-musicians )
-- **License**: Public Domain (1956 録音 Columbia Masterworks, 米国Public Domain)
-- **Duration**: 7:20 / 11.3MB / 128kbps MP3
+- **Title**: Japanese traditional festival
+- **Source**: Pixabay (ID 164421) — https://pixabay.com/music/upbeat-japanese-traditional-festival-164421/
+- **License**: [Pixabay Content License](https://pixabay.com/service/license-summary/) — 商用利用 OK / クレジット表記不要 / Web 埋め込み OK
+- **Duration**: 3:04 / 約 3.5MB / 160kbps MP3 (22.05 kHz, Joint Stereo)
 - **Use**: announcement.html / members.html の右下フローティング BGM ボタン
 
-> Pixabay の "Japanese traditional festival" (164421) を当初指定いただきましたが、Pixabay は
-> Cloudflare 保護で直接ダウンロード不可のため、Public Domain の同種音源で代替しています。
-> 差し替え希望の場合は手動で `audio/matsuri-bgm.mp3` を上書きしてください
-> （ファイル名そのままで HTML 側は変更不要）。
+> 当初 Pixabay は直 DL が Cloudflare 保護で 403 になり Internet Archive の Public Domain 代替
+> （The Azuma Kabuki Musicians, 1956）を一時採用していましたが、Playwright + Xvfb 経由で
+> 正規ページから取得できたため Pixabay 版に差し替え済みです。
+> 別のトラックに差し替えたい場合はファイル名 `audio/matsuri-bgm.mp3` のまま上書きしてください
+> （HTML 側の変更は不要）。
