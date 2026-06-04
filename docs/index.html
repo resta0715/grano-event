@@ -3,31 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BNI Grano Chapter</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-/* 外部フォント（Google Fonts）に依存しない — 会社Wi‑Fi等で fonts.googleapis.com が遮断されると表示が止まりがちなため */
-:root{font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif}
-body{font-family:inherit;background:#0F1B2D;min-height:100vh;display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased}
-.c{text-align:center;padding:40px 24px;max-width:520px;width:100%}
-.logo{font-family:inherit;font-size:13px;font-weight:600;letter-spacing:4px;color:#C8943E;text-transform:uppercase;margin-bottom:4px}
-.sub{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:3px;margin-bottom:56px;text-transform:uppercase}
-.links{display:flex;flex-direction:column;gap:12px}
-.link{
-  display:block;padding:20px 28px;background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);text-decoration:none;color:#fff;
-  font-weight:600;font-size:15px;text-align:left;
-  transition:all .3s;
-}
-.link:hover{background:rgba(255,255,255,.08);border-color:rgba(200,148,62,.3);transform:translateX(4px)}
-.link small{display:block;font-size:12px;color:rgba(255,255,255,.4);font-weight:400;margin-top:4px}
-.link .label{font-family:inherit;font-size:10px;font-weight:600;letter-spacing:2px;color:#C8943E;text-transform:uppercase;margin-bottom:4px;display:block}
-.ft{margin-top:56px;font-size:10px;color:rgba(255,255,255,.2);letter-spacing:2px;text-transform:uppercase}
-</style>
+<title>BNI Grano Chapter｜横浜セントラルリージョン</title>
+<meta name="description" content="BNI Grano Chapter — 横浜セントラルリージョン。35名のメンバーが、紹介で互いのビジネスを支え合うチャプター。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://resta0715.github.io/grano-event/">
 <meta property="og:title" content="BNI Grano Chapter｜横浜セントラルリージョン">
-<meta property="og:description" content="信頼関係を基盤にビジネスの成長を実現する33名のプロフェッショナル集団。">
+<meta property="og:description" content="35名のメンバーが、紹介で互いのビジネスを支え合うチャプター。">
 <meta property="og:image" content="https://resta0715.github.io/grano-event/ogp_announcement.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -35,28 +16,177 @@ body{font-family:inherit;background:#0F1B2D;min-height:100vh;display:flex;align-
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BNI Grano Chapter｜横浜セントラルリージョン">
-<meta name="twitter:description" content="信頼関係を基盤にビジネスの成長を実現する33名のプロフェッショナル集団。">
+<meta name="twitter:description" content="35名のメンバーが、紹介で互いのビジネスを支え合うチャプター。">
 <meta name="twitter:image" content="https://resta0715.github.io/grano-event/ogp_announcement.jpg">
-<meta name="description" content="BNI Grano Chapter — 33名のプロフェッショナルが在籍。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2845;
+  --navy-deep:#0A1424;
+  --navy-mid:#121A30;
+  --vermilion:#D94A38;
+  --gold:#D4A055;
+  --gold-light:#E8C078;
+  --cream:#F5EFE6;
+  --ff-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --ff-sans:"Noto Sans JP",system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+}
+html{font-size:17px}
+body{
+  font-family:var(--ff-sans);
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(217,74,56,.15), transparent 55%),
+    radial-gradient(ellipse at 80% 75%, rgba(212,160,85,.10), transparent 60%),
+    linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 55%, var(--navy) 100%);
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  -webkit-font-smoothing:antialiased;
+  color:var(--cream);
+  padding:48px 20px;
+  position:relative;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,.18) 1px, transparent 1px);
+  background-size:3px 3px,7px 7px;
+  background-position:0 0,1px 1px;
+  opacity:.4;mix-blend-mode:overlay;
+}
+
+.wrap{
+  position:relative;z-index:1;
+  text-align:center;
+  max-width:560px;width:100%;
+}
+.brand{
+  font-family:var(--ff-serif);
+  font-size:13px;font-weight:700;letter-spacing:8px;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:6px;
+}
+.region{
+  font-family:var(--ff-serif);
+  font-size:12px;letter-spacing:5px;
+  color:rgba(245,239,230,.55);
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.ja-name{
+  font-family:var(--ff-serif);
+  font-size:clamp(20px,2.4vw,28px);
+  font-weight:700;letter-spacing:.12em;
+  color:var(--cream);
+  margin-bottom:8px;
+}
+.ja-sub{
+  font-family:var(--ff-serif);
+  font-size:13px;letter-spacing:4px;
+  color:rgba(245,239,230,.6);
+  margin-bottom:56px;
+}
+
+.divider{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  max-width:280px;margin:0 auto 48px;
+}
+.divider .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.divider .knot{
+  width:14px;height:14px;border:1.5px solid var(--gold);border-radius:50%;
+  position:relative;
+}
+.divider .knot::before{
+  content:"";position:absolute;inset:3px;background:var(--gold);border-radius:50%;
+}
+
+.links{display:flex;flex-direction:column;gap:18px}
+.link{
+  display:block;
+  padding:24px 28px;
+  background:rgba(245,239,230,.04);
+  border:1px solid rgba(212,160,85,.22);
+  border-left:3px solid var(--vermilion);
+  text-decoration:none;
+  color:var(--cream);
+  text-align:left;
+  transition:all .3s ease;
+  border-radius:2px;
+}
+.link:hover{
+  background:rgba(245,239,230,.08);
+  border-left-color:var(--gold);
+  transform:translateX(4px);
+  box-shadow:0 6px 20px rgba(0,0,0,.25);
+}
+.link.gold{border-left-color:var(--gold)}
+.link.gold:hover{border-left-color:var(--vermilion)}
+.link-label{
+  font-family:var(--ff-serif);
+  font-size:10px;font-weight:700;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:8px;
+}
+.link.gold .link-label{color:var(--vermilion)}
+.link-title{
+  font-family:var(--ff-serif);
+  font-size:clamp(17px,2vw,22px);
+  font-weight:700;letter-spacing:.05em;
+  color:var(--cream);
+  line-height:1.45;
+  margin-bottom:6px;
+}
+.link-meta{
+  font-size:13px;
+  color:rgba(245,239,230,.6);
+  letter-spacing:.5px;
+}
+.link-arrow{
+  display:inline-block;
+  margin-top:14px;
+  font-family:var(--ff-serif);
+  font-size:13px;font-weight:600;letter-spacing:3px;
+  color:var(--gold);
+}
+.link.gold .link-arrow{color:var(--vermilion)}
+
+.footer{
+  margin-top:56px;
+  text-align:center;
+  font-size:10px;letter-spacing:3px;
+  color:rgba(245,239,230,.3);
+  text-transform:uppercase;
+}
+</style>
 </head>
 <body>
-<div class="c">
-  <div class="logo">BNI Grano</div>
-  <p class="sub">Yokohama Central Region</p>
+<div class="wrap">
+  <p class="brand">BNI Grano</p>
+  <p class="region">Yokohama Central Region</p>
+  <p class="ja-name">BNI Grano Chapter</p>
+  <p class="ja-sub">横浜セントラルリージョン</p>
+
+  <div class="divider"><span class="line"></span><span class="knot"></span><span class="line"></span></div>
+
   <div class="links">
-    <a class="link" href="announcement_page.html"><span class="label">Event</span>Business Open Day 2026<small>大人の文化祭 — 2026.5.27</small></a>
-    <a class="link" href="members.html"><span class="label">Members</span>メンバー紹介<small>33名のプロフェッショナル</small></a>
-    <a class="link" href="seating.html"><span class="label">Seating · 1部</span>第1部 席次表<small>会場レイアウト 4-2-4 × 7列</small></a>
-    <a class="link" href="seating.pdf" download><span class="label">Seating PDF · 1部</span>第1部 席次表（PDF）<small>LINE配布用 / A4横 1ページ</small></a>
-    <a class="link" href="seating2.html"><span class="label">Seating · 2部</span>第2部 円卓席次<small>8卓 × 7〜8名 / パターンA・B切替</small></a>
-    <a class="link" href="bod_part2_slide.html"><span class="label">Slide · 2部</span>第2部 開始スライド<small>プロジェクター投影用（16:9）</small></a>
-    <a class="link" href="visitor_categories_slide.html"><span class="label">Slide · ビジター</span>ビジター一覧（専門分野）<small>プロジェクター投影用 — 全員1枚（HTML）</small></a>
-    <a class="link" href="visitor_categories.pptx" download><span class="label">PPTX · ビジター</span>ビジター一覧（PowerPoint）<small>編集可能なパワポファイル</small></a>
-    <a class="link" href="flyer_a4.html"><span class="label">Flyer</span>チラシ（HTML）<small>印刷用A4フライヤー</small></a>
-    <a class="link" href="flyer_a4.jpg"><span class="label">Download</span>チラシ（JPG）<small>画像ダウンロード</small></a>
+    <a class="link" href="bod2/announcement.html">
+      <p class="link-label">Event · 2026</p>
+      <p class="link-title">第2回 Business Open Day<br>2026.8.26 水 — 大人の夏祭り</p>
+      <p class="link-meta">HOTEL PLUMM 横浜 / 10:00 — 15:00</p>
+      <span class="link-arrow">詳細・お申込み ›</span>
+    </a>
+    <a class="link gold" href="members.html">
+      <p class="link-label">Members</p>
+      <p class="link-title">メンバー紹介</p>
+      <p class="link-meta">業種が重ならない 35 名のプロフェッショナル</p>
+      <span class="link-arrow">35名のメンバーを見る ›</span>
+    </a>
   </div>
-  <p class="ft">Grano Chapter — Yokohama Central Region</p>
-  <p style="margin-top:20px"><a href="ube.html" style="font-size:11px;color:rgba(255,255,255,.35);text-decoration:none">宇部 メンバー紹介（略歴・G.A.I.N.S.）</a></p>
+
+  <p class="footer">Grano Chapter · Yokohama Central Region</p>
 </div>
 </body>
 </html>

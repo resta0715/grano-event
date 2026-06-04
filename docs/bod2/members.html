@@ -27,8 +27,8 @@
   --ff-sans: "Noto Sans JP", system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
   --ff-serif: "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
 }
-html{scroll-behavior:smooth;font-size:18px}
-@media(min-width:1200px){html{font-size:19px}}
+html{scroll-behavior:smooth;font-size:17px}
+@media(min-width:1200px){html{font-size:18px}}
 body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.7;font-size:.85rem}
 
 /* ============== PAGE HEADER (unified hero: 提灯ガーランド + 屋台 + 青海波) ============== */
@@ -85,25 +85,27 @@ body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit
 }
 .ph-yatai{
   position:absolute;left:0;right:0;bottom:0;width:100%;pointer-events:none;
-  z-index:1;opacity:.45;
-  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
-          mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+  z-index:1;opacity:.14;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, transparent 35%, rgba(0,0,0,.5) 65%, rgba(0,0,0,.8) 90%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0%, transparent 35%, rgba(0,0,0,.5) 65%, rgba(0,0,0,.8) 90%, transparent 100%);
 }
-.ph-yatai img{display:block;width:100%;height:auto;filter:drop-shadow(0 -8px 24px rgba(0,0,0,.6))}
+.ph-yatai img{display:block;width:100%;height:auto;filter:saturate(.6) blur(.5px)}
 .ph-seigaiha{position:absolute;width:clamp(160px,20vw,240px);pointer-events:none;z-index:1;opacity:.13}
 .ph-seigaiha img{width:100%;height:auto;display:block}
 .ph-seigaiha.bl{left:-30px;bottom:-30px;transform:rotate(8deg)}
 .ph-seigaiha.br{right:-30px;bottom:-30px;transform:rotate(-8deg) scaleX(-1)}
 
 .eyebrow{font-family:var(--ff-serif);font-size:clamp(11px,1.1vw,13px);letter-spacing:6px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:14px}
-.page-title{font-family:var(--ff-serif);font-size:clamp(28px,4vw,52px);font-weight:700;margin-bottom:14px;letter-spacing:.05em;line-height:1.4}
+.page-title{font-family:var(--ff-serif);font-size:clamp(24px,3vw,40px);font-weight:700;margin-bottom:14px;letter-spacing:.05em;line-height:1.4}
 .page-title em{font-style:normal;color:var(--amber)}
 .page-title .ja{
   display:block;font-family:var(--ff-serif);font-weight:700;
-  font-size:clamp(38px,7vw,96px);letter-spacing:.1em;
-  color:var(--red);
-  text-shadow:0 2px 0 rgba(0,0,0,.4), 0 0 32px rgba(217,74,56,.45);
-  margin-top:8px;line-height:1.05;
+  font-size:clamp(36px,5.5vw,72px);letter-spacing:.16em;
+  background:linear-gradient(180deg, var(--amber-light) 0%, var(--amber) 55%, #B8862F 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) drop-shadow(0 0 18px rgba(212,160,85,.35));
+  margin-top:8px;line-height:1.1;
 }
 .event-date{font-family:var(--ff-serif);font-size:clamp(16px,1.8vw,20px);color:rgba(255,255,255,.78);letter-spacing:4px;margin-bottom:22px;font-weight:500}
 .member-only-badge{display:inline-block;padding:8px 18px;background:rgba(200,148,62,.18);border:1px solid rgba(200,148,62,.5);color:var(--amber);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:2px}

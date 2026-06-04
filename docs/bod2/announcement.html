@@ -41,14 +41,14 @@
   --ff-serif: "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho","Times New Roman",serif;
   --ff-display: "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
 }
-html{scroll-behavior:smooth;font-size:18px}
-@media(min-width:1200px){html{font-size:19px}}
+html{scroll-behavior:smooth;font-size:17px}
+@media(min-width:1200px){html{font-size:18px}}
 body{
   font-family:var(--ff-sans);
   background:var(--cream-paper);
   color:var(--ink);
   -webkit-font-smoothing:antialiased;
-  line-height:1.8;
+  line-height:1.85;
   font-size:1rem;
   font-weight:400;
 }
@@ -97,28 +97,28 @@ body{
   z-index:1;
 }
 
-/* 屋台シルエット（下部フルブリード） */
+/* 屋台シルエット（背景中央〜下方にうっすらフェード、夏祭り感を抑える） */
 .hero-yatai{
-  position:absolute;left:0;right:0;bottom:0;
+  position:absolute;left:0;right:0;bottom:-5%;
   width:100%;
   pointer-events:none;
   z-index:1;
-  opacity:.55;
-  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
-          mask-image:linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+  opacity:.12;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, transparent 35%, rgba(0,0,0,.4) 65%, rgba(0,0,0,.7) 88%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0%, transparent 35%, rgba(0,0,0,.4) 65%, rgba(0,0,0,.7) 88%, transparent 100%);
 }
 .hero-yatai img{
   display:block;width:100%;height:auto;
-  filter:drop-shadow(0 -8px 24px rgba(0,0,0,.6));
+  filter:saturate(.6) blur(.5px);
 }
 
-/* 右上の花火（screen blend） */
+/* 右上の花火（極小・極薄、ほんのり夏祭り味付け） */
 .hero-hanabi{
-  position:absolute;top:8%;right:-4%;
-  width:clamp(240px, 32vw, 520px);
+  position:absolute;top:10%;right:2%;
+  width:clamp(80px, 9vw, 140px);
   pointer-events:none;
   z-index:1;
-  opacity:.3;
+  opacity:.16;
   mix-blend-mode:screen;
 }
 .hero-hanabi img{width:100%;height:auto;display:block}
@@ -135,51 +135,60 @@ body{
 .hero-seigaiha.bl{left:-30px;bottom:-30px;transform:rotate(8deg)}
 .hero-seigaiha.br{right:-30px;bottom:-30px;transform:rotate(-8deg) scaleX(-1)}
 
-/* 提灯ガーランド (アセット画像、上から吊り下がる) */
+/* 提灯ガーランド (4+4 で左右に分けて中央を空ける／モック準拠) */
 .lantern-garland{
-  position:absolute;top:0;left:0;right:0;
+  position:absolute;top:64px;left:0;right:0;
   display:flex;justify-content:space-between;align-items:flex-start;
-  padding:0 clamp(8px, 3vw, 56px);
+  padding:0 clamp(6px, 2.5vw, 30px);
   pointer-events:none;
   z-index:3;
 }
-/* 紐 */
 .lantern-garland::before{
-  content:"";position:absolute;left:4%;right:4%;top:14px;
+  content:"";position:absolute;left:3%;right:3%;top:6px;
   height:2px;
-  background:linear-gradient(90deg, transparent, rgba(212,160,85,.5) 8%, rgba(212,160,85,.5) 92%, transparent);
+  background:linear-gradient(90deg, transparent, rgba(212,160,85,.4) 6%, rgba(212,160,85,.4) 94%, transparent);
   border-radius:1px;
   filter:drop-shadow(0 1px 0 rgba(0,0,0,.4));
+}
+.lantern-group{
+  display:flex;gap:clamp(2px, .8vw, 10px);align-items:flex-start;
 }
 .lantern-item{
   position:relative;
   display:flex;flex-direction:column;align-items:center;
-  width:clamp(70px, 11vw, 140px);
+  width:clamp(48px, 6.5vw, 88px);
   transform-origin:top center;
   animation:lantern-sway 5s ease-in-out infinite;
 }
 .lantern-item img{
   width:100%;height:auto;display:block;
-  filter:drop-shadow(0 6px 18px rgba(217,74,56,.45));
+  filter:drop-shadow(0 5px 14px rgba(217,74,56,.35));
 }
-.lantern-item.s{width:clamp(56px, 8.5vw, 110px)}
-.lantern-item.m{width:clamp(64px, 10vw, 125px)}
-.lantern-item.l{width:clamp(80px, 12vw, 150px)}
+.lantern-item.s{width:clamp(40px, 5vw, 68px)}
+.lantern-item.m{width:clamp(48px, 6vw, 84px)}
+.lantern-item.l{width:clamp(58px, 7.5vw, 104px)}
 .lantern-item:nth-child(1){animation-delay:0s}
 .lantern-item:nth-child(2){animation-delay:.4s}
 .lantern-item:nth-child(3){animation-delay:.8s}
 .lantern-item:nth-child(4){animation-delay:.2s}
-.lantern-item:nth-child(5){animation-delay:.6s}
-.lantern-item:nth-child(6){animation-delay:1s}
+.lantern-group.lantern-right .lantern-item:nth-child(1){animation-delay:.6s}
+.lantern-group.lantern-right .lantern-item:nth-child(2){animation-delay:1s}
+.lantern-group.lantern-right .lantern-item:nth-child(3){animation-delay:.3s}
+.lantern-group.lantern-right .lantern-item:nth-child(4){animation-delay:.7s}
 @keyframes lantern-sway{
   0%,100%{transform:rotate(-2.5deg)}
   50%{transform:rotate(2.5deg)}
 }
+@media(max-width:720px){
+  /* モバイルでは内側2個を隠して 2+2 に */
+  .lantern-group .lantern-item:nth-child(3),
+  .lantern-group .lantern-item:nth-child(4){display:none}
+}
 @media(max-width:560px){
   .lantern-garland{padding:0 4px}
-  .lantern-item.s{width:46px}
-  .lantern-item.m{width:54px}
-  .lantern-item.l{width:62px}
+  .lantern-item.s{width:38px}
+  .lantern-item.m{width:46px}
+  .lantern-item.l{width:54px}
 }
 
 /* ヒーロー本体コンテンツ */
@@ -207,15 +216,20 @@ body{
 }
 .hero-title-en{
   font-family:var(--ff-display);
-  font-size:clamp(48px, 9vw, 140px);
+  font-size:clamp(40px, 6vw, 96px);
   font-weight:500;
-  line-height:1.02;
+  line-height:1.08;
   letter-spacing:.01em;
   color:var(--cream);
   margin-bottom:8px;
   opacity:0;animation:fadeIn .9s ease .5s forwards;
 }
-.hero-title-en .year{color:var(--vermilion);font-weight:700}
+.hero-title-en .year{
+  color:var(--vermilion);font-weight:700;
+  font-size:.7em;letter-spacing:.02em;
+  vertical-align:.05em;margin-left:.1em;
+  text-shadow:0 0 24px rgba(217,74,56,.3);
+}
 .hero-divider{
   display:flex;align-items:center;justify-content:center;gap:18px;
   margin:24px 0 28px;
@@ -231,18 +245,22 @@ body{
 }
 .hero-title-ja{
   font-family:var(--ff-display);
-  font-size:clamp(64px, 12vw, 180px);
+  font-size:clamp(48px, 7vw, 108px);
   font-weight:700;
-  letter-spacing:.1em;
-  color:var(--vermilion);
+  letter-spacing:.18em;
   margin:0 auto 24px;
-  padding-left:.1em;
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.4),
-    0 0 32px rgba(217,74,56,.45),
-    0 0 80px rgba(217,74,56,.25);
-  line-height:1.05;
+  padding-left:.18em;
+  white-space:nowrap;
+  line-height:1.08;
+  /* モック準拠: 朱赤 → 金色グラデーション */
+  background:linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 55%, #B8862F 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) drop-shadow(0 0 24px rgba(212,160,85,.35));
   opacity:0;animation:fadeIn 1s ease .8s forwards;
+}
+@media(max-width:560px){
+  .hero-title-ja{letter-spacing:.12em;padding-left:.12em}
 }
 .hero-sub{
   font-family:var(--ff-serif);
@@ -254,7 +272,7 @@ body{
 }
 .hero-date{
   font-family:var(--ff-display);
-  font-size:clamp(40px, 6vw, 96px);
+  font-size:clamp(28px, 4vw, 56px);
   font-weight:700;
   letter-spacing:.04em;
   margin-bottom:18px;
@@ -262,7 +280,7 @@ body{
   background:linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 55%, #B8862F 100%);
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 4px 14px rgba(212,160,85,.4));
+  filter:drop-shadow(0 3px 10px rgba(212,160,85,.3));
   opacity:0;animation:fadeIn .9s ease 1.1s forwards;
 }
 .hero-date .sep{color:var(--vermilion);-webkit-text-fill-color:var(--vermilion);margin:0 .12em}
@@ -293,6 +311,71 @@ body{
 .btn-primary:active{transform:translateY(1px);box-shadow:0 6px 0 var(--vermilion-deep), 0 12px 26px rgba(217,74,56,.4)}
 .btn-primary .arrow{font-size:1.05em;line-height:1;font-weight:400}
 
+/* セカンダリ CTA: 和モダン金枠（メンバー紹介ボタン用） */
+.btn-secondary{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:54px;padding:14px 36px;
+  background:transparent;
+  color:var(--navy);
+  text-decoration:none;
+  font-weight:700;
+  font-size:clamp(14px, 1.4vw, 16px);
+  letter-spacing:.14em;
+  border-radius:2px;
+  border:1.5px solid var(--gold);
+  font-family:var(--ff-serif);
+  transition:background .3s ease, color .3s ease, transform .25s ease, box-shadow .25s ease;
+  box-shadow:0 4px 0 var(--gold);
+  cursor:pointer;
+}
+.btn-secondary:hover{
+  background:var(--gold);
+  color:var(--navy-deep);
+  transform:translateY(-2px);
+  box-shadow:0 6px 0 var(--vermilion-deep);
+}
+.btn-secondary:active{transform:translateY(1px);box-shadow:0 2px 0 var(--gold)}
+.btn-secondary .arrow{font-size:1.1em;line-height:1;font-weight:400}
+
+/* 縦書きキャリグラフィ（モック右側相当） */
+.hero-calligraphy{
+  position:absolute;
+  right:clamp(16px, 3.5vw, 56px);
+  top:50%;
+  transform:translateY(-50%);
+  writing-mode:vertical-rl;
+  -webkit-writing-mode:vertical-rl;
+  text-orientation:upright;
+  font-family:var(--ff-display);
+  font-size:clamp(13px, 1.3vw, 16px);
+  letter-spacing:.5em;
+  color:rgba(245,239,230,.78);
+  font-weight:500;
+  z-index:4;
+  pointer-events:none;
+  opacity:0;animation:fadeIn 1.2s ease 1.6s forwards;
+  text-shadow:0 0 18px rgba(212,160,85,.4), 0 1px 0 rgba(0,0,0,.4);
+  line-height:1.4;
+}
+.hero-calligraphy .calligraphy-seal{
+  writing-mode:horizontal-tb;
+  -webkit-writing-mode:horizontal-tb;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;
+  background:var(--vermilion);color:var(--cream);
+  border:1.5px double var(--cream);
+  outline:1.5px solid var(--vermilion);
+  outline-offset:-3px;
+  font-family:var(--ff-display);
+  font-size:13px;font-weight:900;letter-spacing:0;
+  margin-top:14px;
+  transform:rotate(-6deg);
+  box-shadow:1px 2px 4px rgba(0,0,0,.25);
+}
+@media(max-width:1024px){
+  .hero-calligraphy{display:none}
+}
+
 @keyframes fadeIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
 /* ============== FEATURE PILLS (4 項目) ============== */
@@ -316,26 +399,26 @@ body{
 }
 .feature-icon{
   display:flex;align-items:center;justify-content:center;
-  width:clamp(72px, 9vw, 108px);height:clamp(72px, 9vw, 108px);
-  margin:0 auto 18px;
+  width:clamp(64px, 7vw, 88px);height:clamp(64px, 7vw, 88px);
+  margin:0 auto 14px;
   border:1.5px solid var(--gold);
   border-radius:50%;
-  font-size:clamp(28px, 3.4vw, 40px);
+  font-size:clamp(24px, 2.6vw, 32px);
   background:radial-gradient(circle, rgba(212,160,85,.12), rgba(212,160,85,.02));
-  box-shadow:0 4px 18px rgba(0,0,0,.35), inset 0 0 0 5px rgba(212,160,85,.06);
+  box-shadow:0 4px 14px rgba(0,0,0,.32), inset 0 0 0 4px rgba(212,160,85,.06);
   position:relative;
 }
 .feature-icon::after{
-  content:"";position:absolute;inset:-6px;border:1px solid rgba(212,160,85,.25);border-radius:50%;
+  content:"";position:absolute;inset:-5px;border:1px solid rgba(212,160,85,.22);border-radius:50%;
 }
 .feature-title{
   font-family:var(--ff-serif);
-  font-size:clamp(17px, 1.8vw, 22px);
+  font-size:clamp(15px, 1.5vw, 18px);
   font-weight:700;color:var(--cream);
-  margin-bottom:8px;letter-spacing:.06em;
+  margin-bottom:6px;letter-spacing:.06em;
 }
 .feature-desc{
-  font-size:clamp(12px, 1.1vw, 14px);
+  font-size:clamp(11px, 1vw, 13px);
   color:rgba(245,239,230,.62);
   letter-spacing:.02em;
   line-height:1.7;
@@ -351,9 +434,9 @@ section{padding:100px 24px;max-width:1080px;margin:0 auto;position:relative}
 .sec-label::before,.sec-label::after{content:"";height:1px;width:44px;background:var(--gold)}
 .sec-title{
   font-family:var(--ff-display);
-  font-size:clamp(28px, 4vw, 56px);font-weight:700;
+  font-size:clamp(24px, 3vw, 44px);font-weight:700;
   text-align:center;margin-bottom:18px;
-  color:var(--navy);letter-spacing:.08em;line-height:1.35;
+  color:var(--navy);letter-spacing:.08em;line-height:1.4;
 }
 .sec-title .em{color:var(--vermilion)}
 .sec-lead{
@@ -617,6 +700,25 @@ section{padding:100px 24px;max-width:1080px;margin:0 auto;position:relative}
 }
 .info-block .map-btn:hover{background:var(--vermilion-deep)}
 
+/* MEMBERS CTA セクション（ビジター向け動線） */
+.members-cta-section{
+  background:linear-gradient(180deg, var(--cream-paper) 0%, var(--cream) 100%);
+  padding:80px 24px 90px;
+  text-align:center;
+  position:relative;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.members-cta-inner{max-width:760px;margin:0 auto}
+.members-cta-section .sec-lead{margin-bottom:32px}
+.members-cta-section .count-big{
+  font-family:var(--ff-display);
+  font-size:1.15em;
+  color:var(--vermilion);
+  font-weight:900;
+  letter-spacing:.02em;
+}
+
 /* CTA */
 .cta-section{
   text-align:center;padding:90px 24px;
@@ -704,20 +806,27 @@ section{padding:100px 24px;max-width:1080px;margin:0 auto;position:relative}
     <a href="#concept">Concept</a>
     <a href="#schedule">流れ</a>
     <a href="#info">開催概要</a>
+    <a href="../members.html">メンバー紹介</a>
     <a href="index.html">Hub</a>
   </div>
 </nav>
 
 <!-- ============== HERO ============== -->
 <header class="hero">
-  <!-- 提灯ガーランド（6個・外側→内側：navy橘 / orange九曜 / red三つ巴 / red三つ巴 / orange九曜 / navy橘） -->
+  <!-- 提灯ガーランド（左右に 4 個ずつ・中央を空ける／モック準拠） -->
   <div class="lantern-garland" aria-hidden="true">
-    <div class="lantern-item s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
-    <div class="lantern-item m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-    <div class="lantern-item l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
-    <div class="lantern-item l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
-    <div class="lantern-item m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-    <div class="lantern-item s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+    <div class="lantern-group lantern-left">
+      <div class="lantern-item s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+      <div class="lantern-item m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
+      <div class="lantern-item l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
+      <div class="lantern-item m"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+    </div>
+    <div class="lantern-group lantern-right">
+      <div class="lantern-item m"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+      <div class="lantern-item l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
+      <div class="lantern-item m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
+      <div class="lantern-item s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+    </div>
   </div>
 
   <!-- 右上の花火（screen blend） -->
@@ -746,6 +855,9 @@ section{padding:100px 24px;max-width:1080px;margin:0 auto;position:relative}
       <a class="btn-primary" href="https://liff.line.me/2006557015-NBnEmorX/top/list?liff_id=2006557015-NBnEmorX&amp;group_id=105560" target="_blank" rel="noopener">LINE公式よりお申込み <span class="arrow">›</span></a>
     </div>
   </div>
+
+  <!-- 縦書きキャリグラフィ（モック右側相当） -->
+  <div class="hero-calligraphy" aria-hidden="true">ご縁が彩る、大人の特別な一日<span class="calligraphy-seal">縁</span></div>
 </header>
 
 <!-- ============== FEATURE PILLS (4 項目) ============== -->
@@ -773,6 +885,17 @@ section{padding:100px 24px;max-width:1080px;margin:0 auto;position:relative}
     </div>
   </div>
 </section>
+
+<!-- ============== MEMBERS CTA (ビジター動線) ============== -->
+<div class="members-cta-section fade">
+  <div class="members-cta-inner">
+    <p class="sec-label">MEMBERS</p>
+    <h2 class="sec-title"><span class="count-big">35 名</span>のプロフェッショナルが集うチャプター</h2>
+    <div class="divider-knot"><span class="line"></span><span class="center"></span><span class="line"></span></div>
+    <p class="sec-lead">業種が重ならない 35 名のメンバーが、紹介を通じて<br>互いのビジネスを支え合っています。一覧をご覧ください。</p>
+    <a class="btn-secondary" href="../members.html">メンバー紹介を見る <span class="arrow">›</span></a>
+  </div>
+</div>
 
 <!-- ============== CONCEPT ============== -->
 <div class="concept" id="concept">
