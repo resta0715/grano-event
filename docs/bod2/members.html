@@ -70,14 +70,7 @@ body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit
   display:block;width:100%;height:auto;
   user-select:none;-webkit-user-drag:none;
 }
-@media(min-width:1600px){
-  .ph-mock-img{
-    width:100%;
-    max-height:78vh;
-    object-fit:cover;
-    object-position:center center;
-  }
-}
+/* 超ワイド PC でもクロップせず画像全体を表示（下端の「2026.8.26 水」を確実に見せる） */
 /* legacy theme override (no-op: 画像にすでに「大人の夏祭り」焼き込み済) */
 .ph-theme-override{display:none !important}
 /* メンバー専用バンド：画像下端に重ねる金色バー */
