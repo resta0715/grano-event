@@ -63,14 +63,93 @@ body{
 }
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(27,40,69,.97);backdrop-filter:blur(12px);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:60px;border-bottom:1px solid rgba(212,160,85,.2)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,16,30,.78);backdrop-filter:blur(14px);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:60px;border-bottom:1px solid rgba(212,160,85,.18)}
+.nav.nav-on-hero{background:linear-gradient(180deg, rgba(8,14,26,.85) 0%, rgba(8,14,26,.55) 70%, rgba(8,14,26,0) 100%);backdrop-filter:blur(6px);border-bottom:none}
 .nav-logo{font-family:var(--ff-serif);font-size:14px;font-weight:700;letter-spacing:4px;color:var(--gold);text-decoration:none}
 .nav-logo .accent{color:var(--vermilion)}
 .nav-links{display:flex;gap:24px;flex-wrap:wrap}
 .nav-links a{color:rgba(245,239,230,.65);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;transition:color .3s}
 .nav-links a:hover,.nav-links a.active{color:var(--gold)}
 
-/* ============== HERO (image-asset based) ============== */
+/* ============== HERO (mockup image, full-bleed) ============== */
+.hero-mock{
+  position:relative;
+  display:block;
+  width:100%;
+  background:#0A1424;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-mock-img{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+/* テーマ表記オーバーライド（画像内の「文化祭」を消した位置に「夏祭り」を描画） */
+.hero-theme-override{
+  position:absolute;
+  left:50%;
+  top:61.85%; /* 画像内の元「大人の文化祭」中心 (y=287/H=464) */
+  transform:translate(-50%, -50%);
+  font-family:var(--ff-display);
+  font-weight:600;
+  color:#E8C078;
+  letter-spacing:.22em;
+  padding-left:.22em;
+  white-space:nowrap;
+  font-size:clamp(1.6rem, 4.6vw, 4rem);
+  line-height:1;
+  text-shadow:
+    0 2px 14px rgba(232,192,120,.45),
+    0 0 28px rgba(232,192,120,.25),
+    0 1px 0 rgba(0,0,0,.7);
+  pointer-events:none;
+  z-index:5;
+}
+/* CTA を画像下部に重ねる（ロケーションは vw に応じて画像内 4 タブの上に） */
+.hero-mock-cta-wrap{
+  position:absolute;
+  left:0;right:0;
+  bottom:clamp(8px, 1.4vw, 22px);
+  display:flex;justify-content:center;
+  z-index:6;
+  pointer-events:none;
+}
+.hero-mock-cta-wrap > *{pointer-events:auto}
+.hero-mock-cta-wrap .btn-primary{
+  min-height:54px;
+  padding:14px 32px;
+  font-size:clamp(13px, 1.15vw, 16px);
+  letter-spacing:.18em;
+  box-shadow:0 6px 0 var(--vermilion-deep), 0 14px 32px rgba(217,74,56,.55), inset 0 1px 0 rgba(255,255,255,.22);
+}
+@media(max-width:720px){
+  .hero-mock-cta-wrap{bottom:6px}
+  .hero-mock-cta-wrap .btn-primary{
+    min-height:46px;padding:10px 18px;font-size:11px;letter-spacing:.12em;
+  }
+}
+/* スクロールガイド（CTA より上） */
+.hero-mock-scroll{
+  position:absolute;
+  left:50%;
+  bottom:clamp(70px, 7vw, 100px);
+  transform:translateX(-50%);
+  display:none;
+  font-family:var(--ff-serif);
+  color:rgba(245,239,230,.78);
+  font-size:11px;letter-spacing:.45em;
+  z-index:5;
+  pointer-events:none;
+}
+@media(min-width:1280px){
+  .hero-mock-scroll{display:inline-block;animation:fadeIn 1.2s ease 1.2s forwards;opacity:0;}
+}
+
+/* ============== HERO (image-asset based, legacy/unused) ============== */
 .hero{
   min-height:86vh;
   display:flex;align-items:center;justify-content:center;
@@ -431,75 +510,84 @@ body{
 /* ============== FEATURE PILLS (4 項目) ============== */
 .features{
   background:linear-gradient(180deg, #0A1424 0%, #121A30 100%);
-  padding:90px 24px 110px;
+  padding:120px 24px 140px;
   position:relative;
   border-bottom:3px double rgba(212,160,85,.35);
 }
-@media(max-width:720px){.features{padding:60px 20px 70px}}
+@media(max-width:720px){.features{padding:64px 20px 76px}}
 .features-grid{
   display:grid;grid-template-columns:repeat(4, 1fr);
-  gap:36px;
-  max-width:1180px;margin:0 auto;
+  gap:48px;
+  max-width:1320px;margin:0 auto;
 }
-@media(max-width:960px){.features-grid{grid-template-columns:repeat(2, 1fr);gap:28px}}
-@media(max-width:520px){.features-grid{grid-template-columns:1fr;gap:20px;max-width:420px}}
+@media(max-width:960px){.features-grid{grid-template-columns:repeat(2, 1fr);gap:36px}}
+@media(max-width:520px){.features-grid{grid-template-columns:1fr;gap:24px;max-width:420px}}
 .feature{
   text-align:center;
-  padding:12px 16px;
+  padding:14px 18px;
   color:var(--cream);
 }
 .feature-icon{
   display:flex;align-items:center;justify-content:center;
-  width:clamp(76px, 8vw, 104px);height:clamp(76px, 8vw, 104px);
-  margin:0 auto 18px;
+  width:clamp(88px, 8.4vw, 116px);height:clamp(88px, 8.4vw, 116px);
+  margin:0 auto 22px;
   border:1.5px solid var(--gold);
   border-radius:50%;
-  font-size:clamp(28px, 2.8vw, 38px);
+  font-size:clamp(32px, 3.2vw, 44px);
   background:radial-gradient(circle, rgba(212,160,85,.12), rgba(212,160,85,.02));
   box-shadow:0 4px 14px rgba(0,0,0,.32), inset 0 0 0 4px rgba(212,160,85,.06);
   position:relative;
 }
 .feature-icon::after{
-  content:"";position:absolute;inset:-6px;border:1px solid rgba(212,160,85,.24);border-radius:50%;
+  content:"";position:absolute;inset:-7px;border:1px solid rgba(212,160,85,.24);border-radius:50%;
 }
 .feature-title{
   font-family:var(--ff-serif);
-  font-size:clamp(17px, 1.6vw, 22px);
+  font-size:clamp(1.15rem, 1.7vw, 1.5rem);
   font-weight:700;color:var(--cream);
-  margin-bottom:10px;letter-spacing:.1em;
+  margin-bottom:14px;letter-spacing:.12em;
 }
 .feature-desc{
-  font-size:clamp(13px, 1.1vw, 16px);
-  color:rgba(245,239,230,.7);
+  font-family:var(--ff-serif);
+  font-size:clamp(0.95rem, 1.2vw, 1.1rem);
+  color:rgba(245,239,230,.78);
   letter-spacing:.04em;
-  line-height:1.85;
+  line-height:1.95;
 }
 
 /* SECTION COMMON */
-section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
-@media(max-width:720px){section{padding:80px 20px}}
+section{padding:160px 24px;max-width:1320px;margin:0 auto;position:relative}
+@media(max-width:720px){section{padding:88px 20px}}
 .sec-label{
   display:flex;align-items:center;justify-content:center;gap:18px;
-  font-family:var(--ff-serif);font-size:clamp(14px,1.2vw,19px);font-weight:600;letter-spacing:.5em;
-  color:var(--vermilion);text-transform:uppercase;margin-bottom:22px;
-  padding-left:.5em;
+  font-family:var(--ff-serif);
+  font-size:clamp(1.05rem, 1.4vw, 1.35rem);font-weight:600;letter-spacing:.55em;
+  color:var(--vermilion);text-transform:uppercase;margin-bottom:30px;
+  padding-left:.55em;
 }
-.sec-label::before,.sec-label::after{content:"";height:1px;width:56px;background:var(--gold)}
+.sec-label::before,.sec-label::after{content:"";height:1.5px;width:84px;background:var(--gold)}
 .sec-title{
   font-family:var(--ff-display);
-  font-size:clamp(2rem, 5vw, 4rem);font-weight:600;
-  text-align:center;margin-bottom:22px;
-  color:var(--navy);letter-spacing:.18em;line-height:1.4;
+  font-size:clamp(2.8rem, 5.6vw, 4.8rem);font-weight:600;
+  text-align:center;margin-bottom:30px;
+  color:var(--navy);letter-spacing:.18em;line-height:1.32;
   padding-left:.18em;
 }
 @media(max-width:720px){
-  .sec-title{font-size:clamp(1.6rem, 6.5vw, 2.2rem);letter-spacing:.12em;padding-left:.12em}
+  .sec-title{font-size:clamp(1.85rem, 7.2vw, 2.6rem);letter-spacing:.12em;padding-left:.12em;margin-bottom:20px}
+  .sec-label{font-size:13px;letter-spacing:.4em;margin-bottom:18px}
+  .sec-label::before,.sec-label::after{width:36px}
 }
 .sec-title .em{color:var(--vermilion)}
 .sec-lead{
   text-align:center;color:var(--ink-sub);
-  font-size:clamp(16px,1.6vw,21px);line-height:1.95;max-width:840px;margin:0 auto 56px;
+  font-family:var(--ff-serif);
+  font-size:clamp(1.2rem, 1.8vw, 1.5rem);line-height:2.0;max-width:880px;margin:0 auto 64px;
   letter-spacing:.04em;
+  font-weight:500;
+}
+@media(max-width:720px){
+  .sec-lead{font-size:clamp(15px, 4.4vw, 17px);line-height:1.9;margin-bottom:36px}
 }
 
 /* SEAL (朱印) */
@@ -524,12 +612,12 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
 /* ====== ACHIEVEMENT SECTION (第1回 実績) ====== */
 .achievement{
   background:linear-gradient(180deg, var(--cream-paper) 0%, var(--cream) 100%);
-  padding:120px 24px 130px;
+  padding:140px 24px 150px;
   position:relative;overflow:hidden;
   border-top:6px solid var(--vermilion);
   border-bottom:6px solid var(--vermilion);
 }
-@media(max-width:720px){.achievement{padding:80px 20px}}
+@media(max-width:720px){.achievement{padding:88px 20px}}
 .achievement::before{
   content:"";position:absolute;inset:6px 0;
   background-image:repeating-linear-gradient(90deg,
@@ -646,10 +734,10 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
 .ach-footnote span b{color:var(--navy);font-weight:600}
 
 /* CONCEPT */
-.concept{background:var(--cream-paper);padding:128px 24px}
-@media(max-width:720px){.concept{padding:80px 20px}}
-.concept-inner{max-width:920px;margin:0 auto;text-align:center}
-.concept p{font-family:var(--ff-serif);font-size:clamp(17px,1.7vw,22px);line-height:2.15;color:var(--ink-sub);margin-bottom:24px}
+.concept{background:var(--cream-paper);padding:160px 24px}
+@media(max-width:720px){.concept{padding:88px 20px}}
+.concept-inner{max-width:980px;margin:0 auto;text-align:center}
+.concept p{font-family:var(--ff-serif);font-size:clamp(1.2rem, 1.8vw, 1.55rem);line-height:2.2;color:var(--ink-sub);margin-bottom:28px;font-weight:500}
 .concept strong{color:var(--navy);font-weight:700}
 
 /* DIVIDER (mizuhiki feel) */
@@ -667,62 +755,62 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
 }
 
 /* PILLARS */
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:1120px;margin:0 auto}
-@media(max-width:720px){.pillars{grid-template-columns:1fr;max-width:520px;gap:20px}}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;max-width:1320px;margin:0 auto}
+@media(max-width:720px){.pillars{grid-template-columns:1fr;max-width:540px;gap:24px}}
 .pillar{
   background:var(--cream-paper);
   border:1px solid var(--border);
-  border-top:4px solid var(--vermilion);
-  padding:48px 36px 44px;
+  border-top:5px solid var(--vermilion);
+  padding:60px 44px 56px;
   text-align:center;
   border-radius:2px;
-  box-shadow:0 6px 30px rgba(27,40,69,.06);
+  box-shadow:0 8px 36px rgba(27,40,69,.08);
 }
-@media(max-width:720px){.pillar{padding:32px 24px}}
+@media(max-width:720px){.pillar{padding:36px 24px}}
 .pillar:nth-child(2){border-top-color:var(--gold)}
 .pillar:nth-child(3){border-top-color:var(--navy)}
 .pillar-num{
   font-family:var(--ff-display);
-  font-size:clamp(34px,3.4vw,46px);color:var(--vermilion);font-weight:700;
-  margin-bottom:14px;line-height:1;
+  font-size:clamp(40px,4vw,56px);color:var(--vermilion);font-weight:700;
+  margin-bottom:18px;line-height:1;
 }
 .pillar:nth-child(2) .pillar-num{color:var(--gold)}
 .pillar:nth-child(3) .pillar-num{color:var(--navy)}
 .pillar-title{
   font-family:var(--ff-display);
-  font-size:clamp(1.3rem,2.2vw,1.7rem);color:var(--navy);font-weight:700;
-  margin-bottom:16px;
-  letter-spacing:.04em;line-height:1.5;
+  font-size:clamp(1.5rem, 2.4vw, 2rem);color:var(--navy);font-weight:600;
+  margin-bottom:20px;
+  letter-spacing:.08em;line-height:1.5;
 }
-.pillar-desc{font-size:clamp(15px,1.4vw,18px);color:var(--ink-sub);line-height:1.95;letter-spacing:.02em}
+.pillar-desc{font-family:var(--ff-serif);font-size:clamp(1rem, 1.4vw, 1.2rem);color:var(--ink-sub);line-height:2.0;letter-spacing:.02em}
 
 /* SCHEDULE */
 .schedule-section{background:var(--cream)}
 .sched-wrap{
-  max-width:760px;margin:0 auto;
+  max-width:880px;margin:0 auto;
   background:var(--cream-paper);
   border:1px solid var(--border);
   border-radius:2px;
-  padding:48px 56px;
-  box-shadow:0 6px 30px rgba(27,40,69,.06);
+  padding:60px 64px;
+  box-shadow:0 8px 36px rgba(27,40,69,.08);
 }
-@media(max-width:720px){.sched-wrap{padding:28px 24px}}
-.sched-item{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px dashed var(--border);align-items:baseline}
+@media(max-width:720px){.sched-wrap{padding:32px 24px}}
+.sched-item{display:grid;grid-template-columns:140px 1fr;gap:28px;padding:26px 0;border-bottom:1px dashed var(--border);align-items:baseline}
 .sched-item:last-child{border-bottom:none}
 .sched-time{
   font-family:var(--ff-display);
-  font-size:clamp(24px,2.6vw,34px);font-weight:700;color:var(--vermilion);
+  font-size:clamp(1.6rem, 2.6vw, 2.1rem);font-weight:700;color:var(--vermilion);
   text-align:right;
   letter-spacing:.02em;
 }
-.sched-desc{font-size:clamp(17px,1.5vw,20px);font-weight:500;color:var(--navy);letter-spacing:.04em}
-.sched-desc .tag{font-size:12px;color:var(--ink-muted);font-weight:500;margin-left:10px;background:var(--paper-shadow);padding:3px 10px;border-radius:2px;letter-spacing:.1em}
+.sched-desc{font-family:var(--ff-serif);font-size:clamp(1.05rem, 1.5vw, 1.3rem);font-weight:600;color:var(--navy);letter-spacing:.05em;line-height:1.7}
+.sched-desc .tag{font-family:var(--ff-sans);font-size:13px;color:var(--ink-muted);font-weight:500;margin-left:14px;background:var(--paper-shadow);padding:5px 12px;border-radius:2px;letter-spacing:.1em;vertical-align:middle}
 
 /* INFO */
 .info-section{
-  background:var(--navy);color:var(--cream);padding:128px 24px;position:relative;overflow:hidden;
+  background:var(--navy);color:var(--cream);padding:160px 24px;position:relative;overflow:hidden;
 }
-@media(max-width:720px){.info-section{padding:80px 20px}}
+@media(max-width:720px){.info-section{padding:88px 20px}}
 .info-section::before{
   content:"";position:absolute;inset:0;opacity:.4;
   background-image:
@@ -734,32 +822,32 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
 .info-section .sec-label{color:var(--gold)}
 .info-section .sec-label::before,.info-section .sec-label::after{background:var(--gold)}
 .info-section .sec-title{color:var(--cream)}
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:1180px;margin:0 auto;position:relative;z-index:1}
 @media(max-width:600px){.info-grid{grid-template-columns:1fr}}
 .info-block{
-  padding:38px 36px;
+  padding:48px 44px;
   border:1px solid rgba(212,160,85,.22);
   background:rgba(245,239,230,.05);
   border-radius:2px;
   position:relative;
 }
-@media(max-width:720px){.info-block{padding:28px 24px}}
+@media(max-width:720px){.info-block{padding:32px 26px}}
 .info-block h3{
   font-family:var(--ff-serif);
-  font-size:13px;font-weight:600;letter-spacing:.32em;
+  font-size:clamp(1.05rem, 1.5vw, 1.3rem);font-weight:600;letter-spacing:.32em;
   color:var(--gold);
   text-transform:uppercase;
-  margin-bottom:18px;
-  padding-bottom:10px;
+  margin-bottom:24px;
+  padding-bottom:14px;
   border-bottom:1px solid rgba(212,160,85,.3);
 }
-.info-block p{font-size:clamp(15px,1.3vw,17px);line-height:2;color:rgba(245,239,230,.78);letter-spacing:.04em}
-.info-block .big{font-family:var(--ff-display);font-size:clamp(32px,3vw,42px);font-weight:700;color:var(--cream);display:block;margin-bottom:8px;letter-spacing:.02em}
-.info-block .big-sub{font-size:clamp(15px,1.4vw,18px);color:var(--gold);margin-left:6px;font-family:var(--ff-display)}
+.info-block p{font-family:var(--ff-serif);font-size:clamp(1.1rem, 1.7vw, 1.4rem);line-height:2.0;color:rgba(245,239,230,.9);letter-spacing:.04em;font-weight:500}
+.info-block .big{font-family:var(--ff-display);font-size:clamp(2.4rem, 3.6vw, 3.6rem);font-weight:700;color:var(--cream);display:block;margin-bottom:10px;letter-spacing:.02em;line-height:1.05}
+.info-block .big-sub{font-size:clamp(1.1rem, 1.6vw, 1.4rem);color:var(--gold);margin-left:8px;font-family:var(--ff-display)}
 .info-block .map-btn{
-  display:inline-block;margin-top:18px;padding:12px 26px;
+  display:inline-block;margin-top:24px;padding:14px 32px;
   background:var(--vermilion);color:var(--cream);
-  text-decoration:none;font-size:14px;font-weight:600;letter-spacing:.18em;
+  text-decoration:none;font-family:var(--ff-serif);font-size:clamp(14px,1.2vw,16px);font-weight:600;letter-spacing:.18em;
   border-radius:2px;
   transition:background .3s;
 }
@@ -768,13 +856,13 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
 /* MEMBERS CTA セクション（ビジター向け動線） */
 .members-cta-section{
   background:linear-gradient(180deg, var(--cream-paper) 0%, var(--cream) 100%);
-  padding:110px 24px 120px;
+  padding:140px 24px 150px;
   text-align:center;
   position:relative;
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
 }
-@media(max-width:720px){.members-cta-section{padding:70px 20px 80px}}
+@media(max-width:720px){.members-cta-section{padding:80px 20px 88px}}
 .members-cta-inner{max-width:880px;margin:0 auto}
 .members-cta-section .sec-lead{margin-bottom:36px}
 .members-cta-section .count-big{
@@ -787,14 +875,14 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
 
 /* CTA */
 .cta-section{
-  text-align:center;padding:120px 24px;
+  text-align:center;padding:140px 24px;
   background:
     radial-gradient(ellipse at center, var(--vermilion-pale), transparent 70%),
     var(--cream-paper);
 }
-@media(max-width:720px){.cta-section{padding:80px 20px}}
-.cta-tags{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:28px 0 44px}
-.cta-tag{padding:10px 22px;border:1px solid var(--border);font-size:14px;font-weight:500;color:var(--ink-sub);background:var(--cream-paper);border-radius:2px;letter-spacing:.16em;font-family:var(--ff-serif)}
+@media(max-width:720px){.cta-section{padding:88px 20px}}
+.cta-tags{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:32px 0 50px}
+.cta-tag{padding:12px 26px;border:1px solid var(--border);font-size:clamp(14px, 1.2vw, 16px);font-weight:500;color:var(--ink-sub);background:var(--cream-paper);border-radius:2px;letter-spacing:.18em;font-family:var(--ff-serif)}
 
 /* FOOTER */
 .footer{text-align:center;padding:48px 24px;background:var(--navy-deep);color:rgba(245,239,230,.4)}
@@ -867,7 +955,7 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav nav-on-hero">
   <a href="index.html" class="nav-logo">BNI Grano <span class="accent">·</span> BOD #2</a>
   <div class="nav-links">
     <a href="#concept">Concept</a>
@@ -878,56 +966,18 @@ section{padding:128px 24px;max-width:1200px;margin:0 auto;position:relative}
   </div>
 </nav>
 
-<!-- ============== HERO ============== -->
-<header class="hero">
-  <!-- 提灯ガーランド（左右に 5 個ずつ・中央を空ける） -->
-  <div class="lantern-garland" aria-hidden="true">
-    <div class="lantern-group lantern-left">
-      <div class="lantern-item s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
-      <div class="lantern-item m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-      <div class="lantern-item l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
-      <div class="lantern-item m"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
-      <div class="lantern-item s"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-    </div>
-    <div class="lantern-group lantern-right">
-      <div class="lantern-item s"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-      <div class="lantern-item m"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
-      <div class="lantern-item l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
-      <div class="lantern-item m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-      <div class="lantern-item s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
-    </div>
+<!-- ============== HERO (MOCK IMAGE, full-bleed) ============== -->
+<header class="hero-mock">
+  <img class="hero-mock-img" src="assets/hero-mock-reference.png" alt="Business Open Day 2026 第2回 大人の夏祭り — 2026.8.26（水）" width="1024" height="464" fetchpriority="high">
+
+  <!-- 画像内「大人の文化祭」位置に「大人の夏祭り」を再描画 -->
+  <span class="hero-theme-override" aria-label="大人の夏祭り">大人の夏祭り</span>
+
+  <span class="hero-mock-scroll">— SCROLL —</span>
+
+  <div class="hero-mock-cta-wrap">
+    <a class="btn-primary" href="https://liff.line.me/2006557015-NBnEmorX/top/list?liff_id=2006557015-NBnEmorX&amp;group_id=105560" target="_blank" rel="noopener">LINE公式よりお申込み <span class="arrow">›</span></a>
   </div>
-
-  <!-- 花火（右上 + 左下、計 2 つだけ） -->
-  <div class="hero-hanabi" aria-hidden="true"><img src="assets/hanabi-burst-gold.png" alt=""></div>
-  <div class="hero-hanabi bl" aria-hidden="true"><img src="assets/hanabi-burst-gold.png" alt=""></div>
-
-  <!-- コーナーの青海波 -->
-  <div class="hero-seigaiha bl" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
-  <div class="hero-seigaiha br" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
-
-  <!-- 屋台シルエット（下半分） -->
-  <div class="hero-yatai" aria-hidden="true"><img src="assets/yatai-silhouette.png" alt=""></div>
-
-  <div class="hero-content">
-    <p class="hero-pre">BNI GRANO CHAPTER PRESENTS</p>
-    <span class="hero-edition">第 二 回</span>
-
-    <h1 class="hero-title-en">Business Open Day <span class="year">2026</span></h1>
-    <div class="hero-divider"><span class="line"></span><span class="knot"></span><span class="line"></span></div>
-    <p class="hero-title-ja">大人の夏祭り</p>
-    <p class="hero-sub">"紹介"で成果を出す、新しいビジネスの出会い方</p>
-
-    <p class="hero-date">2026<span class="sep">.</span>8<span class="sep">.</span>26<span class="dow">水</span></p>
-    <p class="hero-venue">HOTEL PLUMM 横浜　/　10:00 — 15:00</p>
-
-    <div class="hero-cta">
-      <a class="btn-primary" href="https://liff.line.me/2006557015-NBnEmorX/top/list?liff_id=2006557015-NBnEmorX&amp;group_id=105560" target="_blank" rel="noopener">LINE公式よりお申込み <span class="arrow">›</span></a>
-    </div>
-  </div>
-
-  <!-- 縦書きキャリグラフィ（モック右側相当） -->
-  <div class="hero-calligraphy" aria-hidden="true">ご縁が彩る、大人の特別な一日<span class="calligraphy-seal">縁</span></div>
 </header>
 
 <!-- ============== FEATURE PILLS (4 項目) ============== -->

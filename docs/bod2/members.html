@@ -31,105 +31,121 @@ html{scroll-behavior:smooth;font-size:17px}
 @media(min-width:1200px){html{font-size:18px}}
 body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.7;font-size:.85rem}
 
-/* ============== PAGE HEADER (unified hero: 提灯ガーランド + 屋台 + 青海波) ============== */
+/* ============== PAGE HEADER (mockup image, full-bleed) ============== */
 .page-header{
-  background:
-    radial-gradient(ellipse at 50% 38%, rgba(212,160,85,.18), transparent 55%),
-    radial-gradient(ellipse at 50% 22%, rgba(217,74,56,.15), transparent 50%),
-    radial-gradient(ellipse at 82% 72%, rgba(212,160,85,.10), transparent 60%),
-    linear-gradient(180deg, #06101F 0%, #0E1730 45%, #1A2747 80%, #0B1428 100%);
+  position:relative;
+  display:block;
+  width:100%;
+  background:#0A1424;
   color:#fff;
-  padding:110px 24px 80px;
-  text-align:center;position:relative;overflow:hidden;isolation:isolate;
-  min-height:64vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-}
-@media(min-width:1280px){.page-header{min-height:68vh}}
-.page-header::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:
-    radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    radial-gradient(rgba(0,0,0,.18) 1px, transparent 1px);
-  background-size:3px 3px, 7px 7px;background-position:0 0, 1px 1px;
-  opacity:.45;mix-blend-mode:overlay;z-index:1;
+  overflow:hidden;
+  isolation:isolate;
+  padding:0;min-height:0;
 }
 .page-header > *{position:relative;z-index:4}
-/* 提灯ガーランド */
-.ph-lanterns{
-  position:absolute;top:0;left:0;right:0;
-  display:flex;justify-content:space-between;align-items:flex-start;
-  padding:0 clamp(8px,2.6vw,40px);pointer-events:none;z-index:3;
+.ph-mock-img{
+  display:block;width:100%;height:auto;margin:0;
+  user-select:none;-webkit-user-drag:none;
 }
-.ph-lanterns::before{
-  content:"";position:absolute;left:4%;right:4%;top:14px;height:1px;
-  background:linear-gradient(90deg, transparent, rgba(212,160,85,.55) 8%, rgba(212,160,85,.55) 92%, transparent);
-  border-radius:1px;
-  filter:drop-shadow(0 1px 0 rgba(0,0,0,.5)) drop-shadow(0 0 4px rgba(212,160,85,.35));
+.ph-theme-override{
+  position:absolute;
+  left:50%;top:61.85%;
+  transform:translate(-50%, -50%);
+  font-family:var(--ff-serif);
+  font-weight:600;
+  color:#E8C078;
+  letter-spacing:.22em;padding-left:.22em;
+  white-space:nowrap;
+  font-size:clamp(1.6rem, 4.6vw, 4rem);
+  line-height:1;
+  text-shadow:
+    0 2px 14px rgba(232,192,120,.45),
+    0 0 28px rgba(232,192,120,.25),
+    0 1px 0 rgba(0,0,0,.7);
+  pointer-events:none;
+  z-index:5;
 }
-.ph-lan{
-  position:relative;display:flex;flex-direction:column;align-items:center;
-  width:clamp(50px,4.6vw,64px);transform-origin:top center;
-  animation:ph-sway 5s ease-in-out infinite;
+/* メンバー専用バンド：画像下端に重ねる金色バー */
+.ph-member-band{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;align-items:center;justify-content:center;gap:18px;
+  padding:14px 24px;
+  background:linear-gradient(90deg, rgba(10,16,30,.55) 0%, rgba(212,160,85,.85) 35%, rgba(212,160,85,.95) 50%, rgba(212,160,85,.85) 65%, rgba(10,16,30,.55) 100%);
+  border-top:1px solid rgba(255,255,255,.35);
+  font-family:var(--ff-serif);
+  color:#0A1424;
+  z-index:6;
+  flex-wrap:wrap;
 }
-.ph-lan img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 16px rgba(217,74,56,.45)) drop-shadow(0 2px 4px rgba(0,0,0,.4))}
-.ph-lan.s{width:clamp(46px,4.2vw,58px)}
-.ph-lan.m{width:clamp(52px,4.8vw,64px)}
-.ph-lan.l{width:clamp(58px,5.2vw,70px)}
-.ph-lan:nth-child(3){margin-top:8px}
-.ph-lan:nth-child(4){margin-top:8px}
-.ph-lan:nth-child(1){animation-delay:0s}
-.ph-lan:nth-child(2){animation-delay:.4s}
-.ph-lan:nth-child(3){animation-delay:.8s}
-.ph-lan:nth-child(4){animation-delay:.2s}
-.ph-lan:nth-child(5){animation-delay:.6s}
-.ph-lan:nth-child(6){animation-delay:1s}
-@keyframes ph-sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+.ph-member-band .pm-label{
+  font-size:clamp(0.8rem, 1.1vw, 1rem);
+  letter-spacing:.4em;font-weight:700;text-transform:uppercase;
+  color:rgba(10,16,30,.85);
+}
+.ph-member-band .pm-title{
+  font-size:clamp(1rem, 1.5vw, 1.4rem);
+  letter-spacing:.18em;font-weight:700;
+  color:#0A1424;
+}
 @media(max-width:720px){
-  .ph-lan.s{width:34px}.ph-lan.m{width:38px}.ph-lan.l{width:42px}
+  .ph-member-band{padding:10px 14px;gap:10px}
+  .ph-member-band .pm-label{font-size:10px;letter-spacing:.25em}
+  .ph-member-band .pm-title{font-size:13px;letter-spacing:.12em}
 }
-@media(max-width:560px){
-  .ph-lanterns{padding:0 4px}
-  .ph-lan.s{width:30px}.ph-lan.m{width:34px}.ph-lan.l{width:38px}
+
+/* メンバー専用上部バナー（画像の上に重ねる） */
+.ph-top-strip{
+  position:absolute;top:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:18px clamp(20px, 3vw, 40px);
+  z-index:7;
+  background:linear-gradient(180deg, rgba(8,14,26,.75) 0%, rgba(8,14,26,.45) 70%, rgba(8,14,26,0) 100%);
+  font-family:var(--ff-serif);
+  color:#E8C078;
 }
-.ph-yatai{
-  position:absolute;left:0;right:0;bottom:-2%;width:100%;max-height:52%;overflow:hidden;pointer-events:none;
-  z-index:2;opacity:.22;
-  -webkit-mask-image:linear-gradient(180deg, transparent 0%, rgba(0,0,0,.55) 22%, rgba(0,0,0,.95) 55%, rgba(0,0,0,.85) 88%, transparent 100%);
-          mask-image:linear-gradient(180deg, transparent 0%, rgba(0,0,0,.55) 22%, rgba(0,0,0,.95) 55%, rgba(0,0,0,.85) 88%, transparent 100%);
-  mix-blend-mode:screen;
+.ph-top-strip .pts-eyebrow{
+  font-size:clamp(11px, 1vw, 14px);letter-spacing:.5em;font-weight:600;
+  color:rgba(245,239,230,.75);
 }
-.ph-yatai img{display:block;width:100%;height:auto;filter:saturate(.55) brightness(.85) blur(.4px)}
-.ph-seigaiha{position:absolute;width:clamp(220px,28vw,340px);pointer-events:none;z-index:1;opacity:.10}
-.ph-seigaiha img{width:100%;height:auto;display:block}
-.ph-seigaiha.bl{left:-50px;bottom:-50px;transform:rotate(8deg)}
-.ph-seigaiha.br{right:-50px;bottom:-50px;transform:rotate(-8deg) scaleX(-1)}
-/* 花火（右上 + 左下） */
-.ph-hanabi{position:absolute;top:8%;right:3%;width:clamp(120px,13vw,200px);pointer-events:none;z-index:2;opacity:.30;mix-blend-mode:screen;filter:saturate(.7) hue-rotate(-8deg)}
-.ph-hanabi img{width:100%;height:auto;display:block}
-.ph-hanabi.bl{top:auto;right:auto;bottom:14%;left:4%;width:clamp(90px,9vw,150px);opacity:.22}
-/* 縦書きキャリグラフィ（PCのみ） */
-.ph-calligraphy{display:none}
-@media(min-width:1025px){
-  .ph-calligraphy{
-    display:flex;flex-direction:column;align-items:center;
-    position:absolute;right:clamp(24px,2.6vw,40px);top:50%;
-    transform:translateY(-50%);
-    writing-mode:vertical-rl;-webkit-writing-mode:vertical-rl;text-orientation:upright;
-    font-family:var(--ff-serif);
-    font-size:clamp(1.05rem,1.7vw,1.4rem);
-    letter-spacing:.4em;color:#d4af37;font-weight:500;
-    z-index:6;pointer-events:none;
-    text-shadow:0 0 18px rgba(212,175,55,.55), 0 2px 4px rgba(0,0,0,.6);
-    line-height:1.5;opacity:.85;
-  }
+.ph-top-strip .pts-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 18px;
+  border:1.5px solid rgba(232,192,120,.7);
+  border-radius:2px;
+  background:rgba(10,16,30,.55);
+  font-size:clamp(11px, 1vw, 13px);font-weight:700;
+  letter-spacing:.32em;color:#E8C078;
+  text-transform:uppercase;
 }
-.ph-calligraphy .calligraphy-seal{
-  writing-mode:horizontal-tb;-webkit-writing-mode:horizontal-tb;
-  display:inline-flex;align-items:center;justify-content:center;
-  width:36px;height:36px;background:var(--red);color:var(--warm);
-  border:1.5px double var(--warm);outline:1.5px solid var(--red);outline-offset:-3px;
-  font-family:var(--ff-serif);font-size:15px;font-weight:900;letter-spacing:0;
-  margin-top:18px;transform:rotate(-6deg);box-shadow:1px 2px 6px rgba(0,0,0,.35);
+@media(max-width:720px){
+  .ph-top-strip{padding:10px 12px}
+  .ph-top-strip .pts-eyebrow{font-size:9.5px;letter-spacing:.3em}
+  .ph-top-strip .pts-badge{padding:5px 10px;font-size:9.5px;letter-spacing:.18em}
+}
+
+/* ビジターCTA: モック画像の下、独立ブロック */
+.ph-visitor-cta{
+  background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  padding:28px 24px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+}
+.ph-visitor-cta a{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:14px 32px;
+  background:rgba(212,160,85,.12);
+  border:1.5px solid rgba(212,160,85,.55);
+  color:var(--amber-light);
+  text-decoration:none;
+  font-family:var(--ff-serif);font-size:clamp(13px, 1.2vw, 16px);
+  font-weight:600;letter-spacing:.12em;
+  border-radius:2px;
+  transition:all .25s ease;
+}
+.ph-visitor-cta a:hover{
+  background:rgba(212,160,85,.22);
+  border-color:var(--amber-light);
+  transform:translateY(-2px);
 }
 
 .eyebrow{font-family:var(--ff-serif);font-size:clamp(13px,1.1vw,17px);letter-spacing:.55em;color:#c9a24c;text-transform:uppercase;font-weight:500;margin-bottom:18px}
@@ -316,11 +332,11 @@ tr:hover td{background:rgba(200,148,62,.04)}
 .lh-eyebrow .dot{margin:0 8px;color:rgba(212,160,85,.5)}
 .lh-title{
   font-family:var(--ff-serif);
-  font-size:clamp(28px,5vw,46px);
-  font-weight:700;line-height:1.45;
+  font-size:clamp(2rem, 5.6vw, 3.6rem);
+  font-weight:700;line-height:1.4;
   color:var(--warm);
-  margin-bottom:8px;
-  letter-spacing:.03em;
+  margin-bottom:10px;
+  letter-spacing:.04em;
 }
 .lh-title .glow{
   color:var(--amber);
@@ -454,9 +470,9 @@ tr:hover td{background:rgba(200,148,62,.04)}
 }
 .recap-title{
   font-family:var(--ff-serif);
-  font-size:clamp(22px,3.6vw,30px);
+  font-size:clamp(1.6rem, 4vw, 2.6rem);
   font-weight:700;color:var(--navy);
-  text-align:center;line-height:1.5;margin-bottom:12px;
+  text-align:center;line-height:1.5;margin-bottom:14px;
 }
 .recap-title em{font-style:normal;color:var(--red)}
 .recap-lead{
@@ -721,34 +737,27 @@ tr:hover td{background:rgba(200,148,62,.04)}
 <body>
 
 <header class="page-header">
-  <div class="ph-lanterns" aria-hidden="true">
-    <div class="ph-lan s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
-    <div class="ph-lan m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-    <div class="ph-lan l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
-    <div class="ph-lan l"><img src="assets/lantern-red-mitsudomoe.png" alt=""></div>
-    <div class="ph-lan m"><img src="assets/lantern-orange-kuyo.png" alt=""></div>
-    <div class="ph-lan s"><img src="assets/lantern-navy-tachibana.png" alt=""></div>
+  <div class="ph-top-strip">
+    <span class="pts-eyebrow">BNI Grano Chapter · Internal</span>
+    <span class="pts-badge">Members Only · Unlisted</span>
   </div>
-  <div class="ph-hanabi" aria-hidden="true"><img src="assets/hanabi-burst-gold.png" alt=""></div>
-  <div class="ph-hanabi bl" aria-hidden="true"><img src="assets/hanabi-burst-gold.png" alt=""></div>
-  <div class="ph-seigaiha bl" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
-  <div class="ph-seigaiha br" aria-hidden="true"><img src="assets/seigaiha-cream-gold.png" alt=""></div>
-  <div class="ph-yatai" aria-hidden="true"><img src="assets/yatai-silhouette.png" alt=""></div>
 
-  <p class="eyebrow">BNI Grano Chapter · Internal</p>
-  <h1 class="page-title"><em>Business Open Day 2026</em><br>第 2 回 メンバー専用ページ<span class="ja">大人の夏祭り</span></h1>
-  <p class="event-date">2026.8.26 (水) · 大人の夏祭り、はじまる。</p>
-  <span class="member-only-badge">Members Only · Unlisted</span>
-  <p class="visitor-cta">
-    <a href="announcement.html" target="_blank" rel="noopener">
-      <span class="vc-icon">📢</span>
-      <span>ビジター用 告知ページ（公開版）を見る</span>
-      <span class="vc-arrow">↗</span>
-    </a>
-  </p>
+  <img class="ph-mock-img" src="assets/hero-mock-reference.png" alt="Business Open Day 2026 第2回 大人の夏祭り — 2026.8.26（水）" width="1024" height="464" fetchpriority="high">
 
-  <div class="ph-calligraphy" aria-hidden="true">ご縁が彩る、大人の特別な一日<span class="calligraphy-seal">縁</span></div>
+  <span class="ph-theme-override" aria-label="大人の夏祭り">大人の夏祭り</span>
+
+  <div class="ph-member-band">
+    <span class="pm-label">第 二 回</span>
+    <span class="pm-title">メンバー専用ページ</span>
+    <span class="pm-label">2026.8.26 (水)</span>
+  </div>
 </header>
+
+<div class="ph-visitor-cta">
+  <a href="announcement.html" target="_blank" rel="noopener">
+    📢 ビジター用 告知ページ（公開版）を見る ↗
+  </a>
+</div>
 
 <!-- ============== LEGENDARY HERO (20期 第一回 伝説のBOD お礼) ============== -->
 <section class="legendary-hero" aria-label="20期 第1回 BOD 伝説のBODへの感謝">
