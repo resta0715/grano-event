@@ -82,58 +82,38 @@ body{
 .nav-links a{color:rgba(245,239,230,.65);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;transition:color .3s}
 .nav-links a:hover,.nav-links a.active{color:var(--gold)}
 
-/* ============== HERO (mockup image, full-bleed) ============== */
+/* ============== HERO (clean AI-generated 大人の夏祭り visual, full-bleed) ============== */
 .hero-mock{
   position:relative;
   display:block;
   width:100%;
-  background:#0A1424;
+  background:#0E1B3A;
   overflow:hidden;
   isolation:isolate;
 }
 .hero-mock-spacer{
-  display:block;width:100%;height:60px;background:#0A1424;
+  display:block;width:100%;height:60px;background:#0E1B3A;
 }
 @media(max-width:720px){
   .hero-mock-spacer{height:48px}
 }
 .hero-mock-frame{
   position:relative;display:block;width:100%;
+  max-width:1600px;margin:0 auto;
+  background:#0E1B3A;
 }
 .hero-mock-img{
   display:block;
   width:100%;
   height:auto;
-  margin:0;
   user-select:none;
   -webkit-user-drag:none;
 }
-/* テーマ表記オーバーライド（画像内の「文化祭」を消した位置に「夏祭り」を描画） */
-.hero-theme-override{
-  position:absolute;
-  left:50%;
-  top:61.85%; /* 画像内の元「大人の文化祭」中心 (y=287/H=464) */
-  transform:translate(-50%, -50%);
-  font-family:var(--ff-display);
-  font-weight:600;
-  color:#E8C078;
-  letter-spacing:.22em;
-  padding-left:.22em;
-  white-space:nowrap;
-  font-size:clamp(1.6rem, 4.6vw, 4rem);
-  line-height:1;
-  text-shadow:
-    0 2px 14px rgba(232,192,120,.45),
-    0 0 28px rgba(232,192,120,.25),
-    0 1px 0 rgba(0,0,0,.7);
-  pointer-events:none;
-  z-index:5;
-}
-/* CTA を画像下部に重ねる（ロケーションは vw に応じて画像内 4 タブの上に） */
+/* CTA を画像下部に重ねる */
 .hero-mock-cta-wrap{
   position:absolute;
   left:0;right:0;
-  bottom:clamp(8px, 1.4vw, 22px);
+  bottom:clamp(14px, 2vw, 36px);
   display:flex;justify-content:center;
   z-index:6;
   pointer-events:none;
@@ -147,13 +127,13 @@ body{
   box-shadow:0 6px 0 var(--vermilion-deep), 0 14px 32px rgba(217,74,56,.55), inset 0 1px 0 rgba(255,255,255,.22);
 }
 @media(max-width:720px){
-  .hero-mock-cta-wrap{bottom:6px}
+  .hero-mock-cta-wrap{bottom:8px}
   .hero-mock-cta-wrap .btn-primary{
     min-height:46px;padding:10px 18px;font-size:11px;letter-spacing:.12em;
   }
 }
-/* スクロールガイドは画像の「8.26」と被るため削除 */
-.hero-mock-scroll{display:none !important}
+/* legacy 要素 (no-op) */
+.hero-theme-override,.hero-mock-scroll{display:none !important}
 
 /* ============== HERO (image-asset based, legacy/unused) ============== */
 .hero{
@@ -976,10 +956,7 @@ section{padding:160px 24px;max-width:1320px;margin:0 auto;position:relative}
 <header class="hero-mock">
   <span class="hero-mock-spacer" aria-hidden="true"></span>
   <div class="hero-mock-frame">
-    <img class="hero-mock-img" src="assets/hero-mock-reference.png" alt="Business Open Day 2026 第2回 大人の夏祭り — 2026.8.26（水）" width="1024" height="464" fetchpriority="high">
-
-    <!-- 画像内「大人の文化祭」位置に「大人の夏祭り」を再描画 -->
-    <span class="hero-theme-override" aria-label="大人の夏祭り">大人の夏祭り</span>
+    <img class="hero-mock-img" src="assets/hero-mock-natsumatsuri.png" alt="Business Open Day 2026 大人の夏祭り — 2026.8.26（水）" width="1536" height="1024" fetchpriority="high">
 
     <div class="hero-mock-cta-wrap">
       <a class="btn-primary" href="https://liff.line.me/2006557015-NBnEmorX/top/list?liff_id=2006557015-NBnEmorX&amp;group_id=105560" target="_blank" rel="noopener">LINE公式よりお申込み <span class="arrow">›</span></a>

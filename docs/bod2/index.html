@@ -50,33 +50,20 @@ body{
 @media(max-width:720px){
   .hub-hero-spacer{height:40px}
 }
-.hub-hero-frame{position:relative;display:block;width:100%}
+.hub-hero-frame{
+  position:relative;display:block;width:100%;
+  max-width:1600px;margin:0 auto;
+  background:#0E1B3A;
+}
 .hub-hero-img{
   display:block;
   width:100%;
   height:auto;
-  margin:0;
   user-select:none;
   -webkit-user-drag:none;
 }
-.hub-theme-override{
-  position:absolute;
-  left:50%;top:61.85%;
-  transform:translate(-50%, -50%);
-  font-family:var(--ff-serif);
-  font-weight:600;
-  color:#E8C078;
-  letter-spacing:.22em;padding-left:.22em;
-  white-space:nowrap;
-  font-size:clamp(1.6rem, 4.6vw, 4rem);
-  line-height:1;
-  text-shadow:
-    0 2px 14px rgba(232,192,120,.45),
-    0 0 28px rgba(232,192,120,.25),
-    0 1px 0 rgba(0,0,0,.7);
-  pointer-events:none;
-  z-index:5;
-}
+/* legacy theme override (no-op) */
+.hub-theme-override{display:none !important}
 .hub-hero-strip{
   position:absolute;top:0;left:0;right:0;
   display:flex;align-items:center;justify-content:space-between;gap:18px;
@@ -222,8 +209,7 @@ body{
   </div>
   <span class="hub-hero-spacer" aria-hidden="true"></span>
   <div class="hub-hero-frame">
-    <img class="hub-hero-img" src="assets/hero-mock-reference.png" alt="Business Open Day 2026 第2回 大人の夏祭り — 2026.8.26（水）" width="1024" height="464" fetchpriority="high">
-    <span class="hub-theme-override" aria-label="大人の夏祭り">大人の夏祭り</span>
+    <img class="hub-hero-img" src="assets/hero-mock-natsumatsuri.png" alt="Business Open Day 2026 大人の夏祭り — 2026.8.26（水）" width="1536" height="1024" fetchpriority="high">
   </div>
 </header>
 
