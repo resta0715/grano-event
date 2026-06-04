@@ -104,16 +104,18 @@ body::after{
 
 /* タイトル: 大人の夏祭り (金色・モック準拠) */
 .hub-title{
+  position:relative;z-index:5;
   font-family:var(--ff-serif);
-  font-size:clamp(40px, 7vw, 84px);
-  font-weight:700;letter-spacing:.18em;
-  line-height:1.1;margin:8px 0 12px;
+  font-size:clamp(2.4rem, 5.6vw, 4.4rem);
+  font-weight:600;letter-spacing:.18em;
+  line-height:1.2;margin:8px 0 12px;
   padding-left:.18em;
   white-space:nowrap;
-  background:linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 55%, #B8862F 100%);
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) drop-shadow(0 0 18px rgba(212,160,85,.35));
+  color:#E8C078;
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.55),
+    0 2px 14px rgba(212,160,85,.45),
+    0 0 28px rgba(232,192,120,.25);
 }
 .hub-title-en{
   font-family:var(--ff-serif);

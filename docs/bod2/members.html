@@ -38,9 +38,9 @@ body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit
     radial-gradient(ellipse at 80% 70%, rgba(212,160,85,.12), transparent 60%),
     linear-gradient(180deg, #0A1424 0%, #121A30 55%, #1B2845 100%);
   color:#fff;
-  padding:120px 24px 80px;
+  padding:110px 24px 70px;
   text-align:center;position:relative;overflow:hidden;isolation:isolate;
-  min-height:62vh;
+  min-height:54vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
 .page-header::before{
@@ -99,13 +99,15 @@ body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);-webkit
 .page-title{font-family:var(--ff-serif);font-size:clamp(24px,3vw,40px);font-weight:700;margin-bottom:14px;letter-spacing:.05em;line-height:1.4}
 .page-title em{font-style:normal;color:var(--amber)}
 .page-title .ja{
-  display:block;font-family:var(--ff-serif);font-weight:700;
-  font-size:clamp(36px,5.5vw,72px);letter-spacing:.16em;
-  background:linear-gradient(180deg, var(--amber-light) 0%, var(--amber) 55%, #B8862F 100%);
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) drop-shadow(0 0 18px rgba(212,160,85,.35));
-  margin-top:8px;line-height:1.1;
+  position:relative;z-index:5;
+  display:block;font-family:var(--ff-serif);font-weight:600;
+  font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:.18em;padding-left:.18em;
+  color:#E8C078;
+  text-shadow:
+    0 1px 0 rgba(0,0,0,.55),
+    0 2px 14px rgba(212,160,85,.45),
+    0 0 28px rgba(232,192,120,.25);
+  margin-top:8px;line-height:1.2;
 }
 .event-date{font-family:var(--ff-serif);font-size:clamp(16px,1.8vw,20px);color:rgba(255,255,255,.78);letter-spacing:4px;margin-bottom:22px;font-weight:500}
 .member-only-badge{display:inline-block;padding:8px 18px;background:rgba(200,148,62,.18);border:1px solid rgba(200,148,62,.5);color:var(--amber);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;border-radius:2px}
