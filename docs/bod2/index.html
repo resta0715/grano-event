@@ -93,6 +93,12 @@ body{
   color:var(--gold);text-decoration:none;
 }
 .hub-hero-strip .hhs-logo .dot{color:var(--vermilion);margin:0 4px}
+.hub-hero-strip .hhs-date{font-family:var(--ff-serif);font-size:clamp(.85rem,1vw,1.05rem);color:var(--gold);letter-spacing:.14em;white-space:nowrap;display:flex;align-items:baseline;gap:.35em}
+.hub-hero-strip .hhs-date strong{font-weight:600;color:#fff;letter-spacing:.05em}
+.hub-hero-strip .hhs-date em{font-style:normal;font-size:.85em;opacity:.85;margin-right:.1em}
+.hub-hero-strip .hhs-date .dot{color:rgba(212,160,85,.55);margin:0 4px}
+@media(max-width:1180px){.hub-hero-strip .hhs-date .venue{display:none}}
+@media(max-width:900px){.hub-hero-strip .hhs-date{display:none}}
 .hub-hero-strip .hhs-tag{
   font-size:clamp(10px, 0.9vw, 12px);letter-spacing:.4em;font-weight:600;
   color:rgba(245,239,230,.75);text-transform:uppercase;
@@ -221,6 +227,7 @@ body{
 <header class="hub-hero">
   <div class="hub-hero-strip">
     <span class="hhs-logo">BNI Grano <span class="dot">·</span> BOD #2</span>
+    <span class="hhs-date" aria-label="開催日と会場"><strong>2026.8.26</strong> <em>(水)</em> <span class="dot">·</span> <span class="venue">HOTEL PLUMM 横浜</span></span>
     <span class="hhs-tag">Hub · Yokohama Central Region</span>
   </div>
   <span class="hub-hero-spacer" aria-hidden="true"></span>
