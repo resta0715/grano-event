@@ -62,6 +62,33 @@ body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);overflo
 .stat-num{font-family:var(--ff-sans);font-size:clamp(2.4rem,4vw,3.4rem);font-weight:700;color:var(--amber);line-height:1}
 .stat-label{font-size:clamp(0.78rem,1vw,0.9rem);color:rgba(255,255,255,.55);letter-spacing:.3em;margin-top:8px;font-weight:600;text-transform:uppercase}
 
+/* PDF Download CTA (hero 内) */
+.hero-pdf{margin-top:36px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.hero-pdf a{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:14px 32px;
+  background:rgba(212,160,85,.12);
+  border:1.5px solid rgba(212,160,85,.55);
+  color:var(--amber-light);
+  text-decoration:none;
+  font-family:var(--ff-serif);
+  font-size:clamp(13px,1.2vw,16px);
+  font-weight:600;letter-spacing:.15em;
+  border-radius:2px;
+  transition:background .25s ease, border-color .25s ease, transform .25s ease, color .25s ease;
+}
+.hero-pdf a:hover{
+  background:var(--amber);color:var(--navy);
+  border-color:var(--amber);
+  transform:translateY(-2px);
+}
+.hero-pdf a.pdf-meta{
+  background:transparent;border-color:rgba(255,255,255,.22);
+  color:rgba(255,255,255,.65);font-size:clamp(12px,1.1vw,13px);
+  pointer-events:none;
+}
+@media(max-width:520px){.hero-pdf a{padding:11px 22px;font-size:12px;letter-spacing:.1em}}
+
 .leadership{padding:clamp(72px, 9vw, 120px) clamp(24px, 4vw, 64px);max-width:1280px;margin:0 auto}
 .section-label{font-family:var(--ff-sans);font-size:clamp(0.85rem,1.15vw,1.05rem);font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--amber);text-align:center;margin-bottom:18px}
 .section-title{font-family:var(--ff-serif);font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:700;text-align:center;margin-bottom:48px;color:var(--navy);letter-spacing:.06em}
@@ -174,6 +201,10 @@ body{font-family:var(--ff-sans);background:var(--warm);color:var(--text);overflo
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">35</div><div class="stat-label">MEMBERS</div></div>
     <div class="stat"><div class="stat-num">9</div><div class="stat-label">CATEGORIES</div></div>
+  </div>
+  <div class="hero-pdf">
+    <a href="assets/26.20th_grano_memberlist_0603.pdf" target="_blank" rel="noopener">📄 メンバーリスト PDF をダウンロード</a>
+    <a class="pdf-meta">26.20th_grano_memberlist_0603.pdf · 2026.6.3 版</a>
   </div>
 </header>
 
