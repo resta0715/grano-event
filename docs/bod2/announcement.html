@@ -813,6 +813,15 @@ section{padding:clamp(112px, 13vw, 176px) clamp(24px, 4vw, 64px);max-width:none;
 @media(max-width:720px){.sched-wrap{padding:32px 24px}}
 .sched-item{display:grid;grid-template-columns:160px 1fr;gap:32px;padding:30px 0;border-bottom:1px dashed var(--border);align-items:baseline}
 .sched-item:last-child{border-bottom:none}
+.schedule-note{
+  margin-top:clamp(28px, 3vw, 48px);
+  text-align:center;
+  font-size:clamp(0.95rem, 1.25vw, 1.1rem);
+  color:var(--ink-muted);
+  letter-spacing:.12em;
+  line-height:1.8;
+}
+@media(max-width:720px){.schedule-note{font-size:0.95rem;letter-spacing:.06em;margin-top:24px}}
 .sched-time{
   font-family:var(--ff-display);
   font-size:clamp(1.6rem, 2.6vw, 2.1rem);font-weight:700;color:var(--vermilion);
@@ -1219,7 +1228,7 @@ section{padding:clamp(112px, 13vw, 176px) clamp(24px, 4vw, 64px);max-width:none;
       <div class="sched-item"><span class="sched-time">12:30</span><span class="sched-desc">第2部 懇親会<span class="tag">大人の夏祭り</span></span></div>
       <div class="sched-item"><span class="sched-time">15:00</span><span class="sched-desc">閉会</span></div>
     </div>
-    <p style="text-align:center;margin-top:18px;font-size:12px;color:var(--ink-muted)">※ タイムテーブルは前回ベース。確定次第更新します。</p>
+    <p class="schedule-note">※ 当日のタイムスケジュールは変更になる場合がございます。</p>
   </section>
 </div>
 
