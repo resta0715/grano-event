@@ -937,6 +937,83 @@ section{padding:160px 24px;max-width:1320px;margin:0 auto;position:relative}
   .bgm-btn{width:56px;height:56px;right:14px;bottom:14px;font-size:26px}
   .bgm-btn .bgm-label{display:none}
 }
+
+/* ============== WHY BNI GRANO (visitor-facing) ============== */
+.section-why{
+  padding:clamp(96px, 12vw, 160px) 24px;
+  background:linear-gradient(180deg, var(--cream-paper) 0%, #fff 100%);
+  position:relative;
+  overflow:hidden;
+}
+.section-why .sec-lead strong{color:var(--vermilion);font-weight:600}
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:clamp(28px, 3vw, 48px);
+  max-width:1320px;
+  margin:clamp(48px, 6vw, 80px) auto 0;
+}
+.why-card{
+  background:#fff;
+  border:1px solid rgba(212,160,85,.28);
+  border-radius:12px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.why-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 48px rgba(15,28,58,.10);
+}
+.why-img{
+  margin:0;
+  width:100%;
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  background:var(--navy);
+}
+.why-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .5s ease;
+}
+.why-card:hover .why-img img{transform:scale(1.04)}
+.why-body{
+  padding:clamp(32px, 3.5vw, 56px) clamp(28px, 3vw, 44px);
+}
+.why-num{
+  font-family:var(--ff-display);
+  font-size:clamp(2.2rem, 3.6vw, 3.4rem);
+  color:var(--gold);
+  font-weight:500;
+  letter-spacing:.08em;
+  margin-bottom:16px;
+  line-height:1;
+}
+.why-title{
+  font-family:var(--ff-serif);
+  font-size:clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight:600;
+  color:var(--navy);
+  letter-spacing:.04em;
+  margin:0 0 18px;
+  line-height:1.4;
+}
+.why-desc{
+  font-family:var(--ff-serif);
+  font-size:clamp(1rem, 1.3vw, 1.15rem);
+  line-height:2;
+  color:var(--ink-sub, #444);
+  margin:0;
+}
+@media(max-width:900px){
+  .why-grid{grid-template-columns:1fr;gap:24px;max-width:540px;padding:0 4px}
+  .section-why{padding:80px 20px}
+}
 </style>
 </head>
 <body>
@@ -1012,6 +1089,61 @@ section{padding:160px 24px;max-width:1320px;margin:0 auto;position:relative}
     <p>第1回の熱気をそのままに、もう一度、Business Open Day へようこそ。</p>
   </div>
 </div>
+
+<!-- ============== WHY BNI GRANO ============== -->
+<section id="why" class="section-why fade">
+  <p class="sec-label">WHY BNI GRANO</p>
+  <h2 class="sec-title">なぜ <span class="em">紹介</span> なのか</h2>
+  <div class="divider-knot"><span class="line"></span><span class="center"></span><span class="line"></span></div>
+  <p class="sec-lead">
+    リファーラルマーケティング（紹介マーケティング）という手法を、<br>
+    いち早く<strong>"仕組み"から</strong>取り入れたチームです。
+  </p>
+
+  <div class="why-grid">
+    <article class="why-card">
+      <figure class="why-img">
+        <img src="assets/why-card-01-network.png" alt="" aria-hidden="true" loading="lazy">
+      </figure>
+      <div class="why-body">
+        <div class="why-num">01</div>
+        <h3 class="why-title">スピードと費用対効果</h3>
+        <p class="why-desc">
+          他のマーケティング手法のみで戦うよりも、圧倒的にスピーディー。
+          紹介を仕組み化することで、費用対効果も格段に高まります。
+        </p>
+      </div>
+    </article>
+
+    <article class="why-card">
+      <figure class="why-img">
+        <img src="assets/why-card-02-training.png" alt="" aria-hidden="true" loading="lazy">
+      </figure>
+      <div class="why-body">
+        <div class="why-num">02</div>
+        <h3 class="why-title">経営者向けトレーニング</h3>
+        <p class="why-desc">
+          プレゼンテーションの磨き方、チームビルディング、マインドセットまで。
+          ビジネスに必要なパーツを網羅した体系的なトレーニングシステムが整っています。
+        </p>
+      </div>
+    </article>
+
+    <article class="why-card">
+      <figure class="why-img">
+        <img src="assets/why-card-03-experience.png" alt="" aria-hidden="true" loading="lazy">
+      </figure>
+      <div class="why-body">
+        <div class="why-num">03</div>
+        <h3 class="why-title">BOD で体感・体験</h3>
+        <p class="why-desc">
+          その仕組みの一部を、Business Open Day では実際に体感・体験いただけます。
+          紹介から成果が生まれる現場を、ぜひその目で。
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
 
 <!-- ============== 3 PILLARS ============== -->
 <section class="fade">
