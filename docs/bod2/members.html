@@ -84,6 +84,49 @@ body{font-family:var(--ff-sans);background:var(--cream-paper);color:var(--ink);-
   .nav-logo .members-tag{display:none}
 }
 
+/* ============== COUNTDOWN BAND (第2回 BOD まで) ============== */
+.countdown-band{
+  margin-top:var(--nav-h, 64px);
+  background:linear-gradient(90deg, var(--navy-deep, #0E1B3A) 0%, #1a2d5a 100%);
+  color:#fff;
+  text-align:center;
+  padding:clamp(16px, 2.5vw, 28px) 16px;
+  border-bottom:2px solid var(--gold, #D4A055);
+}
+@media(max-width:768px){
+  .countdown-band{margin-top:var(--nav-h-mobile, 56px)}
+}
+.countdown-band + .hero-mock .hero-mock-spacer{display:none;height:0}
+.countdown-inner{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:clamp(8px, 1.2vw, 16px);
+  flex-wrap:wrap;
+}
+.countdown-band .countdown-label{
+  font-family:var(--ff-display, "Noto Serif JP"), serif;
+  font-size:clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight:600;
+  color:var(--gold, #D4A055);
+  letter-spacing:.08em;
+}
+.countdown-band .countdown-days{
+  font-family:var(--ff-display, "Noto Serif JP"), serif;
+  font-size:clamp(3rem, 8vw, 6.5rem);
+  font-weight:700;
+  line-height:1;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(212,160,85,.4);
+}
+.countdown-band .countdown-unit{
+  font-size:clamp(1.4rem, 3vw, 2.4rem);
+  font-weight:600;
+  color:var(--gold, #D4A055);
+}
+.countdown-band.is-today .countdown-days{font-size:clamp(2rem, 5vw, 4rem)}
+.countdown-band.is-past .countdown-days{font-size:clamp(1.6rem, 4vw, 2.8rem)}
+
 /* ============== HERO (announcement.html と同一構造) ============== */
 .hero-mock{
   position:relative;
@@ -229,10 +272,6 @@ body{font-family:var(--ff-sans);background:var(--cream-paper);color:var(--ink);-
 .sync-bar button:hover{background:rgba(255,255,255,.5)}
 .sync-bar .spinner{display:inline-block;width:12px;height:12px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-2px}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-.countdown{background:#fff;border-bottom:1px solid var(--border);padding:18px 24px;text-align:center}
-.countdown-num{font-size:28px;font-weight:700;color:var(--amber);font-family:var(--ff-sans)}
-.countdown-label{font-size:12px;color:var(--text-muted);letter-spacing:2px;margin-left:6px}
 
 .toc{max-width:880px;margin:24px auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .toc a{display:inline-block;padding:8px 14px;background:#fff;border:1px solid var(--border);border-radius:24px;text-decoration:none;color:var(--navy);font-size:12px;font-weight:600;transition:all .2s}
@@ -799,7 +838,7 @@ tr:hover td{background:rgba(200,148,62,.04)}
 
 @media print{
   body{background:#fff}
-  .toc,.countdown,.nav,.hero-mock,.hero-cta-band,.member-strip,.sync-bar,.sec-edit,.bgm-btn{display:none}
+  .toc,.countdown-band,.nav,.hero-mock,.hero-cta-band,.member-strip,.sync-bar,.sec-edit,.bgm-btn{display:none}
   section{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
 }
 
@@ -930,6 +969,14 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
   </div>
 </nav>
 
+<div class="countdown-band" id="countdown-band" aria-live="polite">
+  <div class="countdown-inner">
+    <span class="countdown-label">第2回 BOD まで</span>
+    <span class="countdown-days" id="countdown-days">—</span>
+    <span class="countdown-unit">日</span>
+  </div>
+</div>
+
 <!-- ============== HERO (メンバー専用: hero-members-bod2 + hero-cta-band) ============== -->
 <header class="hero-mock">
   <span class="hero-mock-spacer" aria-hidden="true"></span>
@@ -1015,11 +1062,6 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
 
 <div id="sync-bar" class="sync-bar warn">
   <span><strong>Google Sheet 未設定</strong> — 現在はサンプルデータ表示中。<a href="setup.html">セットアップガイドを開く →</a></span>
-</div>
-
-<div class="countdown">
-  <span class="countdown-num" id="countdown-num">—</span>
-  <span class="countdown-label">days to BOD #2</span>
 </div>
 
 <nav class="toc" aria-label="目次">
@@ -1629,22 +1671,34 @@ function updateProgress() {
   $('#progress-pct').textContent = pct + '%';
 }
 
-/* ---- カウントダウン ---- */
-(function countdown() {
-  const target = new Date('2026-08-26T10:00:00+09:00');
+/* ---- カウントダウン（JST・ナビ直下バンド） ---- */
+(function countdownBand() {
+  const el = document.getElementById('countdown-days');
+  const band = document.getElementById('countdown-band');
+  if (!el || !band) return;
+  const unit = band.querySelector('.countdown-unit');
+  const label = band.querySelector('.countdown-label');
   function update() {
+    const event = new Date('2026-08-26T00:00:00+09:00');
     const now = new Date();
-    const diff = target - now;
-    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-    const el = $('#countdown-num');
-    if (diff < 0) {
-      el.textContent = 'event finished';
-      $('.countdown-label').textContent = '';
-    } else if (days === 0) {
-      el.textContent = '本日';
-      $('.countdown-label').textContent = '開催日です！';
+    const jstNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    const jstEvent = new Date(event.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    const diff = Math.ceil((jstEvent - jstNow) / (1000 * 60 * 60 * 24));
+    band.classList.remove('is-today', 'is-past');
+    if (unit) unit.style.display = '';
+    if (diff > 0) {
+      el.textContent = diff;
+      if (label) label.textContent = '第2回 BOD まで';
+    } else if (diff === 0) {
+      band.classList.add('is-today');
+      el.textContent = '本日開催！';
+      if (unit) unit.style.display = 'none';
+      if (label) label.textContent = '';
     } else {
-      el.textContent = days;
+      band.classList.add('is-past');
+      el.textContent = '開催済み';
+      if (unit) unit.style.display = 'none';
+      if (label) label.textContent = '';
     }
   }
   update();

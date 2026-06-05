@@ -100,6 +100,49 @@ body{
   .nav-links a{font-size:0.75rem;letter-spacing:.04em;padding:0.5em 0.4em}
 }
 
+/* ============== COUNTDOWN BAND (第2回 BOD まで) ============== */
+.countdown-band{
+  margin-top:var(--nav-h, 64px);
+  background:linear-gradient(90deg, var(--navy-deep, #121A30) 0%, #1a2d5a 100%);
+  color:#fff;
+  text-align:center;
+  padding:clamp(16px, 2.5vw, 28px) 16px;
+  border-bottom:2px solid var(--gold, #D4A055);
+}
+@media(max-width:768px){
+  .countdown-band{margin-top:var(--nav-h-mobile, 56px)}
+}
+.countdown-band + .hero-mock .hero-mock-spacer{display:none;height:0}
+.countdown-inner{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:clamp(8px, 1.2vw, 16px);
+  flex-wrap:wrap;
+}
+.countdown-band .countdown-label{
+  font-family:var(--ff-display, "Noto Serif JP"), serif;
+  font-size:clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight:600;
+  color:var(--gold, #D4A055);
+  letter-spacing:.08em;
+}
+.countdown-band .countdown-days{
+  font-family:var(--ff-display, "Noto Serif JP"), serif;
+  font-size:clamp(3rem, 8vw, 6.5rem);
+  font-weight:700;
+  line-height:1;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(212,160,85,.4);
+}
+.countdown-band .countdown-unit{
+  font-size:clamp(1.4rem, 3vw, 2.4rem);
+  font-weight:600;
+  color:var(--gold, #D4A055);
+}
+.countdown-band.is-today .countdown-days{font-size:clamp(2rem, 5vw, 4rem)}
+.countdown-band.is-past .countdown-days{font-size:clamp(1.6rem, 4vw, 2.8rem)}
+
 /* ============== HERO (clean AI-generated 大人の夏祭り visual, full-bleed) ============== */
 .hero-mock{
   position:relative;
@@ -1087,6 +1130,14 @@ section{padding:clamp(112px, 13vw, 176px) clamp(24px, 4vw, 64px);max-width:none;
   </div>
 </nav>
 
+<div class="countdown-band" id="countdown-band" aria-live="polite">
+  <div class="countdown-inner">
+    <span class="countdown-label">第2回 BOD まで</span>
+    <span class="countdown-days" id="countdown-days">—</span>
+    <span class="countdown-unit">日</span>
+  </div>
+</div>
+
 <!-- ============== HERO (MOCK IMAGE, full-bleed) ============== -->
 <header class="hero-mock">
   <span class="hero-mock-spacer" aria-hidden="true"></span>
@@ -1351,6 +1402,40 @@ document.querySelectorAll('.fade').forEach(el=>o.observe(el));
       setUI(false);
     }
   }catch(_){}
+})();
+
+/* ---- カウントダウン（JST・ナビ直下バンド） ---- */
+(function(){
+  const el = document.getElementById('countdown-days');
+  const band = document.getElementById('countdown-band');
+  if (!el || !band) return;
+  const unit = band.querySelector('.countdown-unit');
+  const label = band.querySelector('.countdown-label');
+  function update() {
+    const event = new Date('2026-08-26T00:00:00+09:00');
+    const now = new Date();
+    const jstNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    const jstEvent = new Date(event.toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+    const diff = Math.ceil((jstEvent - jstNow) / (1000 * 60 * 60 * 24));
+    band.classList.remove('is-today', 'is-past');
+    if (unit) unit.style.display = '';
+    if (diff > 0) {
+      el.textContent = diff;
+      if (label) label.textContent = '第2回 BOD まで';
+    } else if (diff === 0) {
+      band.classList.add('is-today');
+      el.textContent = '本日開催！';
+      if (unit) unit.style.display = 'none';
+      if (label) label.textContent = '';
+    } else {
+      band.classList.add('is-past');
+      el.textContent = '開催済み';
+      if (unit) unit.style.display = 'none';
+      if (label) label.textContent = '';
+    }
+  }
+  update();
+  setInterval(update, 60000);
 })();
 </script>
 </body>
