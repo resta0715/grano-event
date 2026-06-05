@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="オートネイル（INAIL／with Reyel）導入提案資料｜RG（ルートグラーノ）— 経営に、武器を。サロンオーナー向け、収支シミュレーションと4つの強みを1枚に。">
+<title>オートネイル導入提案｜RG（ルートグラーノ）— 経営に、武器を。</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0e1a2e;
+  --primary-2: #1a2a4a;
+  --ink: #0a0f1c;
+  --accent: #d4a055;
+  --accent-2: #e8c078;
+  --teal: #4ecdc4;
+  --teal-2: #2ab7a9;
+  --rose: #c97064;
+  --light: #f7f3ec;
+  --cream: #faf6ef;
+  --grad-night: linear-gradient(135deg, #0e1a2e 0%, #1a2a4a 100%);
+  --grad-gold: linear-gradient(135deg, #d4a055 0%, #e8c078 100%);
+  --grad-teal: linear-gradient(135deg, #4ecdc4 0%, #2ab7a9 100%);
+  --grad-rose: linear-gradient(135deg, #c97064 0%, #b04a3e 100%);
+}
+
+.reveal {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.reveal h2 { font-size: 2.0em; margin-bottom: 0.4em; line-height: 1.3; }
+.reveal h3 { font-size: 1.1em; }
+.reveal p, .reveal li { line-height: 1.7; }
+
+.reveal section { padding: 32px; }
+
+/* ========= Title slide ========= */
+.title-slide {
+  background:
+    linear-gradient(rgba(8,14,28,0.72), rgba(8,14,28,0.82)),
+    url('images/autonail/nail-hero-dark.png') center/cover;
+}
+.title-slide .kicker {
+  display: inline-block;
+  font-size: 0.68em;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  border: 1px solid rgba(212,160,85,0.5);
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-bottom: 26px;
+}
+.title-slide h1 {
+  font-size: 2.6em;
+  line-height: 1.35;
+  color: #fff;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  margin-bottom: 10px;
+}
+.title-slide h1 .accent { color: var(--accent); display: block; margin-top: 6px; }
+.title-slide .lead {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85em;
+  max-width: 720px;
+  margin: 24px auto 0;
+  line-height: 1.8;
+}
+.title-slide .company {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.7em;
+  margin-top: 56px;
+  letter-spacing: 0.25em;
+}
+.title-slide .company strong { color: var(--accent); letter-spacing: 0.3em; }
+
+/* ========= Section header slide ========= */
+.section-slide {
+  background: var(--grad-night);
+}
+.section-slide .chap {
+  color: var(--accent);
+  font-size: 0.85em;
+  letter-spacing: 0.35em;
+  margin-bottom: 18px;
+}
+.section-slide h2 { color: #fff; font-size: 2.6em; line-height: 1.3; }
+.section-slide .desc {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85em;
+  max-width: 720px;
+  margin: 26px auto 0;
+  line-height: 1.9;
+}
+
+/* ========= Generic dark slide ========= */
+.dark-slide { background: var(--grad-night); }
+.dark-slide h2 { color: #fff; }
+.dark-slide h2 .accent { color: var(--accent); }
+
+/* ========= Light slide ========= */
+.light-slide {
+  background: linear-gradient(180deg, var(--cream) 0%, #f0e7d6 100%);
+  color: var(--ink);
+}
+.light-slide h2 { color: var(--primary); }
+.light-slide h2 .accent { color: var(--rose); }
+.light-slide p, .light-slide li { color: #2a2a2a; }
+.light-slide .lead { color: #555; font-size: 0.85em; max-width: 760px; margin: 0 auto 24px; }
+
+/* ========= Why-now: 3 problem cards ========= */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1180px;
+  margin: 24px auto 0;
+}
+.problem-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,160,85,0.25);
+  border-radius: 14px;
+  padding: 26px 22px;
+  text-align: left;
+  backdrop-filter: blur(6px);
+}
+.problem-card .tag {
+  display: inline-block;
+  font-size: 0.55em;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  border: 1px solid rgba(212,160,85,0.5);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.problem-card h3 { color: #fff; font-size: 1.0em; margin-bottom: 12px; }
+.problem-card p {
+  font-size: 0.7em;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+}
+.problem-card p strong { color: var(--accent-2); font-weight: 700; }
+
+/* ========= Product hero (15 sec / 30 min) ========= */
+.product-slide { background: var(--grad-night); }
+.product-slide h2 { color: #fff; }
+.product-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 36px;
+  max-width: 1180px;
+  margin: 18px auto 0;
+  align-items: center;
+}
+.product-visual {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  aspect-ratio: 4/3;
+  background: #000;
+}
+.product-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-stats { display: grid; gap: 18px; }
+.stat-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,160,85,0.3);
+  border-radius: 16px;
+  padding: 22px 26px;
+  text-align: left;
+}
+.stat-card .stat-val {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900;
+  font-size: 3.2em;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stat-card .stat-val .unit { font-size: 0.4em; color: rgba(255,255,255,0.85); margin-left: 8px; font-weight: 700; }
+.stat-card .stat-label { color: rgba(255,255,255,0.85); font-size: 0.72em; margin-top: 10px; line-height: 1.7; }
+.stat-card .stat-label strong { color: var(--accent-2); }
+
+/* ========= Service bullets row ========= */
+.feat-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  max-width: 1200px;
+  margin: 28px auto 0;
+}
+.feat-pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,160,85,0.25);
+  border-radius: 14px;
+  padding: 18px 14px;
+  text-align: center;
+}
+.feat-pill i {
+  display: block;
+  font-size: 1.6em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.feat-pill .ttl {
+  font-size: 0.7em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.5;
+}
+
+/* ========= Gallery ========= */
+.gallery-slide { background: var(--ink); }
+.gallery-slide h2 { color: #fff; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  max-width: 1180px;
+  margin: 16px auto 0;
+  height: 460px;
+}
+.gallery-grid .g-cell {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #222;
+}
+.gallery-grid .g-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-grid .g-tall { grid-row: 1 / span 2; }
+.gallery-caption {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.7em;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.1em;
+}
+
+/* ========= Scenarios ========= */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1180px;
+  margin: 22px auto 0;
+}
+.scenario-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-top: 6px solid var(--accent);
+  position: relative;
+}
+.scenario-card:nth-child(2) { border-top-color: var(--teal); }
+.scenario-card:nth-child(3) { border-top-color: var(--rose); }
+.scenario-card .scn-num {
+  position: absolute;
+  top: -22px;
+  right: 22px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--grad-gold);
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 1.1em;
+  box-shadow: 0 6px 16px rgba(212,160,85,0.35);
+}
+.scenario-card:nth-child(2) .scn-num { background: var(--grad-teal); color: #fff; box-shadow: 0 6px 16px rgba(78,205,196,0.35);}
+.scenario-card:nth-child(3) .scn-num { background: var(--grad-rose); color: #fff; box-shadow: 0 6px 16px rgba(201,112,100,0.35);}
+.scenario-card h3 { color: var(--primary); font-size: 1.0em; margin-bottom: 12px; padding-right: 50px; }
+.scenario-card .kpi { font-size: 0.68em; color: var(--rose); font-weight: 700; margin-bottom: 8px; }
+.scenario-card p { font-size: 0.7em; color: #444; line-height: 1.8; }
+.scenario-card .tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+.scenario-card .tags span {
+  font-size: 0.55em; font-weight: 700;
+  background: rgba(14,26,46,0.06); color: var(--primary);
+  padding: 4px 10px; border-radius: 999px;
+}
+
+/* ========= Big numbers ========= */
+.bignum-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1180px;
+  margin: 24px auto 0;
+}
+.bignum-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.bignum-card .lbl {
+  font-size: 0.62em;
+  letter-spacing: 0.18em;
+  color: #888;
+  margin-bottom: 10px;
+}
+.bignum-card .val {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 2.6em;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
+}
+.bignum-card .val .unit { font-size: 0.42em; font-weight: 700; color: #555; margin-left: 4px; }
+.bignum-card.hl { background: var(--grad-night); color: #fff; }
+.bignum-card.hl .lbl { color: var(--accent); }
+.bignum-card.hl .val { color: #fff; }
+.bignum-card.hl .val .unit { color: rgba(255,255,255,0.7); }
+.bignum-card .sub { font-size: 0.6em; color: #888; margin-top: 8px; }
+
+/* ========= Monthly PL flow ========= */
+.pl-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+  max-width: 1180px;
+  margin: 28px auto 0;
+}
+.pl-flow .pl-block {
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px 18px;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  border-top: 5px solid var(--accent);
+}
+.pl-flow .pl-block.profit { border-top-color: var(--teal); }
+.pl-flow .pl-block.cost { border-top-color: var(--rose); }
+.pl-flow .pl-block .cap {
+  font-size: 0.6em; letter-spacing: 0.15em; color: #777; margin-bottom: 10px;
+}
+.pl-flow .pl-block .amt {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900; font-size: 1.7em;
+  color: var(--primary); line-height: 1;
+}
+.pl-flow .pl-block.profit .amt { color: var(--teal-2); }
+.pl-flow .pl-block.cost .amt { color: var(--rose); }
+.pl-flow .pl-block .detail {
+  font-size: 0.55em; color: #888; margin-top: 8px;
+  line-height: 1.6;
+}
+.pl-flow .pl-op {
+  font-size: 2em; font-weight: 900; color: var(--primary); opacity: 0.4;
+}
+
+/* ========= Breakeven progress bar ========= */
+.be-wrap {
+  max-width: 920px;
+  margin: 22px auto 0;
+  background: #fff;
+  padding: 26px 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  text-align: left;
+}
+.be-wrap .be-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+.be-wrap .be-title { font-size: 0.85em; color: var(--primary); font-weight: 700; }
+.be-wrap .be-sub { font-size: 0.65em; color: #888; }
+.be-track {
+  position: relative;
+  height: 30px;
+  background: #f1ece2;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.be-fill {
+  position: absolute; top: 0; left: 0;
+  height: 100%;
+  background: var(--grad-gold);
+  border-radius: 999px;
+}
+.be-fill.be20 { width: 20%; }
+.be-fill.be100 { width: 100%; opacity: 0.18; }
+.be-marker {
+  position: absolute;
+  top: -8px;
+  height: 46px;
+  border-left: 2px dashed var(--rose);
+}
+.be-marker.m20 { left: 20%; }
+.be-label {
+  position: absolute;
+  font-size: 0.6em;
+  color: var(--rose);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.be-axis { display: flex; justify-content: space-between; font-size: 0.6em; color: #888; margin-top: 8px; }
+
+/* ========= Comparison table ========= */
+.cmp-table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 22px auto 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  font-size: 0.72em;
+}
+.cmp-table th, .cmp-table td {
+  padding: 14px 18px;
+  text-align: left;
+}
+.cmp-table thead th {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.cmp-table tbody td {
+  background: rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.85);
+}
+.cmp-table tbody td:first-child { font-weight: 700; color: var(--accent); }
+.cmp-table .cmp-yes { color: var(--teal); font-weight: 700; }
+.cmp-table .cmp-no { color: #c97064; }
+
+/* ========= WHY RG opening ========= */
+.why-open-slide {
+  background:
+    linear-gradient(rgba(8,14,28,0.85), rgba(8,14,28,0.92)),
+    url('images/autonail/salon-interior.png') center/cover;
+}
+.why-open-slide .chap { color: var(--accent); letter-spacing: 0.4em; font-size: 0.82em; }
+.why-open-slide h2 {
+  color: #fff;
+  font-size: 2.7em;
+  line-height: 1.35;
+  margin: 18px auto 22px;
+}
+.why-open-slide h2 .accent { color: var(--accent); }
+.why-open-slide .desc {
+  max-width: 800px; margin: 0 auto; color: rgba(255,255,255,0.78);
+  font-size: 0.82em; line-height: 1.9;
+}
+.why-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 920px;
+  margin: 30px auto 0;
+}
+.why-pillars .pillar {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(212,160,85,0.3);
+  border-radius: 14px;
+  padding: 18px 22px;
+  text-align: left;
+}
+.why-pillars .pillar h3 {
+  font-size: 0.78em; color: var(--accent); margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+.why-pillars .pillar p {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.65em; line-height: 1.7;
+}
+
+/* ========= Strength slide ========= */
+.strength-slide { background: var(--grad-night); }
+.strength-slide .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(212,160,85,0.12);
+  border: 1px solid rgba(212,160,85,0.4);
+  border-radius: 999px;
+  padding: 8px 22px;
+  color: var(--accent);
+  font-size: 0.62em;
+  letter-spacing: 0.25em;
+  margin-bottom: 18px;
+}
+.strength-slide .badge .n {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900;
+  font-size: 1.4em;
+  color: var(--accent);
+}
+.strength-slide h2 {
+  color: #fff;
+  font-size: 2.3em;
+  line-height: 1.35;
+  margin-bottom: 18px;
+}
+.strength-slide h2 .accent { color: var(--accent); }
+.strength-body {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 32px;
+  max-width: 1180px;
+  margin: 14px auto 0;
+  align-items: center;
+}
+.strength-illust {
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.strength-illust img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.strength-illust.icon-box i {
+  font-size: 7em;
+  color: var(--accent);
+  opacity: 0.85;
+}
+.strength-copy { text-align: left; }
+.strength-copy ul { list-style: none; padding: 0; margin: 0; }
+.strength-copy li {
+  position: relative;
+  padding-left: 28px;
+  margin: 12px 0;
+  font-size: 0.72em;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.8;
+}
+.strength-copy li::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute; left: 0; top: 4px;
+  color: var(--accent);
+}
+.strength-copy li strong { color: #fff; font-weight: 700; }
+.strength-copy li em {
+  font-style: normal;
+  color: var(--accent-2);
+  font-weight: 700;
+}
+.strength-note {
+  margin-top: 18px;
+  font-size: 0.55em;
+  color: rgba(255,255,255,0.5);
+  border-left: 3px solid rgba(212,160,85,0.4);
+  padding: 8px 12px;
+}
+
+/* MEO funnel */
+.meo-funnel {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 6px; padding: 16px;
+}
+.meo-funnel .step {
+  width: 100%;
+  text-align: center;
+  font-size: 0.7em;
+  font-weight: 700;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(212,160,85,0.25);
+}
+.meo-funnel .step.s1 { background: rgba(78,205,196,0.18); border-color: rgba(78,205,196,0.5); }
+.meo-funnel .step.s2 { width: 86%; background: rgba(212,160,85,0.2); border-color: rgba(212,160,85,0.55); }
+.meo-funnel .step.s3 { width: 72%; background: rgba(212,160,85,0.32); border-color: rgba(212,160,85,0.7); }
+.meo-funnel .step.s4 { width: 58%; background: var(--grad-gold); color: var(--primary); border: none; }
+.meo-funnel .arrow { color: var(--accent); font-size: 1.2em; }
+.meo-funnel .neg {
+  width: 86%; text-align: center; font-size: 0.6em;
+  background: rgba(201,112,100,0.18); border: 1px dashed rgba(201,112,100,0.5);
+  border-radius: 10px; padding: 8px 10px; color: #f3c1ba; margin-top: 6px;
+}
+
+/* ========= 4 strengths summary ========= */
+.summary-strengths-slide { background: var(--grad-night); }
+.summary-strengths-slide h2 { color: #fff; }
+.summary-strengths-slide h2 .accent { color: var(--accent); }
+.s4-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  max-width: 1100px;
+  margin: 22px auto 0;
+}
+.s4-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,160,85,0.3);
+  border-radius: 16px;
+  padding: 22px 24px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.s4-card .s4-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: var(--grad-gold);
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4em;
+  box-shadow: 0 8px 20px rgba(212,160,85,0.3);
+}
+.s4-card h3 { color: #fff; font-size: 0.9em; margin-bottom: 8px; }
+.s4-card h3 .num { color: var(--accent); margin-right: 6px; }
+.s4-card p { color: rgba(255,255,255,0.78); font-size: 0.65em; line-height: 1.7; }
+
+/* ========= Timeline ========= */
+.timeline-slide { background: var(--cream); color: var(--ink); }
+.timeline-slide h2 { color: var(--primary); }
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  max-width: 1180px;
+  margin: 26px auto 0;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--rose), var(--teal));
+  z-index: 0;
+}
+.tl-step {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 14px 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  text-align: center;
+  z-index: 1;
+}
+.tl-step .n {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--grad-gold);
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900;
+  margin: 0 auto 8px;
+  box-shadow: 0 6px 14px rgba(212,160,85,0.35);
+}
+.tl-step h4 { font-size: 0.72em; color: var(--primary); margin-bottom: 6px; font-weight: 700; }
+.tl-step p { font-size: 0.56em; color: #666; line-height: 1.6; }
+
+/* ========= Risks ========= */
+.risk-slide { background: var(--grad-night); }
+.risk-slide h2 { color: #fff; }
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  max-width: 1080px;
+  margin: 22px auto 0;
+}
+.risk-card {
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid var(--rose);
+  border-radius: 14px;
+  padding: 20px 22px;
+  text-align: left;
+}
+.risk-card .risk-ttl {
+  color: var(--rose); font-weight: 700; font-size: 0.78em; margin-bottom: 6px;
+}
+.risk-card .risk-sol {
+  color: rgba(255,255,255,0.85); font-size: 0.7em; line-height: 1.75;
+}
+.risk-card .risk-sol::before {
+  content: "→ 対策：";
+  color: var(--teal); font-weight: 700; margin-right: 4px;
+}
+
+/* ========= CTA ========= */
+.cta-slide {
+  background:
+    linear-gradient(rgba(14,26,46,0.88), rgba(14,26,46,0.94)),
+    url('images/autonail/nail-hero-nuance.png') center/cover;
+}
+.cta-slide .kicker {
+  color: var(--accent);
+  font-size: 0.72em;
+  letter-spacing: 0.45em;
+  margin-bottom: 18px;
+}
+.cta-slide h2 {
+  color: #fff;
+  font-size: 2.8em;
+  line-height: 1.35;
+  margin-bottom: 24px;
+}
+.cta-slide h2 .accent { color: var(--accent); }
+.cta-slide .lead {
+  color: rgba(255,255,255,0.82);
+  font-size: 0.82em;
+  max-width: 760px;
+  margin: 0 auto 36px;
+  line-height: 1.9;
+}
+.cta-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 30px;
+}
+.cta-step {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(212,160,85,0.3);
+  border-radius: 14px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.cta-step .n {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: var(--accent); font-size: 1.8em; font-weight: 900; line-height: 1;
+}
+.cta-step .t { color: #fff; font-size: 0.7em; font-weight: 700; margin-top: 8px; }
+.cta-step .s { color: rgba(255,255,255,0.6); font-size: 0.55em; margin-top: 4px; line-height: 1.6; }
+.cta-pill {
+  display: inline-block;
+  background: var(--grad-gold);
+  color: var(--primary);
+  font-weight: 900;
+  font-size: 0.95em;
+  padding: 18px 42px;
+  border-radius: 999px;
+  box-shadow: 0 14px 30px rgba(212,160,85,0.35);
+  letter-spacing: 0.08em;
+}
+.cta-slide .company {
+  margin-top: 36px;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.62em;
+  letter-spacing: 0.25em;
+}
+.cta-slide .company strong { color: var(--accent); }
+
+/* ========= Footer disclaimer ========= */
+.disclaimer-foot {
+  font-size: 0.5em;
+  color: rgba(255,255,255,0.45);
+  max-width: 900px;
+  margin: 26px auto 0;
+  line-height: 1.7;
+  text-align: center;
+}
+.disclaimer-foot.dark { color: #777; }
+
+/* ========= Print ========= */
+@media print {
+  .reveal { width: 100% !important; height: auto !important; }
+  .reveal .slides section { page-break-after: always; }
+  #nav-buttons { display: none !important; }
+}
+
+/* ========= Responsive tweaks ========= */
+@media (max-width: 900px) {
+  .problem-grid, .scenario-grid, .bignum-grid, .s4-grid, .risk-grid,
+  .pl-flow, .product-grid, .strength-body, .why-pillars, .cta-steps {
+    grid-template-columns: 1fr !important;
+  }
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+  .timeline::before { display: none; }
+  .feat-row { grid-template-columns: repeat(2, 1fr); }
+  .pl-flow .pl-op { display: none; }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; height: auto; }
+  .gallery-grid .g-tall { grid-row: auto; }
+}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: Title -->
+<!-- ============================================================ -->
+<section class="title-slide">
+  <span class="kicker">AUTONAIL PROPOSAL</span>
+  <h1>
+    「時間」を、垂れ流すな。<br>
+    <span class="accent">経営に、武器を。</span>
+  </h1>
+  <p class="lead">
+    オートネイル導入提案資料｜サロンオーナー／経営者向け<br>
+    固定費を増やさず、<strong>今の売上を伸ばす仕組み</strong>として、機材以上の価値を一枚にまとめました。
+  </p>
+  <p class="company"><strong>RG（ルートグラーノ）</strong>&nbsp;&nbsp;｜&nbsp;&nbsp;AUTONAIL × SALON BUSINESS</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: Why now -->
+<!-- ============================================================ -->
+<section class="dark-slide">
+  <h2>経営がズレるパターンは、<span class="accent">3つだけ。</span></h2>
+  <p style="color:rgba(255,255,255,0.7); font-size:0.78em; max-width:880px; margin:0 auto;">
+    きれいごと抜きで見ると、サロン経営はだいたい、この3つのどこかで詰まっている。
+  </p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <span class="tag">RESOURCE</span>
+      <h3>「上手い人」への過集中</h3>
+      <p>超人ネイリスト依存はリスクでしかない。休む・辞める・単価を取りすぎる。<strong>属人化のまま売上だけが増える</strong>のは、オーナーが一番怖がるシナリオ。</p>
+    </div>
+    <div class="problem-card">
+      <span class="tag">PROFIT</span>
+      <h3>丁寧さと回転の綱引き敗北</h3>
+      <p>アートは時間がかかる。時間がかかるほど椅子が回らない。差別化を諦めれば回転は上がるが薄味になる。<strong>構造で解決しない限り、現場は板挟み</strong>のまま。</p>
+    </div>
+    <div class="problem-card">
+      <span class="tag">LOSS</span>
+      <h3>店内にいるのに払わせていない</h3>
+      <p>カラー待ち、平日のスキマ、スタッフの空き時間。それは「休憩」じゃない、<strong>そのまま捨てている粗利</strong>。マルチタスクで一人当たり生産性を上げられるかが勝負。</p>
+    </div>
+  </div>
+  <p class="disclaimer-foot">※業界の構造課題に関する一般論を要約しています。</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3: Product introduction -->
+<!-- ============================================================ -->
+<section class="product-slide">
+  <h2>オートネイルが突くのは、<span style="color:var(--accent);">「設計」。</span></h2>
+  <div class="product-grid">
+    <div class="product-visual">
+      <img src="images/autonail/salon-interior.png" alt="サロンに設置されたオートネイル機器のイメージ" loading="lazy">
+    </div>
+    <div class="product-stats">
+      <div class="stat-card">
+        <div class="stat-val">15<span class="unit">秒</span></div>
+        <div class="stat-label">1本わずか<strong>15秒</strong>でプリント。スピードそのものを売りにできる。</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">約30<span class="unit">分</span></div>
+        <div class="stat-label">従来ジェル<strong>約150分</strong>に対し、サロン級の仕上がりを<strong>約30分</strong>で。<br><span style="font-size:0.85em; color:rgba(255,255,255,0.55);">※施術条件により異なります</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">0<span class="unit">資格</span></div>
+        <div class="stat-label">専門資格不要・<strong>人材不要・省スペース</strong>。既存スタッフのまま、空きスペースで運用できる。</div>
+      </div>
+    </div>
+  </div>
+  <div class="feat-row">
+    <div class="feat-pill"><i class="fas fa-bolt"></i><div class="ttl">約30分で<br>サロン級</div></div>
+    <div class="feat-pill"><i class="fas fa-hand-pointer"></i><div class="ttl">セルフ対応で<br>誰でも施術</div></div>
+    <div class="feat-pill"><i class="fas fa-images"></i><div class="ttl">写真・柄・オリジナル<br>を再現</div></div>
+    <div class="feat-pill"><i class="fas fa-user-slash"></i><div class="ttl">専門資格不要<br>人材不要</div></div>
+    <div class="feat-pill"><i class="fas fa-compress"></i><div class="ttl">省スペース<br>で導入可能</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4: Gallery -->
+<!-- ============================================================ -->
+<section class="gallery-slide">
+  <h2 style="color:#fff;">仕上がりは、<span style="color:var(--accent);">「サロン級」を超える領域へ。</span></h2>
+  <p style="color:rgba(255,255,255,0.6); font-size:0.78em; max-width:880px; margin:0 auto 16px;">
+    ニュアンス、和モダン、ミニマル・ラグジュアリー — 客層・季節・キャンペーンに合わせて即時切替。
+  </p>
+  <div class="gallery-grid">
+    <div class="g-cell g-tall"><img src="images/autonail/nail-hero-nuance.png" alt="ニュアンスネイル仕上がりイメージ" loading="lazy"></div>
+    <div class="g-cell"><img src="images/autonail/nail-japanese-modern.png" alt="ジャパニーズモダンネイル" loading="lazy"></div>
+    <div class="g-cell"><img src="images/autonail/nail-gallery-tips.png" alt="トレンドデザインのバリエーション" loading="lazy"></div>
+    <div class="g-cell"><img src="images/autonail/nail-minimal-luxury.png" alt="ミニマル・ラグジュアリーネイル" loading="lazy"></div>
+    <div class="g-cell"><img src="images/autonail/nail-hero-dark.png" alt="ラグジュアリーモードのネイル" loading="lazy"></div>
+  </div>
+  <p class="gallery-caption">DESIGN GALLERY — Sample artwork rendered with autonail technology</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: 3 scenarios -->
+<!-- ============================================================ -->
+<section class="light-slide">
+  <h2>同じ機材で、<span class="accent">3つの戦い方</span>。</h2>
+  <p class="lead">「ネイル屋を作る」のではなく、<strong>既存の業態に載せて売上を伸ばす</strong>のがオートネイルの本領。<br>RGは現場ごとにオペレーションを設計します。</p>
+  <div class="scenario-grid">
+    <div class="scenario-card">
+      <span class="scn-num">1</span>
+      <div class="kpi">NAIL SALON</div>
+      <h3>ネイルサロン<br>稼働率と新人デビューを早回し</h3>
+      <p>アート工程を「時間のブロック」から外し、<strong>新人の早期デビュー</strong>と<strong>スタッフ稼働率</strong>を底上げ。属人化リスクを下げながら、上級ネイリストには高単価アートに集中させる。</p>
+      <div class="tags"><span>稼働率UP</span><span>新人活躍</span><span>分業化</span></div>
+    </div>
+    <div class="scenario-card">
+      <span class="scn-num">2</span>
+      <div class="kpi">HAIR × NAIL</div>
+      <h3>ヘアサロン併設<br>カラー待ちを粗利に変える</h3>
+      <p>カラー・パーマの放置時間を<strong>マルチタスク収益</strong>へ。一人当たり生産性を構造的に押し上げる「ついで施術」モデル。導線設計と単価提案までRGがチューニング。</p>
+      <div class="tags"><span>マルチタスク</span><span>客単価+α</span><span>スキマ収益化</span></div>
+    </div>
+    <div class="scenario-card">
+      <span class="scn-num">3</span>
+      <div class="kpi">SELF / UNMANNED</div>
+      <h3>セルフ・無人運用<br>少人数で器を増やす</h3>
+      <p>セルフ対応で<strong>専門人材不要</strong>。空きスペース・無人ブース・イベント設置まで対応。<strong>固定費を増やさず</strong>に「新しい器」を試せる、低リスクの選択肢。</p>
+      <div class="tags"><span>無人運用</span><span>省スペース</span><span>低リスク</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: Section divider — 収支 -->
+<!-- ============================================================ -->
+<section class="section-slide">
+  <p class="chap">CHAPTER 02 — FINANCIAL SIMULATION</p>
+  <h2>感情ではなく、<br><span style="color:var(--accent);">数字で勝てるか</span>を見る。</h2>
+  <p class="desc">
+    以下は with Reyel オートネイル FC加盟シミュレーション資料の<strong>前提数値</strong>に基づく整理です。<br>
+    実績や利益を保証するものではありません。条件により変動します。
+  </p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7: Initial investment -->
+<!-- ============================================================ -->
+<section class="light-slide">
+  <h2>初期投資、<span class="accent">¥825,000</span>。</h2>
+  <p class="lead">物件・内装・採用は不要。<strong>メーカーリース</strong>で機器導入の負担を抑える選択肢もあります。</p>
+  <div class="bignum-grid">
+    <div class="bignum-card">
+      <div class="lbl">FC加盟料金</div>
+      <div class="val">¥220,000</div>
+      <div class="sub">加盟基本料</div>
+    </div>
+    <div class="bignum-card">
+      <div class="lbl">研修費用</div>
+      <div class="val">¥55,000</div>
+      <div class="sub">初期トレーニング</div>
+    </div>
+    <div class="bignum-card">
+      <div class="lbl">機器導入</div>
+      <div class="val">¥550,000</div>
+      <div class="sub">メーカーリース対応可</div>
+    </div>
+  </div>
+  <div style="max-width:560px; margin:26px auto 0; background:var(--primary); color:#fff; border-radius:18px; padding:22px 30px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="text-align:left;">
+      <div style="font-size:0.55em; letter-spacing:0.2em; color:var(--accent); margin-bottom:6px;">TOTAL</div>
+      <div style="font-size:0.7em; color:rgba(255,255,255,0.7);">合計（一例）</div>
+    </div>
+    <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:2.2em; color:#fff;">¥825,000</div>
+  </div>
+  <p style="font-size:0.55em; color:#888; margin-top:14px;">※広告・宣伝等をご依頼の場合は別途費用。出典：Reyel オートネイル FC加盟シミュレーション資料。</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: Monthly PL -->
+<!-- ============================================================ -->
+<section class="light-slide">
+  <h2>月次収支：<span class="accent">¥220,000 → ¥93,500</span>。</h2>
+  <p class="lead">月<strong>100名</strong>・単価<strong>¥2,200</strong>のモデル。家賃・人件費・水道光熱・消耗品は<strong>ゼロ想定</strong>のシンプル前提で、来客が増えるほど利益が線形に乗りやすい設計です。</p>
+  <div class="pl-flow">
+    <div class="pl-block">
+      <div class="cap">SALES — 売上（月）</div>
+      <div class="amt">¥220,000</div>
+      <div class="detail">@¥2,200 × 100名</div>
+    </div>
+    <div class="pl-op">−</div>
+    <div class="pl-block cost">
+      <div class="cap">COST — 経費（月）</div>
+      <div class="amt">¥126,500</div>
+      <div class="detail">原価 ¥99,000<br>運営サポート ¥27,500</div>
+    </div>
+    <div class="pl-op">＝</div>
+    <div class="pl-block profit">
+      <div class="cap">PROFIT — 利益（月）</div>
+      <div class="amt">¥93,500</div>
+      <div class="detail">粗利率 約42％</div>
+    </div>
+  </div>
+  <p style="font-size:0.55em; color:#888; margin-top:18px;">※運営サポート：営業システム・技術／アフターサポート等（資料表記）／実態に合わせ家賃・人件費等を加算してください。</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: Annual impact -->
+<!-- ============================================================ -->
+<section class="dark-slide">
+  <h2>年間で見ると、<span class="accent">利益¥1,122,000・回収9ヶ月。</span></h2>
+  <div class="bignum-grid" style="margin-top:14px;">
+    <div class="bignum-card">
+      <div class="lbl">ANNUAL SALES</div>
+      <div class="val">¥2.64<span class="unit">M</span></div>
+      <div class="sub">年間売上（一例）</div>
+    </div>
+    <div class="bignum-card hl">
+      <div class="lbl">ANNUAL PROFIT</div>
+      <div class="val">¥1.12<span class="unit">M</span></div>
+      <div class="sub">年間利益（一例）</div>
+    </div>
+    <div class="bignum-card">
+      <div class="lbl">PAYBACK</div>
+      <div class="val">約9<span class="unit">ヶ月</span></div>
+      <div class="sub">初期投資の回収目安</div>
+    </div>
+  </div>
+  <p style="font-size:0.6em; color:rgba(255,255,255,0.55); margin-top:22px; max-width:760px; margin-left:auto; margin-right:auto;">
+    ※すべて with Reyel オートネイル FC加盟シミュレーション資料の前提値の整理です。実績・利益を保証するものではありません。
+  </p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: Breakeven -->
+<!-- ============================================================ -->
+<section class="light-slide">
+  <h2>分岐点は、<span class="accent">月20名。</span></h2>
+  <p class="lead">ここを超えると、模型上は利益が積み上がりやすくなります。<br>つまり、<strong>1日1名にも届かない来客数</strong>でひとつの目安に到達するという設計です。</p>
+  <div class="be-wrap">
+    <div class="be-head">
+      <div class="be-title">月次利用人数の目安</div>
+      <div class="be-sub">フル稼働の目安：100名／月</div>
+    </div>
+    <div class="be-track">
+      <div class="be-fill be100"></div>
+      <div class="be-fill be20"></div>
+      <div class="be-marker m20"><span class="be-label" style="top:-22px; left:6px;">▼ 月20名（分岐点）</span></div>
+    </div>
+    <div class="be-axis">
+      <span>0名</span><span>20名</span><span>40名</span><span>60名</span><span>80名</span><span>100名</span>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:920px; margin:22px auto 0;">
+    <div style="background:#fff; border-radius:14px; padding:16px 18px; box-shadow:0 8px 20px rgba(0,0,0,0.06);">
+      <div style="font-size:0.55em; color:#888; letter-spacing:0.15em;">UNIT PRICE</div>
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:1.4em; color:var(--primary); margin-top:4px;">約 ¥2,200</div>
+      <div style="font-size:0.55em; color:#888; margin-top:4px;">客単価</div>
+    </div>
+    <div style="background:#fff; border-radius:14px; padding:16px 18px; box-shadow:0 8px 20px rgba(0,0,0,0.06);">
+      <div style="font-size:0.55em; color:#888; letter-spacing:0.15em;">GROSS PROFIT</div>
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:1.4em; color:var(--teal-2); margin-top:4px;">約 ¥1,210</div>
+      <div style="font-size:0.55em; color:#888; margin-top:4px;">一人当たり粗利（イメージ）</div>
+    </div>
+    <div style="background:#fff; border-radius:14px; padding:16px 18px; box-shadow:0 8px 20px rgba(0,0,0,0.06);">
+      <div style="font-size:0.55em; color:#888; letter-spacing:0.15em;">CYCLE</div>
+      <div style="font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:1.4em; color:var(--primary); margin-top:4px;">2週 〜 1ヶ月</div>
+      <div style="font-size:0.55em; color:#888; margin-top:4px;">想定リピート周期</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11: Comparison table -->
+<!-- ============================================================ -->
+<section class="dark-slide">
+  <h2>従来ジェル vs <span class="accent">オートネイル</span>。</h2>
+  <p style="color:rgba(255,255,255,0.7); font-size:0.78em; max-width:880px; margin:0 auto;">
+    「品質を担保しながら、構造で時間を取り返せるか」だけが論点です。
+  </p>
+  <table class="cmp-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th><i class="fas fa-hand-sparkles"></i>&nbsp; 従来ジェル施術</th>
+        <th><i class="fas fa-bolt"></i>&nbsp; オートネイル</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>施術時間</td>
+        <td><span class="cmp-no">約150分</span></td>
+        <td><span class="cmp-yes">約30分（1/5）</span></td>
+      </tr>
+      <tr>
+        <td>必要スキル</td>
+        <td>熟練のネイリスト技能</td>
+        <td><span class="cmp-yes">専門資格不要</span>／既存スタッフで運用可</td>
+      </tr>
+      <tr>
+        <td>属人性</td>
+        <td><span class="cmp-no">高い（休む・辞めるが直撃）</span></td>
+        <td><span class="cmp-yes">低い（再現性のあるオペレーション）</span></td>
+      </tr>
+      <tr>
+        <td>客単価</td>
+        <td>アート時間で押し上げ（時間と引き換え）</td>
+        <td>＋α提案で押し上げ（<span class="cmp-yes">時間を奪わず単価UP</span>）</td>
+      </tr>
+      <tr>
+        <td>稼働率</td>
+        <td>椅子の回転が頭打ち</td>
+        <td><span class="cmp-yes">スキマ時間を粗利化</span></td>
+      </tr>
+      <tr>
+        <td>立ち上げ</td>
+        <td>採用・育成に時間とコスト</td>
+        <td><span class="cmp-yes">物件・内装・採用不要</span>／短期で開始</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="disclaimer-foot">※「約150分／約30分」はメーカー公式が掲げる一例。施術条件により異なります。</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12: WHY RG — Opening -->
+<!-- ============================================================ -->
+<section class="why-open-slide">
+  <p class="chap">CHAPTER 03 — WHY RG</p>
+  <h2>
+    機材だけ買えるなら、<br>
+    <span class="accent">どこからでも買える。</span>
+  </h2>
+  <p class="desc">
+    オートネイルは強力な機材です。けれど、機材は<strong>使われ方</strong>で価値が変わる。<br>
+    RGは「機械の力」と「現場の力」を分けて設計し、サロンが<strong>翌月から売上を伸ばす</strong>状態を作ります。
+  </p>
+  <div class="why-pillars">
+    <div class="pillar">
+      <h3><i class="fas fa-microchip"></i>&nbsp; INAILの力</h3>
+      <p>1本15秒のプリント／約30分の施術／専門資格不要／省スペース／高い再現性。<br>機材としての一級スペック。</p>
+    </div>
+    <div class="pillar">
+      <h3><i class="fas fa-hand-holding-heart"></i>&nbsp; RGの力</h3>
+      <p>導入〜運用までの伴走、トレンドデザイン継続供給、Googleレビュー設計、個性心理学接客 — <strong>「機材の外側」</strong>を引き受ける4本柱。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 13: Strength 1 — 導入サポート -->
+<!-- ============================================================ -->
+<section class="strength-slide">
+  <span class="badge"><span class="n">01</span>&nbsp; STRENGTH OF RG</span>
+  <h2>導入は、<span class="accent">丸ごと任せていい。</span></h2>
+  <div class="strength-body">
+    <div class="strength-illust icon-box" style="background:linear-gradient(135deg, rgba(212,160,85,0.12), rgba(78,205,196,0.08));">
+      <i class="fas fa-handshake-angle"></i>
+    </div>
+    <div class="strength-copy">
+      <ul>
+        <li><strong>機器選定・契約・設置・初期トレーニング・運用開始</strong>まで、RGが伴走。一連の判断を「丸投げできる」状態に。</li>
+        <li>メーカー公式の<em>無償サポート</em>に加え、RGの<strong>現場運用ノウハウ</strong>（既存サロン経営の知見）を上乗せして提供。</li>
+        <li>「何から始めればいいか分からない」を、<strong>1本の電話</strong>で解消するのが役割。</li>
+        <li>機材は「導入して終わり」になりがち。RGは導入の<strong>3ヶ月後・6ヶ月後</strong>の数字まで一緒に追います。</li>
+      </ul>
+      <p class="strength-note">無償サポートの範囲は公式の最新条件に準じます。RGの伴走範囲・追加サービス内容は別途お打合せ。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 14: Strength 2 — トレンドデザイン -->
+<!-- ============================================================ -->
+<section class="strength-slide">
+  <span class="badge"><span class="n">02</span>&nbsp; STRENGTH OF RG</span>
+  <h2>テンプレ任せの店と、<span class="accent">差をつける。</span></h2>
+  <div class="strength-body">
+    <div class="strength-illust">
+      <img src="images/autonail/nail-gallery-tips.png" alt="ネイリスト監修のトレンドデザイン">
+    </div>
+    <div class="strength-copy">
+      <ul>
+        <li>通常のオートネイル運用は、<strong>メーカー提供テンプレート＋自分で選択・追加</strong>が基本。<br>「何が今っぽいか」をオーナーが毎月探す必要がある。</li>
+        <li>RGは、<em>現役ネイリスト監修</em>で<strong>季節・流行に合わせたオリジナルデザインを継続供給</strong>。サロンは<strong>選ぶだけ</strong>、迷わない、常に新しい。</li>
+        <li>「今月の推し」「次の季節の先取り」「キャンペーン用」など、<strong>運用テーマごと</strong>に束ねて納品。</li>
+        <li>競合がテンプレを並べるなか、自店だけ<strong>差別化された絵</strong>を出せる状態を作ります。</li>
+      </ul>
+      <p class="strength-note">デザイン供給の頻度・本数は加盟プランによって異なります。詳細は別途お見積りで提示します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15: Strength 3 — MEO / Reviews -->
+<!-- ============================================================ -->
+<section class="strength-slide">
+  <span class="badge"><span class="n">03</span>&nbsp; STRENGTH OF RG</span>
+  <h2>★4.8を、<span class="accent">運任せにしない。</span></h2>
+  <div class="strength-body">
+    <div class="strength-illust" style="background:linear-gradient(135deg, rgba(14,26,46,0.6), rgba(8,14,28,0.85)); aspect-ratio:4/3;">
+      <div class="meo-funnel">
+        <div class="step s1"><i class="fas fa-qrcode"></i>&nbsp; 来店客がQRコードを読む</div>
+        <div class="arrow"><i class="fas fa-angle-down"></i></div>
+        <div class="step s2"><i class="fas fa-star"></i>&nbsp; 星評価（5段階）</div>
+        <div class="arrow"><i class="fas fa-angle-down"></i></div>
+        <div class="step s3"><i class="fas fa-wand-magic-sparkles"></i>&nbsp; AIがレビュー文を下書き</div>
+        <div class="arrow"><i class="fas fa-angle-down"></i></div>
+        <div class="step s4"><i class="fab fa-google"></i>&nbsp; Google レビューへ送客</div>
+        <div class="neg"><i class="fas fa-shield-halved"></i>&nbsp; 低評価は店舗内フィードバックとして吸収</div>
+      </div>
+    </div>
+    <div class="strength-copy">
+      <ul>
+        <li>QRコード経由で<strong>星評価 → 高評価ルートだけGoogleレビューへ</strong>誘導。低評価は内部フィードバックとして<strong>店舗側だけが受け取る</strong>ファネル設計。</li>
+        <li>高評価ルートでは<em>AIがレビュー文の下書き</em>を生成。お客様の負担を下げ、<strong>投稿率と質を同時に底上げ</strong>。</li>
+        <li>業界相場は<strong>イニシャル ¥100,000〜¥300,000、ランニング ¥10,000〜¥30,000／月</strong>。<br>RG加盟店は、これを<strong>大幅に下回る価格</strong>で利用可能。</li>
+        <li>口コミは「運」ではなく<strong>設計</strong>。サロン検索の入り口（MEO）で、<em>差がつくのはここ</em>。</li>
+      </ul>
+      <p class="strength-note">※業界相場は参考値・一例です。RG提供価格・サービス範囲は別途お見積り。低評価の取扱いは各店舗ポリシー／Googleガイドラインに準拠します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 16: Strength 4 — 個性心理学 -->
+<!-- ============================================================ -->
+<section class="strength-slide">
+  <span class="badge"><span class="n">04</span>&nbsp; STRENGTH OF RG</span>
+  <h2>人の癖まで、<span class="accent">設計に組み込む。</span></h2>
+  <div class="strength-body">
+    <div class="strength-illust icon-box" style="background:linear-gradient(135deg, rgba(78,205,196,0.1), rgba(212,160,85,0.08));">
+      <i class="fas fa-brain"></i>
+    </div>
+    <div class="strength-copy">
+      <ul>
+        <li>RG自社開発のWEBアプリ内で、<em>個性心理学</em>を活用した<strong>接客マニュアル／トーク設計／スタッフ間の対人最適化</strong>を提供。</li>
+        <li>「気の合う／合わない」をセンスではなく<strong>パターン</strong>として扱い、シフト・指名・チーム編成の判断材料に。</li>
+        <li>新人がいきなり戦力化する理由のひとつは、<strong>「誰にどう話せばいいか」が先に分かっている</strong>こと。</li>
+        <li>導入は<em>応相談</em>。サロンの規模・課題に合わせて、必要な範囲からカスタム提供します。</li>
+      </ul>
+      <p class="strength-note">個性心理学プログラムは応相談。WEBアプリの提供範囲・カスタマイズ内容はヒアリング後にご提案します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 17: 4 strengths summary -->
+<!-- ============================================================ -->
+<section class="summary-strengths-slide">
+  <h2>RGが提供するのは、<span class="accent">機材の外側、4本柱。</span></h2>
+  <p style="color:rgba(255,255,255,0.7); font-size:0.78em; max-width:880px; margin:0 auto;">
+    オートネイルを<strong>「単なる機材」で終わらせない</strong>ための装備一式です。
+  </p>
+  <div class="s4-grid">
+    <div class="s4-card">
+      <div class="s4-icon"><i class="fas fa-handshake-angle"></i></div>
+      <div>
+        <h3><span class="num">01</span>導入サポート</h3>
+        <p>機器選定・契約・設置・初期トレーニング・運用開始まで伴走。公式無償サポートに、RGの<strong>現場運用ノウハウ</strong>を上乗せ。</p>
+      </div>
+    </div>
+    <div class="s4-card">
+      <div class="s4-icon"><i class="fas fa-palette"></i></div>
+      <div>
+        <h3><span class="num">02</span>トレンドデザイン継続供給</h3>
+        <p>現役ネイリスト監修で、流行に合わせた<strong>オリジナルデザインを継続納品</strong>。テンプレ任せの店と差をつける。</p>
+      </div>
+    </div>
+    <div class="s4-card">
+      <div class="s4-icon"><i class="fas fa-star"></i></div>
+      <div>
+        <h3><span class="num">03</span>MEO／Googleレビュー設計</h3>
+        <p>QRコード × 星評価 × AI下書き で、<strong>高評価だけをGoogleへ流す</strong>ファネル設計。業界相場より<strong>大幅に安く</strong>提供。</p>
+      </div>
+    </div>
+    <div class="s4-card">
+      <div class="s4-icon"><i class="fas fa-brain"></i></div>
+      <div>
+        <h3><span class="num">04</span>個性心理学 接客マニュアル</h3>
+        <p>RG自社WEBアプリ内で、<strong>個性心理学</strong>に基づく接客・対人最適化を提供（応相談）。</p>
+      </div>
+    </div>
+  </div>
+  <p class="disclaimer-foot">※各サービスの提供範囲・価格は加盟プラン／個別ヒアリングにより変動します。</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 18: Timeline -->
+<!-- ============================================================ -->
+<section class="timeline-slide">
+  <h2>導入までの、<span style="color:var(--rose);">5ステップ。</span></h2>
+  <p class="lead" style="color:#555;">最短距離で「販売開始」まで持っていく構成です。</p>
+  <div class="timeline">
+    <div class="tl-step">
+      <div class="n">1</div>
+      <h4>申込</h4>
+      <p>ヒアリング／条件確認／契約締結</p>
+    </div>
+    <div class="tl-step">
+      <div class="n">2</div>
+      <h4>初期研修</h4>
+      <p>機材操作・運用フロー・接客導線をRGがセットアップ</p>
+    </div>
+    <div class="tl-step">
+      <div class="n">3</div>
+      <h4>導入準備</h4>
+      <p>設置・導線設計／メニュー設計／価格設定</p>
+    </div>
+    <div class="tl-step">
+      <div class="n">4</div>
+      <h4>販売開始</h4>
+      <p>運用スタート／初月のオペレーション伴走</p>
+    </div>
+    <div class="tl-step">
+      <div class="n">5</div>
+      <h4>継続サポート</h4>
+      <p>デザイン供給／レビュー運用／数値改善の定例</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 19: Risks -->
+<!-- ============================================================ -->
+<section class="risk-slide">
+  <h2>想定リスクと、<span style="color:var(--accent);">事前の手当て。</span></h2>
+  <p style="color:rgba(255,255,255,0.7); font-size:0.78em; max-width:880px; margin:0 auto;">
+    都合のいいことだけ並べても意味がない。<strong>負ける可能性</strong>を事前に潰す側です。
+  </p>
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-ttl">来客数が読めない</div>
+      <div class="risk-sol">分岐点は月20名。既存来店客への<strong>＋α提案</strong>から始めれば、新規集客に依存せずに損益を引き上げられる設計。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-ttl">スタッフが使いこなせない</div>
+      <div class="risk-sol">セルフ対応・専門資格不要の設計に加え、RGの<strong>初期研修＆運用伴走</strong>で立ち上げ期を支える。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-ttl">デザインがマンネリ化する</div>
+      <div class="risk-sol">RGの<strong>トレンドデザイン継続供給</strong>で、店舗側の選択コストとマンネリを同時に解消する。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-ttl">低評価レビューが怖い</div>
+      <div class="risk-sol">QR × ファネル設計で、<strong>低評価は店舗内フィードバックに分離</strong>。改善材料として活用し、Googleには高評価のみを誘導。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-ttl">回収できるか分からない</div>
+      <div class="risk-sol">資料前提では<strong>9ヶ月回収</strong>。家賃・人件費等は事業ごとに加算し、<strong>RGと一緒に試算</strong>してから判断可能。</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-ttl">契約条件が変わるかも</div>
+      <div class="risk-sol">本資料の数値・条件は<strong>公式公開情報の要約</strong>。最新の正式条件は契約前に必ずRG・公式窓口でご確認ください。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 20: CTA -->
+<!-- ============================================================ -->
+<section class="cta-slide">
+  <p class="kicker">NEXT STEP</p>
+  <h2>続きは、<span class="accent">対話で。</span></h2>
+  <p class="lead">
+    本資料は論点整理です。御社の業態・既存客数・空きスペース・スタッフ構成を伺えれば、<br>
+    <strong>「翌月から何が起きるか」</strong>まで踏み込んだ収支試算をお出しします。
+  </p>
+  <div class="cta-steps">
+    <div class="cta-step">
+      <div class="n">1</div>
+      <div class="t">RGに連絡</div>
+      <div class="s">プロフィール経由 ／ 既存担当窓口</div>
+    </div>
+    <div class="cta-step">
+      <div class="n">2</div>
+      <div class="t">無料ヒアリング</div>
+      <div class="s">業態・課題・既存リソースを伺います</div>
+    </div>
+    <div class="cta-step">
+      <div class="n">3</div>
+      <div class="t">個別シミュレーション</div>
+      <div class="s">御社専用の収支試算＆運用設計を提示</div>
+    </div>
+  </div>
+  <div>
+    <span class="cta-pill"><i class="fas fa-comments"></i>&nbsp; まずは、15分の対話から。</span>
+  </div>
+  <p class="company"><strong>RG（ルートグラーノ）</strong>&nbsp;&nbsp;｜&nbsp;&nbsp;AUTONAIL × SALON BUSINESS</p>
+  <p class="disclaimer-foot">
+    本資料は紹介・整理目的の要約です。数値・条件・サービス範囲は変更され得ます。実績・利益を保証するものではありません。<br>
+    正式な契約条件・最新価格は、必ず公式・RG担当窓口でご確認ください。
+  </p>
+</section>
+
+</div>
+</div>
+
+<div id="nav-buttons" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;gap:10px;">
+  <button id="btn-prev" aria-label="前のスライド" style="width:48px;height:48px;border-radius:50%;border:none;background:rgba(212,160,85,0.92);color:#0e1a2e;font-size:20px;font-weight:bold;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.35);">←</button>
+  <button id="btn-next" aria-label="次のスライド" style="width:48px;height:48px;border-radius:50%;border:none;background:rgba(212,160,85,0.92);color:#0e1a2e;font-size:20px;font-weight:bold;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.35);">→</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  width: 1280,
+  height: 720,
+  margin: 0.04,
+  center: true,
+  slideNumber: 'c/t',
+});
+document.getElementById('btn-prev').addEventListener('click', function(){ Reveal.prev(); });
+document.getElementById('btn-next').addEventListener('click', function(){ Reveal.next(); });
+</script>
+</body>
+</html>
