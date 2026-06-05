@@ -40,11 +40,24 @@
   letter-spacing: 0.01em;
 }
 
-.reveal h2 { font-size: 2.0em; margin-bottom: 0.4em; line-height: 1.3; }
-.reveal h3 { font-size: 1.1em; }
-.reveal p, .reveal li { line-height: 1.7; }
+.reveal h2 { font-size: 1.85em; margin-bottom: 0.35em; line-height: 1.25; }
+.reveal h3 { font-size: 1.05em; }
+.reveal p, .reveal li { line-height: 1.65; }
 
-.reveal section { padding: 32px; }
+.reveal .slides {
+  touch-action: pan-y pinch-zoom;
+}
+
+.reveal .slides section {
+  padding: 20px 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.reveal .slides section > * {
+  max-width: 100%;
+}
 
 /* ========= Title slide ========= */
 .title-slide {
@@ -117,15 +130,16 @@
 .light-slide h2 { color: var(--primary); }
 .light-slide h2 .accent { color: var(--rose); }
 .light-slide p, .light-slide li { color: #2a2a2a; }
-.light-slide .lead { color: #555; font-size: 0.85em; max-width: 760px; margin: 0 auto 24px; }
+.light-slide .lead { color: #555; font-size: 0.75em; max-width: 100%; margin: 0 auto 14px; line-height: 1.65; }
 
 /* ========= Why-now: 3 problem cards ========= */
 .problem-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  max-width: 1180px;
-  margin: 24px auto 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 100%;
+  width: 100%;
+  margin: 14px auto 0;
 }
 .problem-card {
   background: rgba(255,255,255,0.04);
@@ -160,8 +174,9 @@
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 36px;
-  max-width: 1180px;
-  margin: 18px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 14px auto 0;
   align-items: center;
 }
 .product-visual {
@@ -197,8 +212,9 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 14px;
-  max-width: 1200px;
-  margin: 28px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 16px auto 0;
 }
 .feat-pill {
   background: rgba(255,255,255,0.05);
@@ -228,9 +244,10 @@
   grid-template-columns: 1.2fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 12px;
-  max-width: 1180px;
-  margin: 16px auto 0;
-  height: 460px;
+  max-width: 100%;
+  width: 100%;
+  margin: 12px auto 0;
+  height: min(400px, 48vh);
 }
 .gallery-grid .g-cell {
   border-radius: 14px;
@@ -250,40 +267,42 @@
 /* ========= Scenarios ========= */
 .scenario-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  max-width: 1180px;
-  margin: 22px auto 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 100%;
+  width: 100%;
+  margin: 12px auto 0;
 }
 .scenario-card {
   background: #fff;
-  border-radius: 18px;
-  padding: 28px 24px;
+  border-radius: 14px;
+  padding: 16px 14px;
   text-align: left;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  border-top: 6px solid var(--accent);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+  border-top: 5px solid var(--accent);
   position: relative;
+  min-width: 0;
 }
 .scenario-card:nth-child(2) { border-top-color: var(--teal); }
 .scenario-card:nth-child(3) { border-top-color: var(--rose); }
 .scenario-card .scn-num {
   position: absolute;
-  top: -22px;
-  right: 22px;
-  width: 44px; height: 44px;
+  top: -16px;
+  right: 14px;
+  width: 36px; height: 36px;
   border-radius: 50%;
   background: var(--grad-gold);
   color: var(--primary);
   display: flex; align-items: center; justify-content: center;
-  font-weight: 900; font-size: 1.1em;
-  box-shadow: 0 6px 16px rgba(212,160,85,0.35);
+  font-weight: 900; font-size: 0.95em;
+  box-shadow: 0 5px 14px rgba(212,160,85,0.35);
 }
-.scenario-card:nth-child(2) .scn-num { background: var(--grad-teal); color: #fff; box-shadow: 0 6px 16px rgba(78,205,196,0.35);}
-.scenario-card:nth-child(3) .scn-num { background: var(--grad-rose); color: #fff; box-shadow: 0 6px 16px rgba(201,112,100,0.35);}
-.scenario-card h3 { color: var(--primary); font-size: 1.0em; margin-bottom: 12px; padding-right: 50px; }
-.scenario-card .kpi { font-size: 0.68em; color: var(--rose); font-weight: 700; margin-bottom: 8px; }
-.scenario-card p { font-size: 0.7em; color: #444; line-height: 1.8; }
-.scenario-card .tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+.scenario-card:nth-child(2) .scn-num { background: var(--grad-teal); color: #fff; box-shadow: 0 5px 14px rgba(78,205,196,0.35);}
+.scenario-card:nth-child(3) .scn-num { background: var(--grad-rose); color: #fff; box-shadow: 0 5px 14px rgba(201,112,100,0.35);}
+.scenario-card h3 { color: var(--primary); font-size: 0.82em; margin-bottom: 8px; padding-right: 38px; line-height: 1.4; }
+.scenario-card .kpi { font-size: 0.58em; color: var(--rose); font-weight: 700; margin-bottom: 5px; }
+.scenario-card p { font-size: 0.6em; color: #444; line-height: 1.6; }
+.scenario-card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
 .scenario-card .tags span {
   font-size: 0.55em; font-weight: 700;
   background: rgba(14,26,46,0.06); color: var(--primary);
@@ -295,8 +314,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  max-width: 1180px;
-  margin: 24px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 14px auto 0;
 }
 .bignum-card {
   background: #fff;
@@ -331,8 +351,9 @@
   grid-template-columns: 1fr auto 1fr auto 1fr;
   gap: 16px;
   align-items: center;
-  max-width: 1180px;
-  margin: 28px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 16px auto 0;
 }
 .pl-flow .pl-block {
   background: #fff;
@@ -510,8 +531,9 @@
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 32px;
-  max-width: 1180px;
-  margin: 14px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 10px auto 0;
   align-items: center;
 }
 .strength-illust {
@@ -594,8 +616,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
-  max-width: 1100px;
-  margin: 22px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 14px auto 0;
 }
 .s4-card {
   background: rgba(255,255,255,0.05);
@@ -628,8 +651,9 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
-  max-width: 1180px;
-  margin: 26px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 16px auto 0;
   position: relative;
 }
 .timeline::before {
@@ -775,9 +799,70 @@
   #nav-buttons { display: none !important; }
 }
 
+/* ========= Swipe hint (mobile) ========= */
+#swipe-hint {
+  display: none;
+  position: fixed;
+  bottom: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9998;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.55);
+  background: rgba(14,26,46,0.72);
+  border: 1px solid rgba(212,160,85,0.35);
+  border-radius: 999px;
+  padding: 6px 16px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 /* ========= Responsive tweaks ========= */
+@media (max-width: 1200px) {
+  .product-grid, .strength-body, .bignum-grid, .s4-grid, .why-pillars {
+    max-width: 100%;
+    gap: 14px;
+  }
+  .feat-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .gallery-grid { height: min(380px, 48vh); }
+  .problem-card { padding: 18px 14px; }
+  .problem-card h3 { font-size: 0.88em; }
+  .problem-card p { font-size: 0.62em; }
+  .stat-card .stat-val { font-size: 2.6em; }
+  .timeline { gap: 10px; }
+}
+
+@media (max-width: 1100px) {
+  .scenario-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 4px 2px 8px;
+    margin-top: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212,160,85,0.5) transparent;
+  }
+  .scenario-grid::-webkit-scrollbar { height: 4px; }
+  .scenario-grid::-webkit-scrollbar-thumb {
+    background: rgba(212,160,85,0.5);
+    border-radius: 999px;
+  }
+  .scenario-card {
+    flex: 0 0 min(78%, 300px);
+    scroll-snap-align: center;
+  }
+}
+
 @media (max-width: 900px) {
-  .problem-grid, .scenario-grid, .bignum-grid, .s4-grid, .risk-grid,
+  .reveal .slides section { padding: 14px 16px; }
+  .reveal h2 { font-size: 1.45em; }
+  #swipe-hint { display: block; }
+  #nav-buttons { bottom: 14px; right: 14px; }
+  #nav-buttons button { width: 42px; height: 42px; font-size: 17px; }
+  .problem-grid, .bignum-grid, .s4-grid, .risk-grid,
   .pl-flow, .product-grid, .strength-body, .why-pillars, .cta-steps {
     grid-template-columns: 1fr !important;
   }
@@ -787,6 +872,19 @@
   .pl-flow .pl-op { display: none; }
   .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; height: auto; }
   .gallery-grid .g-tall { grid-row: auto; }
+  .scenario-card { flex: 0 0 86%; max-width: 86%; }
+  .title-slide h1 { font-size: 2.0em; }
+  .title-slide .company { margin-top: 28px; }
+  .section-slide h2 { font-size: 2.0em; }
+  .cta-slide h2 { font-size: 2.1em; }
+  .strength-slide h2 { font-size: 1.75em; }
+}
+
+@media (max-width: 600px) {
+  .feat-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .feat-pill { padding: 12px 8px; }
+  .feat-pill i { font-size: 1.3em; }
+  .timeline { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -895,7 +993,7 @@
 <section class="light-slide">
   <h2>同じ機材で、<span class="accent">3つの戦い方</span>。</h2>
   <p class="lead">「ネイル屋を作る」のではなく、<strong>既存の業態に載せて売上を伸ばす</strong>のがオートネイルの本領。<br>RGは現場ごとにオペレーションを設計します。</p>
-  <div class="scenario-grid">
+  <div class="scenario-grid" data-prevent-swipe>
     <div class="scenario-card">
       <span class="scn-num">1</span>
       <div class="kpi">NAIL SALON</div>
@@ -1385,7 +1483,9 @@
 </div>
 </div>
 
-<div id="nav-buttons" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;gap:10px;">
+<div id="swipe-hint" aria-hidden="true">← スワイプで切替 →</div>
+
+<div id="nav-buttons" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;gap:10px;touch-action:manipulation;">
   <button id="btn-prev" aria-label="前のスライド" style="width:48px;height:48px;border-radius:50%;border:none;background:rgba(212,160,85,0.92);color:#0e1a2e;font-size:20px;font-weight:bold;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.35);">←</button>
   <button id="btn-next" aria-label="次のスライド" style="width:48px;height:48px;border-radius:50%;border:none;background:rgba(212,160,85,0.92);color:#0e1a2e;font-size:20px;font-weight:bold;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.35);">→</button>
 </div>
@@ -1397,11 +1497,13 @@ Reveal.initialize({
   transition: 'slide',
   transitionSpeed: 'default',
   backgroundTransition: 'fade',
-  width: 1280,
-  height: 720,
-  margin: 0.04,
+  width: 1100,
+  height: 618,
+  margin: 0.08,
   center: true,
   slideNumber: 'c/t',
+  touch: true,
+  navigationMode: 'default',
 });
 document.getElementById('btn-prev').addEventListener('click', function(){ Reveal.prev(); });
 document.getElementById('btn-next').addEventListener('click', function(){ Reveal.next(); });
