@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BNI Grano Chapter ｜ Business Open Day 2026 第2回</title>
-<meta name="description" content="BNI Grano Chapter — Business Open Day 2026 第2回（2026.8.26 水）に関するハブページ">
+<title>BNI Grano Chapter ｜ BOD 2026 第2回 — ハブ</title>
+<meta name="description" content="BNI Grano Chapter — Business Open Day 2026 第2回。告知・スライド・運営資料へのミニハブ。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BNI Grano Chapter">
 <meta property="og:url" content="https://resta0715.github.io/grano-event/bod2/index.html">
-<meta property="og:title" content="BNI Grano Chapter ｜ Business Open Day 2026 Hub">
-<meta property="og:description" content="大人の夏祭り、はじまる — 2026.8.26（水）開催。告知 / メンバー紹介 / メンバー専用へのハブ">
+<meta property="og:title" content="BNI Grano Chapter ｜ BOD 2026 第2回 ハブ">
+<meta property="og:description" content="2026.8.26（水）— 告知・運営ページへのリンク集（ミニハブ）">
 <meta property="og:image" content="https://resta0715.github.io/grano-event/bod2/assets/ogp-bod2-2026.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BNI Grano Chapter ｜ Business Open Day 2026 Hub">
-<meta name="twitter:description" content="大人の夏祭り、はじまる — 2026.8.26（水）開催。">
+<meta name="twitter:title" content="BNI Grano Chapter ｜ BOD 2026 第2回 ハブ">
+<meta name="twitter:description" content="2026.8.26（水）— 告知・運営ページへのリンク集">
 <meta name="twitter:image" content="https://resta0715.github.io/grano-event/bod2/assets/ogp-bod2-2026.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,241 +23,304 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#1B2845;--navy-deep:#0A1424;--navy-mid:#121A30;--navy-light:#2A3B5C;
-  --vermilion:#D94A38;--vermilion-deep:#A8362A;
-  --gold:#D4A055;--gold-light:#E8C078;
+  --navy:#1B2845;--navy-deep:#0A1424;--navy-mid:#121A30;
+  --vermilion:#D94A38;--gold:#D4A055;--gold-light:#E8C078;
   --cream:#F5EFE6;
-  --border:rgba(212,160,85,.25);
-  --ff-serif: "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
-  --ff-sans: "Noto Sans JP", system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  --ff-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --ff-sans:"Noto Sans JP",system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
 }
-html{scroll-behavior:smooth;font-size:17px}
-@media(min-width:1200px){html{font-size:18px}}
+html{font-size:17px}
 body{
   font-family:var(--ff-sans);
   background:var(--navy-deep);
   min-height:100vh;
-  -webkit-font-smoothing:antialiased;
   color:var(--cream);
-  position:relative;
-  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.75;
 }
 
-/* ============== HUB HERO (mockup image, full-bleed) ============== */
-.hub-hero{
-  position:relative;
-  display:block;
-  width:100%;
-  background:#0A1424;
-  overflow:hidden;
-  isolation:isolate;
-}
-.hub-hero-spacer{
-  display:block;width:100%;height:54px;background:#0A1424;
-}
-@media(max-width:720px){
-  .hub-hero-spacer{height:40px}
-}
-.hub-hero-frame{
-  position:relative;display:block;width:100%;
-  max-width:none;margin:0;
-  background:#0E1B3A;
-}
-.hub-hero-img{
-  display:block;
-  width:100%;
-  height:auto;
-  user-select:none;
-  -webkit-user-drag:none;
-}
-/* 超ワイド PC でもクロップせず画像全体を表示（下端の「2026.8.26 水」を確実に見せる） */
-/* legacy theme override (no-op) */
-.hub-theme-override{display:none !important}
-.hub-hero-strip{
-  position:absolute;top:0;left:0;right:0;
-  display:flex;align-items:center;justify-content:space-between;gap:18px;
-  padding:18px clamp(20px, 3vw, 40px);
-  z-index:7;
-  background:linear-gradient(180deg, rgba(8,14,26,.78) 0%, rgba(8,14,26,.4) 70%, rgba(8,14,26,0) 100%);
+.strip{
+  background:var(--navy);
+  border-bottom:1px solid rgba(212,160,85,.25);
+  padding:14px 24px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;
   font-family:var(--ff-serif);
 }
-.hub-hero-strip .hhs-logo{
-  font-size:clamp(12px, 1.2vw, 16px);font-weight:700;letter-spacing:.5em;
-  color:var(--gold);text-decoration:none;
+.strip-brand{
+  font-size:13px;font-weight:700;letter-spacing:.35em;color:var(--gold);
+  text-decoration:none;
 }
-.hub-hero-strip .hhs-logo .dot{color:var(--vermilion);margin:0 4px}
-.hub-hero-strip .hhs-date{font-family:var(--ff-serif);font-size:clamp(.85rem,1vw,1.05rem);color:var(--gold);letter-spacing:.14em;white-space:nowrap;display:flex;align-items:baseline;gap:.35em}
-.hub-hero-strip .hhs-date strong{font-weight:600;color:#fff;letter-spacing:.05em}
-.hub-hero-strip .hhs-date em{font-style:normal;font-size:.85em;opacity:.85;margin-right:.1em}
-.hub-hero-strip .hhs-date .dot{color:rgba(212,160,85,.55);margin:0 4px}
-@media(max-width:1180px){.hub-hero-strip .hhs-date .venue{display:none}}
-@media(max-width:900px){.hub-hero-strip .hhs-date{display:none}}
-.hub-hero-strip .hhs-tag{
-  font-size:clamp(10px, 0.9vw, 12px);letter-spacing:.4em;font-weight:600;
-  color:rgba(245,239,230,.75);text-transform:uppercase;
+.strip-brand .dot{color:var(--vermilion);margin:0 3px}
+.strip-meta{
+  font-size:clamp(12px,1.1vw,14px);
+  color:rgba(245,239,230,.85);
+  letter-spacing:.08em;
 }
-@media(max-width:720px){
-  .hub-hero-strip{padding:10px 14px}
-  .hub-hero-strip .hhs-logo{font-size:11px;letter-spacing:.3em}
-  .hub-hero-strip .hhs-tag{font-size:9px;letter-spacing:.22em}
-}
+.strip-meta strong{color:#fff;font-weight:600}
+.strip-meta em{font-style:normal;opacity:.85}
 
-/* ============== HUB CONTENT (cards) ============== */
-.hub-wrap{
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(212,160,85,.10), transparent 50%),
-    linear-gradient(180deg, #0A1424 0%, #121A30 100%);
-  padding:96px 24px 120px;
-  text-align:center;
-  position:relative;
+.page{
+  max-width:640px;margin:0 auto;
+  padding:48px 24px 80px;
 }
-@media(max-width:720px){.hub-wrap{padding:60px 18px 80px}}
-.hub-wrap-inner{max-width:880px;margin:0 auto;position:relative;z-index:1}
-
-.hub-eyebrow{
+.hub-label{
   font-family:var(--ff-serif);
-  font-size:clamp(1.05rem, 1.4vw, 1.35rem);
-  letter-spacing:.55em;color:var(--vermilion);
-  font-weight:600;text-transform:uppercase;
-  margin-bottom:24px;padding-left:.55em;
+  font-size:11px;font-weight:700;letter-spacing:.4em;
+  color:var(--vermilion);text-transform:uppercase;
+  margin-bottom:12px;
 }
 .hub-title{
   font-family:var(--ff-serif);
-  font-size:clamp(2.4rem, 5vw, 4.2rem);
-  font-weight:600;letter-spacing:.18em;
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  font-weight:700;letter-spacing:.12em;
   color:var(--cream);
-  line-height:1.4;margin-bottom:28px;
-  padding-left:.18em;
+  margin-bottom:10px;
+  line-height:1.45;
 }
-.hub-lead{
-  font-family:var(--ff-serif);
-  font-size:clamp(1.05rem, 1.6vw, 1.35rem);
-  color:rgba(245,239,230,.78);
-  line-height:2;letter-spacing:.04em;
-  max-width:680px;margin:0 auto 56px;
-  font-weight:500;
+.hub-desc{
+  font-size:14px;
+  color:rgba(245,239,230,.65);
+  margin-bottom:36px;
+  letter-spacing:.03em;
 }
 
-.divider{display:flex;align-items:center;gap:14px;margin:48px 0 22px;max-width:760px;margin-left:auto;margin-right:auto}
-.divider .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,85,.45),transparent)}
-.divider .label{
+.menu{
+  list-style:none;
+  display:flex;flex-direction:column;gap:2px;
+  border:1px solid rgba(212,160,85,.2);
+  border-radius:4px;
+  overflow:hidden;
+  background:rgba(0,0,0,.2);
+}
+.menu a{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:18px 20px;
+  text-decoration:none;
+  color:var(--cream);
+  border-bottom:1px solid rgba(212,160,85,.12);
+  transition:background .2s;
+}
+.menu li:last-child a{border-bottom:none}
+.menu a:hover{background:rgba(212,160,85,.08)}
+.menu a.primary{
+  background:rgba(217,74,56,.12);
+  border-left:4px solid var(--vermilion);
+  padding-left:16px;
+}
+.menu a.primary:hover{background:rgba(217,74,56,.2)}
+.menu-icon{
+  flex-shrink:0;
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+  background:rgba(212,160,85,.1);
+  border-radius:4px;
+}
+.menu-body{flex:1;min-width:0}
+.menu-eyebrow{
   font-family:var(--ff-serif);
-  font-size:clamp(11px, 1vw, 13px);letter-spacing:.4em;
-  color:var(--gold);text-transform:uppercase;font-weight:600;
-}
-
-.links{
-  display:flex;flex-direction:column;gap:18px;
-  max-width:760px;margin:0 auto;
-}
-.link{
-  display:block;padding:32px 36px;
-  background:rgba(245,239,230,.05);
-  border:1px solid rgba(212,160,85,.22);
-  text-decoration:none;color:var(--cream);
-  font-family:var(--ff-sans);
-  font-weight:700;
-  font-size:clamp(1.05rem, 1.5vw, 1.25rem);
-  text-align:left;
-  transition:all .3s;border-radius:2px;
-  position:relative;
-  backdrop-filter:blur(4px);
-}
-.link:hover{
-  background:rgba(245,239,230,.09);
-  border-color:rgba(212,160,85,.55);
-  transform:translateX(8px);
-}
-.link.featured{
-  background:linear-gradient(135deg, rgba(217,74,56,.20), rgba(217,74,56,.06));
-  border-color:rgba(217,74,56,.55);
-}
-.link.featured::before{
-  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--vermilion);
-}
-.link.featured:hover{border-color:rgba(217,74,56,.9)}
-.link small{
-  display:block;
-  font-size:clamp(0.9rem, 1.15vw, 1rem);
-  color:rgba(245,239,230,.6);
-  font-weight:400;margin-top:8px;
-  letter-spacing:.04em;line-height:1.7;
-  font-family:var(--ff-sans);
-}
-.link .label{
-  font-family:var(--ff-serif);
-  font-size:clamp(11px, 1vw, 13px);
-  font-weight:600;letter-spacing:.4em;
+  font-size:10px;font-weight:600;letter-spacing:.3em;
   color:var(--gold);text-transform:uppercase;
-  margin-bottom:8px;display:block;
+  margin-bottom:4px;
 }
-.link.featured .label{color:var(--vermilion)}
-.link.muted{opacity:.5;cursor:not-allowed;pointer-events:none}
-.link.muted::after{content:" — 準備中";font-size:11px;color:rgba(245,239,230,.4);font-weight:400}
-.link.admin{opacity:.7}
-.link.admin:hover{opacity:1}
+.menu a.primary .menu-eyebrow{color:var(--vermilion)}
+.menu-title{
+  font-family:var(--ff-serif);
+  font-size:16px;font-weight:700;
+  letter-spacing:.04em;
+  margin-bottom:4px;
+}
+.menu-sub{
+  font-size:12px;
+  color:rgba(245,239,230,.55);
+  line-height:1.6;
+}
+.menu-arrow{
+  flex-shrink:0;
+  align-self:center;
+  font-size:18px;
+  color:var(--gold);
+  opacity:.7;
+}
+.menu li.muted a{
+  opacity:.45;pointer-events:none;cursor:default;
+}
+.menu li.muted .menu-sub::after{content:" — 準備中"}
+
+.section-label{
+  font-family:var(--ff-serif);
+  font-size:10px;letter-spacing:.35em;
+  color:rgba(245,239,230,.4);
+  text-transform:uppercase;
+  margin:28px 0 10px 4px;
+}
 
 .note{
-  margin-top:36px;font-size:12px;color:rgba(245,239,230,.45);
-  letter-spacing:.04em;line-height:1.8;padding:0 8px;
+  margin-top:28px;
+  font-size:12px;
+  color:rgba(245,239,230,.45);
+  line-height:1.8;
+  padding:14px 16px;
+  background:rgba(0,0,0,.15);
+  border-radius:4px;
+  border-left:3px solid rgba(212,160,85,.4);
 }
-.note code{background:rgba(212,160,85,.15);padding:2px 8px;border-radius:2px;font-family:monospace;font-size:11px}
+.note code{
+  background:rgba(212,160,85,.15);
+  padding:2px 6px;border-radius:2px;
+  font-family:monospace;font-size:11px;
+}
 
-.ft{margin-top:64px;font-size:11px;color:rgba(245,239,230,.3);letter-spacing:.4em;text-transform:uppercase}
-.back{
-  display:inline-block;margin-top:24px;
+.ft-links{
+  margin-top:40px;
+  display:flex;flex-wrap:wrap;gap:12px 20px;
   font-family:var(--ff-serif);
-  font-size:12px;color:var(--gold);text-decoration:none;letter-spacing:.4em;text-transform:uppercase;
-  padding:10px 24px;border:1px solid rgba(212,160,85,.3);border-radius:2px;
-  transition:all .3s;
+  font-size:12px;
 }
-.back:hover{color:var(--vermilion);border-color:var(--vermilion)}
+.ft-links a{
+  color:var(--gold);
+  text-decoration:none;
+  letter-spacing:.12em;
+  padding:8px 0;
+  border-bottom:1px solid transparent;
+  transition:border-color .2s,color .2s;
+}
+.ft-links a:hover{color:var(--vermilion);border-bottom-color:var(--vermilion)}
+.ft-copy{
+  margin-top:32px;
+  font-size:10px;
+  color:rgba(245,239,230,.28);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
 </style>
 </head>
 <body>
 
-<!-- ============== HUB HERO (mockup image) ============== -->
-<header class="hub-hero">
-  <div class="hub-hero-strip">
-    <span class="hhs-logo">BNI Grano <span class="dot">·</span> BOD #2</span>
-    <span class="hhs-date" aria-label="開催日と会場"><strong>2026.8.26</strong> <em>(水)</em> <span class="dot">·</span> <span class="venue">HOTEL PLUMM 横浜</span></span>
-    <span class="hhs-tag">Hub · Yokohama Central Region</span>
-  </div>
-  <span class="hub-hero-spacer" aria-hidden="true"></span>
-  <div class="hub-hero-frame">
-    <img class="hub-hero-img" src="assets/hero-mock-natsumatsuri.png" alt="Business Open Day 2026 大人の夏祭り — 2026.8.26（水）" width="1536" height="1024" fetchpriority="high">
-  </div>
-</header>
+<div class="strip">
+  <a class="strip-brand" href="../index.html">BNI Grano <span class="dot">·</span> 入口</a>
+  <p class="strip-meta"><strong>2026.8.26</strong> <em>(水)</em> · HOTEL PLUMM 横浜 · 10:00—15:00</p>
+</div>
 
-<!-- ============== HUB CARDS ============== -->
-<main class="hub-wrap">
-  <div class="hub-wrap-inner">
-    <p class="hub-eyebrow">Hub Index</p>
-    <h1 class="hub-title">第 二 回 ハブ</h1>
-    <p class="hub-lead">Business Open Day 2026（2026.8.26 水）に関するページの<br>用途別インデックスです。</p>
+<main class="page">
+  <p class="hub-label">BOD #2 · Mini Hub</p>
+  <h1 class="hub-title">第2回 BOD<br>ページ一覧</h1>
+  <p class="hub-desc">運営・投影用リンクの索引です。ビジター向けの詳細・お申込みは告知ページへ。</p>
 
-    <div class="divider"><span class="line"></span><span class="label">Public</span><span class="line"></span></div>
+  <p class="section-label">Public · 公開</p>
+  <ul class="menu">
+    <li>
+      <a class="primary" href="announcement.html">
+        <span class="menu-icon" aria-hidden="true">📣</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Visitor · ビジター向け</span>
+          <span class="menu-title">告知ページ（本編）</span>
+          <span class="menu-sub">コンセプト・タイムスケジュール・LINE 申込</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+    <li>
+      <a href="memberlist.html">
+        <span class="menu-icon" aria-hidden="true">👥</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Profiles</span>
+          <span class="menu-title">メンバー紹介</span>
+          <span class="menu-sub">35名のプロフェッショナル一覧</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+    <li>
+      <a href="slide_part2.html">
+        <span class="menu-icon" aria-hidden="true">📽</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Slide · 2部</span>
+          <span class="menu-title">第2部 開始スライド</span>
+          <span class="menu-sub">プロジェクター投影用（16:9）</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+    <li class="muted">
+      <a href="flyer.html">
+        <span class="menu-icon" aria-hidden="true">📄</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Flyer</span>
+          <span class="menu-title">チラシ（A4印刷用）</span>
+          <span class="menu-sub">第2回のチラシ</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+    <li class="muted">
+      <a href="seating_part1.html">
+        <span class="menu-icon" aria-hidden="true">🪑</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Seating · 1部</span>
+          <span class="menu-title">第1部 席次表</span>
+          <span class="menu-sub">会場レイアウト</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+    <li class="muted">
+      <a href="seating_part2.html">
+        <span class="menu-icon" aria-hidden="true">⭕</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Seating · 2部</span>
+          <span class="menu-title">第2部 円卓席次</span>
+          <span class="menu-sub">パターン切替</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+    <li class="muted">
+      <a href="visitors.html">
+        <span class="menu-icon" aria-hidden="true">🎯</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Slide · ビジター</span>
+          <span class="menu-title">ビジター一覧（専門分野）</span>
+          <span class="menu-sub">プロジェクター投影用</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+  </ul>
 
-    <div class="links">
-      <a class="link featured" href="announcement.html"><span class="label">Event</span>Business Open Day 2026 第2回<small>大人の夏祭り、はじまる — 2026.8.26（水） / ビジター・公開告知ページ</small></a>
-      <a class="link" href="slide_part2.html"><span class="label">Slide · 2部</span>第2部 開始スライド<small>プロジェクター投影用（16:9）</small></a>
-      <a class="link muted" href="flyer.html"><span class="label">Flyer</span>チラシ（HTML / A4印刷用）<small>第2回のチラシ</small></a>
-      <a class="link muted" href="seating_part1.html"><span class="label">Seating · 1部</span>第1部 席次表<small>会場レイアウト</small></a>
-      <a class="link muted" href="seating_part2.html"><span class="label">Seating · 2部</span>第2部 円卓席次<small>パターン切替</small></a>
-      <a class="link muted" href="visitors.html"><span class="label">Slide · ビジター</span>ビジター一覧（専門分野）<small>プロジェクター投影用</small></a>
-    </div>
+  <p class="section-label">Members · 運営</p>
+  <ul class="menu">
+    <li>
+      <a href="members.html">
+        <span class="menu-icon" aria-hidden="true">🔒</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Members only</span>
+          <span class="menu-title">メンバー専用ページ</span>
+          <span class="menu-sub">準備・名簿・資料（URL は運営 LINE で共有）</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+    <li>
+      <a href="setup.html">
+        <span class="menu-icon" aria-hidden="true">⚙</span>
+        <span class="menu-body">
+          <span class="menu-eyebrow">Setup</span>
+          <span class="menu-title">Google Sheet 連動セットアップ</span>
+          <span class="menu-sub">members.html を Sheet と接続</span>
+        </span>
+        <span class="menu-arrow" aria-hidden="true">›</span>
+      </a>
+    </li>
+  </ul>
 
-    <div class="divider"><span class="line"></span><span class="label">For Members</span><span class="line"></span></div>
+  <p class="note">※ サイト入口（<code>../index.html</code>）はビジター / メンバーの振り分け専用です。イベントの全文・ヒーロー画像は <strong>告知ページ</strong> のみに掲載しています。</p>
 
-    <div class="links">
-      <a class="link admin" href="setup.html"><span class="label">Setup</span>Google Sheet 連動セットアップ<small>members.html を Sheet と接続する手順</small></a>
-    </div>
-
-    <p class="note">※ メンバー専用ページ（<code>members.html</code>）はこのページからリンクしていません。<br>URL を運営チームLINEに直接お貼りください。</p>
-
-    <p class="ft">Grano Chapter — Yokohama Central Region</p>
-    <a class="back" href="../index.html">← トップへ戻る</a>
-  </div>
+  <nav class="ft-links" aria-label="フッターナビ">
+    <a href="../index.html">← サイト入口</a>
+    <a href="announcement.html">告知ページ</a>
+  </nav>
+  <p class="ft-copy">Grano Chapter — Yokohama Central Region</p>
 </main>
 </body>
 </html>
