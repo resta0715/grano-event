@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BNI Grano Chapter｜サイト入口</title>
-<meta name="description" content="BNI Grano Chapter — 横浜セントラルリージョン。ビジター向けイベント告知とメンバー専用ページへの入口。">
+<title>BNI GRANO CHAPTER — Event Portal</title>
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="BNI Grano Chapter — イベントサイト入口。ビジター向け告知とメンバー専用ページへの振り分け。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://resta0715.github.io/grano-event/">
-<meta property="og:title" content="BNI Grano Chapter｜サイト入口">
-<meta property="og:description" content="第2回 Business Open Day への入口。ビジター向け告知 / メンバー専用。">
+<meta property="og:title" content="BNI GRANO CHAPTER — Event Portal">
+<meta property="og:description" content="第2回 Business Open Day — ビジター向け告知 / メンバー専用への入口。">
 <meta property="og:image" content="https://resta0715.github.io/grano-event/ogp_announcement.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="BNI Grano Chapter">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BNI Grano Chapter｜サイト入口">
-<meta name="twitter:description" content="第2回 Business Open Day への入口。">
+<meta name="twitter:title" content="BNI GRANO CHAPTER — Event Portal">
+<meta name="twitter:description" content="第2回 Business Open Day — サイト入口。">
 <meta name="twitter:image" content="https://resta0715.github.io/grano-event/ogp_announcement.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,39 +30,48 @@
   --vermilion:#D94A38;
   --gold:#D4A055;
   --cream:#F5EFE6;
-  --cream-dark:#E8DFD0;
   --ff-serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
   --ff-sans:"Noto Sans JP",system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
 }
 html{font-size:17px}
+@media(min-width:900px){html{font-size:18px}}
 body{
   font-family:var(--ff-sans);
-  background:var(--cream);
+  background:
+    linear-gradient(135deg, rgba(27,40,69,.04) 25%, transparent 25%) -20px 0,
+    linear-gradient(225deg, rgba(212,160,85,.08) 25%, transparent 25%) -20px 0,
+    var(--cream);
+  background-size:40px 40px;
   min-height:100vh;
   display:flex;align-items:center;justify-content:center;
   -webkit-font-smoothing:antialiased;
   color:var(--navy);
-  padding:40px 20px 56px;
+  padding:48px 24px 64px;
 }
 .portal{
   width:100%;
-  max-width:720px;
+  max-width:760px;
+  background:#fff;
+  border:1px solid rgba(27,40,69,.12);
+  border-radius:6px;
+  box-shadow:0 8px 40px rgba(27,40,69,.08);
+  padding:clamp(32px,5vw,48px) clamp(28px,4vw,44px);
 }
 .portal-badge{
   display:inline-block;
   font-family:var(--ff-serif);
-  font-size:11px;font-weight:700;letter-spacing:.35em;
+  font-size:11px;font-weight:700;letter-spacing:.4em;
   color:var(--vermilion);
   text-transform:uppercase;
-  margin-bottom:20px;
+  margin-bottom:24px;
   padding:6px 14px;
   border:1px solid rgba(217,74,56,.35);
   border-radius:2px;
   background:rgba(217,74,56,.06);
 }
 .brand-block{
-  margin-bottom:40px;
-  padding-bottom:32px;
+  margin-bottom:36px;
+  padding-bottom:28px;
   border-bottom:2px solid var(--navy);
 }
 .brand{
@@ -76,23 +86,23 @@ body{
   font-size:11px;letter-spacing:.3em;
   color:rgba(27,40,69,.55);
   text-transform:uppercase;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
-.ja-name{
+.portal-title{
   font-family:var(--ff-serif);
-  font-size:clamp(26px,4vw,36px);
-  font-weight:900;letter-spacing:.08em;
+  font-size:clamp(22px,3.5vw,30px);
+  font-weight:900;letter-spacing:.06em;
   color:var(--navy);
-  line-height:1.35;
-  margin-bottom:10px;
+  line-height:1.4;
+  margin-bottom:14px;
 }
-.portal-role{
+.portal-sub{
   font-size:15px;
   color:rgba(27,40,69,.72);
   letter-spacing:.04em;
-  line-height:1.7;
+  line-height:1.75;
 }
-.portal-role strong{
+.portal-sub strong{
   font-weight:700;
   color:var(--navy);
 }
@@ -102,13 +112,13 @@ body{
   grid-template-columns:1fr;
   gap:20px;
 }
-@media(min-width:600px){
+@media(min-width:620px){
   .cards{grid-template-columns:1fr 1fr;gap:24px}
 }
 .card{
   display:flex;flex-direction:column;
-  min-height:220px;
-  padding:28px 26px 24px;
+  min-height:200px;
+  padding:26px 24px 22px;
   text-decoration:none;
   color:var(--navy);
   border-radius:4px;
@@ -120,27 +130,20 @@ body{
   content:"";position:absolute;top:0;left:0;right:0;height:5px;
 }
 .card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 32px rgba(27,40,69,.18);
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(27,40,69,.16);
 }
 .card-visitor{
-  background:#fff;
+  background:var(--cream);
   border:2px solid var(--vermilion);
-  box-shadow:0 4px 0 rgba(217,74,56,.15);
 }
 .card-visitor::before{background:var(--vermilion)}
 .card-member{
   background:var(--navy);
   color:var(--cream);
   border:2px solid var(--navy-deep);
-  box-shadow:0 4px 0 rgba(10,20,36,.25);
 }
 .card-member::before{background:var(--gold)}
-.card-icon{
-  font-size:28px;
-  margin-bottom:14px;
-  line-height:1;
-}
 .card-eyebrow{
   font-family:var(--ff-serif);
   font-size:10px;font-weight:700;letter-spacing:.35em;
@@ -151,37 +154,45 @@ body{
 .card-member .card-eyebrow{color:var(--gold)}
 .card-title{
   font-family:var(--ff-serif);
-  font-size:clamp(17px,2.2vw,20px);
+  font-size:clamp(16px,2vw,19px);
   font-weight:700;
-  line-height:1.5;
+  line-height:1.55;
   letter-spacing:.04em;
   flex:1;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 .card-meta{
   font-size:13px;
   line-height:1.65;
   opacity:.78;
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
-.card-member .card-meta{opacity:.7}
+.card-member .card-meta{opacity:.72}
 .card-arrow{
   font-family:var(--ff-serif);
-  font-size:13px;font-weight:700;letter-spacing:.12em;
+  font-size:13px;font-weight:700;letter-spacing:.1em;
 }
 .card-visitor .card-arrow{color:var(--vermilion)}
-.card-member .card-arrow{color:var(--gold-light,#E8C078)}
+.card-member .card-arrow{color:#E8C078}
 
 .hint{
-  margin-top:32px;
-  text-align:center;
-  font-size:12px;
-  color:rgba(27,40,69,.5);
-  letter-spacing:.06em;
-  line-height:1.7;
+  margin-top:28px;
+  font-size:13px;
+  color:rgba(27,40,69,.55);
+  letter-spacing:.04em;
+  line-height:1.75;
 }
+.hint a{
+  color:var(--navy);
+  font-weight:600;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.hint a:hover{color:var(--vermilion)}
 .footer{
-  margin-top:40px;
+  margin-top:32px;
+  padding-top:20px;
+  border-top:1px solid rgba(27,40,69,.1);
   text-align:center;
   font-size:10px;letter-spacing:.25em;
   color:rgba(27,40,69,.35);
@@ -191,33 +202,31 @@ body{
 </head>
 <body>
 <div class="portal">
-  <p class="portal-badge">Site Portal · サイト入口</p>
+  <p class="portal-badge">Event Portal · イベント入口</p>
 
   <header class="brand-block">
     <p class="brand">BNI Grano</p>
     <p class="region">Yokohama Central Region</p>
-    <h1 class="ja-name">BNI Grano Chapter</h1>
-    <p class="portal-role">お探しのページを選んでください。<br><strong>イベント詳細・お申込み</strong>はビジター向け、<strong>準備・名簿・資料</strong>はメンバー専用です。</p>
+    <h1 class="portal-title">BNI GRANO CHAPTER<br>— Event Portal</h1>
+    <p class="portal-sub">このページは<strong>入口専用</strong>です。イベントの詳細・画像・LINE 申込は掲載しません。<br>お探しの内容に合わせて、下のボタンからお進みください。</p>
   </header>
 
   <div class="cards">
     <a class="card card-visitor" href="bod2/announcement.html">
-      <span class="card-icon" aria-hidden="true">🎪</span>
       <p class="card-eyebrow">Visitor · ビジター向け</p>
-      <p class="card-title">第2回 Business Open Day<br>詳細・お申込み</p>
+      <p class="card-title">第2回 Business Open Day<br>（大人の夏祭り）</p>
       <p class="card-meta">2026.8.26（水）10:00—15:00<br>HOTEL PLUMM 横浜</p>
-      <span class="card-arrow">告知ページへ ›</span>
+      <span class="card-arrow">第2回 BOD 告知ページへ ›</span>
     </a>
     <a class="card card-member" href="bod2/members.html">
-      <span class="card-icon" aria-hidden="true">🔒</span>
-      <p class="card-eyebrow">Members · メンバー専用</p>
-      <p class="card-title">第2回 BOD<br>準備・運営ページ</p>
-      <p class="card-meta">スケジュール / 名簿 / 資料<br>（URL は運営チームのみ）</p>
-      <span class="card-arrow">メンバー専用へ ›</span>
+      <p class="card-eyebrow">Members · メンバー向け</p>
+      <p class="card-title">第2回 BOD<br>準備・運営（非公開）</p>
+      <p class="card-meta">スケジュール / 名簿 / 資料<br>URL は運営チームのみ</p>
+      <span class="card-arrow">メンバー専用ページへ ›</span>
     </a>
   </div>
 
-  <p class="hint">ビジター向けの詳細・LINE 申込は「告知ページ」から。<br>このページは入口専用です（イベント画像・全文は掲載しません）。</p>
+  <p class="hint">運営・資料の一覧は <a href="bod2/index.html">第2回 BOD ハブ（bod2/index.html）</a> から。<br>ビジター向けの全文・ヒーロー画像は <strong>告知ページのみ</strong> に掲載しています。</p>
 
   <p class="footer">Grano Chapter · Yokohama Central Region</p>
 </div>
