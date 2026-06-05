@@ -286,6 +286,9 @@ section{background:#fff;border:1px solid var(--border);border-radius:6px;padding
 .sec-edit{font-size:11px;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);padding:4px 10px;border-radius:12px}
 .sec-edit:hover{color:var(--amber);border-color:var(--amber)}
 .sec-edit.hidden{display:none}
+.sec-cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:10px 18px;background:var(--navy);color:#fff;text-decoration:none;font-size:13px;font-weight:700;border-radius:4px;letter-spacing:.08em;transition:background .2s,transform .2s}
+.sec-cta:hover{background:var(--navy-light);transform:translateY(-1px)}
+.sec-cta .arrow{font-size:1.1em;opacity:.85}
 
 .note{background:var(--amber-pale);border-left:4px solid var(--amber);padding:12px 16px;font-size:13px;color:var(--text-sub);margin-bottom:10px;border-radius:0 4px 4px 0}
 .note.important{background:var(--blue-pale);border-left-color:var(--blue);color:#1a3a5a}
@@ -1060,8 +1063,8 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
   </div>
 </section>
 
-<div id="sync-bar" class="sync-bar warn">
-  <span><strong>Google Sheet 未設定</strong> — 現在はサンプルデータ表示中。<a href="setup.html">セットアップガイドを開く →</a></span>
+<div id="sync-bar" class="sync-bar ok">
+  <span>✓ <strong>実データ表示中</strong> — スケジュール・進捗は最新の運営データです。<a id="sync-webapp-link" href="https://grano-bod2-app.vercel.app/tasks" target="_blank" rel="noopener">Webアプリで編集 →</a></span>
 </div>
 
 <nav class="toc" aria-label="目次">
@@ -1177,11 +1180,10 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
 
 <main class="main">
 
-<div class="note important" style="margin-bottom:24px;background:rgba(212,160,85,.08);border-left-color:var(--gold);color:var(--ink-sub)">
-  <strong style="color:var(--navy)">📌 デザイン優先スコープ（今回）</strong> — 以下のセクション
-  （スケジュール / 進捗 / 情報共有 / 名簿 / ビジター招待 / 会場 / 資料 / FAQ）は
-  <strong style="color:var(--navy)">設計テンプレートのみ</strong> で、内容は順次入れていきます。
-  Google Sheet と接続するとリアルタイム更新になります（<a href="setup.html" style="color:var(--vermilion);font-weight:700">セットアップガイド</a>）。
+<div class="note" style="margin-bottom:24px;background:rgba(212,160,85,.08);border-left-color:var(--gold);color:var(--ink-sub)">
+  <strong style="color:var(--navy)">📌 スケジュール・進捗は最新データを反映済み</strong> —
+  ①② は <a id="banner-webapp-link" href="https://grano-bod2-app.vercel.app" target="_blank" rel="noopener" style="color:var(--vermilion);font-weight:700">Webアプリ</a> から編集できます。
+  ③以降は順次追加予定（Google Sheet 連携も可能 → <a href="setup.html" style="color:var(--vermilion);font-weight:700">セットアップガイド</a>）。
 </div>
 
 <!-- ============== 1. SCHEDULE ============== -->
@@ -1195,6 +1197,8 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
     </div>
     <a class="sec-edit hidden" data-edit="schedule" href="#" target="_blank" rel="noopener">編集</a>
   </div>
+
+  <a id="cta-schedule" class="sec-cta" href="https://grano-bod2-app.vercel.app/schedule" target="_blank" rel="noopener">📅 スケジュールを編集（Webアプリ）<span class="arrow">›</span></a>
 
   <table>
     <thead>
@@ -1227,9 +1231,11 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
     <a class="sec-edit hidden" data-edit="tasks" href="#" target="_blank" rel="noopener">編集</a>
   </div>
 
-  <p style="font-size:13px;color:var(--text-sub);margin-bottom:4px">全体進捗</p>
-  <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:25%"></div></div>
-  <div class="progress-text"><span><b id="progress-done">3</b> 件完了 / <b id="progress-total">12</b> 件</span><span id="progress-pct">25%</span></div>
+  <a id="cta-tasks" class="sec-cta" href="https://grano-bod2-app.vercel.app/tasks" target="_blank" rel="noopener">📝 進捗を編集（Webアプリ）<span class="arrow">›</span></a>
+
+  <p style="font-size:13px;color:var(--text-sub);margin-bottom:4px;margin-top:18px">全体進捗</p>
+  <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:100%"></div></div>
+  <div class="progress-text"><span><b id="progress-done">3</b> 件完了 / <b id="progress-total">3</b> 件</span><span id="progress-pct">100%</span></div>
 
   <ul class="checklist" id="checklist">
     <li><span class="check checked"></span><div><div class="task-text done">会場（HOTEL PLUMM 横浜）再予約</div><div class="task-meta">担当：会場担当 / 期限：6/24</div></div></li>
@@ -1388,6 +1394,8 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
  * 詳しい手順は setup.html を参照
  * ========================================================================= */
 const CONFIG = {
+  // Webアプリ（Vercel）— デプロイ後に URL を更新
+  WEB_APP_BASE: 'https://grano-bod2-app.vercel.app',
   // ↓ ↓ ↓ Google Sheet のIDをここに貼り付ける（URL の /d/ と /edit の間） ↓ ↓ ↓
   SHEET_ID: '',
   // 自動更新間隔（ミリ秒）。0 で無効。例: 5分なら 300000
@@ -1786,6 +1794,22 @@ async function syncFromSheet() {
       `<a href="setup.html">セットアップガイド</a>`);
   }
 }
+
+/* ---- Webアプリ CTA リンクを CONFIG から設定 ---- */
+(function applyWebAppLinks() {
+  const base = (CONFIG.WEB_APP_BASE || '').replace(/\/$/, '');
+  if (!base) return;
+  const map = {
+    'cta-schedule': '/schedule',
+    'cta-tasks': '/tasks',
+    'sync-webapp-link': '/tasks',
+    'banner-webapp-link': '',
+  };
+  Object.entries(map).forEach(([id, path]) => {
+    const el = document.getElementById(id);
+    if (el && el instanceof HTMLAnchorElement) el.href = base + path;
+  });
+})();
 
 /* ---- 初期化 ---- */
 updateProgress();
