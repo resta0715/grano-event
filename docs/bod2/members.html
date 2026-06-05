@@ -846,6 +846,74 @@ tr:hover td{background:rgba(200,148,62,.04)}
   .bgm-btn{width:56px;height:56px;right:14px;bottom:14px;font-size:26px}
   .bgm-btn .bgm-label{display:none}
 }
+
+/* ============== QUICK-JUMP CHIP RAIL (sticky pill nav) ============== */
+.quick-jump{
+  position:sticky;
+  top:var(--nav-h, 64px);
+  z-index:50;
+  background:rgba(248,244,233,.92);
+  backdrop-filter:saturate(140%) blur(8px);
+  -webkit-backdrop-filter:saturate(140%) blur(8px);
+  border-top:1px solid rgba(14,27,58,.08);
+  border-bottom:1px solid rgba(14,27,58,.08);
+  padding:10px 0;
+}
+.qj-inner{
+  max-width:min(1480px,96vw);
+  margin:0 auto;
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--gold) transparent;
+  scroll-snap-type:x proximity;
+  padding:0 16px;
+}
+.qj-inner::-webkit-scrollbar{height:4px}
+.qj-inner::-webkit-scrollbar-thumb{background:var(--gold,#C9A14A);border-radius:2px}
+.qj-chip{
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  display:inline-flex;
+  align-items:center;
+  gap:.35em;
+  padding:8px 18px;
+  font-family:var(--ff-serif,"Noto Serif JP"),serif;
+  font-size:clamp(.92rem,1vw,1.05rem);
+  font-weight:600;
+  color:var(--navy,#0E1B3A);
+  background:#fff;
+  border:1.5px solid rgba(14,27,58,.12);
+  border-radius:999px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:transform .15s ease, border-color .15s ease, background .15s ease, color .15s ease;
+}
+.qj-chip:hover{
+  background:var(--navy,#0E1B3A);
+  color:var(--cream,#F8F4E9);
+  border-color:var(--navy,#0E1B3A);
+  transform:translateY(-1px);
+}
+.qj-chip.is-active{
+  background:var(--gold,#C9A14A);
+  color:#fff;
+  border-color:var(--gold,#C9A14A);
+  box-shadow:0 4px 14px rgba(201,161,74,.32);
+}
+@media(max-width:768px){
+  .quick-jump{top:var(--nav-h-mobile, 56px);padding:8px 0}
+  .qj-chip{padding:7px 14px;font-size:.9rem}
+}
+/* Ensure section anchors land below sticky elements when jumped to */
+section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
+@media(max-width:768px){
+  section[id]{scroll-margin-top:calc(var(--nav-h-mobile, 56px) + 56px)}
+}
+@media print{
+  .quick-jump{display:none}
+}
 </style>
 </head>
 <body>
@@ -873,6 +941,19 @@ tr:hover td{background:rgba(200,148,62,.04)}
     <a class="btn-secondary" href="#recap">📜 第1回 実績を見る <span class="arrow">›</span></a>
   </div>
 </header>
+
+<!-- ============== QUICK-JUMP CHIP RAIL (sticky pill nav) ============== -->
+<nav class="quick-jump" aria-label="ページ内クイックジャンプ">
+  <div class="qj-inner">
+    <a class="qj-chip" href="#schedule">📅 スケジュール</a>
+    <a class="qj-chip" href="#progress">✅ 進捗</a>
+    <a class="qj-chip" href="#info">📌 情報共有</a>
+    <a class="qj-chip" href="#visitors">👥 ビジター</a>
+    <a class="qj-chip" href="#venue">🏢 会場・備品</a>
+    <a class="qj-chip" href="#documents">📁 資料</a>
+    <a class="qj-chip" href="#related">🔗 関連</a>
+  </div>
+</nav>
 
 <!-- members-only context strip -->
 <div class="member-strip">
@@ -1021,7 +1102,7 @@ tr:hover td{background:rgba(200,148,62,.04)}
 </section>
 
 <!-- ============== RELATED PAGES (関連ページ動線) ============== -->
-<section class="related-pages" aria-label="関連ページ動線">
+<section id="related" class="related-pages" aria-label="関連ページ動線">
   <p class="sec-label">RELATED PAGES</p>
   <h2 class="sec-title">関連<span class="em" style="color:var(--vermilion)">ページ</span></h2>
   <div class="rp-grid">
@@ -1704,6 +1785,33 @@ if (CONFIG.REFRESH_INTERVAL_MS > 0) {
   <span class="bgm-eq" aria-hidden="true"><span></span><span></span><span></span></span>
   <span class="bgm-label">BGM ON / OFF</span>
 </button>
+
+<!-- ============== QUICK-JUMP CHIP RAIL — active-chip highlighting ============== -->
+<script>
+(function(){
+  const chips = document.querySelectorAll('.qj-chip');
+  if (!chips.length) return;
+  const idToChip = {};
+  chips.forEach(c => {
+    const id = c.getAttribute('href').slice(1);
+    idToChip[id] = c;
+  });
+  const sections = Object.keys(idToChip)
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  if (!sections.length) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting && en.intersectionRatio > 0.25) {
+        chips.forEach(c => c.classList.remove('is-active'));
+        const chip = idToChip[en.target.id];
+        if (chip) chip.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -50% 0px', threshold: [0.25, 0.5, 0.75] });
+  sections.forEach(s => obs.observe(s));
+})();
+</script>
 
 </body>
 </html>
