@@ -1064,7 +1064,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
 </section>
 
 <div id="sync-bar" class="sync-bar ok">
-  <span>✓ <strong>実データ表示中</strong> — スケジュール・進捗は最新の運営データです。<a id="sync-webapp-link" href="https://grano-bod2-app.vercel.app/tasks" target="_blank" rel="noopener">Webアプリで編集 →</a></span>
+  <span>✓ <strong>実データ表示中</strong> — スケジュール・進捗は最新の運営データです。<a id="sync-webapp-link" href="https://grano-web-app.vercel.app/tasks" target="_blank" rel="noopener">Webアプリで編集 →</a></span>
 </div>
 
 <nav class="toc" aria-label="目次">
@@ -1182,7 +1182,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
 
 <div class="note" style="margin-bottom:24px;background:rgba(212,160,85,.08);border-left-color:var(--gold);color:var(--ink-sub)">
   <strong style="color:var(--navy)">📌 スケジュール・進捗は最新データを反映済み</strong> —
-  ①② は <a id="banner-webapp-link" href="https://grano-bod2-app.vercel.app" target="_blank" rel="noopener" style="color:var(--vermilion);font-weight:700">Webアプリ</a> から編集できます。
+  ①② は <a id="banner-webapp-link" href="https://grano-web-app.vercel.app" target="_blank" rel="noopener" style="color:var(--vermilion);font-weight:700">Webアプリ</a> から編集できます。
   ③以降は順次追加予定（Google Sheet 連携も可能 → <a href="setup.html" style="color:var(--vermilion);font-weight:700">セットアップガイド</a>）。
 </div>
 
@@ -1198,7 +1198,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
     <a class="sec-edit hidden" data-edit="schedule" href="#" target="_blank" rel="noopener">編集</a>
   </div>
 
-  <a id="cta-schedule" class="sec-cta" href="https://grano-bod2-app.vercel.app/schedule" target="_blank" rel="noopener">📅 スケジュールを編集（Webアプリ）<span class="arrow">›</span></a>
+  <a id="cta-schedule" class="sec-cta" href="https://grano-web-app.vercel.app/schedule" target="_blank" rel="noopener">📅 スケジュールを編集（Webアプリ）<span class="arrow">›</span></a>
 
   <table>
     <thead>
@@ -1231,7 +1231,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
     <a class="sec-edit hidden" data-edit="tasks" href="#" target="_blank" rel="noopener">編集</a>
   </div>
 
-  <a id="cta-tasks" class="sec-cta" href="https://grano-bod2-app.vercel.app/tasks" target="_blank" rel="noopener">📝 進捗を編集（Webアプリ）<span class="arrow">›</span></a>
+  <a id="cta-tasks" class="sec-cta" href="https://grano-web-app.vercel.app/tasks" target="_blank" rel="noopener">📝 進捗を編集（Webアプリ）<span class="arrow">›</span></a>
 
   <p style="font-size:13px;color:var(--text-sub);margin-bottom:4px;margin-top:18px">全体進捗</p>
   <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:100%"></div></div>
@@ -1395,7 +1395,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h, 64px) + 64px)}
  * ========================================================================= */
 const CONFIG = {
   // Webアプリ（Vercel）— デプロイ後に URL を更新
-  WEB_APP_BASE: 'https://grano-bod2-app.vercel.app',
+  WEB_APP_BASE: 'https://grano-web-app.vercel.app',
   // ↓ ↓ ↓ Google Sheet のIDをここに貼り付ける（URL の /d/ と /edit の間） ↓ ↓ ↓
   SHEET_ID: '',
   // 自動更新間隔（ミリ秒）。0 で無効。例: 5分なら 300000
