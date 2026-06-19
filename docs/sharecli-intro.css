@@ -30,7 +30,18 @@ body.sc-body {
 
 .sc-body a { color: var(--sc-cyan); }
 
-.sc-wrap { width: min(54rem, 92vw); margin-inline: auto; }
+.sc-wrap { width: min(78rem, 94vw); margin-inline: auto; }
+
+/* 本文テキストブロックだけ内側で読みやすさを保つ */
+.sc-lead,
+.sc-sub,
+.sc-note,
+.sc-sec-lead,
+.sc-band p,
+.sc-disclaimer,
+.sc-cta p {
+  max-width: 60ch;
+}
 
 .sc-shell {
   min-height: 100dvh;
@@ -81,11 +92,12 @@ body.sc-body {
 }
 
 .sc-h1 {
-  font-size: clamp(1.7rem, 4vw + 0.85rem, 2.6rem);
+  font-size: clamp(1.9rem, 4.5vw + 0.9rem, 3.6rem);
   font-weight: 900;
-  line-height: 1.22;
+  line-height: 1.18;
   letter-spacing: 0.02em;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.3rem;
+  max-width: 22ch;
 }
 
 .sc-h1-accent {
@@ -166,7 +178,7 @@ body.sc-body {
 .sc-hero-stat-val {
   font-family: var(--ff-sans);
   font-weight: 900;
-  font-size: clamp(1.85rem, 4.5vw, 2.55rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.3rem);
   line-height: 1;
   background: linear-gradient(120deg, var(--sc-cyan), var(--sc-teal));
   -webkit-background-clip: text;
@@ -174,7 +186,7 @@ body.sc-body {
   color: transparent;
   letter-spacing: -0.03em;
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.55rem;
 }
 .sc-hero-stat-unit {
   font-size: 0.55em;
@@ -261,6 +273,10 @@ body.sc-body {
 }
 @media (min-width: 720px) {
   .sc-menu-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1080px) {
+  .sc-menu-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 .sc-menu {

@@ -37,8 +37,23 @@ a {
 }
 
 .wrap {
-  width: min(52rem, 92vw);
+  width: min(78rem, 94vw);
   margin-inline: auto;
+}
+
+/* 読みやすさのため、本文テキストブロックだけ内側で幅を絞る */
+.ice-lead,
+.ice-sub,
+.ice-lead-sec,
+.ice-quote,
+.ice-quote-tight,
+.ice-highlight-box,
+.ice-vm-body,
+.ice-vm-lead,
+.ice-source-lead,
+.ice-year-note,
+.ice-compare-sub {
+  max-width: 60ch;
 }
 
 /* Nav（inail と同型） */
@@ -150,7 +165,14 @@ a {
 
 @media (min-width: 860px) {
   .ice-hero-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 42%);
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 46%);
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .ice-hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(380px, 50%);
   }
 }
 
@@ -250,9 +272,18 @@ a {
   width: 100%;
   height: auto;
   vertical-align: bottom;
-  max-height: 320px;
+  max-height: 460px;
   object-fit: contain;
   background: var(--ice-deep);
+}
+
+@media (min-width: 1200px) {
+  .ice-hero-img-wrap img {
+    max-height: 560px;
+  }
+  .ice-hero-img-wrap--pdf img {
+    max-height: 420px;
+  }
 }
 
 .ice-hero-img-cap {
