@@ -30,7 +30,12 @@ body.sc-body {
 
 .sc-body a { color: var(--sc-cyan); }
 
-.sc-wrap { width: min(78rem, 94vw); margin-inline: auto; }
+.sc-wrap {
+  width: 100%;
+  max-width: 1480px;
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+}
 
 /* 本文テキストブロックだけ内側で読みやすさを保つ */
 .sc-lead,
@@ -54,7 +59,7 @@ body.sc-body {
 /* ===== HERO ===== */
 .sc-hero {
   position: relative;
-  padding: clamp(2.5rem, 8vw, 5rem) 1.25rem clamp(2.75rem, 8vw, 4.5rem);
+  padding: clamp(2.5rem, 8vw, 5rem) 0 clamp(2.75rem, 8vw, 4.5rem);
   overflow: hidden;
 }
 .sc-hero::before {
@@ -202,7 +207,7 @@ body.sc-body {
 .sc-hero-stat-label strong { color: #d8e0ec; font-weight: 700; }
 
 /* ===== SECTION ===== */
-.sc-section { padding: clamp(2.25rem, 6vw, 3.75rem) 1.25rem; }
+.sc-section { padding: clamp(2.25rem, 6vw, 3.75rem) 0; }
 .sc-section.alt {
   background: linear-gradient(180deg, rgba(19, 26, 43, 0.7), transparent);
   border-block: 1px solid var(--sc-border);
@@ -567,7 +572,7 @@ body.sc-body {
 
 /* ===== CTA ===== */
 .sc-cta {
-  padding: clamp(2.5rem, 6vw, 3.75rem) 1.25rem 3rem;
+  padding: clamp(2.5rem, 6vw, 3.75rem) 0 3rem;
   text-align: center;
 }
 .sc-cta-kicker {
