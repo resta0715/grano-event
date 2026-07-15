@@ -38,65 +38,43 @@ html,body{
   display:flex;flex-direction:column;
 }
 
-/* === HERO — 72mm === */
+/* === HERO — 画像メイン（108mm）テキストは画像内に含まれるため重ねない === */
 .hero{
-  flex:0 0 72mm;position:relative;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;
-  background:var(--navy-deep);color:#fff;
+  flex:0 0 108mm;position:relative;overflow:hidden;
+  background:var(--navy-deep);
 }
 .hero-img{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center 35%;
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center top;
 }
-.hero-overlay{
-  position:absolute;inset:0;
+.hero-vignette{
+  position:absolute;inset:0;pointer-events:none;
   background:
-    linear-gradient(180deg, rgba(18,26,48,.35) 0%, rgba(18,26,48,.55) 45%, rgba(18,26,48,.92) 100%),
-    radial-gradient(ellipse at 50% 20%, rgba(212,160,85,.12), transparent 55%);
+    linear-gradient(180deg, rgba(18,26,48,.15) 0%, transparent 28%),
+    linear-gradient(0deg, rgba(18,26,48,.55) 0%, transparent 22%);
 }
-.hero-seigaiha{
-  position:absolute;right:-8mm;bottom:-4mm;width:42mm;opacity:.14;
-  pointer-events:none;
-}
-.hero-c{
-  position:relative;z-index:1;
-  padding:0 12mm 7mm;width:100%;
-}
-.hero-edition{
-  display:inline-block;
+.hero-badge{
+  position:absolute;top:4mm;left:5mm;z-index:2;
   font-family:var(--ff-serif);
-  font-size:7pt;font-weight:500;letter-spacing:.45em;
+  font-size:7pt;font-weight:600;letter-spacing:.4em;
   color:var(--cream);
-  padding:1.2mm 4mm;
-  border:0.4mm solid var(--gold);
+  padding:1mm 3.5mm;
+  border:0.35mm solid var(--gold);
   border-radius:0.5mm;
-  margin-bottom:2.5mm;
+  background:rgba(18,26,48,.72);
+  backdrop-filter:blur(2px);
 }
-.hero-pre{
-  font-family:var(--ff-sans);
-  font-size:7pt;font-weight:600;letter-spacing:.35em;
-  text-transform:uppercase;color:var(--gold-light);
-  margin-bottom:2mm;
+.hero-tagline{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:2.5mm 10mm 3.5mm;
+  text-align:center;
+  background:linear-gradient(180deg, transparent, rgba(18,26,48,.88) 35%, rgba(18,26,48,.96) 100%);
 }
-.hero-date{
+.hero-tagline p{
   font-family:var(--ff-serif);
-  font-size:24pt;font-weight:700;letter-spacing:.08em;
-  color:var(--gold-light);
-  margin-bottom:2mm;
-  text-shadow:0 1mm 3mm rgba(0,0,0,.45);
-}
-.hero-date .dow{font-size:55%;margin-left:2mm;color:var(--cream);font-weight:500}
-.hero h1{
-  font-family:var(--ff-serif);
-  font-size:28pt;font-weight:700;line-height:1.28;
-  margin-bottom:1.5mm;
-  text-shadow:0 1mm 4mm rgba(0,0,0,.5);
-}
-.hero h1 em{font-style:normal;color:var(--gold-light)}
-.hero-sub{
-  font-family:var(--ff-serif);
-  font-size:9.5pt;color:rgba(245,239,230,.78);
-  letter-spacing:.12em;font-weight:500;
+  font-size:9pt;color:rgba(245,239,230,.92);
+  letter-spacing:.1em;font-weight:500;
+  line-height:1.4;
 }
 
 /* === VENUE BAND === */
@@ -143,48 +121,51 @@ html,body{
   padding:0.4mm 1.5mm;border-radius:0.5mm;
 }
 
-/* === FEATURES (4項目) === */
+/* === FEATURES (4項目) — コンパクト横並び === */
 .features{
-  flex:1;
+  flex:0 0 auto;
   background:var(--cream-paper);
-  padding:4mm 14mm;
-  display:flex;flex-direction:column;
+  padding:2.5mm 14mm 3mm;
 }
 .features-head{
   font-family:var(--ff-sans);
   font-size:7.5pt;font-weight:600;letter-spacing:.3em;
   text-transform:uppercase;color:var(--gold);
-  margin-bottom:3mm;
+  margin-bottom:2mm;
 }
-.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;flex:1}
+.features-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2.5mm;
+  align-items:stretch;
+}
 .f-card{
   background:#fff;
   border:0.3mm solid var(--paper-shadow);
-  border-top:1mm solid var(--vermilion);
+  border-top:0.8mm solid var(--vermilion);
   border-radius:1mm;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:3.5mm 2.5mm;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+  padding:2mm 1.8mm 2.2mm;text-align:center;
 }
 .f-card:nth-child(2){border-top-color:var(--gold)}
 .f-card:nth-child(3){border-top-color:var(--navy)}
 .f-card:nth-child(4){border-top-color:var(--vermilion-deep)}
 .f-icon{
-  width:11mm;height:11mm;
+  width:8mm;height:8mm;
   display:flex;align-items:center;justify-content:center;
-  font-size:16pt;
-  border:0.4mm solid var(--gold);
+  font-size:11pt;
+  border:0.35mm solid var(--gold);
   border-radius:50%;
-  margin-bottom:2mm;
+  margin-bottom:1.2mm;
   background:radial-gradient(circle, rgba(212,160,85,.12), transparent 70%);
+  flex-shrink:0;
 }
 .f-title{
   font-family:var(--ff-serif);
-  font-size:9.5pt;font-weight:700;color:var(--navy);
-  margin-bottom:1.5mm;line-height:1.35;
+  font-size:8.5pt;font-weight:700;color:var(--navy);
+  margin-bottom:0.8mm;line-height:1.3;
 }
 .f-desc{
-  font-size:7.5pt;color:var(--ink-sub);
-  line-height:1.55;
+  font-size:7pt;color:var(--ink-sub);
+  line-height:1.45;
 }
 
 /* === CONCEPT STRIP === */
@@ -305,15 +286,11 @@ html,body{
 <div class="page">
 
   <div class="hero">
-    <img class="hero-img" src="assets/hero-mock-natsumatsuri.png" alt="">
-    <div class="hero-overlay"></div>
-    <img class="hero-seigaiha" src="assets/seigaiha-cream-gold.png" alt="" aria-hidden="true">
-    <div class="hero-c">
-      <span class="hero-edition">第2回</span>
-      <p class="hero-pre">BNI Grano Chapter presents</p>
-      <p class="hero-date">2026. 8. 26 <span class="dow">（水）</span></p>
-      <h1><em>Business Open Day</em><br>大人の夏祭り</h1>
-      <p class="hero-sub">"紹介"で成果を出す、新しいビジネスの出会い方</p>
+    <img class="hero-img" src="assets/hero-mock-natsumatsuri.png" alt="Business Open Day 2026 大人の夏祭り — 2026.8.26（水）">
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <span class="hero-badge">第2回</span>
+    <div class="hero-tagline">
+      <p>"紹介"で成果を出す、新しいビジネスの出会い方</p>
     </div>
   </div>
 
