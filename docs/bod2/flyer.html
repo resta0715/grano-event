@@ -38,43 +38,16 @@ html,body{
   display:flex;flex-direction:column;
 }
 
-/* === HERO — 画像メイン（108mm）テキストは画像内に含まれるため重ねない === */
+/* === HERO — 画像のみフル表示（テキスト重ねなし） === */
 .hero{
-  flex:0 0 108mm;position:relative;overflow:hidden;
+  flex:0 0 auto;
+  line-height:0;
   background:var(--navy-deep);
 }
 .hero-img{
-  display:block;width:100%;height:100%;
-  object-fit:cover;object-position:center top;
-}
-.hero-vignette{
-  position:absolute;inset:0;pointer-events:none;
-  background:
-    linear-gradient(180deg, rgba(18,26,48,.15) 0%, transparent 28%),
-    linear-gradient(0deg, rgba(18,26,48,.55) 0%, transparent 22%);
-}
-.hero-badge{
-  position:absolute;top:4mm;left:5mm;z-index:2;
-  font-family:var(--ff-serif);
-  font-size:7pt;font-weight:600;letter-spacing:.4em;
-  color:var(--cream);
-  padding:1mm 3.5mm;
-  border:0.35mm solid var(--gold);
-  border-radius:0.5mm;
-  background:rgba(18,26,48,.72);
-  backdrop-filter:blur(2px);
-}
-.hero-tagline{
-  position:absolute;left:0;right:0;bottom:0;z-index:2;
-  padding:2.5mm 10mm 3.5mm;
-  text-align:center;
-  background:linear-gradient(180deg, transparent, rgba(18,26,48,.88) 35%, rgba(18,26,48,.96) 100%);
-}
-.hero-tagline p{
-  font-family:var(--ff-serif);
-  font-size:9pt;color:rgba(245,239,230,.92);
-  letter-spacing:.1em;font-weight:500;
-  line-height:1.4;
+  display:block;
+  width:100%;
+  height:auto;
 }
 
 /* === VENUE BAND === */
@@ -121,51 +94,50 @@ html,body{
   padding:0.4mm 1.5mm;border-radius:0.5mm;
 }
 
-/* === FEATURES (4項目) — コンパクト横並び === */
+/* === FEATURES — 横並びコンパクト帯（縦余白なし） === */
 .features{
   flex:0 0 auto;
   background:var(--cream-paper);
-  padding:2.5mm 14mm 3mm;
+  padding:2mm 14mm 2.5mm;
+  border-bottom:0.3mm solid var(--paper-shadow);
 }
 .features-head{
   font-family:var(--ff-sans);
-  font-size:7.5pt;font-weight:600;letter-spacing:.3em;
+  font-size:7pt;font-weight:600;letter-spacing:.28em;
   text-transform:uppercase;color:var(--gold);
-  margin-bottom:2mm;
+  margin-bottom:1.5mm;
 }
-.features-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:2.5mm;
-  align-items:stretch;
-}
-.f-card{
+.features-row{display:flex;gap:2mm}
+.f-item{
+  flex:1;
+  display:flex;align-items:flex-start;gap:1.5mm;
   background:#fff;
   border:0.3mm solid var(--paper-shadow);
-  border-top:0.8mm solid var(--vermilion);
+  border-top:0.7mm solid var(--vermilion);
   border-radius:1mm;
-  display:flex;flex-direction:column;align-items:center;
-  padding:2mm 1.8mm 2.2mm;text-align:center;
+  padding:1.5mm 1.8mm;
+  min-height:0;
 }
-.f-card:nth-child(2){border-top-color:var(--gold)}
-.f-card:nth-child(3){border-top-color:var(--navy)}
-.f-card:nth-child(4){border-top-color:var(--vermilion-deep)}
+.f-item:nth-child(2){border-top-color:var(--gold)}
+.f-item:nth-child(3){border-top-color:var(--navy)}
+.f-item:nth-child(4){border-top-color:var(--vermilion-deep)}
 .f-icon{
-  width:8mm;height:8mm;
+  width:6.5mm;height:6.5mm;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:11pt;
-  border:0.35mm solid var(--gold);
+  font-size:9pt;
+  border:0.3mm solid var(--gold);
   border-radius:50%;
-  margin-bottom:1.2mm;
   background:radial-gradient(circle, rgba(212,160,85,.12), transparent 70%);
-  flex-shrink:0;
 }
+.f-body{flex:1;min-width:0;line-height:1.35}
 .f-title{
   font-family:var(--ff-serif);
-  font-size:8.5pt;font-weight:700;color:var(--navy);
-  margin-bottom:0.8mm;line-height:1.3;
+  font-size:7.5pt;font-weight:700;color:var(--navy);
+  margin-bottom:0.4mm;
 }
 .f-desc{
-  font-size:7pt;color:var(--ink-sub);
-  line-height:1.45;
+  font-size:6.5pt;color:var(--ink-sub);
+  line-height:1.3;
 }
 
 /* === CONCEPT STRIP === */
@@ -173,13 +145,20 @@ html,body{
   flex:0 0 auto;
   background:linear-gradient(90deg, var(--navy-deep), var(--navy));
   color:var(--cream);
-  padding:3.5mm 14mm;
+  padding:2.5mm 14mm;
   text-align:center;
   border-top:0.4mm solid rgba(212,160,85,.35);
 }
+.concept-strip .concept-lead{
+  font-family:var(--ff-serif);
+  font-size:8.5pt;line-height:1.5;
+  letter-spacing:.08em;
+  color:var(--gold-light);
+  margin-bottom:1mm;
+}
 .concept-strip p{
   font-family:var(--ff-serif);
-  font-size:9pt;line-height:1.7;
+  font-size:8pt;line-height:1.55;
   letter-spacing:.04em;
 }
 .concept-strip strong{color:var(--gold-light);font-weight:700}
@@ -287,11 +266,6 @@ html,body{
 
   <div class="hero">
     <img class="hero-img" src="assets/hero-mock-natsumatsuri.png" alt="Business Open Day 2026 大人の夏祭り — 2026.8.26（水）">
-    <div class="hero-vignette" aria-hidden="true"></div>
-    <span class="hero-badge">第2回</span>
-    <div class="hero-tagline">
-      <p>"紹介"で成果を出す、新しいビジネスの出会い方</p>
-    </div>
   </div>
 
   <div class="venue-band">
@@ -315,31 +289,40 @@ html,body{
 
   <div class="features">
     <p class="features-head">本イベントの特徴</p>
-    <div class="features-grid">
-      <div class="f-card">
+    <div class="features-row">
+      <div class="f-item">
         <div class="f-icon" aria-hidden="true">🤝</div>
-        <p class="f-title">ビジネス交流</p>
-        <p class="f-desc">経営者・専門家との<br>新たな出会い</p>
+        <div class="f-body">
+          <p class="f-title">ビジネス交流</p>
+          <p class="f-desc">経営者・専門家との新たな出会い</p>
+        </div>
       </div>
-      <div class="f-card">
+      <div class="f-item">
         <div class="f-icon" aria-hidden="true">🎙️</div>
-        <p class="f-title">特別講演・セミナー</p>
-        <p class="f-desc">各分野のプロが<br>本気で語る一日</p>
+        <div class="f-body">
+          <p class="f-title">特別講演・セミナー</p>
+          <p class="f-desc">各分野のプロが本気で語る一日</p>
+        </div>
       </div>
-      <div class="f-card">
+      <div class="f-item">
         <div class="f-icon" aria-hidden="true">🎪</div>
-        <p class="f-title">体験・展示ブース</p>
-        <p class="f-desc">見て、ふれて、味わう<br>大人の縁日</p>
+        <div class="f-body">
+          <p class="f-title">体験・展示ブース</p>
+          <p class="f-desc">見て・ふれて・味わう大人の縁日</p>
+        </div>
       </div>
-      <div class="f-card">
+      <div class="f-item">
         <div class="f-icon" aria-hidden="true">🏮</div>
-        <p class="f-title">大人の交流会</p>
-        <p class="f-desc">紹介から成果へ<br>つながる懇親</p>
+        <div class="f-body">
+          <p class="f-title">大人の交流会</p>
+          <p class="f-desc">紹介から成果へつながる懇親</p>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="concept-strip">
+    <p class="concept-lead">"紹介"で成果を出す、新しいビジネスの出会い方</p>
     <p>名刺交換から始まる出会いが、やがて<strong>信頼</strong>へ。信頼が<strong>紹介</strong>へ。紹介が<strong>成果</strong>へ。</p>
   </div>
 
