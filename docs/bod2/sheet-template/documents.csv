@@ -1,5 +1,6 @@
 category,label,url,type
 bod2,告知ページ（第2回）,announcement.html,HTML
+bod2,チラシ A4（第2回）,flyer.html,HTML
 bod2,第2部 開始スライド,slide_part2.html,HTML
 bod2,第2回 ハブページ,index.html,URL
 bod1,告知ページ（第1回・参考）,../announcement_page.html,HTML
