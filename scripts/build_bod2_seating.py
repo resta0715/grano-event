@@ -197,6 +197,18 @@ def place_visitors(
     return [interleave(seats) for seats in tables]
 
 
+def swap_visitors(tables: list[list[tuple[str, str]]], name_a: str, name_b: str) -> None:
+    loc: dict[str, tuple[int, int]] = {}
+    for ti, seats in enumerate(tables):
+        for i, (kind, name) in enumerate(seats):
+            if name in {name_a, name_b}:
+                loc[name] = (ti, i)
+    if name_a not in loc or name_b not in loc:
+        raise RuntimeError(f"swap failed: {name_a} / {name_b}")
+    (ta, ia), (tb, ib) = loc[name_a], loc[name_b]
+    tables[ta][ia], tables[tb][ib] = tables[tb][ib], tables[ta][ia]
+
+
 def seat_html(kind: str, name: str, members_here: set[str] | None = None) -> str:
     if kind == "e":
         return (
@@ -449,6 +461,9 @@ def main() -> None:
     base = tables_from_members()
     tables_a = place_visitors(base, leftover_reversed=False)
     tables_b = place_visitors(base, leftover_reversed=True)
+    # 加藤一郎は宇部卓が満席のため、山野井卓の大久保と入れ替え（川端の同卓のみ外れる）
+    swap_visitors(tables_a, "加藤 一郎", "大久保 仁")
+    swap_visitors(tables_b, "加藤 一郎", "大久保 仁")
     wrap = (
         '<div class="tables-wrap">\n'
         + pattern_html("A", "パターン A — 第2部 開始時", tables_a)
@@ -515,7 +530,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ メンバー36名＋ビジター26名を仮配置（青木 健 様は欠席のため未配置）。招待者と同じ卓を優先し、入りきらない方は他卓へ回しています。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ メンバー36名＋ビジター26名を仮配置（青木 健 様は欠席のため未配置）。招待者と同じ卓を優先し、入りきらない方は他卓へ回しています。加藤 一郎 様は山野井卓（4卓）へ仮置き。編集モード（?edit=1）で入れ替えできます。</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
 </footer>""",
@@ -523,10 +538,10 @@ def main() -> None:
         count=1,
         flags=re.S,
     )
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v2';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v3';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
-        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1']",
+        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2']",
     )
     html = html.replace(".pattern-page-label{ display:none }\n</style>", EXTRA_CSS + "\n.pattern-page-label{ display:none }\n</style>")
     html = html.replace(
