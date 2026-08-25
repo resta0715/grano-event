@@ -582,6 +582,7 @@ KEEP_VISITOR_WITH_HOST = {
     "猪股 みお",
     "大久保 仁",
     "加藤 一郎",
+    "秋山 雅代",
     "千葉 麻衣",
     "佐生 道代",
     "石川 清司",
@@ -788,9 +789,8 @@ def apply_day_adjustments(
     tables = even_out_visitors(tables)
     tables = rebalance_members_only(tables)
     if pattern == "A":
-        # 宇部と秋山は別卓。秋山は山野井卓へ
-        ensure_named_at(tables, "秋山 雅代", 3, "v")
-        ensure_named_at(tables, "新田 義矩", 2, "v")
+        # A案は宇部・秋山・加藤を3卓で同席
+        ensure_named_at(tables, "秋山 雅代", 2, "v")
         tables = rebalance_members_only(tables)
     if pattern == "B":
         tables = apply_seat_map(tables, PATTERN_B_SEATS)
@@ -1202,7 +1202,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 仮配置。鈴木 優 様は全体司会。秋山 雅代 様は山野井卓（宇部と別卓）。B案の加藤 一郎 様は幸田卓。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 仮配置。鈴木 優 様は全体司会。A案は3卓で宇部の招待と同席。B案は席替えで山野井卓、加藤は幸田卓。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
@@ -1213,7 +1213,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v20';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v21';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
