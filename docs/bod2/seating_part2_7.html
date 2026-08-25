@@ -545,23 +545,12 @@ body.edit-mode .pool-section{ display:block }
   background:#a9d9b8 !important;
   border-color:#2f7a55 !important;
 }
-.tables-l{
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0,1fr));
-  grid-template-areas:
-    ". t1 t2 t3"
-    "t7 t4 t5 t6";
-  gap:16px 14px;
-  align-items:center;
-  margin:0 0 8px;
+.tables-row-2{
+  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  max-width:68% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
 }
-.tables-l [data-table="1"]{ grid-area:t1 }
-.tables-l [data-table="2"]{ grid-area:t2 }
-.tables-l [data-table="3"]{ grid-area:t3 }
-.tables-l [data-table="4"]{ grid-area:t4 }
-.tables-l [data-table="5"]{ grid-area:t5 }
-.tables-l [data-table="6"]{ grid-area:t6 }
-.tables-l [data-table="7"]{ grid-area:t7 }
 .floor-hint{
   text-align:center;
   font-size:12px;
@@ -587,12 +576,15 @@ body.edit-mode .pool-section{ display:block }
 @media print{
   .legend{ display:flex !important; }
   .floor-hint{ font-size:9pt !important; margin:0 0 1.5mm !important; }
-  .tables-l{
-    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
-    gap:2mm 3mm !important;
-    margin:0 0 2mm !important;
+  .tables-row-3{
+    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
   }
-  .tables-l .table-wrap{ max-width:66mm !important; }
+  .tables-row-2{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    max-width:62% !important;
+    margin:0 auto 2mm !important;
+  }
+  .table-wrap{ max-width:70mm !important; }
   .seat-c{
     background:#fff !important;
   }
@@ -693,7 +685,7 @@ body.edit-mode .pool-section{ display:block }
 <section class="hero">
   <p class="hero-pre">Round Tables — 2026.8.26 (水) 第2回 · 7卓版</p>
   <h1>第2部 円卓席次</h1>
-  <p class="hero-sub">7卓 × 7〜8名 / 正面3卓・左奥コーナーまたぎL字。ビジターは緑</p>
+  <p class="hero-sub">7卓 × 7〜8名 / 3-2-2 配置。ビジターは緑</p>
   <p class="paper-note"><span>印刷・PDF用紙：A3ヨコ（大きい紙 / 297×420mm）</span></p>
 </section>
 
@@ -716,7 +708,7 @@ body.edit-mode .pool-section{ display:block }
 <section class="tables-pattern" data-pattern="A">
   <p class="pattern-page-label" aria-hidden="true">パターン A — 第2部 開始時（7卓）</p>
   <p class="floor-hint floor-front">正面（手前）</p>
-  <div class="tables-l">
+  <div class="tables-row tables-row-3">
     <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">1卓</span>
@@ -762,21 +754,8 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="7" data-seats="8" data-capacity="8" data-filled="7">
-      <div class="table-circle">
-        <span class="table-name">7卓</span>
-        <span class="table-count">7名 / 8席</span>
-      </div>
-      <div class="seat-c a" data-kind="a"><span class="nm">山田 研二</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m"><span class="nm">栗原 優</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m"><span class="nm">佐藤 風弥</span><span class="sm">様</span></div>
-      <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
-      <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
-    </div>
+  </div>
+  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="4" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">4卓</span>
@@ -807,6 +786,8 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="5卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
+  </div>
+  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="6" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">6卓</span>
@@ -822,13 +803,28 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c m" data-kind="m"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="6卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
+    <div class="table-wrap" data-table="7" data-seats="8" data-capacity="8" data-filled="7">
+      <div class="table-circle">
+        <span class="table-name">7卓</span>
+        <span class="table-count">7名 / 8席</span>
+      </div>
+      <div class="seat-c a" data-kind="a"><span class="nm">山田 研二</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">栗原 優</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">佐藤 風弥</span><span class="sm">様</span></div>
+      <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
+    </div>
   </div>
-  <p class="floor-hint floor-back">左奥コーナーまたぎ（L字） → 会場後方</p>
+  <p class="floor-hint floor-back">会場後方（ブース）</p>
 </section>
 <section class="tables-pattern" data-pattern="B" style="display:none">
   <p class="pattern-page-label" aria-hidden="true">席替え後（パターン B・7卓）</p>
   <p class="floor-hint floor-front">正面（手前）</p>
-  <div class="tables-l">
+  <div class="tables-row tables-row-3">
     <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">1卓</span>
@@ -874,21 +870,8 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c v" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="7" data-seats="8" data-capacity="8" data-filled="8">
-      <div class="table-circle">
-        <span class="table-name">7卓</span>
-        <span class="table-count">8名</span>
-      </div>
-      <div class="seat-c a" data-kind="a"><span class="nm">山田 研二</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m"><span class="nm">栗原 優</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="川戸 恒吾" title="招待者：川戸 恒吾 様"><span class="nm">新田 義矩</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
-      <div class="seat-c m" data-kind="m"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
-      <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
-    </div>
+  </div>
+  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="4" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">4卓</span>
@@ -919,6 +902,8 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="5卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
+  </div>
+  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="6" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">6卓</span>
@@ -934,8 +919,23 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c m" data-kind="m"><span class="nm">早川 尚吾</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="6卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
+    <div class="table-wrap" data-table="7" data-seats="8" data-capacity="8" data-filled="8">
+      <div class="table-circle">
+        <span class="table-name">7卓</span>
+        <span class="table-count">8名</span>
+      </div>
+      <div class="seat-c a" data-kind="a"><span class="nm">山田 研二</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">栗原 優</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="川戸 恒吾" title="招待者：川戸 恒吾 様"><span class="nm">新田 義矩</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
+      <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
+    </div>
   </div>
-  <p class="floor-hint floor-back">左奥コーナーまたぎ（L字） → 会場後方</p>
+  <p class="floor-hint floor-back">会場後方（ブース）</p>
 </section>
 </div>
 

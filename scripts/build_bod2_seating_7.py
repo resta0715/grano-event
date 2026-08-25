@@ -152,16 +152,22 @@ def build_pattern(seat_map: dict[str, int]) -> list[list[tuple[str, str]]]:
 
 def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) -> str:
     hide = ' style="display:none"' if label == "B" else ""
-    tables_html = "\n".join(
-        S.table_html(i, tables[i - 1]) for i in (1, 2, 3, 7, 4, 5, 6)
-    )
+    row1 = "\n".join(S.table_html(i, tables[i - 1]) for i in (1, 2, 3))
+    row2 = "\n".join(S.table_html(i, tables[i - 1]) for i in (4, 5))
+    row3 = "\n".join(S.table_html(i, tables[i - 1]) for i in (6, 7))
     return f"""<section class="tables-pattern" data-pattern="{label}"{hide}>
   <p class="pattern-page-label" aria-hidden="true">{title}</p>
   <p class="floor-hint floor-front">正面（手前）</p>
-  <div class="tables-l">
-{tables_html}
+  <div class="tables-row tables-row-3">
+{row1}
   </div>
-  <p class="floor-hint floor-back">左奥コーナーまたぎ（L字） → 会場後方</p>
+  <div class="tables-row tables-row-2">
+{row2}
+  </div>
+  <div class="tables-row tables-row-2">
+{row3}
+  </div>
+  <p class="floor-hint floor-back">会場後方（ブース）</p>
 </section>"""
 
 
@@ -178,23 +184,12 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   background:#a9d9b8 !important;
   border-color:#2f7a55 !important;
 }
-.tables-l{
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0,1fr));
-  grid-template-areas:
-    ". t1 t2 t3"
-    "t7 t4 t5 t6";
-  gap:16px 14px;
-  align-items:center;
-  margin:0 0 8px;
+.tables-row-2{
+  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  max-width:68% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
 }
-.tables-l [data-table="1"]{ grid-area:t1 }
-.tables-l [data-table="2"]{ grid-area:t2 }
-.tables-l [data-table="3"]{ grid-area:t3 }
-.tables-l [data-table="4"]{ grid-area:t4 }
-.tables-l [data-table="5"]{ grid-area:t5 }
-.tables-l [data-table="6"]{ grid-area:t6 }
-.tables-l [data-table="7"]{ grid-area:t7 }
 .floor-hint{
   text-align:center;
   font-size:12px;
@@ -220,12 +215,15 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 @media print{
   .legend{ display:flex !important; }
   .floor-hint{ font-size:9pt !important; margin:0 0 1.5mm !important; }
-  .tables-l{
-    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
-    gap:2mm 3mm !important;
-    margin:0 0 2mm !important;
+  .tables-row-3{
+    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
   }
-  .tables-l .table-wrap{ max-width:66mm !important; }
+  .tables-row-2{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    max-width:62% !important;
+    margin:0 auto 2mm !important;
+  }
+  .table-wrap{ max-width:70mm !important; }
   .seat-c{
     background:#fff !important;
   }
@@ -300,7 +298,7 @@ def main() -> None:
     )
     html = html.replace(
         '<p class="hero-sub">8卓 × 7〜8名 / 3-3-2 配置 — 席替えあり（パターンA/B）</p>',
-        '<p class="hero-sub">7卓 × 7〜8名 / 正面3卓・左奥コーナーまたぎL字。ビジターは緑</p>\n  <p class="paper-note"><span>印刷・PDF用紙：A3ヨコ（大きい紙 / 297×420mm）</span></p>',
+        '<p class="hero-sub">7卓 × 7〜8名 / 3-2-2 配置。ビジターは緑</p>\n  <p class="paper-note"><span>印刷・PDF用紙：A3ヨコ（大きい紙 / 297×420mm）</span></p>',
     )
     html = html.replace(
         """        <div class="print-pop-head">用紙サイズ × 範囲</div>
