@@ -246,7 +246,7 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 .seat-c.v.hostmatch::after{ display:none !important; }
 .vendor-l{
   display:grid !important;
-  grid-template-columns:repeat(5, 96px);
+  grid-template-columns:repeat(5, 124px);
   grid-template-areas:
     "b1 .  .  .  ."
     "b2 .  .  .  ."
@@ -269,11 +269,11 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 .vendor-l .vendor-booth:nth-child(8){ grid-area:b8; }
 .vendor-booth{
   aspect-ratio:1 !important;
-  width:96px !important;
-  height:96px !important;
-  min-height:96px !important;
-  max-height:96px !important;
-  padding:16px 6px 8px !important;
+  width:124px !important;
+  height:124px !important;
+  min-height:124px !important;
+  max-height:124px !important;
+  padding:20px 8px 10px !important;
   background:#fff !important;
   border:1px solid #777 !important;
   box-shadow:none !important;
@@ -283,9 +283,9 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   background:#ececec !important;
   border-color:#444 !important;
 }
-.vendor-booth .nm{ font-size:16px !important; font-weight:800 !important; color:#111 !important; line-height:1.2 !important; }
-.vendor-booth .prod{ font-size:12px !important; color:#333 !important; margin-top:3px !important; }
-.vendor-booth .booth-num{ font-size:12px !important; color:#333 !important; }
+.vendor-booth .nm{ font-size:20px !important; font-weight:800 !important; color:#111 !important; line-height:1.2 !important; }
+.vendor-booth .prod{ font-size:15px !important; color:#333 !important; margin-top:4px !important; }
+.vendor-booth .booth-num{ font-size:13px !important; color:#333 !important; }
 @media print{
   .legend,.paper-note,.floor-hint,.table-count,.hero-pre,.hero-sub{ display:none !important; }
   .facil-note{
@@ -307,7 +307,7 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
     max-width:62% !important;
     margin:0 auto 1.2mm !important;
   }
-  .table-wrap{ max-width:56mm !important; }
+  .table-wrap{ max-width:54mm !important; }
   .table-name{ font-size:15pt !important; }
   .seat-c{
     width:38% !important;
@@ -319,9 +319,9 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:0.6mm 0 0 !important; }
   .vendor-l{
     width:max-content !important;
-    grid-template-columns:repeat(5, 16.5mm) !important;
+    grid-template-columns:repeat(5, 20mm) !important;
     margin:0.4mm 0 0 !important;
-    gap:1.2mm !important;
+    gap:1.5mm !important;
   }
   .seat-c{
     background:#fff !important;
@@ -350,11 +350,11 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   }
   .vendor-booth, body.print-a3 .vendor-booth{
     aspect-ratio:1 !important;
-    width:16.5mm !important;
-    height:16.5mm !important;
-    min-height:16.5mm !important;
-    max-height:16.5mm !important;
-    padding:2mm 1mm 1.2mm !important;
+    width:20mm !important;
+    height:20mm !important;
+    min-height:20mm !important;
+    max-height:20mm !important;
+    padding:2.4mm 1.2mm 1.4mm !important;
     background:#fff !important;
     border:.7pt solid #555 !important;
   }
@@ -362,9 +362,9 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
     background:#e8e8e8 !important;
     border-color:#333 !important;
   }
-  .vendor-booth .nm, body.print-a3 .vendor-booth .nm{ font-size:11pt !important; color:#000 !important; line-height:1.15 !important; }
-  .vendor-booth .prod, body.print-a3 .vendor-booth .prod{ font-size:8pt !important; color:#222 !important; }
-  .vendor-booth .booth-num, body.print-a3 .vendor-booth .booth-num{ font-size:8pt !important; }
+  .vendor-booth .nm, body.print-a3 .vendor-booth .nm{ font-size:13pt !important; color:#000 !important; line-height:1.15 !important; }
+  .vendor-booth .prod, body.print-a3 .vendor-booth .prod{ font-size:10pt !important; color:#222 !important; }
+  .vendor-booth .booth-num, body.print-a3 .vendor-booth .booth-num{ font-size:9pt !important; }
 }
 """
 
@@ -414,7 +414,7 @@ def main() -> None:
     )
     html = html.replace(
         '<a class="bar-btn" href="seating.html">第1部</a>\n    <a class="bar-btn" href="announcement_page.html">Event</a>\n    <a class="bar-btn" href="members.html">Members</a>',
-        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=29">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
+        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=30">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
     )
     html = html.replace(
         '<p class="hero-pre">Round Tables — 2026.5.27 (水) 第2部</p>',
