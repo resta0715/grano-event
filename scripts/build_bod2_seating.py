@@ -811,7 +811,7 @@ def seat_html(kind: str, name: str, members_here: set[str] | None = None) -> str
     if kind != "v":
         return (
             f'<div class="seat-c {kind}" data-kind="{kind}">'
-            f'<span class="nm">{name}</span><span class="sm">様</span></div>'
+            f'<span class="nm">{name}</span></div>'
         )
     host = HOST_MAP.get(name)
     cls = "seat-c v"
@@ -1066,7 +1066,7 @@ EXTRA_JS = r"""
     } else {
       seat.innerHTML = kind === 'v'
         ? '<span class="nm">'+name+'</span><span class="sm hon-v">様</span>'
-        : '<span class="nm">'+name+'</span><span class="sm">様</span>';
+        : '<span class="nm">'+name+'</span>';
     }
     refreshSeatMeta(seat);
     const wrap = seat.closest('.table-wrap');

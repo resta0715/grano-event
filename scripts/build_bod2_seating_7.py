@@ -154,22 +154,19 @@ def vendor_html_7() -> str:
     cells = []
     for i, (kind, name, prod) in enumerate(S.VENDORS, start=1):
         hon = " 様" if kind == "v" else ""
-        member_hon = "" if kind == "v" else '<span class="sm">様</span>'
         cells.append(
             f'<div class="vendor-booth {kind}" data-booth="{i}" data-kind="{kind}">'
             f'<span class="booth-num">{i}</span>'
             f'<span class="nm">{name}{hon}</span>'
-            f'<span class="prod">{prod}</span>'
-            f"{member_hon}</div>"
+            f'<span class="prod">{prod}</span></div>'
         )
-    side = "\n    ".join(cells[:2])
-    back = "\n    ".join(cells[2:])
+    back = "\n    ".join(cells[:4])
+    side = "\n    ".join(cells[4:])
     return (
         '<section class="vendor-section" aria-label="出店ブース">\n'
-        '  <p class="vendor-mark">— 会場後方 · 左奥コーナーまたぎ（L字）大人の夏祭り 出店ブース —</p>\n'
         '  <div class="vendor-l">\n'
-        f'    <div class="vendor-l-side">\n    {side}\n    </div>\n'
         f'    <div class="vendor-l-back">\n    {back}\n    </div>\n'
+        f'    <div class="vendor-l-side">\n    {side}\n    </div>\n'
         "  </div>\n</section>"
     )
 
@@ -181,7 +178,6 @@ def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) 
     row3 = "\n".join(S.table_html(i, tables[i - 1]) for i in (6, 7))
     return f"""<section class="tables-pattern" data-pattern="{label}"{hide}>
   <p class="pattern-page-label" aria-hidden="true">{title}</p>
-  <p class="floor-hint floor-front">正面（手前）</p>
   <div class="tables-row tables-row-3">
 {row1}
   </div>
@@ -191,30 +187,38 @@ def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) 
   <div class="tables-row tables-row-2">
 {row3}
   </div>
-  <p class="floor-hint floor-back">会場後方 · ブースは左奥コーナーまたぎ（L字）</p>
 {vendor_html_7()}
 </section>"""
 
 
 EXTRA_CSS_7 = S.EXTRA_CSS + """
-:root{
-  --visitor:#c8e8d4;
-  --visitor-bd:#3d8a64;
+.table-count,.floor-hint,.paper-note,.legend i{ display:none !important; }
+.legend{ font-size:12px !important; color:#333 !important; }
+.seat-c{
+  background:#fff !important;
+  border:1px solid #777 !important;
+  color:#111 !important;
+  box-shadow:none !important;
+}
+.seat-c.a{
+  background:#d5d5d5 !important;
+  border:2px solid #222 !important;
+  font-weight:800 !important;
 }
 .seat-c.v{
-  background:#c8e8d4 !important;
-  border-color:#3d8a64 !important;
+  background:#ececec !important;
+  border:1.2px solid #444 !important;
 }
 .seat-c.v.hostmatch{
-  background:#a9d9b8 !important;
-  border-color:#2f7a55 !important;
+  background:#e2e2e2 !important;
+  border:1.2px solid #333 !important;
 }
 .seat-c.v .nm{ display:inline !important; }
 .seat-c.v .sm{
   display:inline !important;
   font-size:1em !important;
   font-weight:800 !important;
-  color:inherit !important;
+  color:#111 !important;
   margin-left:.15em;
 }
 .tables-row-2{
@@ -223,104 +227,97 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   margin-left:auto !important;
   margin-right:auto !important;
 }
-.floor-hint{
-  text-align:center;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.08em;
-  color:#6a5a38;
-  margin:2px 0 6px;
-}
-.floor-back{ color:#8a5a20; margin-top:4px }
 .vendor-l{
-  display:flex !important;
-  align-items:flex-end !important;
-  gap:8px !important;
-  width:100%;
-}
-.vendor-l-side{
-  display:flex;
-  flex-direction:column;
-  flex:0 0 15%;
-  gap:8px;
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  grid-template-rows:auto auto auto auto auto;
+  gap:6px;
+  width:72%;
+  margin:8px 0 0 auto;
 }
 .vendor-l-back{
-  display:flex;
-  flex:1 1 auto;
-  gap:8px;
+  grid-column:1 / 5;
+  grid-row:1;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:6px;
 }
-.vendor-l-back .vendor-booth{ flex:1 1 0; }
+.vendor-l-side{
+  grid-column:4;
+  grid-row:2 / 6;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
 .vendor-booth{
   aspect-ratio:auto !important;
   height:auto !important;
-  min-height:72px !important;
-  max-height:96px !important;
-  padding:14px 6px 8px !important;
+  min-height:56px !important;
+  max-height:72px !important;
+  padding:8px 4px 6px !important;
+  background:#fff !important;
+  border:1px solid #777 !important;
+  box-shadow:none !important;
 }
-.vendor-booth .nm{ font-size:18px !important; font-weight:800 !important; }
-.vendor-booth .prod{ font-size:14px !important; color:#333 !important; }
-.vendor-booth .booth-num{ font-size:14px !important; }
-.vendor-booth .sm{ font-size:13px !important; }
+.vendor-booth.v{
+  background:#ececec !important;
+  border-color:#444 !important;
+}
+.vendor-booth .nm{ font-size:14px !important; font-weight:800 !important; color:#111 !important; }
+.vendor-booth .prod{ font-size:11px !important; color:#333 !important; }
+.vendor-booth .booth-num{ font-size:11px !important; color:#333 !important; }
 @media print{
-  .legend{ display:flex !important; }
-  .floor-hint{ font-size:9pt !important; margin:0 0 1.5mm !important; }
-  .tables-row-3{
-    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
-  }
+  .legend,.paper-note,.floor-hint,.table-count,.hero-pre,.hero-sub{ display:none !important; }
+  .tables-row-3{ grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
   .tables-row-2{
     grid-template-columns:repeat(2, minmax(0,1fr)) !important;
     max-width:62% !important;
-    margin:0 auto 2mm !important;
+    margin:0 auto 1.5mm !important;
   }
-  .table-wrap{ max-width:54mm !important; }
-  .floor-hint{ display:none !important; }
-  .vendor-mark{ margin:0.5mm 0 !important; font-size:8pt !important; }
-  .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; }
+  .table-wrap{ max-width:50mm !important; }
+  .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:1mm 0 0 !important; }
+  .vendor-l{ width:70% !important; margin:1mm 0 0 auto !important; gap:1.2mm !important; }
+  .vendor-l-back,.vendor-l-side{ gap:1.2mm !important; }
   .seat-c{
     background:#fff !important;
+    border:.55pt solid #666 !important;
+    color:#000 !important;
+    box-shadow:none !important;
   }
-  .seat-c.v .sm,
-  body.print-a3 .seat-c.v .sm{
-    font-size:9.5pt !important;
+  .seat-c.a, body.print-a3 .seat-c.a{
+    background:#d2d2d2 !important;
+    border:1.1pt solid #111 !important;
+    color:#000 !important;
+  }
+  .seat-c.v, body.print-a3 .seat-c.v{
+    background:#e8e8e8 !important;
+    border:.7pt solid #333 !important;
+    color:#000 !important;
+  }
+  .seat-c.v.hostmatch, body.print-a3 .seat-c.v.hostmatch{
+    background:#dedede !important;
+    border:.7pt solid #222 !important;
+  }
+  .seat-c.v .sm, body.print-a3 .seat-c.v .sm{
+    font-size:8.5pt !important;
     color:#000 !important;
     font-weight:800 !important;
   }
-  .seat-c.v,
-  body.print-a3 .seat-c.v{
-    background:#b7e0c6 !important;
-    border:.7pt solid #2f7a55 !important;
-  }
-  .seat-c.v.hostmatch,
-  body.print-a3 .seat-c.v.hostmatch{
-    background:#98d0ab !important;
-    border:.8pt solid #246948 !important;
-  }
-  .seat-c.a,
-  body.print-a3 .seat-c.a{
-    background:#fff4dc !important;
-    border:.6pt solid #c8943e !important;
-  }
-  .vendor-l{ gap:1.5mm !important; align-items:flex-end !important; }
-  .vendor-l-side{ flex-basis:14% !important; gap:1.5mm !important; }
-  .vendor-l-back{ gap:1.5mm !important; }
-  .vendor-booth,
-  body.print-a3 .vendor-booth{
+  .vendor-booth, body.print-a3 .vendor-booth{
     aspect-ratio:auto !important;
-    min-height:11mm !important;
-    max-height:14mm !important;
-    height:13mm !important;
-    padding:2mm 1.5mm 1mm !important;
-    font-size:9pt !important;
+    min-height:9mm !important;
+    max-height:11mm !important;
+    height:10mm !important;
+    padding:1.2mm 1mm !important;
+    background:#fff !important;
+    border:.55pt solid #666 !important;
   }
-  .vendor-booth .nm,
-  body.print-a3 .vendor-booth .nm{ font-size:13pt !important; }
-  .vendor-booth .prod,
-  body.print-a3 .vendor-booth .prod{ font-size:11pt !important; }
-  .vendor-booth .booth-num{ font-size:10pt !important; }
-  .vendor-booth.v{
-    background:#c8e8d4 !important;
-    border:.8pt solid #2f7a55 !important;
+  .vendor-booth.v, body.print-a3 .vendor-booth.v{
+    background:#e8e8e8 !important;
+    border-color:#333 !important;
   }
+  .vendor-booth .nm, body.print-a3 .vendor-booth .nm{ font-size:9pt !important; color:#000 !important; }
+  .vendor-booth .prod, body.print-a3 .vendor-booth .prod{ font-size:7.5pt !important; color:#222 !important; }
 }
 """
 
@@ -358,7 +355,7 @@ def main() -> None:
     )
     html = html.replace(
         '<p class="hero-sub">8卓 × 7〜8名 / 3-3-2 配置 — 席替えあり（パターンA/B）</p>',
-        '<p class="hero-sub">7卓 × 7〜8名 / 3-2-2 配置。ビジターは緑</p>\n  <p class="paper-note"><span>印刷・PDF用紙：A3ヨコ（大きい紙 / 297×420mm）</span></p>',
+        '<p class="hero-sub">7卓 × 7〜8名 / 3-2-2 ／ 濃い＝ファシリ　薄い灰＝ビジター　白＝メンバー</p>',
     )
     html = html.replace(
         """        <div class="print-pop-head">用紙サイズ × 範囲</div>
@@ -430,6 +427,16 @@ def main() -> None:
     )
     html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v4';")
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
+    html = re.sub(
+        r'<div class="legend".*?</div>',
+        '<div class="legend" role="note">'
+        "<span>濃い灰＝ファシリ</span>"
+        "<span>薄い灰＝ビジター（様）</span>"
+        "<span>白＝メンバー</span></div>",
+        html,
+        count=1,
+        flags=re.S,
+    )
     html = html.replace(
         ".pattern-page-label{ display:none }\n</style>",
         EXTRA_CSS_7 + "\n.pattern-page-label{ display:none }\n</style>",
