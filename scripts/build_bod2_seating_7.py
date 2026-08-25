@@ -49,14 +49,14 @@ PATTERN_A_7: dict[str, int] = {
     "加藤 一郎": 2,
     "早川 尚吾": 2,
     "徳永 剛太": 2,
-    "新井 真人": 2,
+    "髙橋 信博": 2,
     "山野井 信夫": 3,
     "柴 慎平": 3,
     "川端 綾華": 3,
     "大久保 仁": 3,
     "尾﨑 直人": 3,
     "金指 佐江子": 3,
-    "髙橋 信博": 3,
+    "新井 真人": 3,
     "新美 裕之": 4,
     "千葉 麻衣": 4,
     "成瀬 優": 4,
@@ -81,7 +81,7 @@ PATTERN_A_7: dict[str, int] = {
     "伊東 伸浩": 6,
 }
 
-# B: 小林良＋秋山は山野井 / 柴は小宮・宇部 / 加藤は幸田と同卓
+# B: 秋山は3卓（宇部） / 小林良は山野井 / 柴は小宮・宇部 / 加藤は幸田と同卓
 PATTERN_B_7: dict[str, int] = {
     "伊藤 梢": 0,
     "上村 マリ": 0,
@@ -102,12 +102,12 @@ PATTERN_B_7: dict[str, int] = {
     "柴 慎平": 2,
     "彌富 久美子": 2,
     "上夷 未紗": 2,
-    "新井 真人": 2,
+    "秋山 雅代": 2,
     "古澤 萌愛": 2,
     "梅原 聡": 2,
     "山野井 信夫": 3,
     "小林 良": 3,
-    "秋山 雅代": 3,
+    "新井 真人": 3,
     "川端 綾華": 3,
     "大久保 仁": 3,
     "佐藤 風弥": 3,
@@ -282,7 +282,7 @@ def main() -> None:
         '<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>',
     )
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v3';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v4';")
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = html.replace(
         ".pattern-page-label{ display:none }\n</style>",
