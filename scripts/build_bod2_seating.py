@@ -123,6 +123,18 @@ ABSENT_VISITORS = {
     "香田 英匡",  # 1部のみ
 }
 
+# 各卓1人。鈴木は全体司会のため外し、2卓は小野。
+FACILITATORS = {
+    "栗原 優",
+    "小野 利隆",
+    "尾﨑 直人",
+    "山野井 信夫",
+    "新美 裕之",
+    "徳永 剛太",
+    "小宮 雅哲",
+    "幸田 勝",
+}
+
 VENDORS = [
     ("v", "千葉 麻衣", "余生馬牧場"),
     ("v", "石川 清司", "ネイル・占い"),
@@ -257,6 +269,10 @@ PINNED_NAMES = {
     "川端 綾華",
     "加藤 一郎",
     "宇部 光太",
+    "新美 裕之",
+    "小宮 雅哲",
+    "幸田 勝",
+    "千葉 麻衣",
 }
 
 
@@ -325,6 +341,36 @@ def even_out_tables(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str,
     return tables
 
 
+def ensure_named_at(
+    tables: list[list[tuple[str, str]]],
+    name: str,
+    table_i: int,
+    fallback_kind: str = "m",
+) -> None:
+    if find_table(tables, name) == table_i + 1:
+        return
+    if has_empty(tables[table_i]):
+        kind = take_named(tables, name) or fallback_kind
+        if kind == "a":
+            kind = "m"
+        if not put_named(tables[table_i], kind, name):
+            raise RuntimeError(f"{table_i + 1}卓に {name} を置けません")
+        return
+    for kind, other in tables[table_i]:
+        if other and other not in PINNED_NAMES and other not in FACILITATORS:
+            swap_visitors(tables, name, other)
+            return
+    raise RuntimeError(f"{table_i + 1}卓に {name} の交換相手がありません")
+
+
+def apply_facilitators(tables: list[list[tuple[str, str]]]) -> None:
+    for seats in tables:
+        for i, (kind, name) in enumerate(seats):
+            if not name or kind == "v":
+                continue
+            seats[i] = ("a" if name in FACILITATORS else "m", name)
+
+
 def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
     absent = ABSENT_MEMBERS | ABSENT_VISITORS
     for seats in tables:
@@ -349,6 +395,12 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
         if not put_named(tables[table_i], kind, name):
             raise RuntimeError(f"{label}に {name} の空席がありません")
     tables = even_out_tables(tables)
+    # ファシリを各卓に1人（2卓=小野 / 5卓=新美 / 7卓=小宮 / 8卓=幸田）
+    ensure_named_at(tables, "新美 裕之", 4)
+    ensure_named_at(tables, "千葉 麻衣", 4, "v")
+    ensure_named_at(tables, "小宮 雅哲", 6)
+    ensure_named_at(tables, "幸田 勝", 7)
+    apply_facilitators(tables)
     return [interleave(seats) for seats in tables]
 
 
@@ -755,7 +807,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 仮配置。大久保 仁 様は川端卓（4卓）。加藤 一郎 様は宇部卓（3卓）。小野 利隆 様は野口・新田のいる2卓。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 仮配置。鈴木 優 様は全体司会のためファシリ対象外。2卓ファシリは小野 利隆 様。5卓=新美 / 7卓=小宮 / 8卓=幸田。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ）</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
@@ -766,11 +818,12 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v6';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v7';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
-        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5']",
+        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6']",
     )
+    html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = html.replace(".pattern-page-label{ display:none }\n</style>", EXTRA_CSS + "\n.pattern-page-label{ display:none }\n</style>")
     html = html.replace(
         "    document.getElementById('btnCopyJson').addEventListener('click', copyJson);\n  }\n})();",
