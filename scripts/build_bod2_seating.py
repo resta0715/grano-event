@@ -119,6 +119,7 @@ ABSENT_VISITORS = {
     "青木 健",
     "長谷川 悦子",  # 休み
     "香田 英匡",  # 1部のみ
+    "玉置 智之",  # 来ない
 }
 
 # 各卓1人。鈴木は全体司会のため外し、2卓は小野。
@@ -411,6 +412,8 @@ KEEP_VISITOR_WITH_HOST = {
     "加藤 一郎",
     "千葉 麻衣",
     "迫田 由美子",
+    "奥村 佳奈子",
+    "奧村 佳奈子",
 }
 
 
@@ -477,6 +480,37 @@ def even_out_visitors(tables: list[list[tuple[str, str]]]) -> list[list[tuple[st
                 break
         if not moved:
             break
+    return tables
+
+
+def reunite_unmatched_visitors(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
+    """招待者と別卓のビジターを、招待者卓が3名未満なら戻す。"""
+    tables = [list(seats) for seats in tables]
+    for visitor, host in HOST_MAP.items():
+        if visitor in ABSENT_VISITORS or visitor in PINNED_NAMES or visitor in KEEP_VISITOR_WITH_HOST:
+            continue
+        if not host or host in ABSENT_MEMBERS:
+            continue
+        vt = find_table(tables, visitor)
+        ht = find_table(tables, host)
+        if vt is None or ht is None or vt == ht:
+            continue
+        dest = ht - 1
+        if visitor_count(tables[dest]) >= 3:
+            continue
+        if has_empty(tables[dest]):
+            kind = take_named(tables, visitor) or "v"
+            put_named(tables[dest], kind, visitor)
+            continue
+        for kind, other in tables[dest]:
+            if (
+                kind in {"m", "a"}
+                and other
+                and other not in PINNED_NAMES
+                and other not in FACILITATORS
+            ):
+                swap_visitors(tables, visitor, other)
+                break
     return tables
 
 
@@ -558,6 +592,7 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
     ensure_named_at(tables, "千葉 麻衣", 4, "v")
     ensure_named_at(tables, "あらい ひとみ", 5)
     ensure_named_at(tables, "幸田 勝", 7)
+    tables = reunite_unmatched_visitors(tables)
     tables = even_out_visitors(tables)
     tables = rebalance_members_only(tables)
     apply_facilitators(tables)
@@ -968,7 +1003,7 @@ def main() -> None:
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
   <p>※ 仮配置。鈴木 優 様は全体司会。1卓ファシリ=伊藤 梢 様 / 6卓=あらい ひとみ 様 / 3卓=小宮 / 7卓=永吉（迫田と同卓）。編集モード（?edit=1）で入れ替えできます。</p>
-  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ）</p>
+  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
 </footer>""",
@@ -978,7 +1013,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v12';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v13';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
