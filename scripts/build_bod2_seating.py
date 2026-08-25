@@ -419,6 +419,22 @@ def palette_html() -> str:
 
 EXTRA_CSS = """
 .vendor-row{ grid-template-columns:repeat(8, minmax(0, 1fr)) !important; }
+.seat-c{ width:34% !important; height:16% !important; font-size:15px !important; }
+.seat-c .nm{ font-size:16px !important; font-weight:800 !important; line-height:1.2 !important; }
+.seat-c .sm{ font-size:12px !important; }
+.table-name{ font-size:28px !important; }
+.table-count{ font-size:13px !important; }
+.legend{ font-size:14px !important; gap:18px !important; }
+.hero h1{ font-size:clamp(26px,4vw,34px) !important; }
+.hero-sub{ font-size:15px !important; }
+.paper-note{
+  display:flex; justify-content:center; margin:10px auto 0;
+}
+.paper-note span{
+  display:inline-block; font-size:14px; font-weight:800; letter-spacing:.04em;
+  color:var(--navy); background:#fff8e6; border:1px solid #e3d19a;
+  border-radius:999px; padding:6px 14px;
+}
 .pool-section{
   display:none;
   max-width:1240px; margin:0 auto 28px; padding:16px 18px;
@@ -435,7 +451,39 @@ body.edit-mode .pool-section{ display:block }
 }
 .pool-chip:hover,.pool-chip.active{ background:var(--navy); color:#fff; border-color:var(--navy) }
 .pool-chip.used{ opacity:.35; text-decoration:line-through; pointer-events:none }
-@media print{ .pool-section{ display:none !important } }
+@media print{
+  .pool-section{ display:none !important }
+  .bar, .edit-toolbar, .pattern-switch, .pattern-label, .print-pop, .footer{ display:none !important }
+  .legend{ display:flex !important; font-size:10pt !important; margin:1mm 0 2mm !important; }
+  .hero{ padding:0 0 1mm !important; margin:0 !important; }
+  .hero-pre{ font-size:9pt !important; }
+  .hero h1{ font-size:16pt !important; }
+  .hero-sub{ font-size:10pt !important; }
+  .paper-note span{ font-size:10pt !important; padding:1mm 5mm !important; }
+  .tables-wrap{ padding:0 5mm !important; max-width:100% !important; }
+  .tables-row{ gap:3mm !important; margin-bottom:2.5mm !important; }
+  .tables-row-3{ grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
+  .tables-row-2{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    max-width:58% !important;
+    margin:0 auto 2mm !important;
+  }
+  .table-wrap{ max-width:72mm !important; }
+  .table-name{ font-size:13pt !important; }
+  .table-count{ font-size:8.5pt !important; }
+  .seat-c{
+    font-size:9.5pt !important; width:36% !important; height:15% !important;
+    padding:1px 3px !important; border-width:.7pt !important;
+  }
+  .seat-c .nm{ font-size:9.5pt !important; }
+  .seat-c .sm{ font-size:7.5pt !important; }
+  .pattern-page-label{ font-size:12pt !important; margin-bottom:1mm !important; }
+  .vendor-section{ margin:1mm auto 0 !important; }
+  .vendor-mark{ font-size:9pt !important; margin:1mm 0 !important; }
+  .vendor-booth{ min-height:12mm !important; font-size:8pt !important; padding-top:12px !important; }
+  .vendor-booth .nm{ font-size:8pt !important; }
+  .vendor-booth .prod{ font-size:7pt !important; }
+}
 """
 
 EXTRA_JS = r"""
@@ -541,7 +589,7 @@ def main() -> None:
     )
     html = html.replace(
         '<a class="bar-btn" href="seating.html">第1部</a>\n    <a class="bar-btn" href="announcement_page.html">Event</a>\n    <a class="bar-btn" href="members.html">Members</a>',
-        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="exhibitors.html">出店者</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
+        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="exhibitors.html">出店者</a>\n    <a class="bar-btn" href="seating_part2.pdf">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
     )
     html = html.replace(
         '<p class="hero-pre">Round Tables — 2026.5.27 (水) 第2部</p>',
@@ -549,7 +597,29 @@ def main() -> None:
     )
     html = html.replace(
         '<p class="hero-sub">8卓 × 7〜8名 / 3-3-2 配置 — 席替えあり（パターンA/B）</p>',
-        '<p class="hero-sub">8卓 × 7〜8名 / メンバー36名＋ビジター仮配置（招待者同卓優先）</p>',
+        '<p class="hero-sub">8卓 × 7〜8名 / メンバー36名＋ビジター仮配置（招待者同卓優先）</p>\n  <p class="paper-note"><span>印刷・PDF用紙：A3ヨコ（大きい紙 / 297×420mm）</span></p>',
+    )
+    html = html.replace(
+        """        <div class="print-pop-head">用紙サイズ × 範囲</div>
+        <button type="button" data-print="a4-current" role="menuitem">A4 横 — 現在のパターン</button>
+        <button type="button" data-print="a3-current" role="menuitem">A3 横 — 現在のパターン</button>
+        <hr>
+        <button type="button" data-print="a4-both" role="menuitem">A4 横 — A・B 両方（2ページ）</button>
+        <button type="button" data-print="a3-both" role="menuitem">A3 横 — A・B 両方（2ページ）</button>""",
+        """        <div class="print-pop-head">用紙サイズ（おすすめは A3ヨコ）</div>
+        <button type="button" data-print="a3-current" role="menuitem">A3ヨコ（大きい紙・文字大きめ）今のパターン</button>
+        <button type="button" data-print="a3-both" role="menuitem">A3ヨコ — 開始時と席替え後（2枚）</button>
+        <hr>
+        <button type="button" data-print="a4-current" role="menuitem">A4ヨコ（普通のコピー用紙・文字はやや小さめ）</button>
+        <button type="button" data-print="a4-both" role="menuitem">A4ヨコ — 開始時と席替え後（2枚）</button>""",
+    )
+    html = html.replace(
+        "  if (new URLSearchParams(location.search).get('edit') === '1') {",
+        """  if (new URLSearchParams(location.search).get('pdf') === '1') {
+    document.body.classList.add('print-a3', 'print-both');
+    document.getElementById('pageSize').textContent = '@page { size: A3 landscape; margin: 8mm }';
+  }
+  if (new URLSearchParams(location.search).get('edit') === '1') {""",
     )
 
     html = re.sub(
@@ -594,6 +664,8 @@ def main() -> None:
         count=1,
         flags=re.S,
     )
+    html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
+                        '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
     html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v4';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
