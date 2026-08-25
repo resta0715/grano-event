@@ -279,6 +279,7 @@ PINNED_NAMES = {
     "迫田 由美子",
     "あらい ひとみ",
     "伊藤 梢",
+    "小林 良",
 }
 
 
@@ -591,6 +592,7 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
     ensure_named_at(tables, "新美 裕之", 4)
     ensure_named_at(tables, "千葉 麻衣", 4, "v")
     ensure_named_at(tables, "あらい ひとみ", 5)
+    ensure_named_at(tables, "小林 良", 5, "v")
     ensure_named_at(tables, "幸田 勝", 7)
     tables = reunite_unmatched_visitors(tables)
     tables = even_out_visitors(tables)
@@ -1013,7 +1015,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v13';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v14';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
