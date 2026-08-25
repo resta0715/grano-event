@@ -112,6 +112,10 @@ VISITORS: list[tuple[str, str | None]] = [
     ("奥村 佳奈子", "上村 マリ"),
 ]
 
+# 2部欠席（佐藤修也＝佐藤 秀哉）
+ABSENT_MEMBERS = {"川戸 恒吾", "かわもと えつこ", "佐藤 秀哉", "中山 朋子"}
+ABSENT_VISITORS = {"イブ", "大場 祐介", "星 寿美", "青木 健"}
+
 VENDORS = [
     ("v", "千葉 麻衣", "余生馬牧場"),
     ("v", "石川 清司", "ネイル・占い"),
@@ -164,6 +168,7 @@ def interleave(seats: list[tuple[str, str]]) -> list[tuple[str, str]]:
     mixed: list[tuple[str, str]] = []
     if axis:
         mixed.append(axis[0])
+        members = [("m", n) for _k, n in axis[1:]] + members
     while members or visitors:
         if visitors:
             mixed.append(visitors.pop(0))
@@ -182,6 +187,8 @@ def place_visitors(
     hosts = host_table_index(tables)
     leftover: list[tuple[str, str | None]] = []
     for name, host in VISITORS:
+        if name in ABSENT_VISITORS:
+            continue
         ti = hosts.get(host) if host else None
         if ti is None or not put_visitor(tables[ti], name):
             leftover.append((name, host))
@@ -207,6 +214,39 @@ def swap_visitors(tables: list[list[tuple[str, str]]], name_a: str, name_b: str)
         raise RuntimeError(f"swap failed: {name_a} / {name_b}")
     (ta, ia), (tb, ib) = loc[name_a], loc[name_b]
     tables[ta][ia], tables[tb][ib] = tables[tb][ib], tables[ta][ia]
+
+
+def take_named(tables: list[list[tuple[str, str]]], name: str) -> str | None:
+    for seats in tables:
+        for i, (kind, nm) in enumerate(seats):
+            if nm == name:
+                seats[i] = ("e", "")
+                return kind
+    return None
+
+
+def put_named(seats: list[tuple[str, str]], kind: str, name: str) -> bool:
+    for i, (k, _) in enumerate(seats):
+        if k == "e":
+            seats[i] = (kind, name)
+            return True
+    return False
+
+
+def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
+    absent = ABSENT_MEMBERS | ABSENT_VISITORS
+    for seats in tables:
+        for i, (_kind, name) in enumerate(seats):
+            if name in absent:
+                seats[i] = ("e", "")
+    # 小野は野口・新田のいる2卓へ。猪股（招待：小野）も同卓へ追随
+    for name, fallback_kind in (("小野 利隆", "m"), ("猪股 みお", "v")):
+        kind = take_named(tables, name) or fallback_kind
+        if kind == "a":
+            kind = "m"
+        if not put_named(tables[1], kind, name):
+            raise RuntimeError(f"2卓に {name} の空席がありません")
+    return [interleave(seats) for seats in tables]
 
 
 def seat_html(kind: str, name: str, members_here: set[str] | None = None) -> str:
@@ -275,6 +315,8 @@ def find_table(tables: list[list[tuple[str, str]]], name: str) -> int | None:
 
 
 def pair_cell(tables: list[list[tuple[str, str]]], visitor: str, host: str | None) -> str:
+    if visitor in ABSENT_VISITORS:
+        return "<span class='dim'>2部欠席</span>"
     vt = find_table(tables, visitor)
     if vt is None:
         return "<span class='dim'>—</span>"
@@ -299,6 +341,15 @@ def pair_section_html(
         b = pair_cell(tables_b, visitor, host)
         ok_a = "同卓" in a
         ok_b = "同卓" in b
+        if visitor in ABSENT_VISITORS:
+            host_lbl = host or "—"
+            if host in ABSENT_MEMBERS:
+                host_lbl = f"{host}<span class='abs'>（2部欠席）</span>"
+            rows.append(
+                f"<tr><td>{visitor} <span class='hon'>様</span></td>"
+                f"<td>{host_lbl}</td><td>{a}</td><td>{b}</td></tr>"
+            )
+            continue
         if not host:
             nohost += 1
         elif ok_a and ok_b:
@@ -310,6 +361,8 @@ def pair_section_html(
         else:
             other += 1
         host_lbl = host or "—"
+        if host in ABSENT_MEMBERS:
+            host_lbl = f"{host}<span class='abs'>（2部欠席）</span>"
         rows.append(
             f"<tr><td>{visitor} <span class='hon'>様</span></td>"
             f"<td>{host_lbl}</td><td>{a}</td><td>{b}</td></tr>"
@@ -355,7 +408,7 @@ def palette_html() -> str:
     chips = "".join(
         f'<button type="button" class="pool-chip" data-name="{n}">{n}</button>'
         for n in HOST_MAP
-        if n != "青木 健"
+        if n not in ABSENT_VISITORS
     )
     return f"""<section class="pool-section" id="visitorPool" hidden>
   <h2 class="pool-title">未配置ビジター（クリック → 空席をクリックで配置）</h2>
@@ -464,6 +517,8 @@ def main() -> None:
     # 加藤一郎は宇部卓が満席のため、山野井卓の大久保と入れ替え（川端の同卓のみ外れる）
     swap_visitors(tables_a, "加藤 一郎", "大久保 仁")
     swap_visitors(tables_b, "加藤 一郎", "大久保 仁")
+    tables_a = apply_day_adjustments(tables_a)
+    tables_b = apply_day_adjustments(tables_b)
     wrap = (
         '<div class="tables-wrap">\n'
         + pattern_html("A", "パターン A — 第2部 開始時", tables_a)
@@ -530,7 +585,8 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ メンバー36名＋ビジター26名を仮配置（青木 健 様は欠席のため未配置）。招待者と同じ卓を優先し、入りきらない方は他卓へ回しています。加藤 一郎 様は山野井卓（4卓）へ仮置き。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 仮配置。加藤 一郎 様は山野井卓（4卓）。小野 利隆 様は野口・新田のいる2卓。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様（2部不在） / 青木 健 様</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
 </footer>""",
@@ -538,10 +594,10 @@ def main() -> None:
         count=1,
         flags=re.S,
     )
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v3';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v4';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
-        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2']",
+        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3']",
     )
     html = html.replace(".pattern-page-label{ display:none }\n</style>", EXTRA_CSS + "\n.pattern-page-label{ display:none }\n</style>")
     html = html.replace(
