@@ -290,6 +290,7 @@ PINNED_NAMES = {
     "小林 良",
     "小林 実穂",
     "柴 慎平",
+    "秋山 雅代",
     "山野井 信夫",
     "成瀬 優",
     "大工原 葉子",
@@ -358,6 +359,113 @@ def even_out_tables(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str,
             break
         if not move_one(donors, receivers):
             break
+    return tables
+
+
+# 席替えB：ファシリと必須同卓は残し、2人招待の入れ替えとグループ移動でAと差をつける
+PATTERN_B_SEATS: dict[str, int] = {
+    "伊藤 梢": 0,
+    "上村 マリ": 0,
+    "阿部 綾香": 0,
+    "奥村 佳奈子": 0,
+    "飛山 佳枝": 0,
+    "髙橋 信博": 0,
+    "小野 利隆": 1,
+    "猪股 みお": 1,
+    "鈴木 優": 1,
+    "野口 久美子": 1,
+    "金指 佐江子": 1,
+    "徳永 剛太": 1,
+    "小宮 雅哲": 2,
+    "宇部 光太": 2,
+    "柴 慎平": 2,
+    "板倉 佳織": 2,
+    "上夷 未紗": 2,
+    "新井 真人": 2,
+    "彌富 久美子": 2,
+    "山野井 信夫": 3,
+    "川端 綾華": 3,
+    "大久保 仁": 3,
+    "小林 良": 3,
+    "秋山 雅代": 3,
+    "熊澤 博之": 3,
+    "佐藤 風弥": 3,
+    "新美 裕之": 4,
+    "千葉 麻衣": 4,
+    "成瀬 優": 4,
+    "佐生 道代": 4,
+    "大工原 葉子": 4,
+    "石川 清司": 4,
+    "尾﨑 直人": 4,
+    "あらい ひとみ": 5,
+    "小林 実穂": 5,
+    "新田 義矩": 5,
+    "南 晴美": 5,
+    "田代 祐司": 5,
+    "川村 徹也": 5,
+    "龍造寺 亮": 5,
+    "山田 研二": 6,
+    "永吉 佐千子": 6,
+    "迫田 由美子": 6,
+    "伊東 伸浩": 6,
+    "栗原 優": 6,
+    "早川 尚吾": 6,
+    "幸田 勝": 7,
+    "加藤 一郎": 7,
+    "岡崎 厚子": 7,
+    "磯田 忠良": 7,
+    "古澤 萌愛": 7,
+    "植草 尚大": 7,
+}
+
+
+def visitor_kind(name: str) -> str:
+    return "v" if any(n == name for n, _h in VISITORS) else "m"
+
+
+def apply_seat_map(
+    tables: list[list[tuple[str, str]]],
+    seat_map: dict[str, int],
+) -> list[list[tuple[str, str]]]:
+    """指定の卓割りへ強制配置する。"""
+    tables = [list(seats) for seats in tables]
+
+    def table_of(name: str) -> int | None:
+        found = find_table(tables, name)
+        return None if found is None else found - 1
+
+    for _ in range(80):
+        wrong = [(name, dest) for name, dest in seat_map.items() if table_of(name) != dest]
+        if not wrong:
+            break
+        progressed = False
+        for name, dest in wrong:
+            if table_of(name) == dest:
+                continue
+            if has_empty(tables[dest]):
+                kind = take_named(tables, name) or visitor_kind(name)
+                if kind == "a":
+                    kind = "m"
+                if put_named(tables[dest], kind, name):
+                    progressed = True
+        if progressed:
+            continue
+        for name, dest in wrong:
+            if table_of(name) == dest:
+                continue
+            for _kind, other in tables[dest]:
+                if not other:
+                    continue
+                other_dest = seat_map.get(other)
+                if other_dest is not None and other_dest != dest:
+                    swap_visitors(tables, name, other)
+                    progressed = True
+                    break
+            if progressed:
+                break
+        if not progressed:
+            leftover = ", ".join(f"{n}→{d + 1}卓" for n, d in wrong[:8])
+            raise RuntimeError(f"B案の席替えを組めません: {leftover}")
     return tables
 
 
@@ -679,6 +787,13 @@ def apply_day_adjustments(
     tables = reunite_unmatched_visitors(tables)
     tables = even_out_visitors(tables)
     tables = rebalance_members_only(tables)
+    if pattern == "A":
+        # 宇部と秋山は別卓。秋山は山野井卓へ
+        ensure_named_at(tables, "秋山 雅代", 3, "v")
+        ensure_named_at(tables, "新田 義矩", 2, "v")
+        tables = rebalance_members_only(tables)
+    if pattern == "B":
+        tables = apply_seat_map(tables, PATTERN_B_SEATS)
     separate_forbidden_pairs(tables)
     apply_facilitators(tables)
     return [interleave(seats) for seats in tables]
@@ -1087,7 +1202,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 仮配置。鈴木 優 様は全体司会。1卓ファシリ=伊藤 梢 様 / 6卓=あらい ひとみ 様 / 3卓=小宮 / 7卓=山田 研二 様（永吉・迫田と同卓）。A案は小林 良 様をあらい卓、B案は山野井卓。柴 慎平 様は山野井と離れる場合は小宮・宇部卓。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 仮配置。鈴木 優 様は全体司会。秋山 雅代 様は山野井卓（宇部と別卓）。B案の加藤 一郎 様は幸田卓。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
@@ -1098,7 +1213,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v18';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v20';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
