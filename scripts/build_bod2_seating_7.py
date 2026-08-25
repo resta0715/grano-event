@@ -152,29 +152,116 @@ def build_pattern(seat_map: dict[str, int]) -> list[list[tuple[str, str]]]:
 
 def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) -> str:
     hide = ' style="display:none"' if label == "B" else ""
-    row1 = "\n".join(S.table_html(i, tables[i - 1]) for i in (1, 2, 3))
-    row2 = "\n".join(S.table_html(i, tables[i - 1]) for i in (4, 5, 6))
-    row3 = S.table_html(7, tables[6])
+    tables_html = "\n".join(
+        S.table_html(i, tables[i - 1]) for i in (1, 2, 3, 7, 4, 5, 6)
+    )
     return f"""<section class="tables-pattern" data-pattern="{label}"{hide}>
   <p class="pattern-page-label" aria-hidden="true">{title}</p>
-  <div class="tables-row tables-row-3">
-{row1}
+  <p class="floor-hint floor-front">正面（手前）</p>
+  <div class="tables-l">
+{tables_html}
   </div>
-  <div class="tables-row tables-row-3">
-{row2}
-  </div>
-  <div class="tables-row tables-row-1">
-{row3}
-  </div>
+  <p class="floor-hint floor-back">左奥コーナーまたぎ（L字） → 会場後方</p>
 </section>"""
 
 
 EXTRA_CSS_7 = S.EXTRA_CSS + """
+:root{
+  --visitor:#c8e8d4;
+  --visitor-bd:#3d8a64;
+}
+.seat-c.v{
+  background:#c8e8d4 !important;
+  border-color:#3d8a64 !important;
+}
+.seat-c.v.hostmatch{
+  background:#a9d9b8 !important;
+  border-color:#2f7a55 !important;
+}
+.tables-l{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  grid-template-areas:
+    ". t1 t2 t3"
+    "t7 t4 t5 t6";
+  gap:16px 14px;
+  align-items:center;
+  margin:0 0 8px;
+}
+.tables-l [data-table="1"]{ grid-area:t1 }
+.tables-l [data-table="2"]{ grid-area:t2 }
+.tables-l [data-table="3"]{ grid-area:t3 }
+.tables-l [data-table="4"]{ grid-area:t4 }
+.tables-l [data-table="5"]{ grid-area:t5 }
+.tables-l [data-table="6"]{ grid-area:t6 }
+.tables-l [data-table="7"]{ grid-area:t7 }
+.floor-hint{
+  text-align:center;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+  color:#6a5a38;
+  margin:2px 0 6px;
+}
+.floor-back{ color:#8a5a20; margin-top:4px }
+.vendor-row{
+  grid-template-columns:repeat(4, minmax(0,1fr)) !important;
+  gap:10px !important;
+}
+.vendor-booth{
+  aspect-ratio:auto !important;
+  min-height:118px !important;
+  padding:20px 10px 12px !important;
+}
+.vendor-booth .nm{ font-size:18px !important; font-weight:800 !important; }
+.vendor-booth .prod{ font-size:14px !important; color:#333 !important; }
+.vendor-booth .booth-num{ font-size:14px !important; }
+.vendor-booth .sm{ font-size:13px !important; }
 @media print{
-  .tables-row-1{
-    grid-template-columns:minmax(0,1fr) !important;
-    max-width:29% !important;
-    margin:0 auto 2mm !important;
+  .legend{ display:flex !important; }
+  .floor-hint{ font-size:9pt !important; margin:0 0 1.5mm !important; }
+  .tables-l{
+    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
+    gap:2mm 3mm !important;
+    margin:0 0 2mm !important;
+  }
+  .tables-l .table-wrap{ max-width:66mm !important; }
+  .seat-c{
+    background:#fff !important;
+  }
+  .seat-c.v,
+  body.print-a3 .seat-c.v{
+    background:#b7e0c6 !important;
+    border:.7pt solid #2f7a55 !important;
+  }
+  .seat-c.v.hostmatch,
+  body.print-a3 .seat-c.v.hostmatch{
+    background:#98d0ab !important;
+    border:.8pt solid #246948 !important;
+  }
+  .seat-c.a,
+  body.print-a3 .seat-c.a{
+    background:#fff4dc !important;
+    border:.6pt solid #c8943e !important;
+  }
+  .vendor-row{
+    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
+    gap:3mm !important;
+  }
+  .vendor-booth,
+  body.print-a3 .vendor-booth{
+    min-height:26mm !important;
+    padding:5mm 2.5mm 2.5mm !important;
+    font-size:12pt !important;
+  }
+  .vendor-booth .nm,
+  body.print-a3 .vendor-booth .nm{ font-size:13pt !important; }
+  .vendor-booth .prod,
+  body.print-a3 .vendor-booth .prod{ font-size:11pt !important; }
+  .vendor-booth .booth-num{ font-size:10pt !important; }
+  .vendor-booth.v{
+    background:#c8e8d4 !important;
+    border:.8pt solid #2f7a55 !important;
   }
 }
 """
@@ -213,7 +300,7 @@ def main() -> None:
     )
     html = html.replace(
         '<p class="hero-sub">8卓 × 7〜8名 / 3-3-2 配置 — 席替えあり（パターンA/B）</p>',
-        '<p class="hero-sub">7卓 × 7〜8名 / 8卓版とは別配置。招待者同卓と別卓指定を反映</p>\n  <p class="paper-note"><span>印刷・PDF用紙：A3ヨコ（大きい紙 / 297×420mm）</span></p>',
+        '<p class="hero-sub">7卓 × 7〜8名 / 正面3卓・左奥コーナーまたぎL字。ビジターは緑</p>\n  <p class="paper-note"><span>印刷・PDF用紙：A3ヨコ（大きい紙 / 297×420mm）</span></p>',
     )
     html = html.replace(
         """        <div class="print-pop-head">用紙サイズ × 範囲</div>
