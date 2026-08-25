@@ -443,38 +443,36 @@ def even_out_visitors(tables: list[list[tuple[str, str]]]) -> list[list[tuple[st
         hi, lo = max(vcounts), min(vcounts)
         if hi - lo <= 1 and hi <= 3:
             break
-        donors = sorted((i for i, c in enumerate(vcounts) if c == hi), reverse=False)
+        donors = [i for i, c in enumerate(vcounts) if c == hi]
         receivers = sorted((i for i, c in enumerate(vcounts) if c == lo))
-        moved = False
+        cands: list[tuple[int, int, str]] = []
         for di in donors:
-            cands = sorted(
-                (
-                    (visitor_spread_rank(tables[di], name), name)
-                    for kind, name in tables[di]
-                    if kind == "v" and name
-                ),
-            )
-            cands = [(r, n) for r, n in cands if r < 99]
-            for _rank, name in cands:
-                for ri in receivers:
-                    if ri == di:
-                        continue
-                    if has_empty(tables[ri]):
-                        kind = take_named(tables, name) or "v"
-                        if put_named(tables[ri], kind, name):
-                            moved = True
-                            break
-                    for kind, other in tables[ri]:
-                        if (
-                            kind in {"m", "a"}
-                            and other
-                            and other not in PINNED_NAMES
-                            and other not in FACILITATORS
-                        ):
-                            swap_visitors(tables, name, other)
-                            moved = True
-                            break
-                    if moved:
+            for kind, name in tables[di]:
+                if kind != "v" or not name:
+                    continue
+                rank = visitor_spread_rank(tables[di], name)
+                if rank < 99:
+                    cands.append((rank, di, name))
+        cands.sort()
+        moved = False
+        for _rank, di, name in cands:
+            for ri in receivers:
+                if ri == di:
+                    continue
+                if has_empty(tables[ri]):
+                    kind = take_named(tables, name) or "v"
+                    if put_named(tables[ri], kind, name):
+                        moved = True
+                        break
+                for kind, other in tables[ri]:
+                    if (
+                        kind in {"m", "a"}
+                        and other
+                        and other not in PINNED_NAMES
+                        and other not in FACILITATORS
+                    ):
+                        swap_visitors(tables, name, other)
+                        moved = True
                         break
                 if moved:
                     break
