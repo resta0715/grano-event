@@ -533,8 +533,7 @@ body.edit-mode .pool-section{ display:block }
   .vendor-booth .prod{ font-size:7pt !important; }
 }
 
-.table-count,.floor-hint,.paper-note,.legend i{ display:none !important; }
-.legend{ font-size:12px !important; color:#333 !important; }
+.table-count,.floor-hint,.paper-note,.legend,.hero-sub{ display:none !important; }
 .seat-c{
   background:#fff !important;
   border:1px solid #777 !important;
@@ -568,28 +567,30 @@ body.edit-mode .pool-section{ display:block }
   margin-left:auto !important;
   margin-right:auto !important;
 }
+.seat-c:not(.v) .sm:not(.empty-lbl){ display:none !important; }
+.seat-c.v.hostmatch::after{ display:none !important; }
 .vendor-l{
   display:grid !important;
   grid-template-columns:repeat(4, minmax(0,1fr));
-  grid-template-rows:auto auto auto auto auto;
+  grid-template-areas:
+    "b1 .  .  ."
+    "b2 .  .  ."
+    "b3 .  .  ."
+    "b4 .  .  ."
+    "b5 b6 b7 b8";
+  width:70%;
+  margin:8px 0 0;
   gap:6px;
-  width:72%;
-  margin:8px 0 0 auto;
+  justify-items:stretch;
 }
-.vendor-l-back{
-  grid-column:1 / 5;
-  grid-row:1;
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:6px;
-}
-.vendor-l-side{
-  grid-column:4;
-  grid-row:2 / 6;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
+.vendor-l .vendor-booth:nth-child(1){ grid-area:b1; }
+.vendor-l .vendor-booth:nth-child(2){ grid-area:b2; }
+.vendor-l .vendor-booth:nth-child(3){ grid-area:b3; }
+.vendor-l .vendor-booth:nth-child(4){ grid-area:b4; }
+.vendor-l .vendor-booth:nth-child(5){ grid-area:b5; }
+.vendor-l .vendor-booth:nth-child(6){ grid-area:b6; }
+.vendor-l .vendor-booth:nth-child(7){ grid-area:b7; }
+.vendor-l .vendor-booth:nth-child(8){ grid-area:b8; }
 .vendor-booth{
   aspect-ratio:auto !important;
   height:auto !important;
@@ -617,8 +618,7 @@ body.edit-mode .pool-section{ display:block }
   }
   .table-wrap{ max-width:50mm !important; }
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:1mm 0 0 !important; }
-  .vendor-l{ width:70% !important; margin:1mm 0 0 auto !important; gap:1.2mm !important; }
-  .vendor-l-back,.vendor-l-side{ gap:1.2mm !important; }
+  .vendor-l{ width:66% !important; margin:1mm 0 0 !important; gap:1.2mm !important; }
   .seat-c{
     background:#fff !important;
     border:.55pt solid #666 !important;
@@ -674,7 +674,7 @@ body.edit-mode .pool-section{ display:block }
   <nav class="bar-r" aria-label="ナビ">
     <a class="bar-btn" href="index.html">ハブ</a>
     <a class="bar-btn" href="seating_part2.html">8卓版</a>
-    <a class="bar-btn" href="seating_part2_7.pdf">席次PDF</a>
+    <a class="bar-btn" href="seating_part2_7.pdf?v=27">席次PDF</a>
     <a class="bar-btn" href="memberlist.html">Members</a>
     <span class="print-menu">
       <button class="bar-btn" type="button" id="printToggle" aria-haspopup="true" aria-expanded="false">印刷 / PDF ▾</button>
@@ -722,8 +722,7 @@ body.edit-mode .pool-section{ display:block }
 <section class="hero">
   <p class="hero-pre">Round Tables — 2026.8.26 (水) 第2回 · 7卓版</p>
   <h1>第2部 円卓席次</h1>
-  <p class="hero-sub">7卓 × 7〜8名 / 3-2-2 ／ 濃い＝ファシリ　薄い灰＝ビジター　白＝メンバー</p>
-</section>
+  </section>
 
 <div class="pattern-switch" role="tablist" aria-label="席替えパターン">
   <button class="pattern-btn active" type="button" data-target="A" role="tab" aria-selected="true">パターン A</button>
@@ -849,18 +848,14 @@ body.edit-mode .pool-section{ display:block }
   </div>
 <section class="vendor-section" aria-label="出店ブース">
   <div class="vendor-l">
-    <div class="vendor-l-back">
     <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣 様</span><span class="prod">余生馬牧場</span></div>
     <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司 様</span><span class="prod">ネイル・占い</span></div>
     <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良 様</span><span class="prod">婦人服・バッグ</span></div>
     <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお 様</span><span class="prod">レモンケーキ</span></div>
-    </div>
-    <div class="vendor-l-side">
     <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子 様</span><span class="prod">わらび餅</span></div>
     <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代 様</span><span class="prod">シルクギャラリー</span></div>
     <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">永吉 佐千子</span><span class="prod">栄養製品</span></div>
     <div class="vendor-booth m" data-booth="8" data-kind="m"><span class="booth-num">8</span><span class="nm">成瀬 優</span><span class="prod">シルク染物</span></div>
-    </div>
   </div>
 </section>
 </section>
@@ -979,18 +974,14 @@ body.edit-mode .pool-section{ display:block }
   </div>
 <section class="vendor-section" aria-label="出店ブース">
   <div class="vendor-l">
-    <div class="vendor-l-back">
     <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣 様</span><span class="prod">余生馬牧場</span></div>
     <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司 様</span><span class="prod">ネイル・占い</span></div>
     <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良 様</span><span class="prod">婦人服・バッグ</span></div>
     <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお 様</span><span class="prod">レモンケーキ</span></div>
-    </div>
-    <div class="vendor-l-side">
     <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子 様</span><span class="prod">わらび餅</span></div>
     <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代 様</span><span class="prod">シルクギャラリー</span></div>
     <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">永吉 佐千子</span><span class="prod">栄養製品</span></div>
     <div class="vendor-booth m" data-booth="8" data-kind="m"><span class="booth-num">8</span><span class="nm">成瀬 優</span><span class="prod">シルク染物</span></div>
-    </div>
   </div>
 </section>
 </section>
@@ -1014,8 +1005,8 @@ body.edit-mode .pool-section{ display:block }
 <script id="hostMap" type="application/json">{"秋山 雅代": "宇部 光太", "大場 祐介": "小野 利隆", "磯田 忠良": "岡崎 厚子", "小林 良": "山野井 信夫", "新田 義矩": "川戸 恒吾", "古澤 萌愛": "山田 研二", "青木 健": "小宮 雅哲", "南 晴美": "永吉 佐千子", "長谷川 悦子": "岡崎 厚子", "阿部 綾香": "上村 マリ", "イブ": "小野 利隆", "柴 慎平": "山野井 信夫", "猪股 みお": "小野 利隆", "石川 清司": "大工原 葉子", "伊東 伸浩": "山田 研二", "千葉 麻衣": "新美 裕之", "香田 英匡": "あらい ひとみ", "大久保 仁": "川端 綾華", "星 寿美": "飛山 佳枝", "野口 久美子": "鈴木 優", "佐生 道代": "成瀬 優", "迫田 由美子": "永吉 佐千子", "加藤 一郎": "宇部 光太", "玉置 智之": "龍造寺 亮", "奧村 佳奈子": "上村 マリ", "奥村 佳奈子": "上村 マリ"}</script>
 
 <footer class="footer">
-  <p>※ 7卓版。全卓ファシリ。1卓=幸田 勝 様（伊藤 梢 様は普通席）。鈴木 優 様は全体司会。編集モード（?edit=1）で入れ替えできます。</p>
-  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 / 熊澤 博之 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
+  <p>※ 7卓版。全卓ファシリ。1卓=幸田 勝（伊藤 梢は普通席）。鈴木 優は全体司会。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>2部欠席メンバー：川戸 恒吾 / かわもと えつこ / 佐藤 秀哉 / 中山 朋子 / 熊澤 博之 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次 7卓</p>
 </footer>
 
@@ -1364,7 +1355,7 @@ body.edit-mode .pool-section{ display:block }
 
   // -------- localStorage 保存・復元 --------
   // ベース配置の version。生成側で更新したら古い localStorage を破棄する。
-  const STORAGE_KEY = 'bod2-seating7-edits-v4';
+  const STORAGE_KEY = 'bod2-seating7-edits-v7';
   // 旧キーは破棄（配置が変わるたびに古い編集が再表示される事故を防止）
   try {
     ['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4'].forEach(k => localStorage.removeItem(k));
@@ -1569,6 +1560,24 @@ body.edit-mode .pool-section{ display:block }
     });
     refreshPool();
   }
+
+  function normalizeHonorifics(){
+    document.querySelectorAll('.seat-c').forEach(seat => {
+      const kind = seat.dataset.kind || '';
+      const nm = seat.querySelector('.nm');
+      const name = (nm ? nm.textContent : '').replace(/\s*様\s*$/,'').trim();
+      if (kind === 'e' || !name){
+        if (kind === 'e'){
+          seat.innerHTML = '<span class="nm"></span><span class="sm empty-lbl">空席</span>';
+        }
+        return;
+      }
+      seat.innerHTML = kind === 'v'
+        ? '<span class="nm">'+name+'</span><span class="sm hon-v">様</span>'
+        : '<span class="nm">'+name+'</span>';
+    });
+  }
+  normalizeHonorifics();
 
 })();
 </script>

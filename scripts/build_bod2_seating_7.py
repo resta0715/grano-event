@@ -160,14 +160,11 @@ def vendor_html_7() -> str:
             f'<span class="nm">{name}{hon}</span>'
             f'<span class="prod">{prod}</span></div>'
         )
-    back = "\n    ".join(cells[:4])
-    side = "\n    ".join(cells[4:])
     return (
         '<section class="vendor-section" aria-label="出店ブース">\n'
-        '  <div class="vendor-l">\n'
-        f'    <div class="vendor-l-back">\n    {back}\n    </div>\n'
-        f'    <div class="vendor-l-side">\n    {side}\n    </div>\n'
-        "  </div>\n</section>"
+        '  <div class="vendor-l">\n    '
+        + "\n    ".join(cells)
+        + "\n  </div>\n</section>"
     )
 
 
@@ -192,8 +189,7 @@ def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) 
 
 
 EXTRA_CSS_7 = S.EXTRA_CSS + """
-.table-count,.floor-hint,.paper-note,.legend i{ display:none !important; }
-.legend{ font-size:12px !important; color:#333 !important; }
+.table-count,.floor-hint,.paper-note,.legend,.hero-sub{ display:none !important; }
 .seat-c{
   background:#fff !important;
   border:1px solid #777 !important;
@@ -227,28 +223,30 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   margin-left:auto !important;
   margin-right:auto !important;
 }
+.seat-c:not(.v) .sm:not(.empty-lbl){ display:none !important; }
+.seat-c.v.hostmatch::after{ display:none !important; }
 .vendor-l{
   display:grid !important;
   grid-template-columns:repeat(4, minmax(0,1fr));
-  grid-template-rows:auto auto auto auto auto;
+  grid-template-areas:
+    "b1 .  .  ."
+    "b2 .  .  ."
+    "b3 .  .  ."
+    "b4 .  .  ."
+    "b5 b6 b7 b8";
+  width:70%;
+  margin:8px 0 0;
   gap:6px;
-  width:72%;
-  margin:8px 0 0 auto;
+  justify-items:stretch;
 }
-.vendor-l-back{
-  grid-column:1 / 5;
-  grid-row:1;
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:6px;
-}
-.vendor-l-side{
-  grid-column:4;
-  grid-row:2 / 6;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
+.vendor-l .vendor-booth:nth-child(1){ grid-area:b1; }
+.vendor-l .vendor-booth:nth-child(2){ grid-area:b2; }
+.vendor-l .vendor-booth:nth-child(3){ grid-area:b3; }
+.vendor-l .vendor-booth:nth-child(4){ grid-area:b4; }
+.vendor-l .vendor-booth:nth-child(5){ grid-area:b5; }
+.vendor-l .vendor-booth:nth-child(6){ grid-area:b6; }
+.vendor-l .vendor-booth:nth-child(7){ grid-area:b7; }
+.vendor-l .vendor-booth:nth-child(8){ grid-area:b8; }
 .vendor-booth{
   aspect-ratio:auto !important;
   height:auto !important;
@@ -276,8 +274,7 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   }
   .table-wrap{ max-width:50mm !important; }
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:1mm 0 0 !important; }
-  .vendor-l{ width:70% !important; margin:1mm 0 0 auto !important; gap:1.2mm !important; }
-  .vendor-l-back,.vendor-l-side{ gap:1.2mm !important; }
+  .vendor-l{ width:66% !important; margin:1mm 0 0 !important; gap:1.2mm !important; }
   .seat-c{
     background:#fff !important;
     border:.55pt solid #666 !important;
@@ -321,6 +318,26 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 }
 """
 
+EXTRA_JS_7 = r"""
+  function normalizeHonorifics(){
+    document.querySelectorAll('.seat-c').forEach(seat => {
+      const kind = seat.dataset.kind || '';
+      const nm = seat.querySelector('.nm');
+      const name = (nm ? nm.textContent : '').replace(/\s*様\s*$/,'').trim();
+      if (kind === 'e' || !name){
+        if (kind === 'e'){
+          seat.innerHTML = '<span class="nm"></span><span class="sm empty-lbl">空席</span>';
+        }
+        return;
+      }
+      seat.innerHTML = kind === 'v'
+        ? '<span class="nm">'+name+'</span><span class="sm hon-v">様</span>'
+        : '<span class="nm">'+name+'</span>';
+    });
+  }
+  normalizeHonorifics();
+"""
+
 
 def main() -> None:
     tables_a = build_pattern(PATTERN_A_7)
@@ -347,16 +364,14 @@ def main() -> None:
     )
     html = html.replace(
         '<a class="bar-btn" href="seating.html">第1部</a>\n    <a class="bar-btn" href="announcement_page.html">Event</a>\n    <a class="bar-btn" href="members.html">Members</a>',
-        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
+        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=27">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
     )
     html = html.replace(
         '<p class="hero-pre">Round Tables — 2026.5.27 (水) 第2部</p>',
         '<p class="hero-pre">Round Tables — 2026.8.26 (水) 第2回 · 7卓版</p>',
     )
-    html = html.replace(
-        '<p class="hero-sub">8卓 × 7〜8名 / 3-3-2 配置 — 席替えあり（パターンA/B）</p>',
-        '<p class="hero-sub">7卓 × 7〜8名 / 3-2-2 ／ 濃い＝ファシリ　薄い灰＝ビジター　白＝メンバー</p>',
-    )
+    html = re.sub(r'<p class="hero-sub">.*?</p>\s*', "", html, count=1, flags=re.S)
+    html = re.sub(r'<p class="paper-note">.*?</p>\s*', "", html, count=1, flags=re.S)
     html = html.replace(
         """        <div class="print-pop-head">用紙サイズ × 範囲</div>
         <button type="button" data-print="a4-current" role="menuitem">A4 横 — 現在のパターン</button>
@@ -413,8 +428,8 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 7卓版。全卓ファシリ。1卓=幸田 勝 様（伊藤 梢 様は普通席）。鈴木 優 様は全体司会。編集モード（?edit=1）で入れ替えできます。</p>
-  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 / 熊澤 博之 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
+  <p>※ 7卓版。全卓ファシリ。1卓=幸田 勝（伊藤 梢は普通席）。鈴木 優は全体司会。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>2部欠席メンバー：川戸 恒吾 / かわもと えつこ / 佐藤 秀哉 / 中山 朋子 / 熊澤 博之 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次 7卓</p>
 </footer>""",
         html,
@@ -425,7 +440,7 @@ def main() -> None:
         '<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>',
     )
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v4';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v7';")
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = re.sub(
         r'<div class="legend".*?</div>',
@@ -445,6 +460,7 @@ def main() -> None:
         "    document.getElementById('btnCopyJson').addEventListener('click', copyJson);\n  }\n})();",
         "    document.getElementById('btnCopyJson').addEventListener('click', copyJson);\n  }\n"
         + S.EXTRA_JS
+        + EXTRA_JS_7
         + "\n})();",
     )
     DST.write_text(html, encoding="utf-8")
