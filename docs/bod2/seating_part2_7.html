@@ -640,10 +640,10 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c m" data-kind="m"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="1卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="2" data-seats="8" data-capacity="8" data-filled="7">
+    <div class="table-wrap" data-table="2" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">2卓</span>
-        <span class="table-count">7名 / 8席</span>
+        <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
       <div class="seat-c v hostmatch" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様"><span class="nm">猪股 みお</span><span class="sm">様</span></div>
@@ -652,7 +652,7 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c m" data-kind="m"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="川戸 恒吾" title="招待者：川戸 恒吾 様"><span class="nm">新田 義矩</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
-      <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">梅原 聡</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="2卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
     <div class="table-wrap" data-table="3" data-seats="8" data-capacity="8" data-filled="7">
@@ -769,10 +769,10 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="2卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-    <div class="table-wrap" data-table="3" data-seats="8" data-capacity="8" data-filled="7">
+    <div class="table-wrap" data-table="3" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">3卓</span>
-        <span class="table-count">7名 / 8席</span>
+        <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">柴 慎平</span><span class="sm">様</span></div>
@@ -781,7 +781,7 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c m" data-kind="m"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
       <div class="seat-c v" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">新井 真人</span><span class="sm">様</span></div>
-      <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
+      <div class="seat-c m" data-kind="m"><span class="nm">梅原 聡</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
@@ -1232,7 +1232,7 @@ body.edit-mode .pool-section{ display:block }
 
   // -------- localStorage 保存・復元 --------
   // ベース配置の version。生成側で更新したら古い localStorage を破棄する。
-  const STORAGE_KEY = 'bod2-seating7-edits-v2';
+  const STORAGE_KEY = 'bod2-seating7-edits-v3';
   // 旧キーは破棄（配置が変わるたびに古い編集が再表示される事故を防止）
   try {
     ['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4'].forEach(k => localStorage.removeItem(k));

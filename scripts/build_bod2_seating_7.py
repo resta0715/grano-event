@@ -42,6 +42,7 @@ PATTERN_A_7: dict[str, int] = {
     "新田 義矩": 1,
     "板倉 佳織": 1,
     "上夷 未紗": 1,
+    "梅原 聡": 1,
     "小宮 雅哲": 2,
     "宇部 光太": 2,
     "秋山 雅代": 2,
@@ -103,6 +104,7 @@ PATTERN_B_7: dict[str, int] = {
     "上夷 未紗": 2,
     "新井 真人": 2,
     "古澤 萌愛": 2,
+    "梅原 聡": 2,
     "山野井 信夫": 3,
     "小林 良": 3,
     "秋山 雅代": 3,
@@ -280,7 +282,7 @@ def main() -> None:
         '<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>',
     )
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v2';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v3';")
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = html.replace(
         ".pattern-page-label{ display:none }\n</style>",
