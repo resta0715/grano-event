@@ -274,6 +274,7 @@ PINNED_NAMES = {
     "猪股 みお",
     "新田 義矩",
     "野口 久美子",
+    "鈴木 優",
     "大久保 仁",
     "川端 綾華",
     "加藤 一郎",
@@ -714,6 +715,8 @@ def rebalance_members_only(tables: list[list[tuple[str, str]]]) -> list[list[tup
                 if name in PINNED_NAMES or name in FACILITATORS:
                     continue
                 for ri in receivers:
+                    if would_violate_separate(tables, name, ri):
+                        continue
                     take_named(tables, name)
                     if put_named(tables[ri], "m", name):
                         moved = True
@@ -766,6 +769,7 @@ def apply_day_adjustments(
         ensure_named_at(tables, name, table_i, fallback)
     # ファシリを各卓に1人（2卓=小野 / 5卓=新美 / 8卓=幸田）
     ensure_named_at(tables, "伊藤 梢", 0)
+    ensure_named_at(tables, "鈴木 優", 1)
     ensure_named_at(tables, "新美 裕之", 4)
     ensure_named_at(tables, "千葉 麻衣", 4, "v")
     ensure_named_at(tables, "あらい ひとみ", 5)
