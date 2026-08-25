@@ -371,6 +371,113 @@ def apply_facilitators(tables: list[list[tuple[str, str]]]) -> None:
             seats[i] = ("a" if name in FACILITATORS else "m", name)
 
 
+KEEP_VISITOR_WITH_HOST = {
+    "猪股 みお",
+    "大久保 仁",
+    "加藤 一郎",
+    "千葉 麻衣",
+}
+
+
+def visitor_count(seats: list[tuple[str, str]]) -> int:
+    return sum(1 for kind, name in seats if kind == "v" and name)
+
+
+def visitor_spread_rank(seats: list[tuple[str, str]], name: str) -> int:
+    """小さいほど動かしてよい。99は固定。"""
+    if name in PINNED_NAMES or name in KEEP_VISITOR_WITH_HOST:
+        return 99
+    host = HOST_MAP.get(name)
+    here = {n for _k, n in seats if n}
+    if not host or host not in here or host in ABSENT_MEMBERS:
+        return 0
+    extras = sum(1 for k, n in seats if k == "v" and HOST_MAP.get(n) == host)
+    return 1 if extras >= 2 else 2
+
+
+def even_out_visitors(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
+    """各卓のビジターを2〜3名に寄せる。指定の招待者同卓は崩さない。"""
+    tables = [list(seats) for seats in tables]
+    for _ in range(24):
+        vcounts = [visitor_count(s) for s in tables]
+        hi, lo = max(vcounts), min(vcounts)
+        if hi - lo <= 1 and hi <= 3:
+            break
+        donors = sorted((i for i, c in enumerate(vcounts) if c == hi), reverse=False)
+        receivers = sorted((i for i, c in enumerate(vcounts) if c == lo))
+        moved = False
+        for di in donors:
+            cands = sorted(
+                (
+                    (visitor_spread_rank(tables[di], name), name)
+                    for kind, name in tables[di]
+                    if kind == "v" and name
+                ),
+            )
+            cands = [(r, n) for r, n in cands if r < 99]
+            for _rank, name in cands:
+                for ri in receivers:
+                    if ri == di:
+                        continue
+                    if has_empty(tables[ri]):
+                        kind = take_named(tables, name) or "v"
+                        if put_named(tables[ri], kind, name):
+                            moved = True
+                            break
+                    for kind, other in tables[ri]:
+                        if (
+                            kind in {"m", "a"}
+                            and other
+                            and other not in PINNED_NAMES
+                            and other not in FACILITATORS
+                        ):
+                            swap_visitors(tables, name, other)
+                            moved = True
+                            break
+                    if moved:
+                        break
+                if moved:
+                    break
+            if moved:
+                break
+        if not moved:
+            break
+    return tables
+
+
+def rebalance_members_only(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
+    """ビジター配置は維持したまま、8名卓からメンバーを6名卓へ移す。"""
+    tables = [list(seats) for seats in tables]
+    for _ in range(12):
+        counts = [filled_count(s) for s in tables]
+        if max(counts) <= 7:
+            break
+        donors = [i for i, c in enumerate(counts) if c >= 8]
+        receivers = [i for i, c in enumerate(counts) if c <= 6 and has_empty(tables[i])]
+        if not donors or not receivers:
+            break
+        moved = False
+        for di in donors:
+            for kind, name in tables[di]:
+                if kind not in {"m", "a"} or not name:
+                    continue
+                if name in PINNED_NAMES or name in FACILITATORS:
+                    continue
+                for ri in receivers:
+                    take_named(tables, name)
+                    if put_named(tables[ri], "m", name):
+                        moved = True
+                        break
+                    put_named(tables[di], kind, name)
+                if moved:
+                    break
+            if moved:
+                break
+        if not moved:
+            break
+    return tables
+
+
 def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
     absent = ABSENT_MEMBERS | ABSENT_VISITORS
     for seats in tables:
@@ -400,6 +507,8 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
     ensure_named_at(tables, "千葉 麻衣", 4, "v")
     ensure_named_at(tables, "小宮 雅哲", 6)
     ensure_named_at(tables, "幸田 勝", 7)
+    tables = even_out_visitors(tables)
+    tables = rebalance_members_only(tables)
     apply_facilitators(tables)
     return [interleave(seats) for seats in tables]
 
@@ -818,10 +927,10 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v7';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v8';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
-        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6']",
+        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7']",
     )
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = html.replace(".pattern-page-label{ display:none }\n</style>", EXTRA_CSS + "\n.pattern-page-label{ display:none }\n</style>")
