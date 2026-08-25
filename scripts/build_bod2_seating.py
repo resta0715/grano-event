@@ -114,7 +114,14 @@ VISITORS: list[tuple[str, str | None]] = [
 
 # 2部欠席（佐藤修也＝佐藤 秀哉）
 ABSENT_MEMBERS = {"川戸 恒吾", "かわもと えつこ", "佐藤 秀哉", "中山 朋子"}
-ABSENT_VISITORS = {"イブ", "大場 祐介", "星 寿美", "青木 健"}
+ABSENT_VISITORS = {
+    "イブ",
+    "大場 祐介",
+    "星 寿美",
+    "青木 健",
+    "長谷川 悦子",  # 休み
+    "香田 英匡",  # 1部のみ
+}
 
 VENDORS = [
     ("v", "千葉 麻衣", "余生馬牧場"),
@@ -246,6 +253,16 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
             kind = "m"
         if not put_named(tables[1], kind, name):
             raise RuntimeError(f"2卓に {name} の空席がありません")
+    # 川端の招待ビジター（大久保）は4卓へ。空いた3卓（宇部）に加藤を戻す
+    for name, table_i, fallback_kind, label in (
+        ("大久保 仁", 3, "v", "4卓"),
+        ("加藤 一郎", 2, "v", "3卓"),
+    ):
+        kind = take_named(tables, name) or fallback_kind
+        if kind == "a":
+            kind = "m"
+        if not put_named(tables[table_i], kind, name):
+            raise RuntimeError(f"{label}に {name} の空席がありません")
     return [interleave(seats) for seats in tables]
 
 
@@ -562,9 +579,6 @@ def main() -> None:
     base = tables_from_members()
     tables_a = place_visitors(base, leftover_reversed=False)
     tables_b = place_visitors(base, leftover_reversed=True)
-    # 加藤一郎は宇部卓が満席のため、山野井卓の大久保と入れ替え（川端の同卓のみ外れる）
-    swap_visitors(tables_a, "加藤 一郎", "大久保 仁")
-    swap_visitors(tables_b, "加藤 一郎", "大久保 仁")
     tables_a = apply_day_adjustments(tables_a)
     tables_b = apply_day_adjustments(tables_b)
     wrap = (
@@ -655,8 +669,8 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 仮配置。加藤 一郎 様は山野井卓（4卓）。小野 利隆 様は野口・新田のいる2卓。編集モード（?edit=1）で入れ替えできます。</p>
-  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様（2部不在） / 青木 健 様</p>
+  <p>※ 仮配置。大久保 仁 様は川端卓（4卓）。加藤 一郎 様は宇部卓（3卓）。小野 利隆 様は野口・新田のいる2卓。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ）</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
 </footer>""",
@@ -666,10 +680,10 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v4';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v5';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
-        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3']",
+        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4']",
     )
     html = html.replace(".pattern-page-label{ display:none }\n</style>", EXTRA_CSS + "\n.pattern-page-label{ display:none }\n</style>")
     html = html.replace(
