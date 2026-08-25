@@ -150,6 +150,28 @@ def build_pattern(seat_map: dict[str, int]) -> list[list[tuple[str, str]]]:
     return [S.interleave(seats) for seats in tables]
 
 
+def vendor_html_7() -> str:
+    cells = []
+    for i, (kind, name, prod) in enumerate(S.VENDORS, start=1):
+        cells.append(
+            f'<div class="vendor-booth {kind}" data-booth="{i}" data-kind="{kind}">'
+            f'<span class="booth-num">{i}</span>'
+            f'<span class="nm">{name}</span>'
+            f'<span class="prod">{prod}</span>'
+            f'<span class="sm">様</span></div>'
+        )
+    side = "\n    ".join(cells[:2])
+    back = "\n    ".join(cells[2:])
+    return (
+        '<section class="vendor-section" aria-label="出店ブース">\n'
+        '  <p class="vendor-mark">— 会場後方 · 左奥コーナーまたぎ（L字）大人の夏祭り 出店ブース —</p>\n'
+        '  <div class="vendor-l">\n'
+        f'    <div class="vendor-l-side">\n    {side}\n    </div>\n'
+        f'    <div class="vendor-l-back">\n    {back}\n    </div>\n'
+        "  </div>\n</section>"
+    )
+
+
 def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) -> str:
     hide = ' style="display:none"' if label == "B" else ""
     row1 = "\n".join(S.table_html(i, tables[i - 1]) for i in (1, 2, 3))
@@ -167,7 +189,8 @@ def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) 
   <div class="tables-row tables-row-2">
 {row3}
   </div>
-  <p class="floor-hint floor-back">会場後方（ブース）</p>
+  <p class="floor-hint floor-back">会場後方 · ブースは左奥コーナーまたぎ（L字）</p>
+{vendor_html_7()}
 </section>"""
 
 
@@ -199,14 +222,30 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   margin:2px 0 6px;
 }
 .floor-back{ color:#8a5a20; margin-top:4px }
-.vendor-row{
-  grid-template-columns:repeat(4, minmax(0,1fr)) !important;
-  gap:10px !important;
+.vendor-l{
+  display:flex !important;
+  align-items:flex-end !important;
+  gap:8px !important;
+  width:100%;
 }
+.vendor-l-side{
+  display:flex;
+  flex-direction:column;
+  flex:0 0 15%;
+  gap:8px;
+}
+.vendor-l-back{
+  display:flex;
+  flex:1 1 auto;
+  gap:8px;
+}
+.vendor-l-back .vendor-booth{ flex:1 1 0; }
 .vendor-booth{
   aspect-ratio:auto !important;
-  min-height:118px !important;
-  padding:20px 10px 12px !important;
+  height:auto !important;
+  min-height:72px !important;
+  max-height:96px !important;
+  padding:14px 6px 8px !important;
 }
 .vendor-booth .nm{ font-size:18px !important; font-weight:800 !important; }
 .vendor-booth .prod{ font-size:14px !important; color:#333 !important; }
@@ -223,7 +262,10 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
     max-width:62% !important;
     margin:0 auto 2mm !important;
   }
-  .table-wrap{ max-width:70mm !important; }
+  .table-wrap{ max-width:54mm !important; }
+  .floor-hint{ display:none !important; }
+  .vendor-mark{ margin:0.5mm 0 !important; font-size:8pt !important; }
+  .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; }
   .seat-c{
     background:#fff !important;
   }
@@ -242,15 +284,17 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
     background:#fff4dc !important;
     border:.6pt solid #c8943e !important;
   }
-  .vendor-row{
-    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
-    gap:3mm !important;
-  }
+  .vendor-l{ gap:1.5mm !important; align-items:flex-end !important; }
+  .vendor-l-side{ flex-basis:14% !important; gap:1.5mm !important; }
+  .vendor-l-back{ gap:1.5mm !important; }
   .vendor-booth,
   body.print-a3 .vendor-booth{
-    min-height:26mm !important;
-    padding:5mm 2.5mm 2.5mm !important;
-    font-size:12pt !important;
+    aspect-ratio:auto !important;
+    min-height:11mm !important;
+    max-height:14mm !important;
+    height:13mm !important;
+    padding:2mm 1.5mm 1mm !important;
+    font-size:9pt !important;
   }
   .vendor-booth .nm,
   body.print-a3 .vendor-booth .nm{ font-size:13pt !important; }
@@ -330,8 +374,9 @@ def main() -> None:
         flags=re.S,
     )
     html = re.sub(
-        r'<section class="vendor-section".*?</section>',
-        S.vendor_html(),
+        r'<section class="vendor-section" aria-label="出店ブース">\s*'
+        r'<p class="vendor-mark">— 会場後方 · 大人の文化祭.*?</section>',
+        "",
         html,
         count=1,
         flags=re.S,

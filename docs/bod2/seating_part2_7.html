@@ -560,14 +560,30 @@ body.edit-mode .pool-section{ display:block }
   margin:2px 0 6px;
 }
 .floor-back{ color:#8a5a20; margin-top:4px }
-.vendor-row{
-  grid-template-columns:repeat(4, minmax(0,1fr)) !important;
-  gap:10px !important;
+.vendor-l{
+  display:flex !important;
+  align-items:flex-end !important;
+  gap:8px !important;
+  width:100%;
 }
+.vendor-l-side{
+  display:flex;
+  flex-direction:column;
+  flex:0 0 15%;
+  gap:8px;
+}
+.vendor-l-back{
+  display:flex;
+  flex:1 1 auto;
+  gap:8px;
+}
+.vendor-l-back .vendor-booth{ flex:1 1 0; }
 .vendor-booth{
   aspect-ratio:auto !important;
-  min-height:118px !important;
-  padding:20px 10px 12px !important;
+  height:auto !important;
+  min-height:72px !important;
+  max-height:96px !important;
+  padding:14px 6px 8px !important;
 }
 .vendor-booth .nm{ font-size:18px !important; font-weight:800 !important; }
 .vendor-booth .prod{ font-size:14px !important; color:#333 !important; }
@@ -584,7 +600,10 @@ body.edit-mode .pool-section{ display:block }
     max-width:62% !important;
     margin:0 auto 2mm !important;
   }
-  .table-wrap{ max-width:70mm !important; }
+  .table-wrap{ max-width:54mm !important; }
+  .floor-hint{ display:none !important; }
+  .vendor-mark{ margin:0.5mm 0 !important; font-size:8pt !important; }
+  .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; }
   .seat-c{
     background:#fff !important;
   }
@@ -603,15 +622,17 @@ body.edit-mode .pool-section{ display:block }
     background:#fff4dc !important;
     border:.6pt solid #c8943e !important;
   }
-  .vendor-row{
-    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
-    gap:3mm !important;
-  }
+  .vendor-l{ gap:1.5mm !important; align-items:flex-end !important; }
+  .vendor-l-side{ flex-basis:14% !important; gap:1.5mm !important; }
+  .vendor-l-back{ gap:1.5mm !important; }
   .vendor-booth,
   body.print-a3 .vendor-booth{
-    min-height:26mm !important;
-    padding:5mm 2.5mm 2.5mm !important;
-    font-size:12pt !important;
+    aspect-ratio:auto !important;
+    min-height:11mm !important;
+    max-height:14mm !important;
+    height:13mm !important;
+    padding:2mm 1.5mm 1mm !important;
+    font-size:9pt !important;
   }
   .vendor-booth .nm,
   body.print-a3 .vendor-booth .nm{ font-size:13pt !important; }
@@ -819,7 +840,24 @@ body.edit-mode .pool-section{ display:block }
       <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
-  <p class="floor-hint floor-back">会場後方（ブース）</p>
+  <p class="floor-hint floor-back">会場後方 · ブースは左奥コーナーまたぎ（L字）</p>
+<section class="vendor-section" aria-label="出店ブース">
+  <p class="vendor-mark">— 会場後方 · 左奥コーナーまたぎ（L字）大人の夏祭り 出店ブース —</p>
+  <div class="vendor-l">
+    <div class="vendor-l-side">
+    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣</span><span class="prod">余生馬牧場</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司</span><span class="prod">ネイル・占い</span><span class="sm">様</span></div>
+    </div>
+    <div class="vendor-l-back">
+    <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良</span><span class="prod">婦人服・バッグ</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお</span><span class="prod">レモンケーキ</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子</span><span class="prod">わらび餅</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代</span><span class="prod">シルクギャラリー</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">永吉 佐千子</span><span class="prod">栄養製品</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="8" data-kind="m"><span class="booth-num">8</span><span class="nm">成瀬 優</span><span class="prod">シルク染物</span><span class="sm">様</span></div>
+    </div>
+  </div>
+</section>
 </section>
 <section class="tables-pattern" data-pattern="B" style="display:none">
   <p class="pattern-page-label" aria-hidden="true">席替え後（パターン B・7卓）</p>
@@ -935,7 +973,24 @@ body.edit-mode .pool-section{ display:block }
       <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
-  <p class="floor-hint floor-back">会場後方（ブース）</p>
+  <p class="floor-hint floor-back">会場後方 · ブースは左奥コーナーまたぎ（L字）</p>
+<section class="vendor-section" aria-label="出店ブース">
+  <p class="vendor-mark">— 会場後方 · 左奥コーナーまたぎ（L字）大人の夏祭り 出店ブース —</p>
+  <div class="vendor-l">
+    <div class="vendor-l-side">
+    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣</span><span class="prod">余生馬牧場</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司</span><span class="prod">ネイル・占い</span><span class="sm">様</span></div>
+    </div>
+    <div class="vendor-l-back">
+    <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良</span><span class="prod">婦人服・バッグ</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお</span><span class="prod">レモンケーキ</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子</span><span class="prod">わらび餅</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代</span><span class="prod">シルクギャラリー</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">永吉 佐千子</span><span class="prod">栄養製品</span><span class="sm">様</span></div>
+    <div class="vendor-booth m" data-booth="8" data-kind="m"><span class="booth-num">8</span><span class="nm">成瀬 優</span><span class="prod">シルク染物</span><span class="sm">様</span></div>
+    </div>
+  </div>
+</section>
 </section>
 </div>
 
@@ -945,19 +1000,7 @@ body.edit-mode .pool-section{ display:block }
   <div class="pool-chips"><button type="button" class="pool-chip" data-name="秋山 雅代">秋山 雅代</button><button type="button" class="pool-chip" data-name="磯田 忠良">磯田 忠良</button><button type="button" class="pool-chip" data-name="小林 良">小林 良</button><button type="button" class="pool-chip" data-name="新田 義矩">新田 義矩</button><button type="button" class="pool-chip" data-name="古澤 萌愛">古澤 萌愛</button><button type="button" class="pool-chip" data-name="南 晴美">南 晴美</button><button type="button" class="pool-chip" data-name="阿部 綾香">阿部 綾香</button><button type="button" class="pool-chip" data-name="柴 慎平">柴 慎平</button><button type="button" class="pool-chip" data-name="猪股 みお">猪股 みお</button><button type="button" class="pool-chip" data-name="石川 清司">石川 清司</button><button type="button" class="pool-chip" data-name="伊東 伸浩">伊東 伸浩</button><button type="button" class="pool-chip" data-name="千葉 麻衣">千葉 麻衣</button><button type="button" class="pool-chip" data-name="大久保 仁">大久保 仁</button><button type="button" class="pool-chip" data-name="野口 久美子">野口 久美子</button><button type="button" class="pool-chip" data-name="佐生 道代">佐生 道代</button><button type="button" class="pool-chip" data-name="迫田 由美子">迫田 由美子</button><button type="button" class="pool-chip" data-name="加藤 一郎">加藤 一郎</button><button type="button" class="pool-chip" data-name="奧村 佳奈子">奧村 佳奈子</button><button type="button" class="pool-chip" data-name="奥村 佳奈子">奥村 佳奈子</button></div>
 </section>
 
-<section class="vendor-section" aria-label="出店ブース">
-  <p class="vendor-mark">— 会場後方 · 大人の夏祭り 出店ブース —</p>
-  <div class="vendor-row">
-    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣</span><span class="prod">余生馬牧場</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司</span><span class="prod">ネイル・占い</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良</span><span class="prod">婦人服・バッグ</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお</span><span class="prod">レモンケーキ</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子</span><span class="prod">わらび餅</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代</span><span class="prod">シルクギャラリー</span><span class="sm">様</span></div>
-    <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">永吉 佐千子</span><span class="prod">栄養製品</span><span class="sm">様</span></div>
-    <div class="vendor-booth m" data-booth="8" data-kind="m"><span class="booth-num">8</span><span class="nm">成瀬 優</span><span class="prod">シルク染物</span><span class="sm">様</span></div>
-  </div>
-</section>
+
 
 <section class="pair-section">
   <h2 class="pair-title">招待者対応表</h2>
