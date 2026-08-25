@@ -153,12 +153,14 @@ def build_pattern(seat_map: dict[str, int]) -> list[list[tuple[str, str]]]:
 def vendor_html_7() -> str:
     cells = []
     for i, (kind, name, prod) in enumerate(S.VENDORS, start=1):
+        hon = " 様" if kind == "v" else ""
+        member_hon = "" if kind == "v" else '<span class="sm">様</span>'
         cells.append(
             f'<div class="vendor-booth {kind}" data-booth="{i}" data-kind="{kind}">'
             f'<span class="booth-num">{i}</span>'
-            f'<span class="nm">{name}</span>'
+            f'<span class="nm">{name}{hon}</span>'
             f'<span class="prod">{prod}</span>'
-            f'<span class="sm">様</span></div>'
+            f"{member_hon}</div>"
         )
     side = "\n    ".join(cells[:2])
     back = "\n    ".join(cells[2:])
@@ -206,6 +208,14 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 .seat-c.v.hostmatch{
   background:#a9d9b8 !important;
   border-color:#2f7a55 !important;
+}
+.seat-c.v .nm{ display:inline !important; }
+.seat-c.v .sm{
+  display:inline !important;
+  font-size:1em !important;
+  font-weight:800 !important;
+  color:inherit !important;
+  margin-left:.15em;
 }
 .tables-row-2{
   grid-template-columns:repeat(2, minmax(0,1fr)) !important;
@@ -268,6 +278,12 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; }
   .seat-c{
     background:#fff !important;
+  }
+  .seat-c.v .sm,
+  body.print-a3 .seat-c.v .sm{
+    font-size:9.5pt !important;
+    color:#000 !important;
+    font-weight:800 !important;
   }
   .seat-c.v,
   body.print-a3 .seat-c.v{

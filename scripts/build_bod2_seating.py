@@ -822,7 +822,7 @@ def seat_html(kind: str, name: str, members_here: set[str] | None = None) -> str
             cls += " hostmatch"
     return (
         f'<div class="{cls}" data-kind="v"{extra}>'
-        f'<span class="nm">{name}</span><span class="sm">様</span></div>'
+        f'<span class="nm">{name}</span><span class="sm hon-v">様</span></div>'
     )
 
 
@@ -1064,7 +1064,9 @@ EXTRA_JS = r"""
     if (kind === 'e' || !name){
       seat.innerHTML = '<span class="nm"></span><span class="sm empty-lbl">空席</span>';
     } else {
-      seat.innerHTML = '<span class="nm">'+name+'</span><span class="sm">様</span>';
+      seat.innerHTML = kind === 'v'
+        ? '<span class="nm">'+name+'</span><span class="sm hon-v">様</span>'
+        : '<span class="nm">'+name+'</span><span class="sm">様</span>';
     }
     refreshSeatMeta(seat);
     const wrap = seat.closest('.table-wrap');

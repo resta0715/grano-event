@@ -545,6 +545,14 @@ body.edit-mode .pool-section{ display:block }
   background:#a9d9b8 !important;
   border-color:#2f7a55 !important;
 }
+.seat-c.v .nm{ display:inline !important; }
+.seat-c.v .sm{
+  display:inline !important;
+  font-size:1em !important;
+  font-weight:800 !important;
+  color:inherit !important;
+  margin-left:.15em;
+}
 .tables-row-2{
   grid-template-columns:repeat(2, minmax(0,1fr)) !important;
   max-width:68% !important;
@@ -606,6 +614,12 @@ body.edit-mode .pool-section{ display:block }
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; }
   .seat-c{
     background:#fff !important;
+  }
+  .seat-c.v .sm,
+  body.print-a3 .seat-c.v .sm{
+    font-size:9.5pt !important;
+    color:#000 !important;
+    font-weight:800 !important;
   }
   .seat-c.v,
   body.print-a3 .seat-c.v{
@@ -736,11 +750,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">阿部 綾香</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">阿部 綾香</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">奥村 佳奈子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">奥村 佳奈子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">上村 マリ</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="岡崎 厚子" title="招待者：岡崎 厚子 様"><span class="nm">磯田 忠良</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="岡崎 厚子" title="招待者：岡崎 厚子 様"><span class="nm">磯田 忠良</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">岡崎 厚子</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="1卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -751,11 +765,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様"><span class="nm">猪股 みお</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様"><span class="nm">猪股 みお</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">鈴木 優</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="鈴木 優" title="招待者：鈴木 優 様"><span class="nm">野口 久美子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="鈴木 優" title="招待者：鈴木 優 様"><span class="nm">野口 久美子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="川戸 恒吾" title="招待者：川戸 恒吾 様"><span class="nm">新田 義矩</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="川戸 恒吾" title="招待者：川戸 恒吾 様"><span class="nm">新田 義矩</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">梅原 聡</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="2卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -766,9 +780,9 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">秋山 雅代</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">秋山 雅代</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">宇部 光太</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">加藤 一郎</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">加藤 一郎</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">早川 尚吾</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">髙橋 信博</span><span class="sm">様</span></div>
@@ -783,9 +797,9 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">柴 慎平</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">柴 慎平</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">川端 綾華</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="川端 綾華" title="招待者：川端 綾華 様"><span class="nm">大久保 仁</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="川端 綾華" title="招待者：川端 綾華 様"><span class="nm">大久保 仁</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">尾﨑 直人</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">金指 佐江子</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">新井 真人</span><span class="sm">様</span></div>
@@ -798,11 +812,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様"><span class="nm">千葉 麻衣</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様"><span class="nm">千葉 麻衣</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">成瀬 優</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="成瀬 優" title="招待者：成瀬 優 様"><span class="nm">佐生 道代</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="成瀬 優" title="招待者：成瀬 優 様"><span class="nm">佐生 道代</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">大工原 葉子</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="大工原 葉子" title="招待者：大工原 葉子 様"><span class="nm">石川 清司</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="大工原 葉子" title="招待者：大工原 葉子 様"><span class="nm">石川 清司</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="5卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -815,11 +829,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">小林 良</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">小林 良</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">小林 実穂</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v"><span class="nm">彌富 久美子</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v"><span class="nm">彌富 久美子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">田代 祐司</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">南 晴美</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">南 晴美</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">川村 徹也</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="6卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -830,11 +844,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">山田 研二</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">栗原 優</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">佐藤 風弥</span><span class="sm">様</span></div>
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -845,14 +859,14 @@ body.edit-mode .pool-section{ display:block }
   <p class="vendor-mark">— 会場後方 · 左奥コーナーまたぎ（L字）大人の夏祭り 出店ブース —</p>
   <div class="vendor-l">
     <div class="vendor-l-side">
-    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣</span><span class="prod">余生馬牧場</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司</span><span class="prod">ネイル・占い</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣 様</span><span class="prod">余生馬牧場</span></div>
+    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司 様</span><span class="prod">ネイル・占い</span></div>
     </div>
     <div class="vendor-l-back">
-    <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良</span><span class="prod">婦人服・バッグ</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお</span><span class="prod">レモンケーキ</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子</span><span class="prod">わらび餅</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代</span><span class="prod">シルクギャラリー</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良 様</span><span class="prod">婦人服・バッグ</span></div>
+    <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお 様</span><span class="prod">レモンケーキ</span></div>
+    <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子 様</span><span class="prod">わらび餅</span></div>
+    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代 様</span><span class="prod">シルクギャラリー</span></div>
     <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">永吉 佐千子</span><span class="prod">栄養製品</span><span class="sm">様</span></div>
     <div class="vendor-booth m" data-booth="8" data-kind="m"><span class="booth-num">8</span><span class="nm">成瀬 優</span><span class="prod">シルク染物</span><span class="sm">様</span></div>
     </div>
@@ -869,11 +883,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">幸田 勝</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">阿部 綾香</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">阿部 綾香</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">伊藤 梢</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">奥村 佳奈子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="上村 マリ" title="招待者：上村 マリ 様"><span class="nm">奥村 佳奈子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">上村 マリ</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">加藤 一郎</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">加藤 一郎</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">髙橋 信博</span><span class="sm">様</span></div>
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="1卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -884,9 +898,9 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">小野 利隆</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様"><span class="nm">猪股 みお</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="小野 利隆" title="招待者：小野 利隆 様"><span class="nm">猪股 みお</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">鈴木 優</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="鈴木 優" title="招待者：鈴木 優 様"><span class="nm">野口 久美子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="鈴木 優" title="招待者：鈴木 優 様"><span class="nm">野口 久美子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">徳永 剛太</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">金指 佐江子</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">板倉 佳織</span><span class="sm">様</span></div>
@@ -899,13 +913,13 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">小宮 雅哲</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">柴 慎平</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">柴 慎平</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">宇部 光太</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v"><span class="nm">彌富 久美子</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v"><span class="nm">彌富 久美子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">上夷 未紗</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">秋山 雅代</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="宇部 光太" title="招待者：宇部 光太 様"><span class="nm">秋山 雅代</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">梅原 聡</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm hon-v">様</span></div>
       <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
   </div>
@@ -916,9 +930,9 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">山野井 信夫</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">小林 良</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山野井 信夫" title="招待者：山野井 信夫 様"><span class="nm">小林 良</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">新井 真人</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="川端 綾華" title="招待者：川端 綾華 様"><span class="nm">大久保 仁</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="川端 綾華" title="招待者：川端 綾華 様"><span class="nm">大久保 仁</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">川端 綾華</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">佐藤 風弥</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">田代 祐司</span><span class="sm">様</span></div>
@@ -931,11 +945,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">7名 / 8席</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">新美 裕之</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様"><span class="nm">千葉 麻衣</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="新美 裕之" title="招待者：新美 裕之 様"><span class="nm">千葉 麻衣</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">成瀬 優</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="成瀬 優" title="招待者：成瀬 優 様"><span class="nm">佐生 道代</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="成瀬 優" title="招待者：成瀬 優 様"><span class="nm">佐生 道代</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">大工原 葉子</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="大工原 葉子" title="招待者：大工原 葉子 様"><span class="nm">石川 清司</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="大工原 葉子" title="招待者：大工原 葉子 様"><span class="nm">石川 清司</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">尾﨑 直人</span><span class="sm">様</span></div>
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="5卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -948,9 +962,9 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">あらい ひとみ</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">南 晴美</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">南 晴美</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">小林 実穂</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="岡崎 厚子" title="招待者：岡崎 厚子 様"><span class="nm">磯田 忠良</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="岡崎 厚子" title="招待者：岡崎 厚子 様"><span class="nm">磯田 忠良</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">川村 徹也</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">龍造寺 亮</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">岡崎 厚子</span><span class="sm">様</span></div>
@@ -963,11 +977,11 @@ body.edit-mode .pool-section{ display:block }
         <span class="table-count">8名</span>
       </div>
       <div class="seat-c a" data-kind="a"><span class="nm">山田 研二</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="永吉 佐千子" title="招待者：永吉 佐千子 様"><span class="nm">迫田 由美子</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">永吉 佐千子</span><span class="sm">様</span></div>
-      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm">様</span></div>
+      <div class="seat-c v hostmatch" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">伊東 伸浩</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">栗原 優</span><span class="sm">様</span></div>
-      <div class="seat-c v" data-kind="v" data-host="川戸 恒吾" title="招待者：川戸 恒吾 様"><span class="nm">新田 義矩</span><span class="sm">様</span></div>
+      <div class="seat-c v" data-kind="v" data-host="川戸 恒吾" title="招待者：川戸 恒吾 様"><span class="nm">新田 義矩</span><span class="sm hon-v">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">植草 尚大</span><span class="sm">様</span></div>
       <div class="seat-c m" data-kind="m"><span class="nm">飛山 佳枝</span><span class="sm">様</span></div>
       <div class="table-capacity" aria-label="7卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
@@ -978,14 +992,14 @@ body.edit-mode .pool-section{ display:block }
   <p class="vendor-mark">— 会場後方 · 左奥コーナーまたぎ（L字）大人の夏祭り 出店ブース —</p>
   <div class="vendor-l">
     <div class="vendor-l-side">
-    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣</span><span class="prod">余生馬牧場</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司</span><span class="prod">ネイル・占い</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="1" data-kind="v"><span class="booth-num">1</span><span class="nm">千葉 麻衣 様</span><span class="prod">余生馬牧場</span></div>
+    <div class="vendor-booth v" data-booth="2" data-kind="v"><span class="booth-num">2</span><span class="nm">石川 清司 様</span><span class="prod">ネイル・占い</span></div>
     </div>
     <div class="vendor-l-back">
-    <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良</span><span class="prod">婦人服・バッグ</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお</span><span class="prod">レモンケーキ</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子</span><span class="prod">わらび餅</span><span class="sm">様</span></div>
-    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代</span><span class="prod">シルクギャラリー</span><span class="sm">様</span></div>
+    <div class="vendor-booth v" data-booth="3" data-kind="v"><span class="booth-num">3</span><span class="nm">磯田 忠良 様</span><span class="prod">婦人服・バッグ</span></div>
+    <div class="vendor-booth v" data-booth="4" data-kind="v"><span class="booth-num">4</span><span class="nm">猪股 みお 様</span><span class="prod">レモンケーキ</span></div>
+    <div class="vendor-booth v" data-booth="5" data-kind="v"><span class="booth-num">5</span><span class="nm">迫田 由美子 様</span><span class="prod">わらび餅</span></div>
+    <div class="vendor-booth v" data-booth="6" data-kind="v"><span class="booth-num">6</span><span class="nm">佐生 道代 様</span><span class="prod">シルクギャラリー</span></div>
     <div class="vendor-booth m" data-booth="7" data-kind="m"><span class="booth-num">7</span><span class="nm">永吉 佐千子</span><span class="prod">栄養製品</span><span class="sm">様</span></div>
     <div class="vendor-booth m" data-booth="8" data-kind="m"><span class="booth-num">8</span><span class="nm">成瀬 優</span><span class="prod">シルク染物</span><span class="sm">様</span></div>
     </div>
@@ -1522,7 +1536,9 @@ body.edit-mode .pool-section{ display:block }
     if (kind === 'e' || !name){
       seat.innerHTML = '<span class="nm"></span><span class="sm empty-lbl">空席</span>';
     } else {
-      seat.innerHTML = '<span class="nm">'+name+'</span><span class="sm">様</span>';
+      seat.innerHTML = kind === 'v'
+        ? '<span class="nm">'+name+'</span><span class="sm hon-v">様</span>'
+        : '<span class="nm">'+name+'</span><span class="sm">様</span>';
     }
     refreshSeatMeta(seat);
     const wrap = seat.closest('.table-wrap');
