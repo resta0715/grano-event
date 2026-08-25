@@ -137,6 +137,13 @@ FACILITATORS = {
 # 元ビジター → メンバー。初期卓割りには含めず、あとからメンバーとして配置する。
 EXTRA_MEMBERS = ["早川 尚吾"]
 
+# A/Bとも同卓にしない
+SEPARATE_PAIRS = [
+    ("栗原 優", "宇部 光太"),
+    ("栗原 優", "あらい ひとみ"),
+    ("小野 利隆", "あらい ひとみ"),
+]
+
 VENDORS = [
     ("v", "千葉 麻衣", "余生馬牧場"),
     ("v", "石川 清司", "ネイル・占い"),
@@ -281,6 +288,10 @@ PINNED_NAMES = {
     "伊藤 梢",
     "小林 良",
     "小林 実穂",
+    "柴 慎平",
+    "山野井 信夫",
+    "成瀬 優",
+    "大工原 葉子",
 }
 
 
@@ -400,6 +411,56 @@ def place_extra_members(tables: list[list[tuple[str, str]]]) -> None:
             raise RuntimeError(f"{name} を置く空席がありません")
 
 
+def names_at(seats: list[tuple[str, str]]) -> set[str]:
+    return {n for _k, n in seats if n}
+
+
+def would_violate_separate(tables: list[list[tuple[str, str]]], name: str, dest_i: int) -> bool:
+    there = names_at(tables[dest_i]) | {name}
+    for a, b in SEPARATE_PAIRS:
+        if a in there and b in there:
+            return True
+    return False
+
+
+def separate_forbidden_pairs(tables: list[list[tuple[str, str]]]) -> None:
+    """指定ペアが同卓なら、動かせるほうを別卓へ。"""
+    for a, b in SEPARATE_PAIRS:
+        ta, tb = find_table(tables, a), find_table(tables, b)
+        if ta is None or tb is None or ta != tb:
+            continue
+        mover = a
+        if a in FACILITATORS or a in PINNED_NAMES:
+            mover = b
+        src = ta - 1
+        moved = False
+        for dest in range(len(tables)):
+            if dest == src or would_violate_separate(tables, mover, dest):
+                continue
+            if has_empty(tables[dest]):
+                kind = take_named(tables, mover) or "m"
+                if kind == "a":
+                    kind = "m"
+                if put_named(tables[dest], kind, mover):
+                    moved = True
+                    break
+            for kind, other in tables[dest]:
+                if (
+                    other
+                    and other not in PINNED_NAMES
+                    and other not in FACILITATORS
+                    and not would_violate_separate(tables, other, src)
+                    and not would_violate_separate(tables, mover, dest)
+                ):
+                    swap_visitors(tables, mover, other)
+                    moved = True
+                    break
+            if moved:
+                break
+        if not moved:
+            raise RuntimeError(f"{a} と {b} を別卓にできません")
+
+
 def apply_facilitators(tables: list[list[tuple[str, str]]]) -> None:
     for seats in tables:
         for i, (kind, name) in enumerate(seats):
@@ -413,6 +474,8 @@ KEEP_VISITOR_WITH_HOST = {
     "大久保 仁",
     "加藤 一郎",
     "千葉 麻衣",
+    "佐生 道代",
+    "石川 清司",
     "迫田 由美子",
     "奥村 佳奈子",
     "奧村 佳奈子",
@@ -556,7 +619,10 @@ def rebalance_members_only(tables: list[list[tuple[str, str]]]) -> list[list[tup
     return tables
 
 
-def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
+def apply_day_adjustments(
+    tables: list[list[tuple[str, str]]],
+    pattern: str = "A",
+) -> list[list[tuple[str, str]]]:
     absent = ABSENT_MEMBERS | ABSENT_VISITORS
     for seats in tables:
         for i, (_kind, name) in enumerate(seats):
@@ -593,12 +659,25 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
     ensure_named_at(tables, "新美 裕之", 4)
     ensure_named_at(tables, "千葉 麻衣", 4, "v")
     ensure_named_at(tables, "あらい ひとみ", 5)
-    ensure_named_at(tables, "小林 良", 5, "v")
+    ensure_named_at(tables, "山野井 信夫", 3)
     ensure_named_at(tables, "小林 実穂", 5)
+    if pattern == "A":
+        # 小林良はあらい卓。柴は招待者の山野井と同卓
+        ensure_named_at(tables, "小林 良", 5, "v")
+        ensure_named_at(tables, "柴 慎平", 3, "v")
+    else:
+        # 小林良は山野井と同卓。柴は山野井と離れるので小宮・宇部卓へ
+        ensure_named_at(tables, "小林 良", 3, "v")
+        ensure_named_at(tables, "柴 慎平", 2, "v")
+    ensure_named_at(tables, "成瀬 優", 4)
+    ensure_named_at(tables, "佐生 道代", 4, "v")
+    ensure_named_at(tables, "大工原 葉子", 4)
+    ensure_named_at(tables, "石川 清司", 4, "v")
     ensure_named_at(tables, "幸田 勝", 7)
     tables = reunite_unmatched_visitors(tables)
     tables = even_out_visitors(tables)
     tables = rebalance_members_only(tables)
+    separate_forbidden_pairs(tables)
     apply_facilitators(tables)
     return [interleave(seats) for seats in tables]
 
@@ -916,8 +995,8 @@ def main() -> None:
     base = tables_from_members()
     tables_a = place_visitors(base, leftover_reversed=False)
     tables_b = place_visitors(base, leftover_reversed=True)
-    tables_a = apply_day_adjustments(tables_a)
-    tables_b = apply_day_adjustments(tables_b)
+    tables_a = apply_day_adjustments(tables_a, "A")
+    tables_b = apply_day_adjustments(tables_b, "B")
     wrap = (
         '<div class="tables-wrap">\n'
         + pattern_html("A", "パターン A — 第2部 開始時", tables_a)
@@ -1006,7 +1085,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 仮配置。鈴木 優 様は全体司会。1卓ファシリ=伊藤 梢 様 / 6卓=あらい ひとみ 様 / 3卓=小宮 / 7卓=永吉（迫田と同卓）。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 仮配置。鈴木 優 様は全体司会。1卓ファシリ=伊藤 梢 様 / 6卓=あらい ひとみ 様 / 3卓=小宮 / 7卓=永吉（迫田と同卓）。A案は小林 良 様をあらい卓、B案は山野井卓。柴 慎平 様は山野井と離れる場合は小宮・宇部卓。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
@@ -1017,7 +1096,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v15';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v17';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
