@@ -581,7 +581,13 @@ body.edit-mode .pool-section{ display:block }
 }
 .tables-row-2{
   grid-template-columns:repeat(2, minmax(0,1fr)) !important;
-  max-width:72% !important;
+  max-width:64% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.tables-row-3{
+  grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+  max-width:92% !important;
   margin-left:auto !important;
   margin-right:auto !important;
 }
@@ -747,7 +753,7 @@ body.edit-mode .pool-section{ display:block }
   <nav class="bar-r" aria-label="ナビ">
     <a class="bar-btn" href="index.html">ハブ</a>
     <a class="bar-btn" href="seating_part2.html">8卓版</a>
-    <a class="bar-btn" href="seating_part2_7.pdf?v=32">席次PDF</a>
+    <a class="bar-btn" href="seating_part2_7.pdf?v=33">席次PDF</a>
     <a class="bar-btn" href="memberlist.html">Members</a>
     <span class="print-menu">
       <button class="bar-btn" type="button" id="printToggle" aria-haspopup="true" aria-expanded="false">印刷 / PDF ▾</button>
@@ -809,7 +815,7 @@ body.edit-mode .pool-section{ display:block }
 <section class="tables-pattern" data-pattern="A">
   <p class="pattern-page-label" aria-hidden="true">パターン A — 第2部 開始時（7卓）</p>
   <p class="facil-note">各卓の中央上部の席がファシリテーターです</p>
-  <div class="tables-row tables-row-3">
+  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">1卓</span>
@@ -840,6 +846,8 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c m" data-kind="m"><span class="nm">梅原 聡</span></div>
       <div class="table-capacity" aria-label="2卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
+  </div>
+  <div class="tables-row tables-row-3">
     <div class="table-wrap" data-table="3" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">3卓</span>
@@ -855,8 +863,6 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-  </div>
-  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="4" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">4卓</span>
@@ -936,7 +942,7 @@ body.edit-mode .pool-section{ display:block }
 <section class="tables-pattern" data-pattern="B" style="display:none">
   <p class="pattern-page-label" aria-hidden="true">席替え後（パターン B・7卓）</p>
   <p class="facil-note">各卓の中央上部の席がファシリテーターです</p>
-  <div class="tables-row tables-row-3">
+  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="1" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">1卓</span>
@@ -967,6 +973,8 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c e" data-kind="e"><span class="nm"></span><span class="sm empty-lbl">空席</span></div>
       <div class="table-capacity" aria-label="2卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
+  </div>
+  <div class="tables-row tables-row-3">
     <div class="table-wrap" data-table="3" data-seats="8" data-capacity="8" data-filled="8">
       <div class="table-circle">
         <span class="table-name">3卓</span>
@@ -982,8 +990,6 @@ body.edit-mode .pool-section{ display:block }
       <div class="seat-c v" data-kind="v" data-host="山田 研二" title="招待者：山田 研二 様"><span class="nm">古澤 萌愛</span><span class="sm hon-v">様</span></div>
       <div class="table-capacity" aria-label="3卓の席数"><button type="button" class="cap-btn" data-cap="7">7</button><button type="button" class="cap-btn" data-cap="8">8</button></div>
     </div>
-  </div>
-  <div class="tables-row tables-row-2">
     <div class="table-wrap" data-table="4" data-seats="8" data-capacity="8" data-filled="7">
       <div class="table-circle">
         <span class="table-name">4卓</span>

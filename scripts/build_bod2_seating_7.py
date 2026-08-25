@@ -170,16 +170,16 @@ def vendor_html_7() -> str:
 
 def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) -> str:
     hide = ' style="display:none"' if label == "B" else ""
-    row1 = "\n".join(S.table_html(i, tables[i - 1]) for i in (1, 2, 3))
-    row2 = "\n".join(S.table_html(i, tables[i - 1]) for i in (4, 5))
+    row1 = "\n".join(S.table_html(i, tables[i - 1]) for i in (1, 2))
+    row2 = "\n".join(S.table_html(i, tables[i - 1]) for i in (3, 4, 5))
     row3 = "\n".join(S.table_html(i, tables[i - 1]) for i in (6, 7))
     return f"""<section class="tables-pattern" data-pattern="{label}"{hide}>
   <p class="pattern-page-label" aria-hidden="true">{title}</p>
   <p class="facil-note">各卓の中央上部の席がファシリテーターです</p>
-  <div class="tables-row tables-row-3">
+  <div class="tables-row tables-row-2">
 {row1}
   </div>
-  <div class="tables-row tables-row-2">
+  <div class="tables-row tables-row-3">
 {row2}
   </div>
   <div class="tables-row tables-row-2">
@@ -238,7 +238,13 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 }
 .tables-row-2{
   grid-template-columns:repeat(2, minmax(0,1fr)) !important;
-  max-width:72% !important;
+  max-width:64% !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.tables-row-3{
+  grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+  max-width:92% !important;
   margin-left:auto !important;
   margin-right:auto !important;
 }
@@ -438,7 +444,7 @@ def main() -> None:
     )
     html = html.replace(
         '<a class="bar-btn" href="seating.html">第1部</a>\n    <a class="bar-btn" href="announcement_page.html">Event</a>\n    <a class="bar-btn" href="members.html">Members</a>',
-        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=32">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
+        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=33">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
     )
     html = html.replace(
         '<p class="hero-pre">Round Tables — 2026.5.27 (水) 第2部</p>',
