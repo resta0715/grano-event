@@ -58,7 +58,6 @@ HOST_MAP = {
     "磯田 忠良": "岡崎 厚子",
     "小林 良": "山野井 信夫",
     "新田 義矩": "川戸 恒吾",
-    "早川 尚吾": "栗原 優",
     "古澤 萌愛": "山田 研二",
     "青木 健": "小宮 雅哲",
     "南 晴美": "永吉 佐千子",
@@ -89,7 +88,6 @@ VISITORS: list[tuple[str, str | None]] = [
     ("磯田 忠良", "岡崎 厚子"),
     ("小林 良", "山野井 信夫"),
     ("新田 義矩", "川戸 恒吾"),
-    ("早川 尚吾", "栗原 優"),
     ("古澤 萌愛", "山田 研二"),
     ("南 晴美", "永吉 佐千子"),
     ("長谷川 悦子", "岡崎 厚子"),
@@ -134,6 +132,9 @@ FACILITATORS = {
     "永吉 佐千子",
     "幸田 勝",
 }
+
+# 元ビジター → メンバー。初期卓割りには含めず、あとからメンバーとして配置する。
+EXTRA_MEMBERS = ["早川 尚吾"]
 
 VENDORS = [
     ("v", "千葉 麻衣", "余生馬牧場"),
@@ -367,6 +368,35 @@ def ensure_named_at(
     raise RuntimeError(f"{table_i + 1}卓に {name} の交換相手がありません")
 
 
+def place_extra_members(tables: list[list[tuple[str, str]]]) -> None:
+    """早川など、あとからメンバーになった人を空席へ置く。ビジター3名卓を優先。"""
+    for name in EXTRA_MEMBERS:
+        if name in ABSENT_MEMBERS:
+            continue
+        for seats in tables:
+            for i, (kind, nm) in enumerate(seats):
+                if nm == name:
+                    seats[i] = ("m", name)
+        if find_table(tables, name):
+            continue
+        preferred = sorted(
+            range(len(tables)),
+            key=lambda i: (-visitor_count(tables[i]), filled_count(tables[i])),
+        )
+        placed = False
+        for i in preferred:
+            if visitor_count(tables[i]) >= 3 and has_empty(tables[i]) and put_named(tables[i], "m", name):
+                placed = True
+                break
+        if not placed:
+            for i in preferred:
+                if has_empty(tables[i]) and put_named(tables[i], "m", name):
+                    placed = True
+                    break
+        if not placed:
+            raise RuntimeError(f"{name} を置く空席がありません")
+
+
 def apply_facilitators(tables: list[list[tuple[str, str]]]) -> None:
     for seats in tables:
         for i, (kind, name) in enumerate(seats):
@@ -451,14 +481,21 @@ def even_out_visitors(tables: list[list[tuple[str, str]]]) -> list[list[tuple[st
 
 
 def rebalance_members_only(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
-    """ビジター配置は維持したまま、8名卓からメンバーを6名卓へ移す。"""
+    """ビジター配置は維持したまま、人数を6〜7名に寄せる。"""
     tables = [list(seats) for seats in tables]
-    for _ in range(12):
+    for _ in range(16):
         counts = [filled_count(s) for s in tables]
-        if max(counts) <= 7:
+        hi, lo = max(counts), min(counts)
+        if hi <= 7 and lo >= 6:
             break
-        donors = [i for i, c in enumerate(counts) if c >= 8]
-        receivers = [i for i, c in enumerate(counts) if c <= 6 and has_empty(tables[i])]
+        if hi >= 8:
+            donors = [i for i, c in enumerate(counts) if c >= 8]
+            receivers = [i for i, c in enumerate(counts) if c <= 6 and has_empty(tables[i])]
+        elif lo <= 5:
+            donors = [i for i, c in enumerate(counts) if c >= 7]
+            receivers = [i for i, c in enumerate(counts) if c <= 5 and has_empty(tables[i])]
+        else:
+            break
         if not donors or not receivers:
             break
         moved = False
@@ -507,6 +544,7 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
         if not put_named(tables[table_i], kind, name):
             raise RuntimeError(f"{label}に {name} の空席がありません")
     tables = even_out_tables(tables)
+    place_extra_members(tables)
     # 小宮 ↔ 永吉＋迫田（セット）。3卓ファシリ=小宮、7卓ファシリ=永吉
     for name, table_i, fallback in (
         ("小宮 雅哲", 2, "m"),
@@ -940,7 +978,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v11';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v12';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
