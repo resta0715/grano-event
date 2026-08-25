@@ -589,16 +589,14 @@ body.edit-mode .pool-section{ display:block }
 .seat-c.v.hostmatch::after{ display:none !important; }
 .vendor-l{
   display:grid !important;
-  grid-template-columns:repeat(5, 124px);
+  grid-template-columns:repeat(7, 168px);
   grid-template-areas:
-    "b1 .  .  .  ."
-    "b2 .  .  .  ."
-    "b3 .  .  .  ."
-    "b4 b5 b6 b7 b8";
+    "b1 .  .  .  .  .  ."
+    "b2 b3 b4 b5 b6 b7 b8";
   width:max-content;
   max-width:100%;
-  margin:6px 0 0;
-  gap:6px;
+  margin:8px 0 0;
+  gap:8px;
   justify-items:start;
   align-items:start;
 }
@@ -611,23 +609,35 @@ body.edit-mode .pool-section{ display:block }
 .vendor-l .vendor-booth:nth-child(7){ grid-area:b7; }
 .vendor-l .vendor-booth:nth-child(8){ grid-area:b8; }
 .vendor-booth{
-  aspect-ratio:1 !important;
-  width:124px !important;
-  height:124px !important;
-  min-height:124px !important;
-  max-height:124px !important;
-  padding:20px 8px 10px !important;
+  aspect-ratio:auto !important;
+  width:168px !important;
+  height:78px !important;
+  min-height:78px !important;
+  max-height:78px !important;
+  padding:14px 10px 10px !important;
   background:#fff !important;
-  border:1px solid #777 !important;
+  border:1.4px solid #555 !important;
   box-shadow:none !important;
   justify-content:center !important;
 }
 .vendor-booth.v{
   background:#ececec !important;
-  border-color:#444 !important;
+  border-color:#333 !important;
 }
-.vendor-booth .nm{ font-size:20px !important; font-weight:800 !important; color:#111 !important; line-height:1.2 !important; }
-.vendor-booth .prod{ font-size:15px !important; color:#333 !important; margin-top:4px !important; }
+.vendor-booth .nm{
+  font-size:22px !important;
+  font-weight:800 !important;
+  color:#111 !important;
+  line-height:1.15 !important;
+  white-space:nowrap !important;
+}
+.vendor-booth .prod{
+  font-size:16px !important;
+  font-weight:700 !important;
+  color:#222 !important;
+  margin-top:4px !important;
+  white-space:nowrap !important;
+}
 .vendor-booth .booth-num{ font-size:13px !important; color:#333 !important; }
 @media print{
   .legend,.paper-note,.floor-hint,.table-count,.hero-pre,.hero-sub{ display:none !important; }
@@ -662,9 +672,9 @@ body.edit-mode .pool-section{ display:block }
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:0.6mm 0 0 !important; }
   .vendor-l{
     width:max-content !important;
-    grid-template-columns:repeat(5, 20mm) !important;
-    margin:0.4mm 0 0 !important;
-    gap:1.5mm !important;
+    grid-template-columns:repeat(7, 38mm) !important;
+    margin:0.8mm 0 0 !important;
+    gap:1.8mm !important;
   }
   .seat-c{
     background:#fff !important;
@@ -692,21 +702,31 @@ body.edit-mode .pool-section{ display:block }
     font-weight:800 !important;
   }
   .vendor-booth, body.print-a3 .vendor-booth{
-    aspect-ratio:1 !important;
-    width:20mm !important;
-    height:20mm !important;
-    min-height:20mm !important;
-    max-height:20mm !important;
-    padding:2.4mm 1.2mm 1.4mm !important;
+    aspect-ratio:auto !important;
+    width:38mm !important;
+    height:18mm !important;
+    min-height:18mm !important;
+    max-height:18mm !important;
+    padding:1.8mm 2.2mm 1.4mm !important;
     background:#fff !important;
-    border:.7pt solid #555 !important;
+    border:.8pt solid #444 !important;
   }
   .vendor-booth.v, body.print-a3 .vendor-booth.v{
     background:#e8e8e8 !important;
     border-color:#333 !important;
   }
-  .vendor-booth .nm, body.print-a3 .vendor-booth .nm{ font-size:13pt !important; color:#000 !important; line-height:1.15 !important; }
-  .vendor-booth .prod, body.print-a3 .vendor-booth .prod{ font-size:10pt !important; color:#222 !important; }
+  .vendor-booth .nm, body.print-a3 .vendor-booth .nm{
+    font-size:15pt !important;
+    color:#000 !important;
+    line-height:1.1 !important;
+    white-space:nowrap !important;
+  }
+  .vendor-booth .prod, body.print-a3 .vendor-booth .prod{
+    font-size:13pt !important;
+    font-weight:700 !important;
+    color:#111 !important;
+    white-space:nowrap !important;
+  }
   .vendor-booth .booth-num, body.print-a3 .vendor-booth .booth-num{ font-size:9pt !important; }
 }
 
@@ -723,7 +743,7 @@ body.edit-mode .pool-section{ display:block }
   <nav class="bar-r" aria-label="ナビ">
     <a class="bar-btn" href="index.html">ハブ</a>
     <a class="bar-btn" href="seating_part2.html">8卓版</a>
-    <a class="bar-btn" href="seating_part2_7.pdf?v=30">席次PDF</a>
+    <a class="bar-btn" href="seating_part2_7.pdf?v=31">席次PDF</a>
     <a class="bar-btn" href="memberlist.html">Members</a>
     <span class="print-menu">
       <button class="bar-btn" type="button" id="printToggle" aria-haspopup="true" aria-expanded="false">印刷 / PDF ▾</button>
