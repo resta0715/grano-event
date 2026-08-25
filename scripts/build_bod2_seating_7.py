@@ -244,18 +244,22 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 }
 .seat-c:not(.v) .sm:not(.empty-lbl){ display:none !important; }
 .seat-c.v.hostmatch::after{ display:none !important; }
+.vendor-section{ max-width:100% !important; padding:0 12px !important; }
 .vendor-l{
   display:grid !important;
-  grid-template-columns:repeat(7, 168px);
+  grid-template-columns:repeat(4, 240px);
   grid-template-areas:
-    "b1 .  .  .  .  .  ."
-    "b2 b3 b4 b5 b6 b7 b8";
+    ".  .  .  b1"
+    ".  .  .  b2"
+    ".  .  .  b3"
+    ".  .  .  b4"
+    "b5 b6 b7 b8";
   width:max-content;
   max-width:100%;
-  margin:8px 0 0;
+  margin:8px 0 0 auto;
   gap:8px;
-  justify-items:start;
-  align-items:start;
+  justify-items:stretch;
+  align-items:stretch;
 }
 .vendor-l .vendor-booth:nth-child(1){ grid-area:b1; }
 .vendor-l .vendor-booth:nth-child(2){ grid-area:b2; }
@@ -267,11 +271,11 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 .vendor-l .vendor-booth:nth-child(8){ grid-area:b8; }
 .vendor-booth{
   aspect-ratio:auto !important;
-  width:168px !important;
-  height:78px !important;
-  min-height:78px !important;
-  max-height:78px !important;
-  padding:14px 10px 10px !important;
+  width:240px !important;
+  height:72px !important;
+  min-height:72px !important;
+  max-height:72px !important;
+  padding:12px 10px 8px !important;
   background:#fff !important;
   border:1.4px solid #555 !important;
   box-shadow:none !important;
@@ -326,12 +330,12 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
     padding:1px 3px !important;
   }
   .seat-c .nm, body.print-a3 .seat-c .nm{ font-size:11pt !important; }
-  .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:0.6mm 0 0 !important; }
+  .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:0.8mm 0 0 !important; padding:0 4mm !important; }
   .vendor-l{
     width:max-content !important;
-    grid-template-columns:repeat(7, 38mm) !important;
-    margin:0.8mm 0 0 !important;
-    gap:1.8mm !important;
+    grid-template-columns:repeat(4, 62mm) !important;
+    margin:0.6mm 0 0 auto !important;
+    gap:1.6mm !important;
   }
   .seat-c{
     background:#fff !important;
@@ -360,11 +364,11 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   }
   .vendor-booth, body.print-a3 .vendor-booth{
     aspect-ratio:auto !important;
-    width:38mm !important;
-    height:18mm !important;
-    min-height:18mm !important;
-    max-height:18mm !important;
-    padding:1.8mm 2.2mm 1.4mm !important;
+    width:62mm !important;
+    height:12.5mm !important;
+    min-height:12.5mm !important;
+    max-height:12.5mm !important;
+    padding:1.4mm 2mm 1mm !important;
     background:#fff !important;
     border:.8pt solid #444 !important;
   }
@@ -434,7 +438,7 @@ def main() -> None:
     )
     html = html.replace(
         '<a class="bar-btn" href="seating.html">第1部</a>\n    <a class="bar-btn" href="announcement_page.html">Event</a>\n    <a class="bar-btn" href="members.html">Members</a>',
-        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=31">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
+        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=32">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
     )
     html = html.replace(
         '<p class="hero-pre">Round Tables — 2026.5.27 (水) 第2部</p>',
