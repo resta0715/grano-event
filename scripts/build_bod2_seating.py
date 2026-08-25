@@ -130,7 +130,7 @@ FACILITATORS = {
     "山野井 信夫",
     "新美 裕之",
     "あらい ひとみ",
-    "永吉 佐千子",
+    "山田 研二",
     "幸田 勝",
 }
 
@@ -283,6 +283,7 @@ PINNED_NAMES = {
     "幸田 勝",
     "千葉 麻衣",
     "永吉 佐千子",
+    "山田 研二",
     "迫田 由美子",
     "あらい ひとみ",
     "伊藤 梢",
@@ -647,11 +648,12 @@ def apply_day_adjustments(
             raise RuntimeError(f"{label}に {name} の空席がありません")
     tables = even_out_tables(tables)
     place_extra_members(tables)
-    # 小宮 ↔ 永吉＋迫田（セット）。3卓ファシリ=小宮、7卓ファシリ=永吉
+    # 小宮 ↔ 永吉＋迫田（セット）。3卓ファシリ=小宮、7卓ファシリ=山田（永吉・迫田と同卓）
     for name, table_i, fallback in (
         ("小宮 雅哲", 2, "m"),
         ("永吉 佐千子", 6, "m"),
         ("迫田 由美子", 6, "v"),
+        ("山田 研二", 6, "m"),
     ):
         ensure_named_at(tables, name, table_i, fallback)
     # ファシリを各卓に1人（2卓=小野 / 5卓=新美 / 8卓=幸田）
@@ -1085,7 +1087,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 仮配置。鈴木 優 様は全体司会。1卓ファシリ=伊藤 梢 様 / 6卓=あらい ひとみ 様 / 3卓=小宮 / 7卓=永吉（迫田と同卓）。A案は小林 良 様をあらい卓、B案は山野井卓。柴 慎平 様は山野井と離れる場合は小宮・宇部卓。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 仮配置。鈴木 優 様は全体司会。1卓ファシリ=伊藤 梢 様 / 6卓=あらい ひとみ 様 / 3卓=小宮 / 7卓=山田 研二 様（永吉・迫田と同卓）。A案は小林 良 様をあらい卓、B案は山野井卓。柴 慎平 様は山野井と離れる場合は小宮・宇部卓。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
@@ -1096,7 +1098,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v17';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v18';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
