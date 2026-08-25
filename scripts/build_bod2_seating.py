@@ -130,7 +130,7 @@ FACILITATORS = {
     "小宮 雅哲",
     "山野井 信夫",
     "新美 裕之",
-    "徳永 剛太",
+    "あらい ひとみ",
     "永吉 佐千子",
     "幸田 勝",
 }
@@ -275,6 +275,7 @@ PINNED_NAMES = {
     "千葉 麻衣",
     "永吉 佐千子",
     "迫田 由美子",
+    "あらい ひとみ",
 }
 
 
@@ -515,6 +516,7 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
     # ファシリを各卓に1人（2卓=小野 / 5卓=新美 / 8卓=幸田）
     ensure_named_at(tables, "新美 裕之", 4)
     ensure_named_at(tables, "千葉 麻衣", 4, "v")
+    ensure_named_at(tables, "あらい ひとみ", 5)
     ensure_named_at(tables, "幸田 勝", 7)
     tables = even_out_visitors(tables)
     tables = rebalance_members_only(tables)
@@ -925,7 +927,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 仮配置。鈴木 優 様は全体司会。3卓ファシリ=小宮 雅哲 様、7卓ファシリ=永吉 佐千子 様（迫田 由美子 様と同卓）。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 仮配置。鈴木 優 様は全体司会。6卓ファシリ=あらい ひとみ 様。3卓=小宮 / 7卓=永吉（迫田と同卓）。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ）</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
@@ -936,10 +938,10 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v9';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v10';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
-        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8']",
+        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9']",
     )
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = html.replace(".pattern-page-label{ display:none }\n</style>", EXTRA_CSS + "\n.pattern-page-label{ display:none }\n</style>")
