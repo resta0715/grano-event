@@ -240,6 +240,91 @@ def put_named(seats: list[tuple[str, str]], kind: str, name: str) -> bool:
     return False
 
 
+def filled_count(seats: list[tuple[str, str]]) -> int:
+    return sum(1 for _k, name in seats if name)
+
+
+def has_empty(seats: list[tuple[str, str]]) -> bool:
+    return any(kind == "e" for kind, _ in seats)
+
+
+PINNED_NAMES = {
+    "小野 利隆",
+    "猪股 みお",
+    "新田 義矩",
+    "野口 久美子",
+    "大久保 仁",
+    "川端 綾華",
+    "加藤 一郎",
+    "宇部 光太",
+}
+
+
+def is_movable(seats: list[tuple[str, str]], kind: str, name: str) -> bool:
+    if not name or kind in {"e", "a"} or name in PINNED_NAMES:
+        return False
+    here = {n for _k, n in seats if n}
+    if kind == "v":
+        host = HOST_MAP.get(name)
+        return not host or host not in here
+    for k, n in seats:
+        if k == "v" and HOST_MAP.get(n) == name:
+            return False
+    return True
+
+
+def even_out_tables(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
+    """招待者同卓は崩さず、各卓を6〜7名に寄せる。"""
+    tables = [list(seats) for seats in tables]
+
+    def move_one(donors: list[int], receivers: list[int]) -> bool:
+        for di in donors:
+            people: list[tuple[int, int, str, str]] = []
+            for i, (kind, name) in enumerate(tables[di]):
+                if is_movable(tables[di], kind, name):
+                    people.append((0 if kind == "v" else 1, i, kind, name))
+            people.sort()
+            for _rank, _i, kind, name in people:
+                host = HOST_MAP.get(name) if kind == "v" else None
+                host_ti = find_table(tables, host) if host else None
+                ordered = sorted(
+                    receivers,
+                    key=lambda ri: (0 if ri == host_ti else 1, filled_count(tables[ri])),
+                )
+                if kind != "v":
+                    visitor_tables = {
+                        find_table(tables, v)
+                        for v, h in HOST_MAP.items()
+                        if h == name and v not in ABSENT_VISITORS
+                    }
+                    ordered = sorted(
+                        receivers,
+                        key=lambda ri: (0 if ri in visitor_tables else 1, filled_count(tables[ri])),
+                    )
+                for ri in ordered:
+                    if ri == di or not has_empty(tables[ri]):
+                        continue
+                    take_named(tables, name)
+                    if not put_named(tables[ri], kind, name):
+                        put_named(tables[di], kind, name)
+                        continue
+                    return True
+        return False
+
+    for _ in range(24):
+        counts = [filled_count(s) for s in tables]
+        donors = sorted((i for i, c in enumerate(counts) if c >= 8), key=lambda i: -counts[i])
+        receivers = sorted((i for i, c in enumerate(counts) if c <= 5), key=lambda i: counts[i])
+        if not donors or not receivers:
+            donors = sorted((i for i, c in enumerate(counts) if c >= 8), key=lambda i: -counts[i])
+            receivers = sorted((i for i, c in enumerate(counts) if c < 7), key=lambda i: counts[i])
+        if not donors or not receivers:
+            break
+        if not move_one(donors, receivers):
+            break
+    return tables
+
+
 def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tuple[str, str]]]:
     absent = ABSENT_MEMBERS | ABSENT_VISITORS
     for seats in tables:
@@ -263,6 +348,7 @@ def apply_day_adjustments(tables: list[list[tuple[str, str]]]) -> list[list[tupl
             kind = "m"
         if not put_named(tables[table_i], kind, name):
             raise RuntimeError(f"{label}に {name} の空席がありません")
+    tables = even_out_tables(tables)
     return [interleave(seats) for seats in tables]
 
 
@@ -680,10 +766,10 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v5';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v6';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
-        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4']",
+        "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5']",
     )
     html = html.replace(".pattern-page-label{ display:none }\n</style>", EXTRA_CSS + "\n.pattern-page-label{ display:none }\n</style>")
     html = html.replace(
