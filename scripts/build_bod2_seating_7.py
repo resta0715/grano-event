@@ -16,6 +16,7 @@ SPEC.loader.exec_module(S)
 DST = Path("/home/kota/grano-event/docs/bod2/seating_part2_7.html")
 
 FACILITATORS_7 = {
+    "幸田 勝",
     "小野 利隆",
     "小宮 雅哲",
     "山野井 信夫",
@@ -33,6 +34,7 @@ PATTERN_A_7: dict[str, int] = {
     "岡崎 厚子": 0,
     "磯田 忠良": 0,
     "飛山 佳枝": 0,
+    "幸田 勝": 0,
     "小野 利隆": 1,
     "猪股 みお": 1,
     "鈴木 優": 1,
@@ -75,7 +77,6 @@ PATTERN_A_7: dict[str, int] = {
     "古澤 萌愛": 6,
     "栗原 優": 6,
     "佐藤 風弥": 6,
-    "幸田 勝": 6,
     "伊東 伸浩": 6,
 }
 
@@ -85,9 +86,9 @@ PATTERN_B_7: dict[str, int] = {
     "上村 マリ": 0,
     "阿部 綾香": 0,
     "奥村 佳奈子": 0,
-    "飛山 佳枝": 0,
     "髙橋 信博": 0,
-    "新田 義矩": 0,
+    "幸田 勝": 0,
+    "加藤 一郎": 0,
     "小野 利隆": 1,
     "猪股 みお": 1,
     "鈴木 優": 1,
@@ -129,9 +130,9 @@ PATTERN_B_7: dict[str, int] = {
     "迫田 由美子": 6,
     "伊東 伸浩": 6,
     "栗原 優": 6,
-    "幸田 勝": 6,
-    "加藤 一郎": 6,
     "植草 尚大": 6,
+    "新田 義矩": 6,
+    "飛山 佳枝": 6,
 }
 
 
@@ -267,7 +268,7 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
-  <p>※ 7卓版。鈴木 優 様は全体司会。伊藤 梢 様はファシリ対象外。幸田 勝 様は普通席。編集モード（?edit=1）で入れ替えできます。</p>
+  <p>※ 7卓版。全卓ファシリ。1卓=幸田 勝 様（伊藤 梢 様は普通席）。鈴木 優 様は全体司会。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 / 熊澤 博之 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次 7卓</p>
 </footer>""",
@@ -279,7 +280,7 @@ def main() -> None:
         '<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>',
     )
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v1';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v2';")
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = html.replace(
         ".pattern-page-label{ display:none }\n</style>",
