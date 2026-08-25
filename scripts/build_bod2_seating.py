@@ -111,7 +111,7 @@ VISITORS: list[tuple[str, str | None]] = [
 ]
 
 # 2部欠席（佐藤修也＝佐藤 秀哉）
-ABSENT_MEMBERS = {"川戸 恒吾", "かわもと えつこ", "佐藤 秀哉", "中山 朋子"}
+ABSENT_MEMBERS = {"川戸 恒吾", "かわもと えつこ", "佐藤 秀哉", "中山 朋子", "熊澤 博之"}
 ABSENT_VISITORS = {
     "イブ",
     "大場 祐介",
@@ -388,7 +388,6 @@ PATTERN_B_SEATS: dict[str, int] = {
     "大久保 仁": 3,
     "小林 良": 3,
     "秋山 雅代": 3,
-    "熊澤 博之": 3,
     "佐藤 風弥": 3,
     "新美 裕之": 4,
     "千葉 麻衣": 4,
@@ -1203,7 +1202,7 @@ def main() -> None:
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
   <p>※ 仮配置。鈴木 優 様は全体司会。A案は3卓で宇部の招待と同席。B案は席替えで山野井卓、加藤は幸田卓。編集モード（?edit=1）で入れ替えできます。</p>
-  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
+  <p>2部欠席：川戸 恒吾 様 / かわもと えつこ 様 / 佐藤 秀哉 様 / 中山 朋子 様 / 熊澤 博之 様 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>出店ブースはフォーム回答（ビジター6 / メンバー2）。配置・氏名は当日変更となる場合があります。</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次</p>
 </footer>""",
@@ -1213,7 +1212,7 @@ def main() -> None:
     )
     html = html.replace('<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
                         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>')
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v21';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating2-edits-v22';")
     html = html.replace(
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4']",
         "['seating2-edits-v1','seating2-edits-v2','seating2-edits-v3','seating2-edits-v4','seating2-edits-v5','bod2-seating2-edits-v1','bod2-seating2-edits-v2','bod2-seating2-edits-v3','bod2-seating2-edits-v4','bod2-seating2-edits-v5','bod2-seating2-edits-v6','bod2-seating2-edits-v7','bod2-seating2-edits-v8','bod2-seating2-edits-v9','bod2-seating2-edits-v10']",
