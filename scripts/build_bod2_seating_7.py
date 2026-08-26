@@ -200,7 +200,7 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 .facil-note{
   display:block !important;
   text-align:center;
-  font-size:15px;
+  font-size:17px;
   font-weight:800;
   color:#222;
   letter-spacing:.04em;
@@ -211,13 +211,13 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   border:1px solid #777 !important;
   color:#111 !important;
   box-shadow:none !important;
-  width:24% !important;
-  height:13% !important;
-  font-size:13px !important;
+  width:26% !important;
+  height:14% !important;
+  font-size:16px !important;
   z-index:2 !important;
 }
-.seat-c .nm{ font-size:13px !important; font-weight:800 !important; line-height:1.15 !important; }
-.table-name{ font-size:26px !important; }
+.seat-c .nm{ font-size:16px !important; font-weight:800 !important; line-height:1.15 !important; }
+.table-name{ font-size:30px !important; }
 .table-circle{ z-index:0 !important; }
 .seat-c.a{
   background:#d5d5d5 !important;
@@ -296,14 +296,14 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   border-color:#333 !important;
 }
 .vendor-booth .nm{
-  font-size:22px !important;
+  font-size:24px !important;
   font-weight:800 !important;
   color:#111 !important;
   line-height:1.15 !important;
   white-space:nowrap !important;
 }
 .vendor-booth .prod{
-  font-size:16px !important;
+  font-size:18px !important;
   font-weight:700 !important;
   color:#222 !important;
   margin-top:4px !important;
@@ -314,7 +314,7 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   .legend,.paper-note,.floor-hint,.table-count,.hero-pre,.hero-sub{ display:none !important; }
   .facil-note{
     display:block !important;
-    font-size:11pt !important;
+    font-size:12pt !important;
     font-weight:800 !important;
     color:#000 !important;
     margin:0 0 1.2mm !important;
@@ -333,15 +333,15 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   }
   .table-wrap{ max-width:48mm !important; }
   .tables-row-3 .table-wrap{ max-width:42mm !important; }
-  .table-name{ font-size:13pt !important; }
+  .table-name{ font-size:15pt !important; }
   .seat-c{
-    width:24% !important;
-    height:13% !important;
-    font-size:8.5pt !important;
+    width:26% !important;
+    height:14% !important;
+    font-size:10.5pt !important;
     padding:1px 3px !important;
     z-index:2 !important;
   }
-  .seat-c .nm, body.print-a3 .seat-c .nm{ font-size:8.5pt !important; }
+  .seat-c .nm, body.print-a3 .seat-c .nm{ font-size:10.5pt !important; }
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:0.8mm 0 0 !important; padding:0 4mm !important; }
   .vendor-l{
     width:max-content !important;
@@ -389,13 +389,13 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
     border-color:#333 !important;
   }
   .vendor-booth .nm, body.print-a3 .vendor-booth .nm{
-    font-size:15pt !important;
+    font-size:16.5pt !important;
     color:#000 !important;
     line-height:1.1 !important;
     white-space:nowrap !important;
   }
   .vendor-booth .prod, body.print-a3 .vendor-booth .prod{
-    font-size:13pt !important;
+    font-size:14pt !important;
     font-weight:700 !important;
     color:#111 !important;
     white-space:nowrap !important;
@@ -454,7 +454,7 @@ def write_html(*, a_only: bool) -> Path:
         dst = DST_A
         title = "2部 円卓席次（7卓・A案）｜BOD 2026 第2回"
         bar_title = "BOD 2026 第2回 — 第2部 円卓席次（7卓・A案）"
-        pdf_href = "seating_part2_7a.pdf?v=2"
+        pdf_href = "seating_part2_7a.pdf?v=3"
         desc = "Business Open Day 2026 第2回（2026.8.26）第2部 円卓席次 7卓・A案。"
         storage = "bod2-seating7a-edits-v1"
     else:
@@ -468,7 +468,7 @@ def write_html(*, a_only: bool) -> Path:
         dst = DST
         title = "2部 円卓席次（7卓）｜BOD 2026 第2回"
         bar_title = "BOD 2026 第2回 — 第2部 円卓席次（7卓）"
-        pdf_href = "seating_part2_7.pdf?v=34"
+        pdf_href = "seating_part2_7.pdf?v=35"
         desc = "Business Open Day 2026 第2回（2026.8.26）第2部 円卓席次 7卓版。"
         storage = "bod2-seating7-edits-v7"
     html = S.SRC.read_text(encoding="utf-8")
