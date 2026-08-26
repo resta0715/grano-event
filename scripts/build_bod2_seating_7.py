@@ -14,6 +14,7 @@ S = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(S)
 
 DST = Path("/home/kota/grano-event/docs/bod2/seating_part2_7.html")
+DST_A = Path("/home/kota/grano-event/docs/bod2/seating_part2_7a.html")
 
 FACILITATORS_7 = {
     "幸田 勝",
@@ -419,32 +420,52 @@ EXTRA_JS_7 = r"""
 """
 
 
-def main() -> None:
+def write_html(*, a_only: bool) -> Path:
     tables_a = build_pattern(PATTERN_A_7)
     tables_b = build_pattern(PATTERN_B_7)
-    wrap = (
-        '<div class="tables-wrap">\n'
-        + pattern_html_7("A", "パターン A — 第2部 開始時（7卓）", tables_a)
-        + "\n"
-        + pattern_html_7("B", "席替え後（パターン B・7卓）", tables_b)
-        + "\n</div>"
-    )
+    if a_only:
+        wrap = (
+            '<div class="tables-wrap">\n'
+            + pattern_html_7("A", "第2部 円卓席次（7卓）", tables_a)
+            + "\n</div>"
+        )
+        dst = DST_A
+        title = "2部 円卓席次（7卓・A案）｜BOD 2026 第2回"
+        bar_title = "BOD 2026 第2回 — 第2部 円卓席次（7卓・A案）"
+        pdf_href = "seating_part2_7a.pdf?v=1"
+        desc = "Business Open Day 2026 第2回（2026.8.26）第2部 円卓席次 7卓・A案。"
+        storage = "bod2-seating7a-edits-v1"
+    else:
+        wrap = (
+            '<div class="tables-wrap">\n'
+            + pattern_html_7("A", "パターン A — 第2部 開始時（7卓）", tables_a)
+            + "\n"
+            + pattern_html_7("B", "席替え後（パターン B・7卓）", tables_b)
+            + "\n</div>"
+        )
+        dst = DST
+        title = "2部 円卓席次（7卓）｜BOD 2026 第2回"
+        bar_title = "BOD 2026 第2回 — 第2部 円卓席次（7卓）"
+        pdf_href = "seating_part2_7.pdf?v=33"
+        desc = "Business Open Day 2026 第2回（2026.8.26）第2部 円卓席次 7卓版。"
+        storage = "bod2-seating7-edits-v7"
     html = S.SRC.read_text(encoding="utf-8")
     html = html.replace(
         "<title>2部 円卓席次表｜Business Open Day 2026 — BNI Grano Chapter</title>",
-        "<title>2部 円卓席次（7卓）｜BOD 2026 第2回</title>",
+        f"<title>{title}</title>",
     )
     html = html.replace(
         "Business Open Day 2026 第2部 円卓席次（パターンA・B切替対応）。",
-        "Business Open Day 2026 第2回（2026.8.26）第2部 円卓席次 7卓版。",
+        desc,
     )
     html = html.replace(
         '<span class="bar-title">Business Open Day 2026 — 第2部 円卓席次</span>',
-        '<span class="bar-title">BOD 2026 第2回 — 第2部 円卓席次（7卓）</span>',
+        f'<span class="bar-title">{bar_title}</span>',
     )
     html = html.replace(
         '<a class="bar-btn" href="seating.html">第1部</a>\n    <a class="bar-btn" href="announcement_page.html">Event</a>\n    <a class="bar-btn" href="members.html">Members</a>',
-        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    <a class="bar-btn" href="seating_part2_7.pdf?v=33">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
+        '<a class="bar-btn" href="index.html">ハブ</a>\n    <a class="bar-btn" href="seating_part2.html">8卓版</a>\n    '
+        f'<a class="bar-btn" href="{pdf_href}">席次PDF</a>\n    <a class="bar-btn" href="memberlist.html">Members</a>',
     )
     html = html.replace(
         '<p class="hero-pre">Round Tables — 2026.5.27 (水) 第2部</p>',
@@ -459,20 +480,29 @@ def main() -> None:
         <hr>
         <button type="button" data-print="a4-both" role="menuitem">A4 横 — A・B 両方（2ページ）</button>
         <button type="button" data-print="a3-both" role="menuitem">A3 横 — A・B 両方（2ページ）</button>""",
-        """        <div class="print-pop-head">用紙サイズ（おすすめは A3ヨコ）</div>
+        (
+            """        <div class="print-pop-head">用紙サイズ（おすすめは A3ヨコ）</div>
+        <button type="button" data-print="a3-current" role="menuitem">A3ヨコ（大きい紙・1枚）</button>
+        <hr>
+        <button type="button" data-print="a4-current" role="menuitem">A4ヨコ（普通のコピー用紙）</button>"""
+            if a_only
+            else """        <div class="print-pop-head">用紙サイズ（おすすめは A3ヨコ）</div>
         <button type="button" data-print="a3-current" role="menuitem">A3ヨコ（大きい紙・文字大きめ）今のパターン</button>
         <button type="button" data-print="a3-both" role="menuitem">A3ヨコ — 開始時と席替え後（2枚）</button>
         <hr>
         <button type="button" data-print="a4-current" role="menuitem">A4ヨコ（普通のコピー用紙・文字はやや小さめ）</button>
-        <button type="button" data-print="a4-both" role="menuitem">A4ヨコ — 開始時と席替え後（2枚）</button>""",
+        <button type="button" data-print="a4-both" role="menuitem">A4ヨコ — 開始時と席替え後（2枚）</button>"""
+        ),
     )
+    pdf_classes = "print-a3" if a_only else "print-a3', 'print-both"
     html = html.replace(
         "  if (new URLSearchParams(location.search).get('edit') === '1') {",
-        """  if (new URLSearchParams(location.search).get('pdf') === '1') {
-    document.body.classList.add('print-a3', 'print-both');
-    document.getElementById('pageSize').textContent = '@page { size: A3 landscape; margin: 8mm }';
-  }
-  if (new URLSearchParams(location.search).get('edit') === '1') {""",
+        f"""  if (new URLSearchParams(location.search).get('pdf') === '1') {{
+    document.body.classList.add('{pdf_classes}');
+    document.getElementById('pageSize').textContent = '@page {{ size: A3 landscape; margin: 8mm }}';
+    document.querySelectorAll('.tables-pattern').forEach(s => s.classList.add('print-on'));
+  }}
+  if (new URLSearchParams(location.search).get('edit') === '1') {{""",
     )
     html = re.sub(
         r'<div class="tables-wrap">.*?</div>\n\n<section class="vendor-section"',
@@ -491,7 +521,7 @@ def main() -> None:
     )
     html = re.sub(
         r'<section class="pair-section">.*?</section>',
-        S.pair_section_html(tables_a, tables_b),
+        "" if a_only else S.pair_section_html(tables_a, tables_b),
         html,
         count=1,
         flags=re.S,
@@ -508,6 +538,12 @@ def main() -> None:
     html = re.sub(
         r'<footer class="footer">.*?</footer>',
         """<footer class="footer">
+  <p>※ 7卓・A案。全卓ファシリ。1卓=幸田 勝（伊藤 梢は普通席）。鈴木 優は全体司会。</p>
+  <p>2部欠席メンバー：川戸 恒吾 / かわもと えつこ / 佐藤 秀哉 / 中山 朋子 / 熊澤 博之 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
+  <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次 7卓 A案</p>
+</footer>"""
+        if a_only
+        else """<footer class="footer">
   <p>※ 7卓版。全卓ファシリ。1卓=幸田 勝（伊藤 梢は普通席）。鈴木 優は全体司会。編集モード（?edit=1）で入れ替えできます。</p>
   <p>2部欠席メンバー：川戸 恒吾 / かわもと えつこ / 佐藤 秀哉 / 中山 朋子 / 熊澤 博之 ／ ビジター：大場 祐介 様 / イブ 様 / 星 寿美 様 / 青木 健 様 / 長谷川 悦子 様 / 香田 英匡 様（1部のみ） / 玉置 智之 様</p>
   <p>BNI Grano Chapter — Business Open Day 2026 第2回 / 第2部 円卓席次 7卓</p>
@@ -520,7 +556,7 @@ def main() -> None:
         '<style id="pageSize">@page { size: A4 landscape; margin: 8mm }</style>',
         '<style id="pageSize">@page { size: A3 landscape; margin: 8mm }</style>',
     )
-    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", "const STORAGE_KEY = 'bod2-seating7-edits-v7';")
+    html = html.replace("const STORAGE_KEY = 'seating2-edits-v5';", f"const STORAGE_KEY = '{storage}';")
     html = html.replace("軸メンバー（各卓に1人）", "ファシリテーター（各卓に1人）")
     html = re.sub(
         r'<div class="legend".*?</div>',
@@ -534,7 +570,14 @@ def main() -> None:
     )
     html = html.replace(
         ".pattern-page-label{ display:none }\n</style>",
-        EXTRA_CSS_7 + "\n.pattern-page-label{ display:none }\n</style>",
+        EXTRA_CSS_7
+        + (
+            "\n.pattern-switch,.pattern-label,.pair-section{ display:none !important; }"
+            "\nbody.print-a3 .tables-pattern{ display:block !important; }"
+            if a_only
+            else ""
+        )
+        + "\n.pattern-page-label{ display:none }\n</style>",
     )
     html = html.replace(
         "    document.getElementById('btnCopyJson').addEventListener('click', copyJson);\n  }\n})();",
@@ -543,8 +586,14 @@ def main() -> None:
         + EXTRA_JS_7
         + "\n})();",
     )
-    DST.write_text(html, encoding="utf-8")
-    print(f"Wrote {DST} ({DST.stat().st_size} bytes)")
+    dst.write_text(html, encoding="utf-8")
+    print(f"Wrote {dst} ({dst.stat().st_size} bytes)")
+    return dst
+
+
+def main() -> None:
+    write_html(a_only=False)
+    write_html(a_only=True)
 
 
 if __name__ == "__main__":
