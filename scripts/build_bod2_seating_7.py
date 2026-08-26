@@ -193,9 +193,10 @@ def pattern_html_7(label: str, title: str, tables: list[list[tuple[str, str]]]) 
 EXTRA_CSS_7 = S.EXTRA_CSS + """
 .table-count,.floor-hint,.paper-note,.legend,.hero-sub{ display:none !important; }
 .hero{ padding:10px 12px 2px !important; }
-.tables-wrap{ padding:0 10px 8px !important; }
-.tables-row{ gap:10px !important; margin-bottom:8px !important; }
-.table-wrap{ max-width:460px !important; }
+.tables-wrap{ padding:0 16px 8px !important; max-width:1400px !important; margin-left:auto !important; margin-right:auto !important; }
+.tables-row{ gap:40px !important; margin-bottom:16px !important; }
+.table-wrap{ max-width:300px !important; }
+.tables-row-3 .table-wrap{ max-width:280px !important; }
 .facil-note{
   display:block !important;
   text-align:center;
@@ -210,12 +211,14 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
   border:1px solid #777 !important;
   color:#111 !important;
   box-shadow:none !important;
-  width:37% !important;
-  height:17.5% !important;
-  font-size:17px !important;
+  width:24% !important;
+  height:13% !important;
+  font-size:13px !important;
+  z-index:2 !important;
 }
-.seat-c .nm{ font-size:17px !important; font-weight:800 !important; line-height:1.15 !important; }
-.table-name{ font-size:32px !important; }
+.seat-c .nm{ font-size:13px !important; font-weight:800 !important; line-height:1.15 !important; }
+.table-name{ font-size:26px !important; }
+.table-circle{ z-index:0 !important; }
 .seat-c.a{
   background:#d5d5d5 !important;
   border:2px solid #222 !important;
@@ -239,13 +242,13 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
 }
 .tables-row-2{
   grid-template-columns:repeat(2, minmax(0,1fr)) !important;
-  max-width:64% !important;
+  max-width:68% !important;
   margin-left:auto !important;
   margin-right:auto !important;
 }
 .tables-row-3{
   grid-template-columns:repeat(3, minmax(0,1fr)) !important;
-  max-width:92% !important;
+  max-width:100% !important;
   margin-left:auto !important;
   margin-right:auto !important;
 }
@@ -316,27 +319,29 @@ EXTRA_CSS_7 = S.EXTRA_CSS + """
     color:#000 !important;
     margin:0 0 1.2mm !important;
   }
-  .tables-row{ gap:1.6mm !important; margin-bottom:1.2mm !important; }
+  .tables-row{ gap:8mm !important; margin-bottom:2mm !important; }
   .tables-row-3{
     grid-template-columns:repeat(3, minmax(0,1fr)) !important;
-    max-width:90% !important;
+    max-width:100% !important;
     margin-left:auto !important;
     margin-right:auto !important;
   }
   .tables-row-2{
     grid-template-columns:repeat(2, minmax(0,1fr)) !important;
-    max-width:62% !important;
-    margin:0 auto 1.2mm !important;
+    max-width:68% !important;
+    margin:0 auto 2mm !important;
   }
-  .table-wrap{ max-width:54mm !important; }
-  .table-name{ font-size:15pt !important; }
+  .table-wrap{ max-width:48mm !important; }
+  .tables-row-3 .table-wrap{ max-width:42mm !important; }
+  .table-name{ font-size:13pt !important; }
   .seat-c{
-    width:38% !important;
-    height:17% !important;
-    font-size:11pt !important;
+    width:24% !important;
+    height:13% !important;
+    font-size:8.5pt !important;
     padding:1px 3px !important;
+    z-index:2 !important;
   }
-  .seat-c .nm, body.print-a3 .seat-c .nm{ font-size:11pt !important; }
+  .seat-c .nm, body.print-a3 .seat-c .nm{ font-size:8.5pt !important; }
   .vendor-section{ page-break-inside:auto !important; break-inside:auto !important; margin:0.8mm 0 0 !important; padding:0 4mm !important; }
   .vendor-l{
     width:max-content !important;
@@ -417,6 +422,23 @@ EXTRA_JS_7 = r"""
     });
   }
   normalizeHonorifics();
+  function placeSeatsTight(){
+    document.querySelectorAll('.table-wrap').forEach(wrap => {
+      const seats = wrap.querySelectorAll('.seat-c');
+      const total = seats.length;
+      if (!total) return;
+      const rPct = 36;
+      seats.forEach((seat, i) => {
+        const angle = (360 / total) * i - 90;
+        const rad = angle * Math.PI / 180;
+        seat.style.left = 'calc(50% + ' + (Math.cos(rad) * rPct).toFixed(2) + '%)';
+        seat.style.top  = 'calc(50% + ' + (Math.sin(rad) * rPct).toFixed(2) + '%)';
+      });
+    });
+  }
+  placeSeatsTight();
+  window.addEventListener('resize', placeSeatsTight);
+  window.addEventListener('beforeprint', placeSeatsTight);
 """
 
 
@@ -432,7 +454,7 @@ def write_html(*, a_only: bool) -> Path:
         dst = DST_A
         title = "2部 円卓席次（7卓・A案）｜BOD 2026 第2回"
         bar_title = "BOD 2026 第2回 — 第2部 円卓席次（7卓・A案）"
-        pdf_href = "seating_part2_7a.pdf?v=1"
+        pdf_href = "seating_part2_7a.pdf?v=2"
         desc = "Business Open Day 2026 第2回（2026.8.26）第2部 円卓席次 7卓・A案。"
         storage = "bod2-seating7a-edits-v1"
     else:
@@ -446,7 +468,7 @@ def write_html(*, a_only: bool) -> Path:
         dst = DST
         title = "2部 円卓席次（7卓）｜BOD 2026 第2回"
         bar_title = "BOD 2026 第2回 — 第2部 円卓席次（7卓）"
-        pdf_href = "seating_part2_7.pdf?v=33"
+        pdf_href = "seating_part2_7.pdf?v=34"
         desc = "Business Open Day 2026 第2回（2026.8.26）第2部 円卓席次 7卓版。"
         storage = "bod2-seating7-edits-v7"
     html = S.SRC.read_text(encoding="utf-8")
