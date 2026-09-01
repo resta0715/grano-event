@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>しくじり先生｜売れっ子美容師なのに4年もグラーノをさぼりまくっちゃった先生</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=New+Tegomin&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yuji+Mai&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F3EBD8;
+  --paper-dark:#E8DCC0;
+  --ink:#14110C;
+  --red:#C4161C;
+  --red-deep:#8E0E12;
+  --chalk:#1C3A2C;
+  --chalk-yellow:#F4E24A;
+  --muted:#6B5E4A;
+  --brush:"Yuji Mai","New Tegomin","Hiragino Mincho ProN","Yu Mincho",serif;
+  --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+}
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  background:#111;color:var(--ink);
+  font-family:var(--mincho);
+  -webkit-font-smoothing:antialiased;
+}
+.deck{width:100%;height:100%;position:relative}
+.slide{
+  position:absolute;inset:0;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+  overflow:hidden;
+  background:var(--paper);
+}
+.slide.active{opacity:1;pointer-events:auto;z-index:2}
+
+.photo{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-size:cover;background-position:center;
+}
+.wash{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+}
+.slide.paper .wash{
+  background:
+    linear-gradient(180deg, rgba(243,235,216,.78) 0%, rgba(243,235,216,.58) 42%, rgba(243,235,216,.82) 100%);
+}
+.slide.board .wash{background:rgba(12,28,20,.52)}
+.slide.hell .wash{background:rgba(10,8,6,.68)}
+.slide.s1 .wash{
+  background:
+    linear-gradient(180deg, rgba(243,235,216,.42) 0%, rgba(243,235,216,.22) 48%, rgba(243,235,216,.62) 100%);
+}
+.slide.s2 .wash{
+  background:
+    linear-gradient(90deg, rgba(243,235,216,.88) 0%, rgba(243,235,216,.55) 55%, rgba(243,235,216,.28) 100%);
+}
+.catch,.kicker,.mega,.chap-title,.quiz-q,.proverb,.quote-big,.times .t{
+  text-shadow:0 0 28px rgba(243,235,216,.95), 0 1px 0 rgba(243,235,216,.8);
+}
+
+/* paper grain */
+.slide.paper::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, transparent 40%, rgba(90,60,20,.08) 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(80,50,20,.035) 32px);
+}
+.slide.paper::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+.inner{
+  position:relative;z-index:2;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:5vh 6vw 8vh;
+}
+
+.eyebrow{
+  font-size:clamp(14px,1.5vw,22px);
+  font-weight:700;letter-spacing:.45em;
+  color:var(--red);margin-bottom:2.2vh;
+}
+.kicker{
+  font-family:var(--brush);
+  font-size:clamp(28px,4.2vw,64px);
+  line-height:1.15;letter-spacing:.04em;
+  margin-bottom:1.6vh;
+}
+.catch{
+  font-family:var(--brush);
+  font-size:clamp(36px,5.6vw,92px);
+  line-height:1.22;
+  letter-spacing:.02em;
+}
+.catch .red{color:var(--red)}
+.subcatch{
+  font-family:var(--brush);
+  font-size:clamp(22px,3.2vw,48px);
+  margin-top:2.4vh;letter-spacing:.08em;
+}
+.credit{
+  margin-top:4.2vh;
+  font-size:clamp(16px,1.8vw,28px);
+  font-weight:700;letter-spacing:.18em;color:var(--muted);
+}
+
+/* huge number */
+.num-wrap .label{
+  font-size:clamp(16px,1.7vw,26px);
+  font-weight:700;letter-spacing:.4em;color:var(--red);
+  margin-bottom:1.5vh;
+}
+.mega{
+  font-family:var(--brush);
+  font-size:clamp(72px,14vw,210px);
+  line-height:.9;letter-spacing:.02em;
+}
+.mega small{font-size:.38em;margin-left:.08em}
+.mega .brack{color:var(--red);font-weight:400}
+.however{
+  margin-top:3vh;
+  font-family:var(--brush);
+  font-size:clamp(26px,3.6vw,58px);
+}
+.however em{font-style:normal;color:var(--red)}
+.stats{
+  display:flex;gap:clamp(18px,3vw,48px);flex-wrap:wrap;justify-content:center;
+  margin-top:4.5vh;
+  font-size:clamp(15px,1.7vw,26px);font-weight:700;color:var(--muted);letter-spacing:.08em;
+}
+.stats b{color:var(--ink);font-size:1.15em}
+.glory-row{
+  display:flex;gap:clamp(12px,2.8vw,40px);justify-content:center;
+  width:min(92vw,1100px);margin:1.2vh 0 2.8vh;
+}
+.glory-row .g{flex:1;min-width:0}
+.glory-row .k{
+  font-size:clamp(13px,1.45vw,22px);letter-spacing:.22em;color:var(--red);font-weight:800;margin-bottom:.35em;
+}
+.glory-row .n{
+  font-family:var(--brush);font-size:clamp(34px,5.4vw,84px);line-height:1.05;
+  text-shadow:0 0 28px rgba(243,235,216,.95);
+}
+.glory-row .n .brack{color:var(--red)}
+
+/* chalkboard */
+.slide.board{
+  background:
+    radial-gradient(ellipse at 50% 40%, #2A5540 0%, var(--chalk) 70%);
+  color:#F6F1DF;
+}
+.slide.board .inner{padding-bottom:10vh}
+.ore{
+  font-family:var(--brush);
+  font-size:clamp(48px,9.5vw,148px);
+  line-height:1.15;color:var(--chalk-yellow);
+  text-shadow:0 2px 0 rgba(0,0,0,.35), 0 0 40px rgba(244,226,74,.15);
+}
+.ore-sub{
+  margin-top:3.5vh;
+  font-size:clamp(18px,2.2vw,34px);
+  letter-spacing:.18em;color:rgba(246,241,223,.72);
+}
+.ore-lesson{
+  margin-top:2.2vh;
+  font-family:var(--brush);
+  font-size:clamp(26px,3.6vw,56px);
+  color:#fff;line-height:1.4;
+}
+.ore-lesson em{font-style:normal;color:var(--chalk-yellow)}
+
+/* chapter */
+.chap-no{
+  font-size:clamp(16px,1.8vw,28px);
+  font-weight:800;letter-spacing:.4em;color:var(--red);
+  margin-bottom:1.2vh;
+}
+.chap-title{
+  font-family:var(--brush);
+  font-size:clamp(36px,5.4vw,88px);
+  line-height:1.25;margin-bottom:2.6vh;
+}
+.lines{
+  list-style:none;
+  font-size:clamp(24px,3.15vw,52px);
+  font-weight:700;line-height:1.7;
+  max-width:20em;
+}
+.lines li em{font-style:normal;color:var(--red);font-weight:800;white-space:nowrap}
+
+/* quiz */
+.quiz-tag{
+  display:inline-block;
+  border:3px solid var(--ink);
+  padding:.25em .9em;
+  font-weight:800;letter-spacing:.28em;
+  font-size:clamp(14px,1.5vw,22px);
+  margin-bottom:3vh;
+}
+.quiz-q{
+  font-family:var(--brush);
+  font-size:clamp(32px,5.2vw,80px);
+  line-height:1.3;
+}
+.quiz-q em{font-style:normal;color:var(--red)}
+.next{
+  margin-top:4vh;
+  font-size:clamp(16px,1.8vw,28px);
+  font-weight:800;letter-spacing:.22em;
+  animation:blink 1.4s ease-in-out infinite;
+}
+@keyframes blink{50%{opacity:.25}}
+
+/* hell */
+.slide.hell{
+  background:#1A1410;
+  color:#F4EBD8;
+}
+.hell .chap-no{color:#E8C078}
+.hell-word{
+  font-family:var(--brush);
+  font-size:clamp(48px,8vw,120px);
+  color:#E23B3B;line-height:1.1;margin-bottom:3vh;
+}
+.hell .lines{color:#EDE3CE}
+.hell .lines em{color:#E23B3B}
+.hell-note{
+  margin-top:3.5vh;
+  font-size:clamp(22px,2.6vw,42px);
+  font-weight:700;line-height:1.6;color:#E8C078;
+}
+
+/* close */
+.proverb{
+  font-family:var(--brush);
+  font-size:clamp(32px,4.6vw,72px);
+  line-height:1.4;
+}
+.proverb em{font-style:normal;color:var(--red)}
+.now-row{
+  display:flex;gap:clamp(24px,4vw,72px);justify-content:center;
+  margin-bottom:3.6vh;flex-wrap:wrap;
+}
+.now-item .k{
+  font-size:clamp(13px,1.4vw,20px);letter-spacing:.3em;color:var(--red);font-weight:800;
+}
+.now-item .v{
+  font-family:var(--brush);
+  font-size:clamp(36px,5.5vw,84px);line-height:1.1;margin-top:.15em;
+}
+.now-item .u{font-size:.42em}
+.now-bridge{
+  font-size:clamp(18px,2vw,30px);font-weight:700;color:var(--muted);
+  margin-bottom:3.2vh;letter-spacing:.06em;
+}
+.times{
+  display:flex;gap:clamp(32px,8vw,120px);justify-content:center;
+  margin:1.2vh 0 2.8vh;
+}
+.times .l{
+  font-size:clamp(14px,1.5vw,22px);letter-spacing:.35em;color:var(--red);font-weight:800;margin-bottom:.25em;
+}
+.times .t{
+  font-family:var(--brush);font-size:clamp(52px,9vw,128px);line-height:.9;
+}
+.quote-big{
+  font-family:var(--brush);
+  font-size:clamp(30px,4.2vw,68px);
+  line-height:1.45;max-width:16em;
+}
+.quote-big em{font-style:normal;color:var(--red)}
+.lessons{
+  list-style:none;text-align:left;
+  max-width:min(82vw,1080px);width:100%;
+  margin:0 auto;
+  font-family:var(--brush);
+}
+.lessons li{
+  font-size:clamp(26px,3.4vw,56px);
+  font-weight:400;line-height:1.45;
+  margin:1.05em 0;padding-left:1.8em;
+  position:relative;
+}
+.lessons li .n{
+  position:absolute;left:0;top:0;
+  color:var(--red);
+}
+.lessons li em{font-style:normal;color:var(--red)}
+.lessons li small{
+  display:block;font-size:.62em;
+  color:var(--muted);margin-top:.25em;
+  font-family:var(--mincho);font-weight:700;
+}
+.lead{
+  font-size:clamp(22px,2.85vw,46px);font-weight:700;line-height:1.65;max-width:20em;
+}
+.lead.big{
+  font-size:clamp(26px,3.5vw,58px);
+  line-height:1.55;
+  max-width:22em;
+}
+.lead em{font-style:normal;color:var(--red);font-weight:800}
+.compare{
+  display:flex;gap:clamp(20px,4vw,64px);justify-content:center;align-items:flex-end;
+  margin-bottom:2.8vh;flex-wrap:wrap;
+}
+.compare .col .when{
+  font-size:clamp(13px,1.4vw,20px);letter-spacing:.28em;color:var(--red);font-weight:800;
+}
+.compare .col .amt{
+  font-family:var(--brush);font-size:clamp(32px,4.6vw,72px);line-height:1.1;margin:.15em 0;
+}
+.compare .col .note{
+  font-size:clamp(15px,1.7vw,26px);font-weight:700;color:var(--muted);
+}
+.compare .arr{
+  font-family:var(--brush);font-size:clamp(28px,4vw,52px);color:var(--red);padding-bottom:.6em;
+}
+.slide.night{background:#1A1410;color:#F4EBD8}
+.slide.night .wash{background:rgba(8,6,4,.58)}
+.slide.night .quiz-tag{border-color:#F4EBD8;color:#E8C078}
+.slide.night .quiz-q{color:#F4EBD8;text-shadow:0 0 24px rgba(0,0,0,.5)}
+.slide.night .next{color:#E8C078}
+.slide.night .chap-no{color:#E8C078}
+.slide.night .lead{color:#EDE3CE}
+.slide.night .lead em,.slide.night .quote-big em{color:#E23B3B}
+
+.hint{
+  position:fixed;bottom:14px;left:18px;z-index:20;
+  font-family:system-ui,sans-serif;font-size:12px;color:rgba(255,255,255,.35);
+}
+.hint kbd{
+  display:inline-block;padding:1px 6px;margin:0 2px;
+  border:1px solid rgba(255,255,255,.2);border-radius:4px;font-size:11px;
+}
+.controls{
+  position:fixed;bottom:12px;right:16px;z-index:20;
+  display:flex;align-items:center;gap:8px;
+  font-family:system-ui,sans-serif;
+}
+.ctrl-btn{
+  background:rgba(255,255,255,.08);color:#eee;border:1px solid rgba(255,255,255,.18);
+  padding:6px 12px;border-radius:6px;cursor:pointer;font-size:13px;
+}
+.ctrl-btn:hover{background:rgba(255,255,255,.16)}
+.page-ind{color:rgba(255,255,255,.45);font-size:13px;min-width:3.5em;text-align:center}
+.step-dot{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:20;
+  display:flex;gap:5px;
+}
+.step-dot span{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(0,0,0,.18);border:1px solid rgba(0,0,0,.15);
+}
+.step-dot span.on{background:var(--red);border-color:var(--red)}
+body:has(.slide.board.active) .step-dot span,
+body:has(.slide.hell.active) .step-dot span,
+body:has(.slide.night.active) .step-dot span{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.25)}
+body:has(.slide.board.active) .step-dot span.on,
+body:has(.slide.hell.active) .step-dot span.on,
+body:has(.slide.night.active) .step-dot span.on{background:var(--chalk-yellow);border-color:var(--chalk-yellow)}
+</style>
+</head>
+<body>
+<div class="step-dot" id="dots" aria-hidden="true"></div>
+<div class="deck">
+
+  <!-- 1 タイトル -->
+  <section class="slide paper s1 active">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-01-title.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="eyebrow">BNI グラーノ 定例会</p>
+      <p class="kicker">しくじり先生</p>
+      <h1 class="catch">売れっ子美容師なのに<br><span class="red">４年もグラーノを<br>さぼりまくっちゃった</span>先生</h1>
+      <p class="subcatch">俺みたいになるな!!</p>
+      <p class="credit">宇部 光太</p>
+    </div>
+  </section>
+
+  <!-- 2 開業編：栄光を1枚に -->
+  <section class="slide paper s2">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-02-glory.png')"></div>
+    <div class="wash"></div>
+    <div class="inner num-wrap">
+      <p class="label">かつての栄光　／　売れっ子美容師</p>
+      <div class="glory-row">
+        <div class="g">
+          <div class="k">担当</div>
+          <div class="n"><span class="brack">【</span>3,000人<span class="brack">】</span></div>
+        </div>
+        <div class="g">
+          <div class="k">個人売上</div>
+          <div class="n"><span class="brack">【</span>3,000万<span class="brack">】</span></div>
+        </div>
+        <div class="g">
+          <div class="k">店舗売上</div>
+          <div class="n"><span class="brack">【</span>1億<span class="brack">】</span></div>
+        </div>
+      </div>
+      <p class="however">お給与はそこそこ。まぁまぁ調子に乗ってました。<br><em>しかし……</em></p>
+    </div>
+  </section>
+
+  <!-- 5 テーマ -->
+  <section class="slide board">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-03-chalkboard.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="ore">俺みたいになるな!!</p>
+      <p class="ore-sub">今日いちばん伝えたいこと</p>
+      <p class="ore-lesson">さぼって、<em>５年かけて遠回りするな</em></p>
+    </div>
+  </section>
+
+  <!-- 6 第1章タイトル＋中身 -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-09-ego.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">第 ① 章</p>
+      <h2 class="chap-title">「自分さえ売れればいい」の罠</h2>
+      <ul class="lines">
+        <li>自分の会社でもない</li>
+        <li>スタッフが辞めようが、<em>関係ない</em></li>
+        <li>やる気ないやつも、僕が苦手なやつも、<br><em>どうでもいい</em></li>
+        <li>とにかく、<em>自分の売上</em>が大事</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 激務 -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-13-family.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">その毎日</p>
+      <div class="times">
+        <div><div class="l">出社</div><div class="t">7:00</div></div>
+        <div><div class="l">帰り</div><div class="t">25:00</div></div>
+      </div>
+      <p class="lead big">子供の顔も、思い出しても<br><em>記憶がない</em>。<br>楽しいも、やりたいも、<br>考える暇がなかった。</p>
+    </div>
+  </section>
+
+  <!-- 8 第2章 一蹴 -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-10-reject.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">第 ② 章</p>
+      <h2 class="chap-title">「わけわからない変な会」の悲劇</h2>
+      <p class="lead" style="margin-bottom:2.2vh">そんなとき、<br>龍造寺さんにBNIを誘われる。</p>
+      <p class="quote-big">こんな売れっ子の僕に<br><em>変な会の勧誘持ってくるな</em></p>
+    </div>
+  </section>
+
+  <!-- 9 クイズ：事故 -->
+  <section class="slide night">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-04b-accident.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="quiz-tag">次のページ現象</p>
+      <p class="quiz-q">そんな毎日の、ある夜。<br>歩いていた僕は、<em>どうなったでしょう？</em></p>
+      <p class="next">▶　次のページ</p>
+    </div>
+  </section>
+
+  <!-- 10 事故と入会 -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-11-hospital.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">転　機</p>
+      <h2 class="chap-title">車椅子、1年以上。</h2>
+      <ul class="lines">
+        <li>夜道で、車に追突された</li>
+        <li>お見舞いに来てくれたのは、<em>龍造寺さん</em></li>
+        <li>BNIを思い出して、定例会へ</li>
+        <li>楽しそう <em>50%</em>　／　義理 <em>50%</em> で入会</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 11 赤点4年 -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-12-redmarks.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">それでも</p>
+      <h2 class="chap-title">「このままでいいや」は<br>消えなかった。</h2>
+      <ul class="lines">
+        <li>3回欠席していいと聞けば、<em>3回欠席</em></li>
+        <li>赤点続き。書簡の常連</li>
+        <li>トレーニングは、<em>4年ほぼ受けたことがない</em></li>
+        <li>年会費は、<em>ドブに捨て続けた</em></li>
+        <li>唯一やったこと——<em>サンキューだけは出す</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 12 転機② パワーチーム -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-05-quiz.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">さらなる転機</p>
+      <h2 class="chap-title">山田さん　×　中山さん</h2>
+      <ul class="lines">
+        <li>事業戦略支援　山田さん</li>
+        <li>社外のお悩み相談室　中山さん</li>
+        <li>「もっと多くの人に喜んでもらえる」と、背中を押される</li>
+        <li>ネイルスクールへ。<br>いまの<em>ネイルFC</em>の原点</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 13 クイズ：スクール -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-14-bni.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="quiz-tag">次のページ現象</p>
+      <p class="quiz-q">ネイルスクール事業、<br><em>どうなったでしょう？</em></p>
+      <p class="next">▶　次のページ</p>
+    </div>
+  </section>
+
+  <!-- 14 地獄＋気づき -->
+  <section class="slide hell">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-06-hell.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">ネイルスクール事業</p>
+      <p class="hell-word">売り上げは、<br>全く上がらなかった。</p>
+      <p class="hell-note">でも、ひとつだけわかった。<br>人と協業していい。遠慮しなくていい。<br>グラーノは、それをしてもいい場所だった。</p>
+    </div>
+  </section>
+
+  <!-- 15 今 -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-07-close.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="chap-no">それから</p>
+      <ul class="lines" style="margin-bottom:2.6vh">
+        <li>川戸さんのアドバイスをきっかけに、カテゴリを変えた</li>
+        <li>気がつけばプレジデントへ。<em>100点</em> で表彰</li>
+        <li>かき氷屋、AIエンジニアへ、次の挑戦</li>
+      </ul>
+      <div class="compare">
+        <div class="col">
+          <div class="when">美容師のとき</div>
+          <div class="amt">3,000万</div>
+          <div class="note">精一杯やって、これ</div>
+        </div>
+        <div class="arr">→</div>
+        <div class="col">
+          <div class="when">いま</div>
+          <div class="amt">2億5,000万</div>
+          <div class="note">時間は 5分の1</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- まとめ① 3カ条 -->
+  <section class="slide paper">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-07-close.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <h2 class="chap-title" style="letter-spacing:.28em;margin-bottom:1.6vh">まとめ</h2>
+      <ul class="lessons">
+        <li><span class="n">1</span>自分でできることだけやるなら、<br>この環境は<em>勿体無い</em></li>
+        <li><span class="n">2</span>人の意見を取り入れまくる。<br><em>パクりまくる</em>
+          <small>サービス・商品を徹底的に磨く</small></li>
+        <li><span class="n">3</span>適当にやってたら、<br><em>適当なことしか返ってこない</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- まとめ② 格言 -->
+  <section class="slide board">
+    <div class="photo" style="background-image:url('assets/shikujiri/sk-03-chalkboard.png')"></div>
+    <div class="wash"></div>
+    <div class="inner">
+      <p class="ore-lesson" style="margin-top:0">僕みたいになりたくなかったら、<br><em>素直に、言われた通りやれ。</em></p>
+      <p class="ore" style="font-size:clamp(32px,5.2vw,78px);margin-top:4vh">忙しい？</p>
+      <p class="ore-lesson">そんなん、普通に<em>みんな忙しい</em>。</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="hint"><kbd>→</kbd><kbd>Space</kbd> 次　<kbd>←</kbd> 前　<kbd>F</kbd> 全画面</div>
+<nav class="controls" aria-label="スライド操作">
+  <button class="ctrl-btn" id="btn-prev" type="button">← 前</button>
+  <span class="page-ind" id="page-ind">1 / 15</span>
+  <button class="ctrl-btn" id="btn-next" type="button">次 →</button>
+  <button class="ctrl-btn" id="btn-fs" type="button">⛶ 全画面</button>
+</nav>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length; let cur=0;
+  const ind=document.getElementById('page-ind');
+  const dots=document.getElementById('dots');
+  dots.innerHTML=slides.map(()=>'<span></span>').join('');
+  const dotEls=[...dots.children];
+  function go(n){
+    cur=Math.max(0,Math.min(total-1,n));
+    slides.forEach((s,i)=>s.classList.toggle('active',i===cur));
+    dotEls.forEach((d,i)=>d.classList.toggle('on',i===cur));
+    ind.textContent=(cur+1)+' / '+total;
+    document.body.dataset.slide=slides[cur].className;
+    const h='#'+(cur+1);
+    if(location.hash!==h) history.replaceState(null,'',h);
+  }
+  window.onhashchange=()=>go((parseInt(location.hash.slice(1),10)||1)-1);
+  go((parseInt(location.hash.slice(1),10)||1)-1);
+  function toggleFs(){
+    document.fullscreenElement?document.exitFullscreen?.():document.documentElement.requestFullscreen?.();
+  }
+  document.getElementById('btn-prev').onclick=()=>go(cur-1);
+  document.getElementById('btn-next').onclick=()=>go(cur+1);
+  document.getElementById('btn-fs').onclick=toggleFs;
+  document.onclick=e=>{
+    if(e.target.closest('.controls,.hint,.ctrl-btn')) return;
+    go(cur+1);
+  };
+  document.onkeydown=e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(cur+1)}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='Backspace'){e.preventDefault();go(cur-1)}
+    if(e.key==='f'||e.key==='F'){e.preventDefault();toggleFs()}
+    if(e.key==='Home'){e.preventDefault();go(0)}
+    if(e.key==='End'){e.preventDefault();go(total-1)}
+  };
+})();
+</script>
+</body>
+</html>

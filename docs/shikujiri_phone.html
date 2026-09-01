@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>しくじり先生｜練習用（15枚）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Yuji+Mai&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F3EBD8; --ink:#14110C; --red:#C4161C; --muted:#6B5E4A;
+  --brush:"Yuji Mai","Hiragino Mincho ProN","Yu Mincho",serif;
+  --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+html,body{height:100%;background:#111;color:var(--ink);font-family:var(--mincho);-webkit-text-size-adjust:100%}
+body{display:flex;flex-direction:column;min-height:100dvh}
+.bar{
+  flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background:#1A1410;color:#F3EBD8;font-size:14px;font-weight:700;
+}
+.bar b{color:#E8C078;font-size:18px}
+.stage{flex:1;position:relative;overflow:hidden;background:var(--paper)}
+.card{
+  position:absolute;inset:0;padding:22px 20px 18px;
+  overflow:auto;opacity:0;pointer-events:none;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.card.on{opacity:1;pointer-events:auto}
+.k{font-size:13px;letter-spacing:.28em;color:var(--red);font-weight:800;margin-bottom:10px}
+h2{font-family:var(--brush);font-size:clamp(22px,6.4vw,32px);line-height:1.35;margin-bottom:14px}
+p,li{font-size:clamp(17px,4.6vw,22px);font-weight:700;line-height:1.7}
+ul{list-style:none}
+li{margin:.35em 0}
+em{font-style:normal;color:var(--red)}
+.big{font-family:var(--brush);font-size:clamp(28px,8vw,44px);line-height:1.3;margin:.3em 0}
+.foot{
+  flex:0 0 auto;display:grid;grid-template-columns:1fr 1.2fr 1fr;
+  gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom));
+  background:#1A1410;
+}
+.foot button{
+  appearance:none;border:0;border-radius:10px;padding:14px 8px;
+  font-size:16px;font-weight:800;font-family:inherit;color:#fff;
+}
+.foot .prev,.foot .next{background:#C4161C}
+.foot .prev:disabled,.foot .next:disabled{opacity:.35}
+.foot .all{background:#3A3228;color:#F3EBD8;font-size:14px}
+.hint{text-align:center;font-size:12px;color:#8A7C68;padding:0 16px 8px;background:var(--paper)}
+</style>
+</head>
+<body>
+<header class="bar"><span>しくじり先生　練習</span><b id="num">1 / 15</b></header>
+<main class="stage" id="stage">
+
+<section class="card on" data-i="1">
+  <p class="k">1　タイトル</p>
+  <h2>売れっ子美容師なのに<br>４年もグラーノを<br>さぼりまくっちゃった先生</h2>
+  <p>俺みたいになるな!!<br>宇部 光太</p>
+</section>
+
+<section class="card" data-i="2">
+  <p class="k">2　かつての栄光</p>
+  <p class="big">担当【3,000人】</p>
+  <p class="big">個人売上【3,000万】</p>
+  <p class="big">店舗売上【1億】</p>
+  <p>お給与はそこそこ。まぁまぁ調子に乗ってました。<br><em>しかし……</em></p>
+</section>
+
+<section class="card" data-i="3">
+  <p class="k">3　テーマ</p>
+  <p class="big">俺みたいになるな!!</p>
+  <p>今日いちばん伝えたいこと<br>さぼって、<em>５年かけて遠回りするな</em></p>
+</section>
+
+<section class="card" data-i="4">
+  <p class="k">4　第①章</p>
+  <h2>「自分さえ売れればいい」の罠</h2>
+  <ul>
+    <li>自分の会社でもない</li>
+    <li>スタッフが辞めようが、<em>関係ない</em></li>
+    <li>やる気ないやつも、僕が苦手なやつも、<em>どうでもいい</em></li>
+    <li>とにかく、<em>自分の売上</em>が大事</li>
+  </ul>
+</section>
+
+<section class="card" data-i="5">
+  <p class="k">5　その毎日</p>
+  <p class="big">出社 7:00　帰り 25:00</p>
+  <p>子供の顔も、思い出しても<em>記憶がない</em>。<br>楽しいも、やりたいも、考える暇がなかった。</p>
+</section>
+
+<section class="card" data-i="6">
+  <p class="k">6　第②章</p>
+  <h2>「わけわからない変な会」の悲劇</h2>
+  <p>そんなとき、龍造寺さんにBNIを誘われる。</p>
+  <p class="big">こんな売れっ子の僕に<br><em>変な会の勧誘持ってくるな</em></p>
+</section>
+
+<section class="card" data-i="7">
+  <p class="k">7　次のページ現象</p>
+  <p class="big">そんな毎日の、ある夜。<br>歩いていた僕は、<em>どうなったでしょう？</em></p>
+</section>
+
+<section class="card" data-i="8">
+  <p class="k">8　転機</p>
+  <h2>車椅子、1年以上。</h2>
+  <ul>
+    <li>夜道で、車に追突された</li>
+    <li>お見舞いに来てくれたのは、<em>龍造寺さん</em></li>
+    <li>BNIを思い出して、定例会へ</li>
+    <li>楽しそう <em>50%</em> ／ 義理 <em>50%</em> で入会</li>
+  </ul>
+</section>
+
+<section class="card" data-i="9">
+  <p class="k">9　それでも</p>
+  <h2>「このままでいいや」は消えなかった。</h2>
+  <ul>
+    <li>3回欠席していいと聞けば、<em>3回欠席</em></li>
+    <li>赤点続き。書簡の常連</li>
+    <li>トレーニングは、<em>4年ほぼ受けたことがない</em></li>
+    <li>年会費は、<em>ドブに捨て続けた</em></li>
+    <li>唯一やったこと——<em>サンキューだけは出す</em></li>
+  </ul>
+</section>
+
+<section class="card" data-i="10">
+  <p class="k">10　さらなる転機</p>
+  <h2>山田さん　×　中山さん</h2>
+  <ul>
+    <li>事業戦略支援　山田さん</li>
+    <li>社外のお悩み相談室　中山さん</li>
+    <li>「もっと多くの人に喜んでもらえる」と、背中を押される</li>
+    <li>ネイルスクールへ。いまの<em>ネイルFC</em>の原点</li>
+  </ul>
+</section>
+
+<section class="card" data-i="11">
+  <p class="k">11　次のページ現象</p>
+  <p class="big">ネイルスクール事業、<br><em>どうなったでしょう？</em></p>
+</section>
+
+<section class="card" data-i="12">
+  <p class="k">12　ネイルスクール事業</p>
+  <p class="big">売り上げは、<br>全く上がらなかった。</p>
+  <p>でも、ひとつだけわかった。<br>人と協業していい。遠慮しなくていい。<br>グラーノは、それをしてもいい場所だった。</p>
+</section>
+
+<section class="card" data-i="13">
+  <p class="k">13　それから</p>
+  <ul>
+    <li>川戸さんのアドバイスをきっかけに、カテゴリを変えた</li>
+    <li>気がつけばプレジデントへ。<em>100点</em> で表彰</li>
+    <li>かき氷屋、AIエンジニアへ、次の挑戦</li>
+  </ul>
+  <p style="margin-top:1em">美容師のとき <em>3,000万</em>（精一杯やって、これ）<br>→ いま <em>2億5,000万</em>（時間は5分の1）</p>
+</section>
+
+<section class="card" data-i="14">
+  <p class="k">14　まとめ</p>
+  <ul>
+    <li><em>1</em> 自分でできることだけやるなら、この環境は<em>勿体無い</em></li>
+    <li><em>2</em> 人の意見を取り入れまくる。<em>パクりまくる</em><br>サービス・商品を徹底的に磨く</li>
+    <li><em>3</em> 適当にやってたら、<em>適当なことしか返ってこない</em></li>
+  </ul>
+</section>
+
+<section class="card" data-i="15">
+  <p class="k">15　最後</p>
+  <p class="big">僕みたいになりたくなかったら、<br><em>素直に、言われた通りやれ。</em></p>
+  <p class="big" style="margin-top:.8em">忙しい？</p>
+  <p>そんなん、普通に<em>みんな忙しい</em>。</p>
+</section>
+
+</main>
+<p class="hint">左右スワイプ　／　下のボタン</p>
+<nav class="foot">
+  <button class="prev" id="prev" type="button">← 前</button>
+  <button class="all" id="all" type="button">全文一覧</button>
+  <button class="next" id="next" type="button">次 →</button>
+</nav>
+<script>
+(function(){
+  const cards=[...document.querySelectorAll('.card')];
+  const total=cards.length; let cur=0;
+  const num=document.getElementById('num');
+  const prev=document.getElementById('prev');
+  const next=document.getElementById('next');
+  function go(n){
+    cur=Math.max(0,Math.min(total-1,n));
+    cards.forEach((c,i)=>c.classList.toggle('on',i===cur));
+    num.textContent=(cur+1)+' / '+total;
+    prev.disabled=cur===0; next.disabled=cur===total-1;
+    history.replaceState(null,'','#'+(cur+1));
+  }
+  prev.onclick=()=>go(cur-1);
+  next.onclick=()=>go(cur+1);
+  document.getElementById('all').onclick=()=>{
+    cards.forEach(c=>{c.classList.add('on'); c.style.position='relative'; c.style.opacity='1'; c.style.pointerEvents='auto'; c.style.minHeight='auto'; c.style.paddingBottom='28px'; c.style.borderBottom='1px solid #D8CDB4'});
+    document.getElementById('stage').style.overflow='auto';
+    document.querySelector('.hint').textContent='全文一覧。再読み込みで1枚ずつに戻る';
+  };
+  let x0=null;
+  const stage=document.getElementById('stage');
+  stage.addEventListener('touchstart',e=>{x0=e.changedTouches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',e=>{
+    if(x0==null) return;
+    const dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(dx<-40) go(cur+1); if(dx>40) go(cur-1);
+  },{passive:true});
+  window.onhashchange=()=>go((parseInt(location.hash.slice(1),10)||1)-1);
+  go((parseInt(location.hash.slice(1),10)||1)-1);
+})();
+</script>
+</body>
+</html>
