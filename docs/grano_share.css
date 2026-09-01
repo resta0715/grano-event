@@ -413,6 +413,26 @@ h2{font-size:clamp(42px,4.8vw,78px)}
   max-width:min(36em,74vw);
 }
 
+.veil-novas{
+  background:linear-gradient(90deg,rgba(7,8,11,.96) 0%,rgba(7,8,11,.78) 42%,rgba(7,8,11,.18) 70%,rgba(7,8,11,.28) 100%);
+}
+.novas-copy{max-width:56vw;padding-right:clamp(16px,4vw,48px)}
+.inner.over-art.novas-copy{max-width:56vw}
+.novas-mark{
+  position:absolute;z-index:3;
+  right:2.4vw;top:52%;
+  transform:translateY(-50%);
+  margin:0;
+  font-family:var(--serif);
+  font-size:clamp(72px,13.5vw,240px);
+  font-weight:700;line-height:.9;
+  letter-spacing:.14em;
+  color:var(--gold2);
+  text-shadow:0 18px 70px rgba(0,0,0,.7),0 0 70px rgba(212,179,106,.38);
+  pointer-events:none;
+  white-space:nowrap;
+}
+
 .slide:has(.bg-img) .inner h1,
 .slide:has(.bg-img) .inner h2,
 .slide:has(.bg-img) .lead,
@@ -486,6 +506,8 @@ h2{font-size:clamp(42px,4.8vw,78px)}
   .corp-left{width:100%;padding-bottom:28vh}
   .corp-mark{left:24px;right:24px;bottom:48px;text-align:left}
   .corp-name{font-size:clamp(40px,11vw,72px)}
+  .novas-copy{max-width:100%;padding-bottom:22vh}
+  .novas-mark{top:auto;bottom:6vh;transform:none;font-size:clamp(48px,16vw,96px);right:5vw}
 }
 
 @media (prefers-reduced-motion:reduce){
