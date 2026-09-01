@@ -280,15 +280,16 @@ html,body{
 .quote-big em{font-style:normal;color:var(--red)}
 .lessons{
   list-style:none;text-align:left;
-  max-width:min(82vw,1080px);width:100%;
+  width:fit-content;max-width:92vw;
   margin:0 auto;
   font-family:var(--brush);
 }
 .lessons li{
-  font-size:clamp(26px,3.4vw,56px);
-  font-weight:400;line-height:1.45;
-  margin:1.05em 0;padding-left:1.8em;
+  font-size:clamp(24px,3.2vw,52px);
+  font-weight:400;line-height:1.4;
+  margin:1em 0;padding-left:1.8em;
   position:relative;
+  white-space:nowrap;
 }
 .lessons li .n{
   position:absolute;left:0;top:0;
@@ -299,6 +300,7 @@ html,body{
   display:block;font-size:.62em;
   color:var(--muted);margin-top:.25em;
   font-family:var(--mincho);font-weight:700;
+  white-space:normal;
 }
 .lead{
   font-size:clamp(22px,2.85vw,46px);font-weight:700;line-height:1.65;max-width:20em;
@@ -580,10 +582,10 @@ body:has(.slide.night.active) .step-dot span.on{background:var(--chalk-yellow);b
     <div class="inner">
       <h2 class="chap-title" style="letter-spacing:.28em;margin-bottom:1.6vh">まとめ</h2>
       <ul class="lessons">
-        <li><span class="n">1</span>自分でできることだけやるなら、<br>この環境は<em>勿体無い</em></li>
-        <li><span class="n">2</span>人の意見を取り入れまくる。<br><em>パクりまくる</em>
+        <li><span class="n">1</span>自分でできることだけやるなら、この環境は<em>勿体無い</em></li>
+        <li><span class="n">2</span>人の意見を取り入れまくる。<em>パクりまくる</em>
           <small>サービス・商品を徹底的に磨く</small></li>
-        <li><span class="n">3</span>適当にやってたら、<br><em>適当なことしか返ってこない</em></li>
+        <li><span class="n">3</span>適当にやってたら、<em>適当なことしか返ってこない</em></li>
       </ul>
     </div>
   </section>
