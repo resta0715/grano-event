@@ -46,23 +46,31 @@ html,body{
 }
 .veil-cover{
   background:
-    linear-gradient(180deg,rgba(7,8,11,.08) 0%,rgba(7,8,11,.12) 42%,rgba(7,8,11,.78) 100%),
-    linear-gradient(90deg,rgba(7,8,11,.28) 0%,rgba(7,8,11,.1) 36%,transparent 62%);
+    linear-gradient(180deg,rgba(7,8,11,.1) 0%,rgba(7,8,11,.16) 40%,rgba(7,8,11,.82) 100%),
+    linear-gradient(90deg,rgba(7,8,11,.92) 0%,rgba(7,8,11,.55) 22%,rgba(7,8,11,.14) 48%,transparent 68%);
 }
 .cover-photo{
-  object-position:32% 22%;
+  left:46%;
+  width:54%;
+  object-position:6% 16%;
   filter:brightness(1.22) contrast(1.06) saturate(1.04);
 }
-.slide-cover .kenburns{animation:kenburns-cover 14s ease-out forwards}
+.slide-cover .kenburns{
+  animation:kenburns-cover 14s ease-out forwards;
+  transform-origin:62% 28%;
+}
 @keyframes kenburns-cover{
   from{transform:scale(1.04)}
   to{transform:scale(1.1)}
 }
 .cover-copy{
   justify-content:flex-end;
-  max-width:62vw;
+  max-width:40vw;
   padding-bottom:clamp(52px,9vh,92px);
+  padding-right:clamp(12px,2vw,28px);
 }
+.inner.over-art.cover-copy h1{font-size:clamp(48px,5.4vw,88px)}
+.inner.over-art.cover-copy .lead{font-size:clamp(32px,3.1vw,48px);max-width:none}
 .veil-full{
   background:
     radial-gradient(ellipse 80% 70% at 70% 45%,rgba(7,8,11,.2),rgba(7,8,11,.78) 72%),
