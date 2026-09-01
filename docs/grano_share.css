@@ -44,6 +44,25 @@ html,body{
 .veil-left{
   background:linear-gradient(90deg,rgba(7,8,11,.96) 0%,rgba(7,8,11,.82) 58%,rgba(7,8,11,.32) 84%,rgba(7,8,11,.08) 100%);
 }
+.veil-cover{
+  background:
+    linear-gradient(180deg,rgba(7,8,11,.08) 0%,rgba(7,8,11,.12) 42%,rgba(7,8,11,.78) 100%),
+    linear-gradient(90deg,rgba(7,8,11,.28) 0%,rgba(7,8,11,.1) 36%,transparent 62%);
+}
+.cover-photo{
+  object-position:32% 22%;
+  filter:brightness(1.22) contrast(1.06) saturate(1.04);
+}
+.slide-cover .kenburns{animation:kenburns-cover 14s ease-out forwards}
+@keyframes kenburns-cover{
+  from{transform:scale(1.04)}
+  to{transform:scale(1.1)}
+}
+.cover-copy{
+  justify-content:flex-end;
+  max-width:62vw;
+  padding-bottom:clamp(52px,9vh,92px);
+}
 .veil-full{
   background:
     radial-gradient(ellipse 80% 70% at 70% 45%,rgba(7,8,11,.2),rgba(7,8,11,.78) 72%),
