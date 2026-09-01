@@ -2,7 +2,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>しくじり先生｜売れっ子美容師なのに4年もグラーノをさぼりまくっちゃった先生</title>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -24,12 +27,29 @@
   --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
 }
 html,body{
-  width:100%;height:100%;overflow:hidden;
+  width:100%;height:100%;
+  min-height:100%;min-height:100dvh;
+  overflow:hidden;
   background:#111;color:var(--ink);
   font-family:var(--mincho);
   -webkit-font-smoothing:antialiased;
 }
-.deck{width:100%;height:100%;position:relative}
+.deck{width:100%;height:100%;min-height:100%;min-height:100dvh;position:relative}
+/* Safari/Chrome は全画面要素を元サイズのまま中央に置くことがある */
+html:fullscreen,html:-webkit-full-screen,html:-moz-full-screen,
+body:fullscreen,body:-webkit-full-screen,body:-moz-full-screen,
+.deck:fullscreen,.deck:-webkit-full-screen,.deck:-moz-full-screen{
+  width:100% !important;height:100% !important;
+  width:100vw !important;height:100vh !important;height:100dvh !important;
+  max-width:none !important;max-height:none !important;
+  margin:0 !important;background:#111;
+}
+html.is-fs,body.is-fs{
+  position:fixed;inset:0;width:100%;height:100%;
+  width:100vw;height:100vh;height:100dvh;
+  overflow:hidden;background:#111;
+}
+body.is-fs .deck,html.is-fs .deck{width:100%;height:100%}
 .slide{
   position:absolute;inset:0;
   opacity:0;pointer-events:none;
@@ -359,7 +379,24 @@ html,body{
   padding:6px 12px;border-radius:6px;cursor:pointer;font-size:13px;
 }
 .ctrl-btn:hover{background:rgba(255,255,255,.16)}
+.ctrl-btn.fs-on{background:rgba(196,22,28,.85);border-color:rgba(255,255,255,.35);color:#fff}
 .page-ind{color:rgba(255,255,255,.45);font-size:13px;min-width:3.5em;text-align:center}
+.fs-gate{
+  position:fixed;inset:0;z-index:80;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  background:rgba(10,8,6,.62);
+  font-family:system-ui,sans-serif;
+}
+.fs-gate[hidden]{display:none !important}
+.fs-gate .go{
+  font-size:clamp(18px,2.4vw,28px);font-weight:800;letter-spacing:.12em;
+  padding:18px 36px;border:0;border-radius:10px;cursor:pointer;
+  background:var(--red);color:#fff;
+}
+.fs-gate .skip{
+  background:transparent;border:0;color:rgba(255,255,255,.7);
+  font-size:15px;cursor:pointer;text-decoration:underline;
+}
 .step-dot{
   position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:20;
   display:flex;gap:5px;
@@ -608,7 +645,11 @@ body:has(.slide.night.active) .step-dot span.on{background:var(--chalk-yellow);b
 
 </div>
 
-<div class="hint"><kbd>→</kbd><kbd>Space</kbd> 次　<kbd>←</kbd> 前　<kbd>F</kbd> 全画面</div>
+<div class="fs-gate" id="fs-gate">
+  <button class="go" id="btn-fs-start" type="button">全画面で発表する</button>
+  <button class="skip" id="btn-fs-skip" type="button">このまま見る</button>
+</div>
+<div class="hint"><kbd>→</kbd><kbd>Space</kbd> 次　<kbd>←</kbd> 前　<kbd>F</kbd> 全画面　<kbd>Esc</kbd> 解除</div>
 <nav class="controls" aria-label="スライド操作">
   <button class="ctrl-btn" id="btn-prev" type="button">← 前</button>
   <span class="page-ind" id="page-ind">1 / 15</span>
@@ -635,23 +676,99 @@ body:has(.slide.night.active) .step-dot span.on{background:var(--chalk-yellow);b
   }
   window.onhashchange=()=>go((parseInt(location.hash.slice(1),10)||1)-1);
   go((parseInt(location.hash.slice(1),10)||1)-1);
-  function toggleFs(){
-    document.fullscreenElement?document.exitFullscreen?.():document.documentElement.requestFullscreen?.();
+  const fsBtn=document.getElementById('btn-fs');
+  const gate=document.getElementById('fs-gate');
+  function nativeFs(){
+    return document.fullscreenElement
+      || document.webkitFullscreenElement
+      || document.mozFullScreenElement
+      || document.msFullscreenElement
+      || null;
   }
+  function isFs(){
+    return !!(nativeFs() || document.documentElement.classList.contains('is-fs'));
+  }
+  function syncFsUi(){
+    const on=isFs();
+    fsBtn.textContent=on?'⛶ 解除':'⛶ 全画面';
+    fsBtn.classList.toggle('fs-on',on);
+    if(on && gate) gate.hidden=true;
+  }
+  function requestNativeFs(el){
+    const opts={navigationUI:'hide'};
+    if(el.requestFullscreen) return el.requestFullscreen(opts);
+    if(el.webkitRequestFullscreen) return Promise.resolve(el.webkitRequestFullscreen());
+    if(el.webkitRequestFullScreen) return Promise.resolve(el.webkitRequestFullScreen());
+    if(el.mozRequestFullScreen) return Promise.resolve(el.mozRequestFullScreen());
+    if(el.msRequestFullscreen) return Promise.resolve(el.msRequestFullscreen());
+    return Promise.reject(new Error('no fullscreen'));
+  }
+  function exitNativeFs(){
+    if(document.exitFullscreen) return document.exitFullscreen();
+    if(document.webkitExitFullscreen) return Promise.resolve(document.webkitExitFullscreen());
+    if(document.webkitCancelFullScreen) return Promise.resolve(document.webkitCancelFullScreen());
+    if(document.mozCancelFullScreen) return Promise.resolve(document.mozCancelFullScreen());
+    if(document.msExitFullscreen) return Promise.resolve(document.msExitFullscreen());
+    return Promise.resolve();
+  }
+  function setFakeFs(on){
+    document.documentElement.classList.toggle('is-fs',on);
+    document.body.classList.toggle('is-fs',on);
+  }
+  async function enterFs(){
+    const targets=[document.documentElement,document.body,document.querySelector('.deck')];
+    for(const el of targets){
+      if(!el) continue;
+      try{
+        await requestNativeFs(el);
+        if(nativeFs()){syncFsUi();return;}
+      }catch(e){}
+    }
+    setFakeFs(true);
+    syncFsUi();
+  }
+  async function leaveFs(){
+    setFakeFs(false);
+    if(nativeFs()){
+      try{await exitNativeFs();}catch(e){}
+    }
+    syncFsUi();
+  }
+  async function toggleFs(){
+    if(isFs()) await leaveFs();
+    else await enterFs();
+  }
+  ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(ev=>{
+    document.addEventListener(ev,()=>{
+      if(!nativeFs()) setFakeFs(false);
+      syncFsUi();
+    });
+  });
   document.getElementById('btn-prev').onclick=()=>go(cur-1);
   document.getElementById('btn-next').onclick=()=>go(cur+1);
-  document.getElementById('btn-fs').onclick=toggleFs;
+  fsBtn.onclick=toggleFs;
+  document.getElementById('btn-fs-start').onclick=async()=>{
+    gate.hidden=true;
+    await enterFs();
+  };
+  document.getElementById('btn-fs-skip').onclick=()=>{gate.hidden=true};
   document.onclick=e=>{
-    if(e.target.closest('.controls,.hint,.ctrl-btn')) return;
+    if(e.target.closest('.controls,.hint,.ctrl-btn,.fs-gate')) return;
     go(cur+1);
   };
   document.onkeydown=e=>{
+    if(gate && !gate.hidden){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();gate.hidden=true;enterFs();return}
+      if(e.key==='Escape'){e.preventDefault();gate.hidden=true;return}
+    }
     if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(cur+1)}
     if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='Backspace'){e.preventDefault();go(cur-1)}
     if(e.key==='f'||e.key==='F'){e.preventDefault();toggleFs()}
+    if(e.key==='Escape' && document.documentElement.classList.contains('is-fs')){e.preventDefault();leaveFs()}
     if(e.key==='Home'){e.preventDefault();go(0)}
     if(e.key==='End'){e.preventDefault();go(total-1)}
   };
+  syncFsUi();
 })();
 </script>
 </body>
