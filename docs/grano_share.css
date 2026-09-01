@@ -292,38 +292,48 @@ h2{font-size:clamp(42px,4.8vw,78px)}
 
 .veil-corp{
   background:
-    linear-gradient(90deg,rgba(7,8,11,.94) 0%,rgba(7,8,11,.55) 48%,rgba(7,8,11,.12) 78%,rgba(7,8,11,.3) 100%),
-    linear-gradient(180deg,rgba(7,8,11,.18) 0%,transparent 45%,rgba(7,8,11,.52) 100%);
+    linear-gradient(90deg,rgba(7,8,11,.88) 0%,rgba(7,8,11,.42) 42%,rgba(7,8,11,.1) 72%,rgba(7,8,11,.35) 100%),
+    linear-gradient(180deg,rgba(7,8,11,.2) 0%,transparent 48%,rgba(7,8,11,.55) 100%);
+}
+.corp-stage{
+  position:relative;z-index:3;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  height:100%;
+  align-items:center;
+  padding:clamp(40px,8vh,80px) clamp(36px,6vw,96px) clamp(48px,8vh,88px) clamp(64px,10vw,140px);
+  gap:clamp(16px,3vw,40px);
 }
 .corp-left{
   position:relative;z-index:3;
-  height:100%;width:min(72%,52em);
+  width:auto;height:auto;
   display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(32px,5vh,64px) clamp(40px,5vw,88px) clamp(88px,16vh,140px) clamp(40px,5.5vw,88px);
+  padding:0;
 }
-.slide-corp h2{font-size:clamp(52px,6.2vw,104px);line-height:1.18}
+.slide-corp h2{font-size:clamp(64px,8.2vw,148px);line-height:1.12}
+.slide-corp .catch{font-size:clamp(36px,4.2vw,68px);margin:.2em 0 .5em}
 .slide-corp .lead{
-  font-size:clamp(34px,3.6vw,56px);max-width:none;margin-top:.55em;
+  font-size:clamp(32px,3.5vw,54px);max-width:none;margin-top:.35em;
 }
 .slide-corp .quote{
-  margin-top:.75em;
-  font-size:clamp(40px,4.4vw,72px);
+  margin-top:.7em;
+  font-size:clamp(36px,4vw,66px);
 }
 .slide-corp .note{
-  font-size:clamp(28px,2.7vw,42px);color:var(--muted);margin-top:1em;
+  font-size:clamp(26px,2.6vw,40px);color:var(--muted);margin-top:.85em;
 }
 .corp-mark{
-  position:absolute;z-index:4;
-  right:clamp(28px,4.5vw,72px);
-  bottom:clamp(48px,9vh,110px);
-  left:auto;
+  position:relative;z-index:4;
+  left:auto;right:auto;bottom:auto;
   width:auto;
-  text-align:right;
+  text-align:left;
+  align-self:end;
+  padding-bottom:clamp(8px,3vh,28px);
   pointer-events:none;
 }
 .corp-name{
   font-family:var(--serif);
-  font-size:clamp(56px,7.4vw,132px);
+  font-size:clamp(52px,8vw,148px);
   font-weight:700;line-height:1.05;
   color:var(--gold2);
   letter-spacing:.04em;
@@ -504,8 +514,9 @@ h2{font-size:clamp(42px,4.8vw,78px)}
   .split .visual{height:32vh}
   h1{font-size:clamp(36px,9vw,64px)}
   h2{font-size:clamp(30px,7vw,48px)}
-  .corp-left{width:100%;padding-bottom:28vh}
-  .corp-mark{left:24px;right:24px;bottom:48px;text-align:left}
+  .corp-stage{grid-template-columns:1fr;padding:36px 28px 28vh}
+  .corp-left{width:100%;padding-bottom:0}
+  .corp-mark{position:absolute;left:28px;right:28px;bottom:48px;text-align:left}
   .corp-name{font-size:clamp(40px,11vw,72px)}
   .novas-copy{max-width:100%;padding-bottom:22vh}
   .novas-mark{top:auto;bottom:6vh;transform:none;font-size:clamp(48px,16vw,96px);right:5vw}
