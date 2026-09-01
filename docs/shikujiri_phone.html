@@ -215,7 +215,7 @@ em{font-style:normal;color:var(--red)}
   function fit(){
     const w=stage.clientWidth||window.innerWidth;
     const h=stage.clientHeight||window.innerHeight;
-    document.documentElement.style.setProperty('--u',(Math.min(w,h)/100)+'px');
+    document.documentElement.style.setProperty('--u',(Math.min(w,h)/72)+'px');
   }
   fit();
   if(window.ResizeObserver) new ResizeObserver(fit).observe(stage);
