@@ -695,13 +695,21 @@ body:has(.slide.night.active) .step-dot span.on{background:var(--chalk-yellow);b
     if(on && gate) gate.hidden=true;
   }
   function requestNativeFs(el){
-    const opts={navigationUI:'hide'};
-    if(el.requestFullscreen) return el.requestFullscreen(opts);
-    if(el.webkitRequestFullscreen) return Promise.resolve(el.webkitRequestFullscreen());
-    if(el.webkitRequestFullScreen) return Promise.resolve(el.webkitRequestFullScreen());
-    if(el.mozRequestFullScreen) return Promise.resolve(el.mozRequestFullScreen());
-    if(el.msRequestFullscreen) return Promise.resolve(el.msRequestFullscreen());
-    return Promise.reject(new Error('no fullscreen'));
+    const start=()=>{
+      if(el.requestFullscreen){
+        try{return el.requestFullscreen({navigationUI:'hide'});}
+        catch(e){return el.requestFullscreen();}
+      }
+      if(el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+      if(el.webkitRequestFullScreen) return el.webkitRequestFullScreen();
+      if(el.mozRequestFullScreen) return el.mozRequestFullScreen();
+      if(el.msRequestFullscreen) return el.msRequestFullscreen();
+      return Promise.reject(new Error('no fullscreen'));
+    };
+    return Promise.race([
+      Promise.resolve().then(start),
+      new Promise((_,rej)=>setTimeout(()=>rej(new Error('fs timeout')),900))
+    ]);
   }
   function exitNativeFs(){
     if(document.exitFullscreen) return document.exitFullscreen();
