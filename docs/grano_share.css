@@ -343,6 +343,29 @@ h2{font-size:clamp(42px,4.8vw,78px)}
   font-size:clamp(24px,2.3vw,36px);color:var(--muted);line-height:1.45;
 }
 
+.slide-stats .inner{justify-content:flex-end;padding-bottom:clamp(56px,9vh,96px)}
+.slide-stats h2{font-size:clamp(46px,5.6vw,92px);line-height:1.2}
+.slide-stats .lead{
+  font-size:clamp(28px,3vw,46px);margin-top:.35em;max-width:none;color:var(--muted);
+}
+.slide-stats .stats{
+  margin-top:clamp(28px,4.5vh,52px);
+  gap:clamp(28px,4.2vw,64px);
+}
+.slide-stats .stat .num{
+  font-size:clamp(88px,10vw,168px);
+  text-shadow:0 16px 50px rgba(0,0,0,.55);
+}
+.slide-stats .stat .num small{
+  font-size:.32em;font-weight:700;margin-left:.18em;color:var(--gold);
+}
+.slide-stats .stat .lbl{
+  font-size:clamp(32px,3.3vw,52px);margin-top:.45em;
+}
+.slide-stats .stat .sub{
+  font-size:clamp(26px,2.7vw,42px);color:var(--ink);
+}
+
 .novas-list{list-style:none;margin-top:clamp(18px,2.6vh,32px);display:flex;flex-direction:column;gap:.55em}
 .novas-list li{
   font-size:clamp(28px,2.8vw,44px);line-height:1.5;font-weight:500;
