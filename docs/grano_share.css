@@ -42,7 +42,7 @@ html,body{
   background:linear-gradient(90deg,rgba(7,8,11,.92) 0%,rgba(7,8,11,.5) 48%,rgba(7,8,11,.22) 100%);
 }
 .veil-left{
-  background:linear-gradient(90deg,rgba(7,8,11,.94) 0%,rgba(7,8,11,.58) 42%,rgba(7,8,11,.12) 100%);
+  background:linear-gradient(90deg,rgba(7,8,11,.96) 0%,rgba(7,8,11,.72) 40%,rgba(7,8,11,.18) 100%);
 }
 .veil-full{
   background:
@@ -88,14 +88,14 @@ h1 .gold,h2 .gold,.gold{color:var(--gold)}
 h1 em,h2 em{font-style:normal;color:var(--gold2)}
 h2{font-size:clamp(42px,4.8vw,78px)}
 .lead{
-  margin-top:clamp(16px,2.2vh,28px);
-  font-size:clamp(24px,2.35vw,36px);
-  line-height:1.65;color:var(--muted);font-weight:500;max-width:22em;
+  margin-top:clamp(18px,2.4vh,32px);
+  font-size:clamp(28px,2.8vw,44px);
+  line-height:1.55;color:var(--ink);font-weight:500;max-width:20em;
 }
 .subnames{
-  margin-top:clamp(22px,2.6vh,36px);
-  font-size:clamp(22px,2.2vw,34px);
-  letter-spacing:.12em;color:var(--ink);font-weight:700;
+  margin-top:clamp(22px,2.8vh,40px);
+  font-size:clamp(26px,2.5vw,42px);
+  letter-spacing:.1em;color:var(--ink);font-weight:700;
 }
 .subnames span{color:var(--gold);margin:0 .4em}
 
@@ -131,16 +131,21 @@ h2{font-size:clamp(42px,4.8vw,78px)}
 }
 .person-copy{
   position:absolute;left:0;right:0;bottom:0;z-index:2;
-  padding:clamp(28px,4vh,44px) clamp(22px,2.4vw,40px) clamp(52px,7.5vh,80px);
+  padding:clamp(24px,3.6vh,40px) clamp(20px,2.2vw,36px) clamp(48px,7vh,76px);
 }
 .person .role{
-  font-size:clamp(18px,1.7vw,26px);letter-spacing:.18em;
-  color:var(--gold);font-weight:700;margin-bottom:.4em;
+  font-size:clamp(20px,1.85vw,28px);letter-spacing:.16em;
+  color:var(--gold);font-weight:700;margin-bottom:.35em;
 }
-.person h3{font-size:clamp(42px,4vw,68px);margin-bottom:.4em}
+.person h3{font-size:clamp(44px,4.2vw,72px);margin-bottom:.3em}
 .person .punch{
-  font-size:clamp(26px,2.4vw,40px);line-height:1.4;
+  font-size:clamp(28px,2.6vw,42px);line-height:1.35;
   color:var(--ink);font-weight:700;
+}
+.person .bio{
+  margin-top:.4em;
+  font-size:clamp(20px,1.95vw,30px);line-height:1.45;
+  color:var(--muted);font-weight:500;
 }
 
 .band{
@@ -231,8 +236,8 @@ h2{font-size:clamp(42px,4.8vw,78px)}
 
 .stats{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(18px,3vw,40px);
-  margin-top:clamp(28px,4vh,48px);
+  gap:clamp(20px,3vw,44px);
+  margin-top:clamp(20px,3.2vh,36px);
 }
 .stat{text-align:left;padding:0;border:none;background:none}
 .stat .num{
@@ -241,18 +246,18 @@ h2{font-size:clamp(42px,4.8vw,78px)}
 }
 .stat .num small{font-size:.38em;letter-spacing:.06em;margin-left:.12em}
 .stat .lbl{
-  margin-top:.45em;
-  font-size:clamp(22px,2.1vw,34px);
+  margin-top:.4em;
+  font-size:clamp(26px,2.4vw,38px);
   color:var(--ink);font-weight:700;
 }
 .stat .sub{
   margin-top:.35em;
-  font-size:clamp(20px,1.9vw,30px);color:var(--muted);line-height:1.45;
+  font-size:clamp(22px,2.1vw,32px);color:var(--muted);line-height:1.45;
 }
 
 .novas-list{list-style:none;margin-top:clamp(18px,2.6vh,32px);display:flex;flex-direction:column;gap:.55em}
 .novas-list li{
-  font-size:clamp(24px,2.4vw,38px);line-height:1.5;font-weight:500;
+  font-size:clamp(26px,2.55vw,40px);line-height:1.5;font-weight:500;
   padding-left:1.15em;position:relative;
 }
 .novas-list li::before{
