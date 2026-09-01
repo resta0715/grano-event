@@ -42,7 +42,7 @@ html,body{
   background:linear-gradient(90deg,rgba(7,8,11,.92) 0%,rgba(7,8,11,.5) 48%,rgba(7,8,11,.22) 100%);
 }
 .veil-left{
-  background:linear-gradient(90deg,rgba(7,8,11,.96) 0%,rgba(7,8,11,.8) 50%,rgba(7,8,11,.38) 74%,rgba(7,8,11,.12) 100%);
+  background:linear-gradient(90deg,rgba(7,8,11,.96) 0%,rgba(7,8,11,.82) 58%,rgba(7,8,11,.32) 84%,rgba(7,8,11,.08) 100%);
 }
 .veil-full{
   background:
@@ -61,6 +61,23 @@ html,body{
   padding:clamp(28px,4vh,56px) clamp(40px,5.5vw,96px) clamp(64px,8vh,88px);
   min-height:0;
 }
+.inner.over-art{
+  max-width:84vw;
+  padding-right:clamp(24px,8vw,96px);
+}
+.inner.over-art h2{font-size:clamp(48px,5.8vw,96px)}
+.inner.over-art .lead{
+  max-width:none;
+  font-size:clamp(36px,3.8vw,58px);
+}
+.inner.over-art .cta-line{
+  max-width:none;
+  font-size:clamp(38px,4.1vw,66px);
+}
+.inner.over-art .novas-list{max-width:none}
+.inner.over-art .novas-list li{font-size:clamp(32px,3.35vw,52px)}
+.inner.over-art .lines{max-width:none}
+.inner.over-art .note{max-width:none}
 .inner.fill{padding:0;justify-content:stretch}
 
 .eyebrow{
