@@ -429,6 +429,15 @@ h2{font-size:clamp(42px,4.8vw,78px)}
 }
 .novas-copy{max-width:56vw;padding-right:clamp(16px,4vw,48px)}
 .inner.over-art.novas-copy{max-width:56vw}
+.slide-novas h2{
+  font-size:clamp(64px,8.2vw,148px);
+  color:var(--gold2);
+  text-shadow:0 16px 60px rgba(0,0,0,.7),0 0 50px rgba(212,179,106,.3);
+}
+.slide-novas .catch{
+  font-size:clamp(40px,4.5vw,74px);
+  margin:.15em 0 .45em;
+}
 .novas-mark{
   position:absolute;z-index:3;
   right:2.4vw;top:52%;
