@@ -1,0 +1,20 @@
+{
+  "name": "一着をつくる — 大工原 葉子",
+  "short_name": "一着をつくる",
+  "description": "着物リメイク / オーダーメイド相談",
+  "start_url": "/grano-event/daikuhara/",
+  "scope": "/grano-event/daikuhara/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf7f2",
+  "theme_color": "#faf7f2",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "/grano-event/assets/daikuhara/portrait.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
