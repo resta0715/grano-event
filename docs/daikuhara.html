@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大工原 葉子｜世界で一つを形にする縫製職人</title>
+<meta name="description" content="BNIグラーノ 大工原葉子。着物リメイクとオーダーメイド、入口から分かれる一着づくり。">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#16110e;
+  --ink2:#2a221c;
+  --cream:#f6efe4;
+  --paper:#fffaf3;
+  --gold:#c4a15a;
+  --gold2:#e8d5a3;
+  --vermilion:#a33a32;
+  --muted:#6a5d50;
+  --line:rgba(22,17,14,.12);
+  --serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,system-ui,sans-serif;
+}
+html,body{height:100%;background:var(--ink);color:var(--cream);font-family:var(--sans)}
+body{min-height:100vh;-webkit-font-smoothing:antialiased}
+.nowrap{white-space:nowrap}
+.view{display:none;min-height:100vh}
+.view.is-on{display:flex;flex-direction:column}
+.word{word-break:keep-all;line-break:strict}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 28px;background:rgba(22,17,14,.88);backdrop-filter:blur(10px);
+  position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(196,161,90,.22);
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1px solid var(--gold)}
+.brand b{font-family:var(--serif);font-size:clamp(22px,2.2vw,32px);font-weight:700;letter-spacing:.04em}
+.brand small{display:block;color:var(--gold2);font-size:clamp(13px,1.2vw,16px);letter-spacing:.12em;margin-top:2px}
+.btn{
+  appearance:none;border:1px solid rgba(246,239,228,.28);background:transparent;color:var(--cream);
+  font:inherit;font-size:clamp(16px,1.5vw,22px);padding:10px 18px;cursor:pointer;
+  letter-spacing:.08em;
+}
+.btn:hover{border-color:var(--gold);color:var(--gold2)}
+.btn-gold{
+  background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700;
+}
+.btn-gold:hover{background:var(--gold2);color:var(--ink);border-color:var(--gold2)}
+
+/* GATE */
+.gate{min-height:100vh}
+.gate-head{
+  padding:clamp(28px,4vh,56px) 32px 20px;text-align:center;
+}
+.gate-kicker{
+  color:var(--gold);letter-spacing:.38em;font-size:clamp(14px,1.4vw,20px);font-weight:700;margin-bottom:12px;
+}
+.gate-name{
+  font-family:var(--serif);font-size:clamp(52px,7vw,108px);font-weight:700;line-height:1.15;
+  letter-spacing:.06em;
+}
+.gate-cat{
+  margin-top:10px;font-size:clamp(22px,2.6vw,40px);color:var(--gold2);letter-spacing:.08em;
+}
+.gate-lead{
+  margin:16px auto 0;max-width:22em;font-size:clamp(20px,2.1vw,32px);line-height:1.7;color:rgba(246,239,228,.78);
+}
+.doors{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:58vh}
+.door{
+  position:relative;display:flex;align-items:flex-end;min-height:52vh;padding:40px 36px 44px;
+  text-decoration:none;color:var(--cream);overflow:hidden;cursor:pointer;border:0;background:none;text-align:left;
+  font:inherit;
+}
+.door .bg{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  transform:scale(1.04);transition:transform .6s ease;
+}
+.door:hover .bg{transform:scale(1.1)}
+.door .veil{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(22,17,14,.18) 0%,rgba(22,17,14,.78) 62%,rgba(22,17,14,.92) 100%);
+}
+.door-body{position:relative;z-index:1;width:min(100%,18em)}
+.door-label{
+  font-size:clamp(16px,1.5vw,22px);letter-spacing:.28em;color:var(--gold);font-weight:700;margin-bottom:8px;
+}
+.door-title{
+  font-family:var(--serif);font-size:clamp(40px,4.4vw,68px);line-height:1.25;font-weight:700;
+}
+.door-copy{
+  margin-top:12px;font-size:clamp(20px,2vw,30px);line-height:1.65;color:rgba(246,239,228,.88);
+}
+.door-go{margin-top:18px;font-size:clamp(16px,1.5vw,22px);letter-spacing:.16em;color:var(--gold2)}
+
+/* STUDIO */
+.studio{flex:1;padding:20px 28px 48px;max-width:1440px;width:100%;margin:0 auto}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.step-pill{
+  font-size:clamp(16px,1.5vw,22px);padding:8px 14px;border:1px solid var(--line);color:var(--muted);letter-spacing:.08em;
+}
+.step-pill.is-now{border-color:var(--gold);color:var(--gold2)}
+.step-pill.is-done{color:var(--cream)}
+.h2{
+  font-family:var(--serif);font-size:clamp(36px,4vw,64px);line-height:1.3;margin-bottom:10px;
+}
+.sub{
+  font-size:clamp(20px,2.1vw,32px);line-height:1.7;color:rgba(246,239,228,.78);margin-bottom:28px;max-width:22em;
+}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{
+  position:relative;border:2px solid transparent;cursor:pointer;background:#1d1713;overflow:hidden;text-align:left;
+  color:inherit;font:inherit;padding:0;
+}
+.card img{display:block;width:100%;height:280px;object-fit:cover}
+.card .cap{padding:14px 16px 18px}
+.card .nm{font-family:var(--serif);font-size:clamp(24px,2.4vw,36px)}
+.card .bl{margin-top:4px;font-size:clamp(16px,1.6vw,22px);color:rgba(246,239,228,.7);line-height:1.5}
+.card.is-on{border-color:var(--gold)}
+.card.is-on::after{
+  content:"選んだ";position:absolute;top:12px;right:12px;
+  background:var(--gold);color:var(--ink);font-size:18px;font-weight:700;letter-spacing:.12em;padding:6px 12px;
+}
+.form-card{min-height:120px;display:flex;align-items:flex-end;padding:18px;background:
+  linear-gradient(180deg,#241c16,#1a1511);border:2px solid transparent;cursor:pointer;color:inherit;font:inherit;text-align:left}
+.form-card .nm{font-family:var(--serif);font-size:clamp(26px,2.6vw,40px)}
+.form-card.is-on{border-color:var(--gold)}
+
+.result{
+  display:grid;grid-template-columns:1fr 1.15fr;gap:22px;align-items:stretch;margin-top:8px;
+}
+.result figcaption{
+  margin-top:10px;font-size:clamp(16px,1.5vw,22px);color:var(--gold2);letter-spacing:.12em;
+}
+.result img{width:100%;height:min(62vh,620px);object-fit:cover;display:block;background:#111}
+.result-copy{
+  display:flex;flex-direction:column;justify-content:flex-end;padding:8px 4px 0;
+}
+.result-copy p{
+  font-size:clamp(26px,2.8vw,44px);line-height:1.55;font-family:var(--serif);
+}
+.result-copy .hint{margin-top:16px;font-family:var(--sans);font-size:clamp(18px,1.8vw,26px);color:rgba(246,239,228,.75);line-height:1.7}
+.approx{
+  margin-top:12px;font-size:clamp(16px,1.5vw,22px);color:var(--gold);
+}
+
+.wish{margin-top:32px}
+.wish label{display:block;font-size:clamp(18px,1.8vw,26px);margin-bottom:10px;color:var(--gold2)}
+.wish textarea{
+  width:100%;min-height:120px;padding:16px 18px;font:inherit;
+  font-size:clamp(18px,1.8vw,26px);line-height:1.6;background:var(--paper);color:var(--ink);
+  border:0;resize:vertical;word-break:keep-all;
+}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+/* NOTE */
+.note-wrap{max-width:980px;margin:0 auto;padding:28px 24px 64px;width:100%}
+.note-paper{
+  background:var(--paper);color:var(--ink);padding:clamp(28px,4vw,56px);
+}
+.note-paper h2{font-family:var(--serif);font-size:clamp(36px,4vw,56px);line-height:1.3;margin-bottom:8px}
+.note-who{font-size:clamp(22px,2.2vw,32px);margin-bottom:28px}
+.note-row{display:grid;grid-template-columns:7em 1fr;gap:12px;padding:14px 0;border-top:1px solid rgba(22,17,14,.12);font-size:clamp(20px,2vw,30px);line-height:1.6}
+.note-row dt{color:var(--muted);font-size:clamp(16px,1.4vw,20px);letter-spacing:.12em;padding-top:.35em}
+.note-foot{margin-top:28px;font-size:clamp(18px,1.8vw,26px);line-height:1.7}
+.demo-tag{font-size:clamp(14px,1.2vw,18px);letter-spacing:.16em;color:var(--gold);margin-bottom:8px}
+
+@media (max-width:900px){
+  .doors,.grid3,.grid4,.result,.note-row{grid-template-columns:1fr}
+  .card img{height:220px}
+  .result img{height:42vh}
+  .topbar{padding:12px 16px}
+  .studio{padding:16px 16px 40px}
+}
+</style>
+</head>
+<body>
+
+<section id="gate" class="view is-on gate">
+  <div class="gate-head">
+    <p class="gate-kicker">BNI GRANO · DEMO</p>
+    <h1 class="gate-name word">大工原 葉子</h1>
+    <p class="gate-cat word"><span class="nowrap">世界で一つを形にする</span><span class="nowrap">縫製職人</span></p>
+    <p class="gate-lead word">生地選びから型紙、縫製まで、一人で通す。<br>入り口は、二つ。</p>
+  </div>
+  <div class="doors">
+    <button type="button" class="door" data-go="kimono">
+      <span class="bg" style="background-image:url('assets/daikuhara/dk-kimono-baika.png')"></span>
+      <span class="veil"></span>
+      <span class="door-body">
+        <span class="door-label">入口 1</span>
+        <span class="door-title word">着物リメイク</span>
+        <span class="door-copy word">タンスの着物を、<br>次の一着にする。</span>
+        <span class="door-go">この入口へ →</span>
+      </span>
+    </button>
+    <button type="button" class="door" data-go="order">
+      <span class="bg" style="background-image:url('assets/daikuhara/dk-atelier.png')"></span>
+      <span class="veil"></span>
+      <span class="door-body">
+        <span class="door-label">入口 2</span>
+        <span class="door-title word">オーダーメイド</span>
+        <span class="door-copy word">欲しい服を、<br>型紙から起こす。</span>
+        <span class="door-go">この入口へ →</span>
+      </span>
+    </button>
+  </div>
+</section>
+
+<section id="kimono" class="view">
+  <div class="topbar">
+    <div class="brand">
+      <img src="assets/daikuhara/portrait.jpg" alt="大工原 葉子">
+      <div><b class="word">大工原 葉子</b><small>着物リメイク</small></div>
+    </div>
+    <button type="button" class="btn" data-home>入口へ戻る</button>
+  </div>
+  <div class="studio">
+    <div class="steps" id="k-steps"></div>
+    <div id="k-panel"></div>
+  </div>
+</section>
+
+<section id="order" class="view">
+  <div class="topbar">
+    <div class="brand">
+      <img src="assets/daikuhara/portrait.jpg" alt="大工原 葉子">
+      <div><b class="word">大工原 葉子</b><small>オーダーメイド</small></div>
+    </div>
+    <button type="button" class="btn" data-home>入口へ戻る</button>
+  </div>
+  <div class="studio">
+    <div class="steps" id="o-steps"></div>
+    <div id="o-panel"></div>
+  </div>
+</section>
+
+<section id="note" class="view">
+  <div class="topbar">
+    <div class="brand">
+      <img src="assets/daikuhara/portrait.jpg" alt="大工原 葉子">
+      <div><b class="word">大工原 葉子</b><small>相談メモ</small></div>
+    </div>
+    <button type="button" class="btn" data-home>入口へ戻る</button>
+  </div>
+  <div class="note-wrap">
+    <p class="demo-tag">DEMO · 実物は生地の状態と採寸で変わる</p>
+    <div class="note-paper" id="note-paper"></div>
+    <div class="actions" style="margin-top:22px">
+      <button type="button" class="btn" id="note-back">選び直す</button>
+      <a class="btn btn-gold" href="ai_member_apps.html">アイデア表を見る</a>
+    </div>
+  </div>
+</section>
+
+<script>
+const A = "assets/daikuhara/";
+const KIMONOS = [
+  { id:"baika", name:"紅梅", blurb:"クリームに、紅い梅。", img:"dk-kimono-baika.png",
+    hint:"袖の梅を、襟やポケットに残す。" },
+  { id:"ai", name:"藍霞", blurb:"藍に、白い麻の葉。", img:"dk-kimono-ai.png",
+    hint:"幾何の柄を、身頃の正面に置く。" },
+  { id:"tsuru", name:"金鶴", blurb:"黒地に、金の鶴。", img:"dk-kimono-tsuru.png",
+    hint:"鶴を、見える位置に切り出す。" }
+];
+const FORMS = [
+  { id:"dress", name:"ワンピース" },
+  { id:"jacket", name:"ジャケット" },
+  { id:"bag", name:"バッグ" },
+  { id:"stole", name:"ストール" }
+];
+const REMAKE = {
+  "baika:dress": { img:"dk-baika-dress.png", line:"お母さんの着物が、春に着るワンピースになる。" },
+  "baika:bag":   { img:"dk-baika-bag.png",   line:"梅の柄が、毎日持てるバッグになる。" },
+  "ai:jacket":   { img:"dk-ai-jacket.png",   line:"藍の麻の葉が、毎日のジャケットになる。" },
+  "ai:bag":      { img:"dk-ai-bag.png",      line:"藍が、手元のバッグになる。" },
+  "tsuru:stole": { img:"dk-tsuru-stole.png", line:"金の鶴が、肩に流れるストールになる。" },
+  "tsuru:jacket":{ img:"dk-tsuru-vest.png",  line:"鶴を胸に残した、羽織る一着。" }
+};
+const PIECES = [
+  { id:"dress",  name:"ワンピース", img:"dk-order-linen-dress.png" },
+  { id:"jacket", name:"ジャケット", img:"dk-order-wool-jacket.png" },
+  { id:"pants",  name:"パンツ",     img:"dk-order-silk-pants.png" }
+];
+const FABRICS = [
+  { id:"linen", name:"リネン", blurb:"生成。風を通す。", img:"dk-fabric-linen.png" },
+  { id:"wool",  name:"ウール", blurb:"チャコール。形が残る。", img:"dk-fabric-wool.png" },
+  { id:"silk",  name:"シルク", blurb:"黒。落ちる。", img:"dk-fabric-silk.png" }
+];
+const ORDER_EXACT = {
+  "dress:linen": "dk-order-linen-dress.png",
+  "jacket:wool": "dk-order-wool-jacket.png",
+  "pants:silk":  "dk-order-silk-pants.png"
+};
+
+const state = {
+  path:null, kStep:1, oStep:1,
+  kimono:null, form:null, piece:null, fabric:null, wish:""
+};
+
+const $ = (id) => document.getElementById(id);
+function show(id){
+  document.querySelectorAll(".view").forEach(v => v.classList.toggle("is-on", v.id === id));
+  window.scrollTo(0,0);
+}
+document.querySelectorAll("[data-home]").forEach(b => b.addEventListener("click", () => {
+  state.path = null; state.kStep = 1; state.oStep = 1;
+  state.kimono = state.form = state.piece = state.fabric = null; state.wish = "";
+  show("gate");
+}));
+document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => {
+  state.path = b.dataset.go;
+  if (state.path === "kimono"){ state.kStep = 1; renderKimono(); show("kimono"); }
+  else { state.oStep = 1; renderOrder(); show("order"); }
+}));
+
+function pills(el, items, now){
+  el.innerHTML = items.map((t,i) => {
+    const n = i+1;
+    const cls = n === now ? "is-now" : (n < now ? "is-done" : "");
+    return `<span class="step-pill ${cls}">${n} ${t}</span>`;
+  }).join("");
+}
+
+function renderKimono(){
+  pills($("k-steps"), ["着物を選ぶ","形を選ぶ","イメージ"], state.kStep);
+  const p = $("k-panel");
+  if (state.kStep === 1){
+    p.innerHTML = `
+      <h2 class="h2 word">どの着物から、始めますか。</h2>
+      <p class="sub word">デモ用の三枚です。本番は、持ち込みの着物を見ます。</p>
+      <div class="grid3">${KIMONOS.map(k => `
+        <button type="button" class="card ${state.kimono===k.id?"is-on":""}" data-k="${k.id}">
+          <img src="${A+k.img}" alt="${k.name}">
+          <div class="cap"><div class="nm word">${k.name}</div><div class="bl word">${k.blurb}</div></div>
+        </button>`).join("")}</div>`;
+    p.querySelectorAll("[data-k]").forEach(b => b.onclick = () => {
+      state.kimono = b.dataset.k; state.kStep = 2; renderKimono();
+    });
+    return;
+  }
+  if (state.kStep === 2){
+    p.innerHTML = `
+      <h2 class="h2 word">何の形にしますか。</h2>
+      <p class="sub word">生地を活かす形を、先に決める。</p>
+      <div class="grid4">${FORMS.map(f => `
+        <button type="button" class="form-card ${state.form===f.id?"is-on":""}" data-f="${f.id}">
+          <span class="nm word">${f.name}</span>
+        </button>`).join("")}</div>
+      <div class="actions"><button type="button" class="btn" id="k-back">着物を選び直す</button></div>`;
+    p.querySelectorAll("[data-f]").forEach(b => b.onclick = () => {
+      state.form = b.dataset.f; state.kStep = 3; renderKimono();
+    });
+    $("k-back").onclick = () => { state.kStep = 1; renderKimono(); };
+    return;
+  }
+  const k = KIMONOS.find(x => x.id === state.kimono);
+  const f = FORMS.find(x => x.id === state.form);
+  const hit = REMAKE[state.kimono+":"+state.form];
+  const afterImg = hit ? hit.img : k.img;
+  const line = hit ? hit.line : `この生地で、${f.name}を型紙から起こします。`;
+  const approx = !hit;
+  p.innerHTML = `
+    <h2 class="h2 word">仕上がりの気配。</h2>
+    <p class="sub word">イメージです。実物は、生地の残りとご要望で変わります。</p>
+    <div class="result">
+      <figure>
+        <img src="${A+k.img}" alt="${k.name}">
+        <figcaption class="word">いまの着物　${k.name}</figcaption>
+      </figure>
+      <div class="result-copy">
+        <figure>
+          <img src="${A+afterImg}" alt="${f.name}">
+          <figcaption class="word">${approx ? "生地を見て、この形を起こす" : "この形にする"}　${f.name}</figcaption>
+        </figure>
+        <p class="word">${line}</p>
+        <p class="hint word">${k.hint}</p>
+        ${approx ? `<p class="approx word">この組み合わせは写真が未作成です。大工原さんが型紙から作ります。</p>` : ""}
+      </div>
+    </div>
+    <div class="wish">
+      <label for="k-wish">わがままを、一行で。</label>
+      <textarea id="k-wish" class="word" placeholder="母の振袖です。春のパーティーで着たい。">${escapeAttr(state.wish)}</textarea>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn" id="k-back2">形を選び直す</button>
+      <button type="button" class="btn btn-gold" id="k-go">大工原 葉子に相談する</button>
+    </div>`;
+  $("k-back2").onclick = () => { state.kStep = 2; renderKimono(); };
+  $("k-go").onclick = () => { state.wish = $("k-wish").value.trim(); openNote(); };
+}
+
+function renderOrder(){
+  pills($("o-steps"), ["服を選ぶ","生地を選ぶ","イメージ"], state.oStep);
+  const p = $("o-panel");
+  if (state.oStep === 1){
+    p.innerHTML = `
+      <h2 class="h2 word">何を、作りますか。</h2>
+      <p class="sub word">既製服にないサイズも、こだわりも、一着に入れる。</p>
+      <div class="grid3">${PIECES.map(x => `
+        <button type="button" class="card ${state.piece===x.id?"is-on":""}" data-p="${x.id}">
+          <img src="${A+x.img}" alt="${x.name}">
+          <div class="cap"><div class="nm word">${x.name}</div></div>
+        </button>`).join("")}</div>`;
+    p.querySelectorAll("[data-p]").forEach(b => b.onclick = () => {
+      state.piece = b.dataset.p; state.oStep = 2; renderOrder();
+    });
+    return;
+  }
+  if (state.oStep === 2){
+    p.innerHTML = `
+      <h2 class="h2 word">どの生地の気配にしますか。</h2>
+      <p class="sub word">本番は、生地を触って決めます。デモは三つの気配。</p>
+      <div class="grid3">${FABRICS.map(x => `
+        <button type="button" class="card ${state.fabric===x.id?"is-on":""}" data-fb="${x.id}">
+          <img src="${A+x.img}" alt="${x.name}" style="height:200px">
+          <div class="cap"><div class="nm word">${x.name}</div><div class="bl word">${x.blurb}</div></div>
+        </button>`).join("")}</div>
+      <div class="actions"><button type="button" class="btn" id="o-back">服を選び直す</button></div>`;
+    p.querySelectorAll("[data-fb]").forEach(b => b.onclick = () => {
+      state.fabric = b.dataset.fb; state.oStep = 3; renderOrder();
+    });
+    $("o-back").onclick = () => { state.oStep = 1; renderOrder(); };
+    return;
+  }
+  const piece = PIECES.find(x => x.id === state.piece);
+  const fab = FABRICS.find(x => x.id === state.fabric);
+  const exact = ORDER_EXACT[state.piece+":"+state.fabric];
+  const img = exact || piece.img;
+  const approx = !exact;
+  p.innerHTML = `
+    <h2 class="h2 word">この型を、この生地で。</h2>
+    <p class="sub word">大工原さんが、型紙から起こします。</p>
+    <div class="result">
+      <figure>
+        <img src="${A+fab.img}" alt="${fab.name}" style="height:min(42vh,420px)">
+        <figcaption class="word">生地　${fab.name}　${fab.blurb}</figcaption>
+      </figure>
+      <div class="result-copy">
+        <figure>
+          <img src="${A+img}" alt="${piece.name}">
+          <figcaption class="word">${piece.name}</figcaption>
+        </figure>
+        <p class="word">${fab.name}で、${piece.name}を一着つくる。</p>
+        <p class="hint word">肩・袖・着丈は、採寸して型紙に落とす。<br>既製服にないところから、始められる。</p>
+        ${approx ? `<p class="approx word">この生地×この型の写真は未作成です。気配の組み合わせです。</p>` : ""}
+      </div>
+    </div>
+    <div class="wish">
+      <label for="o-wish">わがままを、一行で。</label>
+      <textarea id="o-wish" class="word" placeholder="肩が落ちる既製服が合わない。袖は少し長めに。">${escapeAttr(state.wish)}</textarea>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn" id="o-back2">生地を選び直す</button>
+      <button type="button" class="btn btn-gold" id="o-go">大工原 葉子に相談する</button>
+    </div>`;
+  $("o-back2").onclick = () => { state.oStep = 2; renderOrder(); };
+  $("o-go").onclick = () => { state.wish = $("o-wish").value.trim(); openNote(); };
+}
+
+function openNote(){
+  const pathName = state.path === "kimono" ? "着物リメイク" : "オーダーメイド";
+  let pick = "";
+  if (state.path === "kimono"){
+    const k = KIMONOS.find(x => x.id === state.kimono);
+    const f = FORMS.find(x => x.id === state.form);
+    pick = `${k.name}の着物 → ${f.name}`;
+  } else {
+    const p = PIECES.find(x => x.id === state.piece);
+    const f = FABRICS.find(x => x.id === state.fabric);
+    pick = `${f.name}で、${p.name}`;
+  }
+  $("note-paper").innerHTML = `
+    <h2 class="word">相談メモ</h2>
+    <p class="note-who word">渡す相手　<b>大工原 葉子</b></p>
+    <dl>
+      <div class="note-row"><dt>入口</dt><dd class="word">${pathName}</dd></div>
+      <div class="note-row"><dt>選んだこと</dt><dd class="word">${pick}</dd></div>
+      <div class="note-row"><dt>わがまま</dt><dd class="word">${state.wish || "（まだ書いていない）"}</dd></div>
+      <div class="note-row"><dt>次にやること</dt><dd class="word">実物の生地を見る。採寸する。型紙を起こす。</dd></div>
+    </dl>
+    <p class="note-foot word">大工原葉子は、<span class="nowrap">生地選び・型紙・縫製</span>まで一人で通す縫製職人です。<br>この画面はデモです。仕上げは、本人の手です。</p>`;
+  $("note-back").onclick = () => {
+    if (state.path === "kimono"){ show("kimono"); renderKimono(); }
+    else { show("order"); renderOrder(); }
+  };
+  show("note");
+}
+function escapeAttr(s){
+  return String(s||"").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]));
+}
+</script>
+</body>
+</html>

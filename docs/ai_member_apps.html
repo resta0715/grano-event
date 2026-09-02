@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メンバー別デモ案｜AIエンジニア</title>
+<meta name="description" content="BNIグラーノ メンバーの本業を飛ばすWebアプリ案。">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F1B2D;--amber:#C8943E;--cream:#FAF7F2;--ink:#1A1A1A;--muted:#5c5348;--line:#E8E4DD;
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,system-ui,sans-serif;
+  --serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+.word{word-break:keep-all;line-break:strict}
+.nowrap{white-space:nowrap}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
+.head{padding:36px 0 20px;border-bottom:3px solid var(--navy)}
+.kicker{color:var(--amber);letter-spacing:.28em;font-weight:700;font-size:13px}
+h1{font-family:var(--serif);font-size:clamp(32px,4vw,48px);margin:8px 0 10px;line-height:1.3}
+.lead{font-size:clamp(18px,1.8vw,24px);line-height:1.7;color:var(--muted);max-width:28em}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 8px;position:sticky;top:0;background:rgba(250,247,242,.94);padding:12px 0;z-index:5}
+.fbtn{border:1px solid var(--line);background:#fff;padding:8px 14px;font:inherit;font-size:15px;cursor:pointer}
+.fbtn.is-on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.count{font-size:14px;color:var(--muted);margin-bottom:16px}
+.card{
+  background:#fff;border:1px solid var(--line);padding:18px 20px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:minmax(9em,14%) minmax(10em,20%) 1fr auto;gap:12px 18px;align-items:start;
+}
+.nm{font-family:var(--serif);font-size:22px;font-weight:700;line-height:1.3}
+.cat{font-size:14px;color:var(--amber);font-weight:700;margin-top:4px}
+.app{font-size:18px;font-weight:700;line-height:1.4}
+.leap{font-size:16px;line-height:1.65;color:var(--muted);margin-top:4px}
+.wave{font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.status{
+  justify-self:end;align-self:center;font-size:13px;font-weight:700;letter-spacing:.08em;
+  padding:6px 10px;border:1px solid var(--line);white-space:nowrap;
+}
+.status.done{background:#1b3d2f;color:#e8f6ee;border-color:#1b3d2f}
+.status a{color:inherit;text-decoration:none}
+@media(max-width:860px){
+  .card{grid-template-columns:1fr}
+  .status{justify-self:start}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <p class="kicker">AI ENGINEER · GRANO</p>
+    <h1 class="word">メンバーの本業を飛ばす、<br>デモ案</h1>
+    <p class="lead word">カテゴリは奪わない。顧客が触れる体験にして、紹介と成約を増やす。<br>型は　診断 → レポート → この人に相談。</p>
+  </header>
+  <div class="filters" id="filters"></div>
+  <p class="count" id="count"></p>
+  <div id="list"></div>
+</div>
+<script>
+const ROWS = [
+  {name:"大工原 葉子", cat:"縫製職人", app:"着物リメイク / オーダーメイド 入口スタジオ", leap:"タンスの着物と、欲しい服。入口から分けて、型紙まで頭の中に入れる。", wave:"1", status:"demo", href:"daikuhara.html"},
+  {name:"あらい ひとみ", cat:"かき氷", app:"出店・FCシミュレーター", leap:"行列の店を、出したい人のリードに変える。", wave:"1"},
+  {name:"山田 研二", cat:"事業戦略支援", app:"店舗集客の今週ボード", leap:"集客代行の中身が、1画面で見える。", wave:"1"},
+  {name:"中山 朋子", cat:"社外のお悩み相談室", app:"採用ミスマッチ診断", leap:"性格×AIを、経営者が3問で触れる入口にする。", wave:"1"},
+  {name:"かわもと えつこ", cat:"ホテル民泊", app:"空き家→民泊収益シミュ", leap:"大家と不動産が、数字で動く。", wave:"1"},
+  {name:"龍造寺 亮", cat:"水素水", app:"サロン導入シミュ", leap:"美容・飲食・リフォームが、導入後を想像できる。", wave:"1"},
+  {name:"植草 尚大", cat:"ジュエリー", app:"わがままジュエリーボード", leap:"世界に一つが、写真と一言で依頼になる。", wave:"1"},
+  {name:"小宮 雅哲", cat:"Web制作", app:"選ばれる理由ヒアリング", leap:"小宮が使う営業ツール。HPは小宮。", wave:"2"},
+  {name:"飛山 佳枝", cat:"グラフィックデザイン", app:"チラシ原稿→たたき台", leap:"飛山が仕上げる前提の下ごしらえ。", wave:"2"},
+  {name:"髙橋 信博", cat:"映像制作", app:"撮影前の台本・タイトル案", leap:"漠然を、撮る前に言葉にする。", wave:"2"},
+  {name:"熊澤 博之", cat:"遺品整理・特殊清掃", app:"生前整理チェック＋概算", leap:"士業・不動産・葬儀からの紹介が具体になる。", wave:"2"},
+  {name:"尾﨑 直人", cat:"弁護士（交通事故）", app:"事故後やることチェック", leap:"相談の前に、今やることを揃える。法律相談は本人。", wave:"2"},
+  {name:"小林 実穂", cat:"弁護士（離婚・相続）", app:"相続の論点シート", leap:"不安を、見通しの話に変える。法律相談は本人。", wave:"2"},
+  {name:"佐藤 秀哉", cat:"鍼灸", app:"原因不明の不調問診", leap:"病院で分からなかった人が、来院理由を持てる。", wave:"2"},
+  {name:"永吉 佐千子", cat:"健康dietコーチ", app:"100年栄養習慣診断", leap:"サロン経営者と個人の、最初の一歩。", wave:"2"},
+  {name:"上村 マリ", cat:"SNS運用", app:"女性向け投稿カレンダー", leap:"共感設計が、来週の投稿になる。", wave:"2"},
+  {name:"板倉 佳織", cat:"インテリア", app:"部屋写真→カーテン／壁紙", leap:"こだわりが、提案の絵になる。", wave:"2"},
+  {name:"新美 裕之", cat:"着物ライフプランナー", app:"TPO着物提案＋教室予約", leap:"興味を、着付け教室の予約にする。大工原のリメイクとは別入口。", wave:"2"},
+  {name:"伊藤 梢", cat:"英語サポート", app:"海外進出の最初の一歩診断", leap:"美味いものを出したい事業者が、相談理由を持てる。", wave:"2"},
+  {name:"山野井 信夫", cat:"美容室製品卸", app:"サロンカルテ→卸提案", leap:"25年の提案を、店の状態から出す。", wave:"2"},
+  {name:"栗原 優", cat:"タスクコーチ", app:"やること／やめることボード", leap:"多忙な経営者とクリエイターが、自分の状態を見せられる。", wave:"2"},
+  {name:"金指 佐江子", cat:"生命保険", app:"ライフプラン簡易（後回し）", leap:"規制あり。入口は慎重に。", wave:"3"},
+  {name:"幸田 勝", cat:"生命保険（セミナー）", app:"セミナー予約＋宿題（後回し）", leap:"規制あり。集客の器だけ先に。", wave:"3"},
+  {name:"川戸 恒吾", cat:"FP（不動産投資）", app:"老後2000万シミュ（後回し）", leap:"数字は強いが、説明責任が重い。", wave:"3"},
+  {name:"鈴木 優", cat:"損害保険", app:"店舗リスク診断（後回し）", leap:"店舗事業者向け。中身は本人。", wave:"3"},
+  {name:"梅原 聡", cat:"不動産仲介", app:"売却の簡易入口（後回し）", leap:"査定は本人。Webは予約まで。", wave:"3"},
+  {name:"横山 孝行", cat:"住宅資材", app:"工務店向け速報見積", leap:"創業134年を、今の発注に接続。", wave:"3"},
+  {name:"小野 利隆", cat:"中古タイヤ", app:"車種×サイズ検索", leap:"在庫と輸出が絡むので後で。", wave:"3"},
+  {name:"岸 信利", cat:"自動車修理販売", app:"写真で修理の入口", leap:"事故・板金の前に、送るものが揃う。", wave:"3"},
+  {name:"岡崎 厚子", cat:"歌酒場", app:"宴会プラン＋予約", leap:"馬車道で飲む人が、席を取れる。", wave:"3"},
+  {name:"徳永 剛太", cat:"スナック野毛", app:"予約の入口", leap:"野毛で飲む人を、店に落とす。", wave:"3"},
+  {name:"上夷 未紗", cat:"エネルギー", app:"一次産業向け導入の説明", leap:"B2Bが長い。デモは説明資料寄り。", wave:"3"},
+  {name:"宇部 光太", cat:"AIエンジニア", app:"この一覧そのもの", leap:"メンバーの本業を飛ばす人、として見せる。", wave:"1"}
+];
+let filter = "all";
+const FILTERS = [
+  {id:"all", label:"全員"},
+  {id:"1", label:"第1波"},
+  {id:"2", label:"第2波"},
+  {id:"3", label:"後回し"},
+  {id:"demo", label:"デモあり"}
+];
+function paint(){
+  document.getElementById("filters").innerHTML = FILTERS.map(f =>
+    `<button type="button" class="fbtn ${filter===f.id?"is-on":""}" data-f="${f.id}">${f.label}</button>`
+  ).join("");
+  document.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; paint(); });
+  const rows = ROWS.filter(r => {
+    if (filter === "all") return true;
+    if (filter === "demo") return r.status === "demo";
+    return r.wave === filter;
+  });
+  document.getElementById("count").textContent = rows.length + "件";
+  document.getElementById("list").innerHTML = rows.map(r => `
+    <article class="card">
+      <div>
+        <div class="nm word">${r.name}</div>
+        <div class="cat word">${r.cat}</div>
+      </div>
+      <div>
+        <div class="app word">${r.app}</div>
+        <div class="wave">${r.wave==="1"?"第1波":r.wave==="2"?"第2波":"後回し"}</div>
+      </div>
+      <p class="leap word">${r.leap}</p>
+      <div class="status ${r.status==="demo"?"done":""}">${
+        r.href ? `<a href="${r.href}">デモを開く</a>` : "未着手"
+      }</div>
+    </article>`).join("");
+}
+paint();
+</script>
+</body>
+</html>
