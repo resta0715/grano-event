@@ -1,4 +1,4 @@
 1:"$Sreact.fragment"
 2:I[36877,["/grano-event/daikuhara/_next/static/chunks/fab01bdbf1feb72b.js"],"default"]
 3:I[16365,["/grano-event/daikuhara/_next/static/chunks/fab01bdbf1feb72b.js"],"default"]
-0:{"buildId":"HLWkFEJsukewzRsDM6ZcQ","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"OIoImWTf01Cskd6h6dk5K","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
