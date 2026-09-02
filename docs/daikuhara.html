@@ -3,223 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>一着をつくる｜大工原 葉子</title>
-<meta name="description" content="大工原葉子の一着づくり。着物リメイクとオーダーメイド。">
-<meta name="theme-color" content="#f4efe6">
+<title>一着をつくる</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F2F2F7">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ebe4d6;
-  --app:#f7f1e6;
-  --card:#fffdf8;
-  --ink:#1c1612;
-  --muted:#6d6256;
-  --line:#e4d9c6;
-  --gold:#b8893a;
-  --gold-ink:#3a2c12;
-  --ok:#2c6a4a;
-  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,system-ui,sans-serif;
-  --serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --bg:#F2F2F7;--card:#fff;--ink:#000;--sec:rgba(60,60,67,.6);
+  --sep:rgba(60,60,67,.12);--tint:#C4892A;--ok:#34C759;
+  --sans:-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
 }
-html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+html,body{height:100%}
 body{
-  min-height:100dvh;display:flex;justify-content:center;
-  -webkit-font-smoothing:antialiased;
+  margin:0;display:flex;justify-content:center;font-family:var(--sans);
+  color:var(--ink);-webkit-font-smoothing:antialiased;background:#1c1c1e;
 }
 .word{word-break:keep-all;line-break:strict}
-.nowrap{white-space:nowrap}
 .phone{
-  width:100%;max-width:430px;min-height:100dvh;
-  background:var(--app);display:flex;flex-direction:column;
-  box-shadow:0 0 0 1px rgba(28,22,18,.08), 0 18px 50px rgba(28,22,18,.12);
-  position:relative;
+  width:100%;max-width:430px;min-height:100dvh;max-height:100dvh;
+  background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden;
 }
 .view{display:none;flex:1;flex-direction:column;min-height:0}
 .view.is-on{display:flex}
-
-.nav{
-  flex:0 0 auto;display:flex;align-items:center;gap:10px;
-  padding:calc(10px + env(safe-area-inset-top)) 14px 10px;
-  background:var(--app);border-bottom:1px solid var(--line);z-index:5;
+.navbar{
+  flex:none;display:flex;align-items:center;min-height:44px;
+  padding:calc(env(safe-area-inset-top) + 4px) 4px 6px;
+  background:rgba(242,242,247,.86);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:0.5px solid var(--sep);
 }
-.nav-back,.nav-x{
-  width:40px;height:40px;border:0;background:transparent;font:inherit;
-  font-size:22px;cursor:pointer;color:var(--ink);border-radius:12px;
+.nav-btn{width:44px;height:44px;border:0;background:transparent;color:var(--tint);font-size:28px;line-height:44px;font-weight:300;cursor:pointer}
+.nav-center{flex:1;text-align:center}
+.nav-title{font-size:17px;font-weight:600}
+.dots{display:flex;justify-content:center;gap:5px;margin-top:3px}
+.dots i{width:6px;height:6px;border-radius:50%;background:#C7C7CC;display:block}
+.dots i.on{background:var(--tint)}
+.scroll{flex:1;overflow:auto;-webkit-overflow-scrolling:touch}
+.pad{padding:8px 0 108px}
+.large{font-size:34px;font-weight:700;padding:8px 20px 4px;line-height:1.15}
+.hint{padding:0 20px 12px;font-size:13px;line-height:1.5;color:var(--sec)}
+.group{margin:0 16px 18px;background:var(--card);border-radius:10px;overflow:hidden}
+.ghead{font-size:13px;color:var(--sec);padding:18px 20px 6px}
+.gfoot{font-size:13px;color:var(--sec);line-height:1.45;padding:8px 20px 0}
+.cell{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  background:var(--card);border:0;font:inherit;color:inherit;cursor:pointer;
+  padding:10px 14px;min-height:64px;position:relative;
 }
-.nav-back:active,.nav-x:active{background:rgba(28,22,18,.06)}
-.nav-mid{flex:1;min-width:0}
-.nav-title{font-size:16px;font-weight:700;line-height:1.3}
-.nav-sub{font-size:12px;color:var(--muted);margin-top:1px}
-.bar{height:3px;background:var(--line);margin:0 16px 0}
-.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
-
-.scroll{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 110px}
-h1{
-  font-family:var(--serif);font-size:26px;line-height:1.4;font-weight:700;margin-bottom:6px;
+.cell:active{background:#D1D1D6}
+.cell + .cell::before{content:"";position:absolute;left:70px;right:0;top:0;height:0.5px;background:var(--sep)}
+.thumb{width:48px;height:48px;border-radius:8px;object-fit:cover;flex:none;background:#ddd}
+.cell-body{flex:1;min-width:0}
+.cell-t{font-size:17px;line-height:1.25}
+.cell-s{font-size:13px;color:var(--sec);margin-top:2px;line-height:1.3}
+.cell-r{text-align:right;flex:none}
+.cell-p{font-size:16px;font-variant-numeric:tabular-nums}
+.chev{color:#C7C7CC;font-size:18px;font-weight:600}
+.check{
+  width:22px;height:22px;border-radius:50%;border:1.5px solid #C7C7CC;
+  display:flex;align-items:center;justify-content:center;flex:none;color:#fff;font-size:13px;
 }
-.lead{font-size:15px;line-height:1.7;color:var(--muted);margin-bottom:16px}
-
+.cell.on .check{background:var(--tint);border-color:var(--tint)}
+.profile{display:flex;align-items:center;gap:12px;padding:18px 20px 10px}
+.profile img{width:64px;height:64px;border-radius:32px;object-fit:cover}
+.profile h1{font-size:28px;font-weight:700;line-height:1.2}
+.profile p{font-size:15px;color:var(--sec);margin-top:2px}
+.pair{display:grid;grid-template-columns:1fr 1fr}
+.pair img,.pair canvas{width:100%;height:168px;object-fit:cover;display:block;background:#ddd}
+.pair figcaption{font-size:12px;color:var(--sec);padding:8px 12px 10px}
+.pair figure + figure{border-left:0.5px solid var(--sep)}
+.cell-static{display:flex;justify-content:space-between;gap:12px;padding:11px 16px;font-size:17px}
+.cell-static + .cell-static{border-top:0.5px solid var(--sep)}
+.cell-static span{color:var(--sec)}
+.cell-static b{font-weight:400}
+.total{font-size:20px;font-weight:600}
+.total b{font-weight:700;font-variant-numeric:tabular-nums}
+.field{
+  display:block;width:100%;border:0;background:transparent;font:inherit;
+  font-size:17px;line-height:1.45;padding:12px 16px 14px;min-height:108px;resize:vertical;
+}
+.field:focus{outline:none}
 .dock{
   position:absolute;left:0;right:0;bottom:0;
-  padding:10px 16px calc(14px + env(safe-area-inset-bottom));
-  background:linear-gradient(180deg,transparent,var(--app) 28%);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(242,242,247,.92);backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);border-top:0.5px solid var(--sep);
 }
-.dock-btn{
-  width:100%;height:52px;border:0;border-radius:14px;font:inherit;font-size:17px;font-weight:700;
-  cursor:pointer;background:var(--gold);color:#fff;
+.primary{
+  width:100%;height:50px;border:0;border-radius:14px;font:inherit;
+  font-size:17px;font-weight:600;color:#fff;background:var(--tint);cursor:pointer;
 }
-.dock-btn:disabled{background:#d9cbb3;color:#fff;cursor:not-allowed}
-.ghost{
-  width:100%;height:44px;margin-top:8px;border:0;background:transparent;font:inherit;
-  font-size:15px;color:var(--muted);cursor:pointer;
+.primary:disabled{opacity:.38}
+.tabbar{
+  display:flex;border-top:0.5px solid var(--sep);
+  background:rgba(249,249,249,.94);padding-bottom:env(safe-area-inset-bottom);
 }
-
-.choice{
-  display:grid;gap:10px;
+.tab{flex:1;border:0;background:transparent;padding:7px 0 5px;font:inherit;color:var(--sec)}
+.tab.on{color:var(--tint)}
+.tab b{display:block;font-size:22px;line-height:1.1;font-weight:400}
+.tab span{display:block;font-size:10px;margin-top:1px}
+.ok{
+  width:64px;height:64px;border-radius:32px;background:var(--ok);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:34px;margin:28px auto 12px;
 }
-.choice.cols{grid-template-columns:1fr 1fr}
-.tile{
-  display:block;width:100%;text-align:left;border:1.5px solid var(--line);
-  background:var(--card);border-radius:16px;overflow:hidden;cursor:pointer;font:inherit;color:inherit;padding:0;
+.center{text-align:center;padding:0 28px}
+.center h2{font-size:22px;font-weight:700;margin-bottom:6px}
+.center p{font-size:15px;color:var(--sec);line-height:1.5}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px 12px}
+.act{
+  height:48px;border:0;border-radius:12px;background:var(--card);font:inherit;font-size:16px;font-weight:600;cursor:pointer;
 }
-.tile img{display:block;width:100%;height:168px;object-fit:cover;background:#ddd}
-.tile .meta{padding:11px 12px 13px}
-.tile .nm{font-size:17px;font-weight:700}
-.tile .bl{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}
-.tile .price{display:block;margin-top:8px;font-size:14px;font-weight:700;color:#8a641c}
-.tile.is-on{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,137,58,.22)}
-.tile.is-on .nm{color:#8a641c}
-
-.hero-card{
-  border-radius:18px;overflow:hidden;position:relative;min-height:210px;
-  border:0;width:100%;text-align:left;cursor:pointer;font:inherit;color:#fff;padding:0;
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 16px 8px}
+.shot{
+  border:2px solid transparent;border-radius:10px;overflow:hidden;padding:0;background:#fff;cursor:pointer;
 }
-.hero-card .bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.hero-card .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,10,.15),rgba(20,14,10,.82))}
-.hero-card .txt{position:relative;padding:28px 18px 20px;min-height:210px;display:flex;flex-direction:column;justify-content:flex-end}
-.hero-card .k{font-size:12px;letter-spacing:.18em;opacity:.85;margin-bottom:6px}
-.hero-card .t{font-family:var(--serif);font-size:28px;font-weight:700}
-.hero-card .c{margin-top:6px;font-size:14px;line-height:1.6;opacity:.92}
-
-.preview{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:14px;
+.shot img{width:100%;height:96px;object-fit:cover;display:block}
+.shot.on{border-color:var(--tint)}
+.shot-name{display:block;font-size:11px;padding:6px 4px 8px;text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 10px}
+.chip{
+  border:0;background:var(--card);border-radius:16px;padding:8px 12px;font:inherit;font-size:13px;cursor:pointer;
 }
-.pair{display:grid;grid-template-columns:1fr 1fr}
-.pair figure{margin:0}
-.pair img{width:100%;height:210px;object-fit:cover;display:block;background:#ddd}
-.pair figcaption,.cap{
-  padding:8px 10px 10px;font-size:12px;color:var(--muted);letter-spacing:.04em;
+.chip:active{background:#E5E5EA}
+.compose{width:100%;height:280px;display:block;background:#ddd;object-fit:cover}
+.badge{
+  margin:0 16px 10px;font-size:12px;color:var(--sec);line-height:1.5;
+  background:#fff;border-radius:10px;padding:10px 12px;
 }
-.arrow{
-  display:none;
-}
-.summary{
-  padding:14px 14px 4px;font-size:16px;font-weight:700;line-height:1.55;
-}
-.note{padding:0 14px 16px;font-size:13px;line-height:1.7;color:var(--muted)}
-label{display:block;font-size:13px;font-weight:700;margin:14px 0 8px}
-textarea{
-  width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:12px;
-  padding:12px;font:inherit;font-size:16px;line-height:1.6;background:#fff;color:var(--ink);
-  resize:vertical;
-}
-.done-mark{
-  width:56px;height:56px;border-radius:50%;background:var(--ok);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:28px;margin:8px auto 14px;
-}
-.sheet{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 16px 8px;
-}
-.row{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.55}
-.row:first-child{border-top:0}
-.row dt{width:5.2em;flex:none;color:var(--muted);font-size:12px;padding-top:3px}
-.home-head{padding:22px 8px 10px;text-align:center}
-.home-name{font-family:var(--serif);font-size:32px;font-weight:700}
-.home-cat{margin-top:6px;font-size:14px;color:#8a641c;font-weight:700}
-.home-lead{margin-top:10px;font-size:14px;line-height:1.7;color:var(--muted)}
-.home-stack{display:grid;gap:12px;margin-top:8px}
-.tiny{font-size:11px;color:var(--muted);text-align:center;margin-top:18px}
-.quote{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;
-  padding:14px 16px 12px;margin:14px 0 8px;
-}
-.quote-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:#8a641c;margin-bottom:10px}
-.q-line{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:15px;line-height:1.45;border-top:1px solid var(--line)}
-.q-line:first-of-type{border-top:0;padding-top:0}
-.q-line span{color:var(--muted)}
-.q-line b{font-weight:700;white-space:nowrap}
-.quote-total{
-  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-  margin-top:10px;padding-top:12px;border-top:2px solid var(--ink);
-}
-.quote-total span{font-size:14px;font-weight:700}
-.quote-total b{font-family:var(--serif);font-size:28px;letter-spacing:.02em}
-.quote-range{margin-top:6px;font-size:13px;color:var(--muted);text-align:right}
-.quote-foot{margin-top:10px;font-size:12px;line-height:1.65;color:var(--muted)}
+.hide{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 </style>
 </head>
 <body>
-<div class="phone" id="app">
+<div class="phone">
+<input class="hide" id="file-cam" type="file" accept="image/*" capture="environment">
+<input class="hide" id="file-lib" type="file" accept="image/*">
 
 <section id="gate" class="view is-on">
-  <div class="scroll" style="padding-bottom:28px">
-    <div class="home-head">
-      <p class="tiny" style="margin:0 0 10px">DEMO</p>
-      <h1 class="home-name word">大工原 葉子</h1>
-      <p class="home-cat word">縫製職人</p>
-      <p class="home-lead word">生地選び・型紙・縫製まで、<br>一人で一着をつくります。</p>
+  <div class="navbar" style="border:0;background:transparent"><span class="nav-btn"></span><div class="nav-center"></div><span class="nav-btn"></span></div>
+  <div class="scroll">
+    <div class="profile">
+      <img src="assets/daikuhara/portrait.jpg" alt="大工原 葉子">
+      <div><h1 class="word">大工原 葉子</h1><p class="word">縫製職人</p></div>
     </div>
-    <div class="home-stack">
-      <button type="button" class="hero-card" data-go="kimono">
-        <span class="bg" style="background-image:url('assets/daikuhara/dk-kimono-baika.png')"></span>
-        <span class="veil"></span>
-        <span class="txt">
-          <span class="k">メニュー 1</span>
-          <span class="t word">着物リメイク</span>
-          <span class="c word">タンスの着物を、服やバッグにする</span>
-        </span>
+    <p class="ghead">つくる</p>
+    <div class="group">
+      <button type="button" class="cell" data-go="kimono">
+        <img class="thumb" src="assets/daikuhara/dk-kimono-baika.png" alt="">
+        <span class="cell-body">
+          <span class="cell-t word">着物リメイク</span>
+          <span class="cell-s word">写真を撮って、完成イメージを見る</span>
+        </span><span class="chev">›</span>
       </button>
-      <button type="button" class="hero-card" data-go="order">
-        <span class="bg" style="background-image:url('assets/daikuhara/dk-atelier.png')"></span>
-        <span class="veil"></span>
-        <span class="txt">
-          <span class="k">メニュー 2</span>
-          <span class="t word">オーダーメイド</span>
-          <span class="c word">欲しい服を、型紙から新しく作る</span>
-        </span>
+      <button type="button" class="cell" data-go="order">
+        <img class="thumb" src="assets/daikuhara/dk-atelier.png" alt="">
+        <span class="cell-body">
+          <span class="cell-t word">オーダーメイド</span>
+          <span class="cell-s word">わがままを書いて、イメージが出る</span>
+        </span><span class="chev">›</span>
       </button>
     </div>
+    <p class="gfoot" style="padding-left:32px">デモです。写真は端末の中だけ使います。</p>
   </div>
+  <nav class="tabbar">
+    <button type="button" class="tab on"><b>○</b><span>ホーム</span></button>
+    <button type="button" class="tab" disabled><b>○</b><span>相談</span></button>
+  </nav>
 </section>
 
 <section id="flow" class="view">
-  <div class="nav">
-    <button type="button" class="nav-back" id="back" aria-label="戻る">‹</button>
-    <div class="nav-mid">
-      <p class="nav-title word" id="nav-title">着物リメイク</p>
-      <p class="nav-sub" id="nav-sub">1 / 3</p>
+  <div class="navbar">
+    <button type="button" class="nav-btn" id="back" aria-label="戻る">‹</button>
+    <div class="nav-center">
+      <p class="nav-title" id="nav-title">着物リメイク</p>
+      <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
     </div>
-    <button type="button" class="nav-x" id="home" aria-label="閉じる">×</button>
+    <button type="button" class="nav-btn" id="home" aria-label="閉じる" style="font-size:18px;font-weight:500">✕</button>
   </div>
-  <div class="bar"><i id="bar"></i></div>
-  <div class="scroll" id="panel"></div>
-  <div class="dock">
-    <button type="button" class="dock-btn" id="next">次へ</button>
-  </div>
+  <div class="scroll pad" id="panel"></div>
+  <div class="dock"><button type="button" class="primary" id="next">次へ</button></div>
 </section>
 
 <section id="done" class="view">
-  <div class="nav">
-    <span class="nav-back" style="visibility:hidden">‹</span>
-    <div class="nav-mid"><p class="nav-title word">相談内容</p></div>
-    <button type="button" class="nav-x" id="done-home" aria-label="閉じる">×</button>
+  <div class="navbar">
+    <span class="nav-btn"></span>
+    <div class="nav-center"><p class="nav-title">相談</p></div>
+    <button type="button" class="nav-btn" id="done-home" style="font-size:18px;font-weight:500">✕</button>
   </div>
-  <div class="scroll" id="done-body"></div>
-  <div class="dock">
-    <button type="button" class="dock-btn" id="again">最初から</button>
-  </div>
+  <div class="scroll pad" id="done-body"></div>
+  <div class="dock"><button type="button" class="primary" id="again">ホームに戻る</button></div>
 </section>
-
 </div>
 
 <script>
@@ -235,230 +207,303 @@ const FORMS = [
   { id:"bag", name:"バッグ", img:"dk-baika-bag.png", price:36000 },
   { id:"stole", name:"ストール", img:"dk-tsuru-stole.png", price:22000 }
 ];
-const REMAKE = {
-  "baika:dress": "dk-baika-dress.png",
-  "baika:bag":   "dk-baika-bag.png",
-  "ai:jacket":   "dk-ai-jacket.png",
-  "ai:bag":      "dk-ai-bag.png",
-  "tsuru:stole": "dk-tsuru-stole.png",
-  "tsuru:jacket":"dk-tsuru-vest.png"
-};
 const PIECES = [
-  { id:"dress",  name:"ワンピース", img:"dk-order-linen-dress.png", price:98000 },
+  { id:"dress", name:"ワンピース", img:"dk-order-linen-dress.png", price:98000 },
   { id:"jacket", name:"ジャケット", img:"dk-order-wool-jacket.png", price:86000 },
-  { id:"pants",  name:"パンツ",     img:"dk-order-silk-pants.png", price:56000 }
+  { id:"pants", name:"パンツ", img:"dk-order-silk-pants.png", price:56000 }
 ];
 const FABRICS = [
   { id:"linen", name:"リネン", blurb:"生成り。夏向き", img:"dk-fabric-linen.png", price:14000 },
-  { id:"wool",  name:"ウール", blurb:"グレー。形が出る", img:"dk-fabric-wool.png", price:22000 },
-  { id:"silk",  name:"シルク", blurb:"黒。落ち感がある", img:"dk-fabric-silk.png", price:32000 }
+  { id:"wool", name:"ウール", blurb:"グレー。形が出る", img:"dk-fabric-wool.png", price:22000 },
+  { id:"silk", name:"シルク", blurb:"黒。落ち感がある", img:"dk-fabric-silk.png", price:32000 }
 ];
-const ORDER_SHOT = {
-  "dress:linen": "dk-order-linen-dress.png",
-  "jacket:wool": "dk-order-wool-jacket.png",
-  "pants:silk":  "dk-order-silk-pants.png"
+const EXAMPLES = [
+  { t:"肩が落ちない、ウールのジャケット", piece:"jacket", fabric:"wool" },
+  { t:"夏に着る、リネンのワンピース", piece:"dress", fabric:"linen" },
+  { t:"式用の、黒のシルクパンツ", piece:"pants", fabric:"silk" }
+];
+
+const S = {
+  path:null, step:1, kimono:null, form:null, piece:null, fabric:null,
+  wish:"", clothSrc:null, clothLabel:""
 };
-
-const S = { path:null, step:1, kimono:null, form:null, piece:null, fabric:null, wish:"" };
 const $ = (id) => document.getElementById(id);
-
 function show(id){
   document.querySelectorAll(".view").forEach(v => v.classList.toggle("is-on", v.id === id));
-  $("panel") && ($("panel").scrollTop = 0);
-  $("done-body") && ($("done-body").scrollTop = 0);
+  const sc = document.querySelector("#"+id+" .scroll");
+  if (sc) sc.scrollTop = 0;
 }
 function escapeHtml(s){
   return String(s||"").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]));
 }
+function yen(n){ return n.toLocaleString("ja-JP") + "円"; }
+function srcOf(path){ return path.startsWith("blob:") || path.startsWith("data:") ? path : A + path; }
+
+function revokeCloth(){
+  if (S.clothSrc && S.clothSrc.startsWith("blob:")) URL.revokeObjectURL(S.clothSrc);
+}
+
+function setClothFromFile(file){
+  if (!file || !file.type.startsWith("image/")) return;
+  revokeCloth();
+  S.clothSrc = URL.createObjectURL(file);
+  S.clothLabel = "アップロードした写真";
+  S.kimono = "upload";
+  render();
+}
+
+$("file-cam").onchange = $("file-lib").onchange = (e) => {
+  const f = e.target.files && e.target.files[0];
+  e.target.value = "";
+  setClothFromFile(f);
+};
 
 document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => {
-  S.path = b.dataset.go; S.step = 1; S.kimono = S.form = S.piece = S.fabric = null; S.wish = "";
+  revokeCloth();
+  S.path = b.dataset.go; S.step = 1;
+  S.kimono = S.form = S.piece = S.fabric = null;
+  S.wish = ""; S.clothSrc = null; S.clothLabel = "";
   render(); show("flow");
 });
-$("home").onclick = $("done-home").onclick = $("again").onclick = () => { show("gate"); };
+$("home").onclick = $("done-home").onclick = $("again").onclick = () => show("gate");
 $("back").onclick = () => {
-  if (S.step === 3 && $("wish")) S.wish = $("wish").value;
+  if ($("wish")) S.wish = $("wish").value;
   if (S.step === 1){ show("gate"); return; }
   S.step -= 1; render();
 };
 $("next").onclick = () => {
   if (!canNext()) return;
-  if (S.path === "kimono"){
-    if (S.step === 1){ S.step = 2; render(); return; }
-    if (S.step === 2){ S.step = 3; render(); return; }
-    S.wish = ($("wish")||{}).value || "";
-    finish();
-  } else {
-    if (S.step === 1){ S.step = 2; render(); return; }
-    if (S.step === 2){ S.step = 3; render(); return; }
-    S.wish = ($("wish")||{}).value || "";
-    finish();
+  if ($("wish")) S.wish = $("wish").value;
+  if (S.path === "order" && S.step === 1){
+    const r = parseWish(S.wish);
+    S.piece = r.piece; S.fabric = r.fabric;
   }
+  if (S.step < 3){ S.step += 1; render(); return; }
+  finish();
 };
 
 function canNext(){
   if (S.path === "kimono"){
-    if (S.step === 1) return !!S.kimono;
+    if (S.step === 1) return !!S.clothSrc;
     if (S.step === 2) return !!S.form;
     return true;
   }
-  if (S.step === 1) return !!S.piece;
-  if (S.step === 2) return !!S.fabric;
+  if (S.step === 1) return (S.wish || ($("wish") && $("wish").value.trim())).length > 0;
+  if (S.step === 2) return !!S.piece && !!S.fabric;
   return true;
 }
-function setDock(){
-  const last = S.step === 3;
-  $("next").textContent = last ? "この内容で相談する" : "次へ";
+function setChrome(){
+  $("next").textContent = S.step === 3 ? "この内容で相談する" : "次へ";
   $("next").disabled = !canNext();
-  $("bar").style.width = (S.step/3*100) + "%";
-  $("nav-sub").textContent = S.step + " / 3";
   $("nav-title").textContent = S.path === "kimono" ? "着物リメイク" : "オーダーメイド";
+  $("dots").innerHTML = [1,2,3].map(n => `<i class="${n===S.step?"on":""}"></i>`).join("");
 }
 
-function yen(n){
-  return n.toLocaleString("ja-JP") + "円";
+function parseWish(text){
+  const t = text || "";
+  let piece = "dress";
+  if (/ジャケット|上着|コート|羽織|ブレザー/.test(t)) piece = "jacket";
+  else if (/パンツ|ズボン|スラックス/.test(t)) piece = "pants";
+  else if (/ワンピ|ドレス|スカート/.test(t)) piece = "dress";
+  let fabric = "linen";
+  if (/ウール|毛|冬|グレー|チャコール/.test(t)) fabric = "wool";
+  else if (/シルク|絹|黒|フォーマル|式/.test(t)) fabric = "silk";
+  else if (/リネン|麻|夏|生成/.test(t)) fabric = "linen";
+  return { piece, fabric };
 }
+
 function quote(){
   const lines = [];
   if (S.path === "kimono"){
     const f = FORMS.find(x => x.id === S.form);
     if (!f) return null;
     lines.push({ label:"縫製（"+f.name+"）", amount:f.price });
-    lines.push({ label:"生地", amount:0, free:"持ち込みの着物" });
-    return pack(lines);
+    lines.push({ label:"生地（持ち込み）", amount:0 });
+  } else {
+    const piece = PIECES.find(x => x.id === S.piece);
+    const fab = FABRICS.find(x => x.id === S.fabric);
+    if (!piece) return null;
+    lines.push({ label:"縫製（"+piece.name+"）", amount:piece.price });
+    if (fab) lines.push({ label:"生地（"+fab.name+"）", amount:fab.price });
   }
-  const piece = PIECES.find(x => x.id === S.piece);
-  const fab = FABRICS.find(x => x.id === S.fabric);
-  if (!piece) return null;
-  lines.push({ label:"縫製（"+piece.name+"）", amount:piece.price });
-  if (fab) lines.push({ label:"生地（"+fab.name+"・1着分）", amount:fab.price });
-  return pack(lines);
+  const total = lines.reduce((s,x)=>s+x.amount,0);
+  return { lines, total, low: Math.round(total*0.8/1000)*1000, high: Math.round(total*1.25/1000)*1000 };
 }
-function pack(lines){
-  const total = lines.reduce((s, x) => s + x.amount, 0);
-  return {
-    lines,
-    total,
-    low: Math.round(total * 0.8 / 1000) * 1000,
-    high: Math.round(total * 1.25 / 1000) * 1000
-  };
-}
-function quoteCard(q){
+function quoteGroup(q){
   if (!q) return "";
-  const rows = q.lines.map(x => `
-    <div class="q-line">
-      <span class="word">${x.label}${x.free ? "　"+x.free : ""}</span>
-      <b>${x.amount ? yen(x.amount) : "0円"}</b>
-    </div>`).join("");
-  return `<div class="quote">
-    <p class="quote-kicker">概算見積もり</p>
-    ${rows}
-    <div class="quote-total"><span>合計目安</span><b>${yen(q.total)}</b></div>
-    <p class="quote-range word">だいたい ${yen(q.low)} 〜 ${yen(q.high)}</p>
-    <p class="quote-foot word">デモ用の概算です。実物を見てから、正式な見積もりを出します。</p>
-  </div>`;
+  const rows = q.lines.map(x => `<div class="cell-static"><span class="word">${x.label}</span><b>${yen(x.amount)}</b></div>`).join("");
+  return `<p class="ghead">概算見積もり</p>
+    <div class="group">${rows}<div class="cell-static total"><span>合計目安</span><b>${yen(q.total)}</b></div></div>
+    <p class="gfoot word">だいたい ${yen(q.low)} 〜 ${yen(q.high)}。デモ用の概算です。実物を見てから正式見積もりします。</p>`;
+}
+function list(items, selected, key){
+  return `<div class="group">${items.map(x => `
+    <button type="button" class="cell ${selected===x.id?"on":""}" data-key="${key}" data-id="${x.id}">
+      <img class="thumb" src="${srcOf(x.img)}" alt="">
+      <span class="cell-body"><span class="cell-t word">${x.name}</span>${x.blurb?`<span class="cell-s word">${x.blurb}</span>`:""}</span>
+      ${x.price?`<span class="cell-r"><span class="cell-p">${yen(x.price)}</span></span>`:""}
+      <span class="check">${selected===x.id?"✓":""}</span>
+    </button>`).join("")}</div>`;
 }
 
-function tiles(list, selected, cols){
-  return `<div class="choice ${cols?"cols":""}">${list.map(x => `
-    <button type="button" class="tile ${selected===x.id?"is-on":""}" data-id="${x.id}">
-      <img src="${A+x.img}" alt="${x.name}">
-      <span class="meta">
-        <span class="nm word">${x.name}</span>
-        ${x.blurb?`<span class="bl word">${x.blurb}</span>`:""}
-        ${x.price?`<span class="price">目安 ${yen(x.price)}</span>`:""}
-      </span>
-    </button>`).join("")}</div>`;
+function loadImg(src){
+  return new Promise((res, rej) => {
+    const im = new Image();
+    im.crossOrigin = "anonymous";
+    im.onload = () => res(im);
+    im.onerror = rej;
+    im.src = src;
+  });
+}
+function cover(ctx, img, w, h){
+  const ir = img.width / img.height, cr = w / h;
+  let dw, dh, dx, dy;
+  if (ir > cr){ dh = h; dw = h * ir; dx = (w-dw)/2; dy = 0; }
+  else { dw = w; dh = w / ir; dx = 0; dy = (h-dh)/2; }
+  ctx.drawImage(img, dx, dy, dw, dh);
+}
+async function paintCompose(canvas, fabricSrc, garmentSrc){
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width = 720, h = canvas.height = 900;
+  ctx.fillStyle = "#ddd"; ctx.fillRect(0,0,w,h);
+  try {
+    const [fab, gar] = await Promise.all([loadImg(fabricSrc), loadImg(garmentSrc)]);
+    cover(ctx, gar, w, h);
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = 0.62;
+    cover(ctx, fab, w, h);
+    ctx.globalCompositeOperation = "overlay";
+    ctx.globalAlpha = 0.35;
+    cover(ctx, gar, w, h);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 1;
+  } catch (e) {}
+}
+
+function bindList(p){
+  p.querySelectorAll("[data-key]").forEach(b => b.onclick = () => {
+    S[b.dataset.key] = b.dataset.id;
+    render();
+  });
 }
 
 function render(){
   const p = $("panel");
   if (S.path === "kimono"){
     if (S.step === 1){
-      p.innerHTML = `<h1 class="word">どの着物にしますか</h1>
-        <p class="lead word">いまは見本の3枚です。本番は、持ってきた着物を見ます。</p>
-        ${tiles(KIMONOS,S.kimono,false)}`;
-      p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.kimono = b.dataset.id; render(); });
-    } else if (S.step === 2){
-      p.innerHTML = `<h1 class="word">何に作り変えますか</h1>
-        <p class="lead word">着物の生地を、この形に使います。</p>
-        ${tiles(FORMS,S.form,true)}`;
-      p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.form = b.dataset.id; render(); });
-    } else {
-      const k = KIMONOS.find(x => x.id === S.kimono);
-      const f = FORMS.find(x => x.id === S.form);
-      const after = REMAKE[S.kimono+":"+S.form] || f.img;
-      p.innerHTML = `<h1 class="word">完成イメージ</h1>
-        <p class="lead word">写真はイメージです。実物は、残りの生地と希望で変わります。</p>
-        <div class="preview">
-          <div class="pair">
-            <figure><img src="${A+k.img}" alt="今の着物"><figcaption class="word">今の着物</figcaption></figure>
-            <figure><img src="${A+after}" alt="完成イメージ"><figcaption class="word">完成イメージ</figcaption></figure>
-          </div>
-          <p class="summary word">${k.name}の着物を、${f.name}にします。</p>
-          <p class="note word">柄の位置は、型紙を切るときに決めます。</p>
+      p.innerHTML = `<p class="large word">着物の写真</p>
+        <p class="hint word">自分で撮るか、見本から選びます。写真は送りません。</p>
+        <div class="actions">
+          <button type="button" class="act" id="btn-cam">写真を撮る</button>
+          <button type="button" class="act" id="btn-lib">画像を選ぶ</button>
         </div>
-        ${quoteCard(quote())}
-        <label for="wish">希望・こだわり</label>
-        <textarea id="wish" class="word" placeholder="母の振袖です。春のパーティーで着たい。">${escapeHtml(S.wish)}</textarea>`;
+        ${S.clothSrc ? `<div class="group"><img alt="選んだ生地" src="${S.clothSrc}" style="width:100%;height:220px;object-fit:cover;display:block"><div class="cell-static"><span class="word">${escapeHtml(S.clothLabel)}</span><b>使う</b></div></div>` : ""}
+        <p class="ghead">見本から選ぶ</p>
+        <div class="shots">${KIMONOS.map(k => `
+          <button type="button" class="shot ${S.kimono===k.id?"on":""}" data-sample="${k.id}">
+            <img src="${A+k.img}" alt="${k.name}"><span class="shot-name word">${k.name}</span>
+          </button>`).join("")}</div>`;
+      $("btn-cam").onclick = () => $("file-cam").click();
+      $("btn-lib").onclick = () => $("file-lib").click();
+      p.querySelectorAll("[data-sample]").forEach(b => b.onclick = () => {
+        const k = KIMONOS.find(x => x.id === b.dataset.sample);
+        revokeCloth();
+        S.kimono = k.id; S.clothSrc = A + k.img; S.clothLabel = k.name;
+        render();
+      });
+    } else if (S.step === 2){
+      p.innerHTML = `<p class="large word">形を選ぶ</p>
+        <p class="hint word">この生地を、どの形にしますか。</p>
+        ${list(FORMS, S.form, "form")}`;
+      bindList(p);
+    } else {
+      const f = FORMS.find(x => x.id === S.form);
+      p.innerHTML = `<p class="large word">確認</p>
+        <p class="ghead">完成イメージ</p>
+        <div class="group">
+          <canvas class="compose" id="stage"></canvas>
+          <div class="cell-static"><span class="word">${escapeHtml(S.clothLabel)} → ${f.name}</span></div>
+        </div>
+        <p class="badge word">デモの合成です。撮った生地を型に載せています。本番は生成AIにも差し替えられます。</p>
+        ${quoteGroup(quote())}
+        <p class="ghead">希望・こだわり</p>
+        <div class="group"><textarea class="field word" id="wish" placeholder="母の振袖です。春のパーティーで着たい。">${escapeHtml(S.wish)}</textarea></div>`;
+      paintCompose($("stage"), S.clothSrc, A + f.img);
     }
   } else {
     if (S.step === 1){
-      p.innerHTML = `<h1 class="word">何を作りますか</h1>
-        <p class="lead word">既製品にないサイズも、一着に入れられます。</p>
-        ${tiles(PIECES,S.piece,false)}`;
-      p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.piece = b.dataset.id; render(); });
+      p.innerHTML = `<p class="large word">わがままを書く</p>
+        <p class="hint word">欲しい服を、一言で。それに合わせたイメージを出します。</p>
+        <div class="group"><textarea class="field word" id="wish" placeholder="肩が落ちないジャケットが欲しい。ウールで。">${escapeHtml(S.wish)}</textarea></div>
+        <p class="ghead">例を入れる</p>
+        <div class="chips">${EXAMPLES.map((e,i)=>`<button type="button" class="chip word" data-ex="${i}">${e.t}</button>`).join("")}</div>`;
+      p.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => {
+        const e = EXAMPLES[+b.dataset.ex];
+        S.wish = e.t; S.piece = e.piece; S.fabric = e.fabric;
+        render();
+      });
+      $("wish").oninput = () => { S.wish = $("wish").value; setChrome(); };
     } else if (S.step === 2){
-      p.innerHTML = `<h1 class="word">生地を選ぶ</h1>
-        <p class="lead word">本番は触って決めます。いまは見本の3つです。</p>
-        ${tiles(FABRICS,S.fabric,false)}`;
-      p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.fabric = b.dataset.id; render(); });
+      const piece = PIECES.find(x => x.id === S.piece);
+      const fab = FABRICS.find(x => x.id === S.fabric);
+      p.innerHTML = `<p class="large word">こう読みました</p>
+        <p class="hint word">「${escapeHtml(S.wish)}」→ ${fab.name}の${piece.name}。違ったら直してください。</p>
+        <p class="ghead">形</p>
+        ${list(PIECES, S.piece, "piece")}
+        <p class="ghead">生地</p>
+        ${list(FABRICS, S.fabric, "fabric")}
+        <p class="ghead">生地の写真（任意）</p>
+        <div class="actions">
+          <button type="button" class="act" id="btn-cam">写真を撮る</button>
+          <button type="button" class="act" id="btn-lib">画像を選ぶ</button>
+        </div>
+        ${S.kimono==="upload" && S.clothSrc ? `<div class="group"><img src="${S.clothSrc}" alt="" style="width:100%;height:160px;object-fit:cover;display:block"><div class="cell-static"><span>この生地で合成する</span><b>使う</b></div></div>` : `<p class="gfoot">なくても、見本の生地でイメージを出します。</p>`}`;
+      bindList(p);
+      $("btn-cam").onclick = () => $("file-cam").click();
+      $("btn-lib").onclick = () => $("file-lib").click();
     } else {
       const piece = PIECES.find(x => x.id === S.piece);
       const fab = FABRICS.find(x => x.id === S.fabric);
-      const shot = ORDER_SHOT[S.piece+":"+S.fabric] || piece.img;
-      p.innerHTML = `<h1 class="word">完成イメージ</h1>
-        <p class="lead word">この生地で、この形を型紙から作ります。</p>
-        <div class="preview">
-          <div class="pair">
-            <figure><img src="${A+fab.img}" alt="生地"><figcaption class="word">生地　${fab.name}</figcaption></figure>
-            <figure><img src="${A+shot}" alt="形"><figcaption class="word">形　${piece.name}</figcaption></figure>
-          </div>
-          <p class="summary word">${fab.name}で、${piece.name}を一着つくります。</p>
-          <p class="note word">肩・袖・着丈は、採寸して型紙に落とします。</p>
+      const cloth = (S.kimono==="upload" && S.clothSrc) ? S.clothSrc : (A + fab.img);
+      p.innerHTML = `<p class="large word">確認</p>
+        <p class="ghead">完成イメージ</p>
+        <div class="group">
+          <canvas class="compose" id="stage"></canvas>
+          <div class="cell-static"><span class="word">${fab.name}の${piece.name}</span></div>
         </div>
-        ${quoteCard(quote())}
-        <label for="wish">希望・こだわり</label>
-        <textarea id="wish" class="word" placeholder="既製品は肩が落ちる。袖は少し長めに。">${escapeHtml(S.wish)}</textarea>`;
+        <p class="badge word">わがまま「${escapeHtml(S.wish)}」に合わせた見本です。デモの合成で、本番は生成AIにもできます。</p>
+        ${quoteGroup(quote())}`;
+      paintCompose($("stage"), cloth, A + piece.img);
     }
   }
-  setDock();
+  setChrome();
 }
 
 function finish(){
   const pathName = S.path === "kimono" ? "着物リメイク" : "オーダーメイド";
   let pick = "";
   if (S.path === "kimono"){
-    const k = KIMONOS.find(x => x.id === S.kimono);
     const f = FORMS.find(x => x.id === S.form);
-    pick = `${k.name}の着物 → ${f.name}`;
+    pick = (S.clothLabel || "持ち込み") + " → " + f.name;
   } else {
     const p = PIECES.find(x => x.id === S.piece);
     const f = FABRICS.find(x => x.id === S.fabric);
-    pick = `${f.name}で ${p.name}`;
+    pick = f.name + "の" + p.name;
   }
-  const q = quote();
   $("done-body").innerHTML = `
-    <div class="done-mark">✓</div>
-    <h1 class="word" style="text-align:center">相談内容をまとめました</h1>
-    <p class="lead word" style="text-align:center">大工原 葉子さんへ渡す内容です。<br>この画面はデモなので、送信はしません。</p>
-    ${quoteCard(q)}
-    <dl class="sheet">
-      <div class="row"><dt>メニュー</dt><dd class="word">${pathName}</dd></div>
-      <div class="row"><dt>内容</dt><dd class="word">${pick}</dd></div>
-      <div class="row"><dt>希望</dt><dd class="word">${escapeHtml(S.wish) || "未記入"}</dd></div>
-      <div class="row"><dt>次の予定</dt><dd class="word">実物を見る → 採寸 → 正式見積もり</dd></div>
-    </dl>`;
+    <div class="ok">✓</div>
+    <div class="center">
+      <h2 class="word">相談内容を保存しました</h2>
+      <p class="word">デモのため、送信はしません。</p>
+    </div>
+    ${quoteGroup(quote())}
+    <p class="ghead">内容</p>
+    <div class="group">
+      <div class="cell-static"><span>メニュー</span><b class="word">${pathName}</b></div>
+      <div class="cell-static"><span>内容</span><b class="word">${escapeHtml(pick)}</b></div>
+      <div class="cell-static"><span>希望</span><b class="word">${escapeHtml(S.wish) || "未記入"}</b></div>
+    </div>
+    <p class="gfoot word">次は、実物を見て採寸し、正式見積もりです。</p>`;
   show("done");
 }
 </script>
