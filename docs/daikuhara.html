@@ -86,6 +86,7 @@ h1{
 .tile .meta{padding:11px 12px 13px}
 .tile .nm{font-size:17px;font-weight:700}
 .tile .bl{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}
+.tile .price{display:block;margin-top:8px;font-size:14px;font-weight:700;color:#8a641c}
 .tile.is-on{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,137,58,.22)}
 .tile.is-on .nm{color:#8a641c}
 
@@ -138,6 +139,23 @@ textarea{
 .home-lead{margin-top:10px;font-size:14px;line-height:1.7;color:var(--muted)}
 .home-stack{display:grid;gap:12px;margin-top:8px}
 .tiny{font-size:11px;color:var(--muted);text-align:center;margin-top:18px}
+.quote{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:14px 16px 12px;margin:14px 0 8px;
+}
+.quote-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:#8a641c;margin-bottom:10px}
+.q-line{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:15px;line-height:1.45;border-top:1px solid var(--line)}
+.q-line:first-of-type{border-top:0;padding-top:0}
+.q-line span{color:var(--muted)}
+.q-line b{font-weight:700;white-space:nowrap}
+.quote-total{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  margin-top:10px;padding-top:12px;border-top:2px solid var(--ink);
+}
+.quote-total span{font-size:14px;font-weight:700}
+.quote-total b{font-family:var(--serif);font-size:28px;letter-spacing:.02em}
+.quote-range{margin-top:6px;font-size:13px;color:var(--muted);text-align:right}
+.quote-foot{margin-top:10px;font-size:12px;line-height:1.65;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -212,10 +230,10 @@ const KIMONOS = [
   { id:"tsuru", name:"金鶴", blurb:"黒地に、金の鶴", img:"dk-kimono-tsuru.png" }
 ];
 const FORMS = [
-  { id:"dress", name:"ワンピース", img:"dk-baika-dress.png" },
-  { id:"jacket", name:"ジャケット", img:"dk-ai-jacket.png" },
-  { id:"bag", name:"バッグ", img:"dk-baika-bag.png" },
-  { id:"stole", name:"ストール", img:"dk-tsuru-stole.png" }
+  { id:"dress", name:"ワンピース", img:"dk-baika-dress.png", price:88000 },
+  { id:"jacket", name:"ジャケット", img:"dk-ai-jacket.png", price:72000 },
+  { id:"bag", name:"バッグ", img:"dk-baika-bag.png", price:36000 },
+  { id:"stole", name:"ストール", img:"dk-tsuru-stole.png", price:22000 }
 ];
 const REMAKE = {
   "baika:dress": "dk-baika-dress.png",
@@ -226,14 +244,14 @@ const REMAKE = {
   "tsuru:jacket":"dk-tsuru-vest.png"
 };
 const PIECES = [
-  { id:"dress",  name:"ワンピース", img:"dk-order-linen-dress.png" },
-  { id:"jacket", name:"ジャケット", img:"dk-order-wool-jacket.png" },
-  { id:"pants",  name:"パンツ",     img:"dk-order-silk-pants.png" }
+  { id:"dress",  name:"ワンピース", img:"dk-order-linen-dress.png", price:98000 },
+  { id:"jacket", name:"ジャケット", img:"dk-order-wool-jacket.png", price:86000 },
+  { id:"pants",  name:"パンツ",     img:"dk-order-silk-pants.png", price:56000 }
 ];
 const FABRICS = [
-  { id:"linen", name:"リネン", blurb:"生成り。夏向き", img:"dk-fabric-linen.png" },
-  { id:"wool",  name:"ウール", blurb:"グレー。形が出る", img:"dk-fabric-wool.png" },
-  { id:"silk",  name:"シルク", blurb:"黒。落ち感がある", img:"dk-fabric-silk.png" }
+  { id:"linen", name:"リネン", blurb:"生成り。夏向き", img:"dk-fabric-linen.png", price:14000 },
+  { id:"wool",  name:"ウール", blurb:"グレー。形が出る", img:"dk-fabric-wool.png", price:22000 },
+  { id:"silk",  name:"シルク", blurb:"黒。落ち感がある", img:"dk-fabric-silk.png", price:32000 }
 ];
 const ORDER_SHOT = {
   "dress:linen": "dk-order-linen-dress.png",
@@ -297,11 +315,59 @@ function setDock(){
   $("nav-title").textContent = S.path === "kimono" ? "着物リメイク" : "オーダーメイド";
 }
 
-function tiles(list, key, selected, cols){
+function yen(n){
+  return n.toLocaleString("ja-JP") + "円";
+}
+function quote(){
+  const lines = [];
+  if (S.path === "kimono"){
+    const f = FORMS.find(x => x.id === S.form);
+    if (!f) return null;
+    lines.push({ label:"縫製（"+f.name+"）", amount:f.price });
+    lines.push({ label:"生地", amount:0, free:"持ち込みの着物" });
+    return pack(lines);
+  }
+  const piece = PIECES.find(x => x.id === S.piece);
+  const fab = FABRICS.find(x => x.id === S.fabric);
+  if (!piece) return null;
+  lines.push({ label:"縫製（"+piece.name+"）", amount:piece.price });
+  if (fab) lines.push({ label:"生地（"+fab.name+"・1着分）", amount:fab.price });
+  return pack(lines);
+}
+function pack(lines){
+  const total = lines.reduce((s, x) => s + x.amount, 0);
+  return {
+    lines,
+    total,
+    low: Math.round(total * 0.8 / 1000) * 1000,
+    high: Math.round(total * 1.25 / 1000) * 1000
+  };
+}
+function quoteCard(q){
+  if (!q) return "";
+  const rows = q.lines.map(x => `
+    <div class="q-line">
+      <span class="word">${x.label}${x.free ? "　"+x.free : ""}</span>
+      <b>${x.amount ? yen(x.amount) : "0円"}</b>
+    </div>`).join("");
+  return `<div class="quote">
+    <p class="quote-kicker">概算見積もり</p>
+    ${rows}
+    <div class="quote-total"><span>合計目安</span><b>${yen(q.total)}</b></div>
+    <p class="quote-range word">だいたい ${yen(q.low)} 〜 ${yen(q.high)}</p>
+    <p class="quote-foot word">デモ用の概算です。実物を見てから、正式な見積もりを出します。</p>
+  </div>`;
+}
+
+function tiles(list, selected, cols){
   return `<div class="choice ${cols?"cols":""}">${list.map(x => `
     <button type="button" class="tile ${selected===x.id?"is-on":""}" data-id="${x.id}">
       <img src="${A+x.img}" alt="${x.name}">
-      <span class="meta"><span class="nm word">${x.name}</span>${x.blurb?`<span class="bl word">${x.blurb}</span>`:""}</span>
+      <span class="meta">
+        <span class="nm word">${x.name}</span>
+        ${x.blurb?`<span class="bl word">${x.blurb}</span>`:""}
+        ${x.price?`<span class="price">目安 ${yen(x.price)}</span>`:""}
+      </span>
     </button>`).join("")}</div>`;
 }
 
@@ -311,12 +377,12 @@ function render(){
     if (S.step === 1){
       p.innerHTML = `<h1 class="word">どの着物にしますか</h1>
         <p class="lead word">いまは見本の3枚です。本番は、持ってきた着物を見ます。</p>
-        ${tiles(KIMONOS,"kimono",S.kimono,false)}`;
+        ${tiles(KIMONOS,S.kimono,false)}`;
       p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.kimono = b.dataset.id; render(); });
     } else if (S.step === 2){
       p.innerHTML = `<h1 class="word">何に作り変えますか</h1>
         <p class="lead word">着物の生地を、この形に使います。</p>
-        ${tiles(FORMS,"form",S.form,true)}`;
+        ${tiles(FORMS,S.form,true)}`;
       p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.form = b.dataset.id; render(); });
     } else {
       const k = KIMONOS.find(x => x.id === S.kimono);
@@ -332,6 +398,7 @@ function render(){
           <p class="summary word">${k.name}の着物を、${f.name}にします。</p>
           <p class="note word">柄の位置は、型紙を切るときに決めます。</p>
         </div>
+        ${quoteCard(quote())}
         <label for="wish">希望・こだわり</label>
         <textarea id="wish" class="word" placeholder="母の振袖です。春のパーティーで着たい。">${escapeHtml(S.wish)}</textarea>`;
     }
@@ -339,12 +406,12 @@ function render(){
     if (S.step === 1){
       p.innerHTML = `<h1 class="word">何を作りますか</h1>
         <p class="lead word">既製品にないサイズも、一着に入れられます。</p>
-        ${tiles(PIECES,"piece",S.piece,false)}`;
+        ${tiles(PIECES,S.piece,false)}`;
       p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.piece = b.dataset.id; render(); });
     } else if (S.step === 2){
       p.innerHTML = `<h1 class="word">生地を選ぶ</h1>
         <p class="lead word">本番は触って決めます。いまは見本の3つです。</p>
-        ${tiles(FABRICS,"fabric",S.fabric,false)}`;
+        ${tiles(FABRICS,S.fabric,false)}`;
       p.querySelectorAll("[data-id]").forEach(b => b.onclick = () => { S.fabric = b.dataset.id; render(); });
     } else {
       const piece = PIECES.find(x => x.id === S.piece);
@@ -360,6 +427,7 @@ function render(){
           <p class="summary word">${fab.name}で、${piece.name}を一着つくります。</p>
           <p class="note word">肩・袖・着丈は、採寸して型紙に落とします。</p>
         </div>
+        ${quoteCard(quote())}
         <label for="wish">希望・こだわり</label>
         <textarea id="wish" class="word" placeholder="既製品は肩が落ちる。袖は少し長めに。">${escapeHtml(S.wish)}</textarea>`;
     }
@@ -379,15 +447,17 @@ function finish(){
     const f = FABRICS.find(x => x.id === S.fabric);
     pick = `${f.name}で ${p.name}`;
   }
+  const q = quote();
   $("done-body").innerHTML = `
     <div class="done-mark">✓</div>
     <h1 class="word" style="text-align:center">相談内容をまとめました</h1>
     <p class="lead word" style="text-align:center">大工原 葉子さんへ渡す内容です。<br>この画面はデモなので、送信はしません。</p>
+    ${quoteCard(q)}
     <dl class="sheet">
       <div class="row"><dt>メニュー</dt><dd class="word">${pathName}</dd></div>
       <div class="row"><dt>内容</dt><dd class="word">${pick}</dd></div>
       <div class="row"><dt>希望</dt><dd class="word">${escapeHtml(S.wish) || "未記入"}</dd></div>
-      <div class="row"><dt>次の予定</dt><dd class="word">実物を見る → 採寸 → 型紙 → 縫製</dd></div>
+      <div class="row"><dt>次の予定</dt><dd class="word">実物を見る → 採寸 → 正式見積もり</dd></div>
     </dl>`;
   show("done");
 }
