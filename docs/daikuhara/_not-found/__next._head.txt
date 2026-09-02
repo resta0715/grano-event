@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[26531,["/grano-event/daikuhara/_next/static/chunks/fab01bdbf1feb72b.js"],"ViewportBoundary"]
+3:I[26531,["/grano-event/daikuhara/_next/static/chunks/fab01bdbf1feb72b.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"NRx6BaeJtFiTr-BSx_OI4","rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, viewport-fit=cover"}],["$","meta","2",{"name":"theme-color","content":"#f5f0e8"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"一着をつくる — 大工原 葉子"}],["$","meta","1",{"name":"description","content":"着物リメイク / オーダーメイド デモ"}]]}]}]}],null]}],"loading":null,"isPartial":false}
