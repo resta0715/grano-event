@@ -66,12 +66,12 @@ html,body{
 .inner.over-art.cover-copy{
   justify-content:flex-end;
   max-width:44vw;
-  padding-bottom:clamp(52px,9vh,92px);
+  padding-bottom:clamp(44px,7vh,72px);
   padding-right:clamp(12px,2vw,28px);
-  padding-top:clamp(40px,8vh,96px);
+  padding-top:clamp(24px,5vh,56px);
 }
-.inner.over-art.cover-copy h1{font-size:clamp(56px,6.2vw,104px)}
-.inner.over-art.cover-copy .lead{font-size:clamp(36px,3.5vw,54px);max-width:none}
+.inner.over-art.cover-copy h1{font-size:clamp(52px,6vw,96px)}
+.inner.over-art.cover-copy .lead{font-size:clamp(36px,3.6vw,56px);max-width:none}
 .veil-full{
   background:
     radial-gradient(ellipse 80% 70% at 70% 45%,rgba(7,8,11,.2),rgba(7,8,11,.78) 72%),
@@ -93,45 +93,45 @@ html,body{
   max-width:88vw;
   padding-right:clamp(20px,6vw,72px);
   justify-content:flex-start;
-  padding-top:clamp(28px,4.2vh,48px);
-  padding-bottom:clamp(32px,4.8vh,52px);
+  padding-top:clamp(24px,3.6vh,40px);
+  padding-bottom:clamp(24px,3.6vh,36px);
 }
-.inner.over-art h2{font-size:clamp(52px,5.8vw,96px)}
-.inner.over-art .catch{font-size:clamp(36px,4.1vw,62px)}
+.inner.over-art h2{font-size:clamp(52px,6vw,100px)}
+.inner.over-art .catch{font-size:clamp(40px,4.5vw,72px)}
 .inner.over-art .lead{
   max-width:none;
-  font-size:clamp(38px,4vw,60px);
+  font-size:clamp(42px,4.5vw,70px);
 }
 .inner.over-art .cta-line{
   max-width:none;
-  font-size:clamp(38px,4vw,62px);
+  font-size:clamp(42px,4.5vw,70px);
 }
 .inner.over-art .novas-list{max-width:none}
-.inner.over-art .novas-list li{font-size:clamp(36px,3.6vw,54px)}
-.inner.over-art .lines{max-width:none;gap:clamp(8px,1.1vh,14px);margin-top:clamp(6px,1vh,14px)}
-.inner.over-art .lines p{font-size:clamp(38px,4vw,56px);line-height:1.32}
-.inner.over-art .note{max-width:none;font-size:clamp(32px,3vw,44px)}
-.inner.over-art .chain-story p{font-size:clamp(32px,3.1vw,42px);line-height:1.32}
-.inner.over-art .chain-story h3{font-size:clamp(32px,3.2vw,44px)}
-.inner.over-art .chain-story .who{font-size:clamp(28px,2.6vw,38px)}
-.inner.over-art .val h4{font-size:clamp(36px,3.8vw,56px)}
+.inner.over-art .novas-list li{font-size:clamp(40px,4.1vw,64px)}
+.inner.over-art .lines{max-width:none;gap:clamp(10px,1.3vh,18px);margin-top:clamp(8px,1.2vh,16px)}
+.inner.over-art .lines p{font-size:clamp(42px,4.6vw,72px);line-height:1.34}
+.inner.over-art .note{max-width:none;font-size:clamp(34px,3.3vw,50px)}
+.inner.over-art .chain-story p{font-size:clamp(36px,3.6vw,52px);line-height:1.32}
+.inner.over-art .chain-story h3{font-size:clamp(36px,3.6vw,54px)}
+.inner.over-art .chain-story .who{font-size:clamp(32px,3vw,46px)}
+.inner.over-art .val h4{font-size:clamp(36px,3.8vw,58px)}
 .inner.fill{padding:0;justify-content:stretch}
 
 .eyebrow{
-  font-size:clamp(22px,2vw,34px);
+  font-size:clamp(24px,2.3vw,38px);
   font-weight:700;letter-spacing:.22em;
   color:var(--gold);
   margin-bottom:clamp(10px,1.4vh,18px);
 }
 .turn{
-  font-size:clamp(30px,2.8vw,44px);
+  font-size:clamp(32px,3.1vw,50px);
   font-weight:700;color:var(--gold);
   letter-spacing:.14em;margin-bottom:.3em;
 }
 .catch{
   font-family:var(--serif);
-  font-size:clamp(36px,3.8vw,60px);
-  line-height:1.35;margin:.1em 0 .55em;
+  font-size:clamp(40px,4.2vw,70px);
+  line-height:1.32;margin:.1em 0 .5em;
   word-break:keep-all;line-break:strict;
 }
 .lines{
@@ -141,8 +141,8 @@ html,body{
   max-width:min(46em,74vw);
 }
 .lines p{
-  font-size:clamp(36px,3.6vw,56px);
-  line-height:1.45;font-weight:500;
+  font-size:clamp(40px,4.2vw,70px);
+  line-height:1.4;font-weight:500;
 }
 .lines b{color:var(--gold);font-weight:700;font-family:var(--serif)}
 .kicker{
@@ -162,23 +162,23 @@ h1,h2,h3,h4{
   word-break:keep-all;line-break:strict;overflow-wrap:normal;
 }
 h1{
-  font-size:clamp(52px,6.2vw,104px);
+  font-size:clamp(56px,6.8vw,112px);
   line-height:1.12;
   text-shadow:0 12px 40px rgba(0,0,0,.5);
 }
 h1 .gold,h2 .gold,.gold{color:var(--gold)}
 h1 em,h2 em{font-style:normal;color:var(--gold2)}
-h2{font-size:clamp(48px,5.4vw,92px)}
+h2{font-size:clamp(52px,5.8vw,100px)}
 .lead{
   margin-top:clamp(16px,2.2vh,28px);
-  font-size:clamp(36px,3.7vw,58px);
-  line-height:1.45;color:var(--ink);font-weight:500;
+  font-size:clamp(40px,4.2vw,66px);
+  line-height:1.42;color:var(--ink);font-weight:500;
   max-width:min(36em,74vw);
 }
 .nowrap{white-space:nowrap}
 .subnames{
   margin-top:clamp(22px,2.8vh,40px);
-  font-size:clamp(28px,2.8vw,46px);
+  font-size:clamp(32px,3.2vw,52px);
   letter-spacing:.1em;color:var(--ink);font-weight:700;
 }
 .subnames span{color:var(--gold);margin:0 .4em}
@@ -218,17 +218,17 @@ h2{font-size:clamp(48px,5.4vw,92px)}
   padding:clamp(24px,3.6vh,40px) clamp(20px,2.2vw,36px) clamp(48px,7vh,76px);
 }
 .person .role{
-  font-size:clamp(24px,2.2vw,34px);letter-spacing:.16em;
+  font-size:clamp(26px,2.5vw,38px);letter-spacing:.16em;
   color:var(--gold);font-weight:700;margin-bottom:.35em;
 }
-.person h3{font-size:clamp(48px,4.6vw,80px);margin-bottom:.3em}
+.person h3{font-size:clamp(52px,5vw,88px);margin-bottom:.3em}
 .person .punch{
-  font-size:clamp(32px,3vw,48px);line-height:1.35;
+  font-size:clamp(34px,3.3vw,54px);line-height:1.32;
   color:var(--ink);font-weight:700;
 }
 .person .bio{
   margin-top:.4em;
-  font-size:clamp(28px,2.6vw,40px);line-height:1.4;
+  font-size:clamp(30px,3vw,46px);line-height:1.38;
   color:var(--muted);font-weight:500;
 }
 
@@ -238,7 +238,7 @@ h2{font-size:clamp(48px,5.4vw,92px)}
   pointer-events:none;
 }
 .band h2{
-  font-size:clamp(32px,3.4vw,52px);
+  font-size:clamp(36px,3.8vw,60px);
   text-shadow:0 8px 30px #000;
   margin-top:.15em;
 }
@@ -292,7 +292,7 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 }
 .quote{
   font-family:var(--serif);
-  font-size:clamp(32px,3.6vw,56px);line-height:1.4;
+  font-size:clamp(40px,4.4vw,72px);line-height:1.38;
   font-weight:700;
 }
 .quote small{
@@ -303,8 +303,8 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 
 .values{
   display:flex;flex-direction:column;
-  gap:clamp(6px,1vh,12px);
-  margin-top:clamp(10px,1.6vh,20px);
+  gap:clamp(4px,.7vh,10px);
+  margin-top:clamp(8px,1.2vh,16px);
 }
 .val{
   padding:.15em 0 .15em 0;
@@ -312,7 +312,7 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 }
 .val h4{
   font-family:var(--serif);
-  font-size:clamp(34px,3.6vw,54px);
+  font-size:clamp(38px,4vw,64px);
   line-height:1.3;
 }
 .val h4::before{
@@ -323,7 +323,7 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 
 .note{
   margin-top:clamp(14px,2vh,26px);
-  font-size:clamp(32px,3.1vw,46px);line-height:1.45;color:var(--ink);
+  font-size:clamp(36px,3.5vw,54px);line-height:1.42;color:var(--ink);
 }
 
 .veil-corp{
@@ -336,8 +336,8 @@ h2{font-size:clamp(48px,5.4vw,92px)}
   display:grid;
   grid-template-columns:1.15fr .85fr;
   height:100%;
-  align-items:center;
-  padding:clamp(36px,6vh,64px) clamp(36px,4.5vw,72px) clamp(40px,6vh,64px) clamp(56px,7vw,100px);
+  align-items:start;
+  padding:clamp(28px,4.5vh,48px) clamp(36px,4.5vw,72px) clamp(28px,4.5vh,48px) clamp(48px,6vw,88px);
   gap:clamp(16px,3vw,40px);
 }
 .corp-left{
@@ -346,17 +346,17 @@ h2{font-size:clamp(48px,5.4vw,92px)}
   display:flex;flex-direction:column;justify-content:center;
   padding:0;
 }
-.slide-corp h2{font-size:clamp(64px,7.2vw,128px);line-height:1.12}
-.slide-corp .catch{font-size:clamp(38px,4.2vw,66px);margin:.2em 0 .4em}
+.slide-corp h2{font-size:clamp(56px,6.4vw,108px);line-height:1.1}
+.slide-corp .catch{font-size:clamp(40px,4.5vw,74px);margin:.2em 0 .4em}
 .slide-corp .lead{
-  font-size:clamp(36px,3.6vw,54px);max-width:none;margin-top:.35em;
+  font-size:clamp(38px,4vw,64px);max-width:none;margin-top:.35em;
 }
 .slide-corp .quote{
   margin-top:.55em;
-  font-size:clamp(36px,3.8vw,58px);
+  font-size:clamp(40px,4.2vw,68px);
 }
 .slide-corp .note{
-  font-size:clamp(30px,2.9vw,44px);color:var(--muted);margin-top:.85em;
+  font-size:clamp(32px,3.2vw,50px);color:var(--muted);margin-top:.7em;
 }
 .corp-mark{
   position:relative;z-index:4;
@@ -369,7 +369,7 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 }
 .corp-name{
   font-family:var(--serif);
-  font-size:clamp(48px,6.4vw,112px);
+  font-size:clamp(44px,5.6vw,92px);
   font-weight:700;line-height:1.05;
   color:var(--gold2);
   letter-spacing:.04em;
@@ -416,9 +416,9 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 }
 
 .slide-stats .inner{justify-content:flex-end;padding-bottom:clamp(56px,9vh,96px)}
-.slide-stats h2{font-size:clamp(48px,5.4vw,88px);line-height:1.2}
+.slide-stats h2{font-size:clamp(52px,5.8vw,96px);line-height:1.18}
 .slide-stats .lead{
-  font-size:clamp(34px,3.2vw,50px);margin-top:.35em;max-width:none;color:var(--muted);
+  font-size:clamp(36px,3.6vw,56px);margin-top:.35em;max-width:none;color:var(--muted);
 }
 .slide-stats .stats{
   margin-top:clamp(28px,4.5vh,52px);
@@ -432,10 +432,10 @@ h2{font-size:clamp(48px,5.4vw,92px)}
   font-size:.32em;font-weight:700;margin-left:.18em;color:var(--gold);
 }
 .slide-stats .stat .lbl{
-  font-size:clamp(32px,3.3vw,52px);margin-top:.45em;
+  font-size:clamp(34px,3.6vw,56px);margin-top:.45em;
 }
 .slide-stats .stat .sub{
-  font-size:clamp(26px,2.7vw,42px);color:var(--ink);
+  font-size:clamp(28px,3vw,46px);color:var(--ink);
 }
 
 .novas-list{
@@ -456,14 +456,14 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 .cta-line{
   margin-top:clamp(14px,2vh,24px);
   font-family:var(--serif);
-  font-size:clamp(32px,3.2vw,46px);color:var(--gold2);
+  font-size:clamp(38px,3.8vw,60px);color:var(--gold2);
   max-width:min(36em,74vw);
 }
 
 .ice-row{
   display:flex;flex-wrap:wrap;gap:.35em 1.1em;
   font-family:var(--serif);
-  font-size:clamp(36px,4vw,62px);
+  font-size:clamp(42px,4.6vw,78px);
   color:var(--gold2);
   font-weight:700;
 }
@@ -473,7 +473,7 @@ h2{font-size:clamp(48px,5.4vw,92px)}
   gap:.35em;
 }
 .root-item{
-  font-size:clamp(28px,3vw,44px);line-height:1.4;font-weight:500;
+  font-size:clamp(28px,3vw,42px);line-height:1.35;font-weight:500;
 }
 .root-item b{
   font-family:var(--serif);color:var(--gold);
@@ -486,12 +486,12 @@ h2{font-size:clamp(48px,5.4vw,92px)}
 .novas-copy{max-width:56vw;padding-right:clamp(16px,4vw,48px)}
 .inner.over-art.novas-copy{max-width:56vw;padding-bottom:clamp(24px,4vh,40px)}
 .slide-novas h2{
-  font-size:clamp(64px,7.2vw,124px);
+  font-size:clamp(64px,7.6vw,132px);
   color:var(--gold2);
   text-shadow:0 16px 60px rgba(0,0,0,.7),0 0 50px rgba(212,179,106,.3);
 }
 .slide-novas .catch{
-  font-size:clamp(40px,4.4vw,70px);
+  font-size:clamp(42px,4.8vw,78px);
   margin:.15em 0 .35em;
 }
 .novas-mark{
