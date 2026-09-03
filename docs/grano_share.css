@@ -32,10 +32,10 @@ html,body{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;z-index:0;
 }
-.kenburns{animation:kenburns 14s ease-out forwards}
+.kenburns{animation:kenburns 16s linear forwards}
 @keyframes kenburns{
-  from{transform:scale(1.06)}
-  to{transform:scale(1.16) translate(-1.2%,-0.6%)}
+  from{transform:scale(1)}
+  to{transform:scale(1.2) translate(-1.6%,-1%)}
 }
 .veil{
   position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -56,12 +56,12 @@ html,body{
   filter:brightness(1.22) contrast(1.06) saturate(1.04);
 }
 .slide-cover .kenburns{
-  animation:kenburns-cover 14s ease-out forwards;
+  animation:kenburns-cover 16s linear forwards;
   transform-origin:62% 28%;
 }
 @keyframes kenburns-cover{
-  from{transform:scale(1.04)}
-  to{transform:scale(1.1)}
+  from{transform:scale(1)}
+  to{transform:scale(1.14)}
 }
 .inner.over-art.cover-copy{
   justify-content:flex-end;
@@ -92,11 +92,11 @@ html,body{
 .inner.over-art{
   max-width:88vw;
   padding-right:clamp(20px,6vw,72px);
-  justify-content:flex-start;
+  justify-content:center;
   padding-top:clamp(24px,3.6vh,40px);
   padding-bottom:clamp(24px,3.6vh,36px);
 }
-.inner.over-art h2{font-size:clamp(52px,6vw,100px)}
+.inner.over-art h2{font-size:clamp(64px,7vw,120px)}
 .inner.over-art .catch{font-size:clamp(40px,4.5vw,72px)}
 .inner.over-art .lead{
   max-width:none;
@@ -114,7 +114,7 @@ html,body{
 .inner.over-art .chain-story p{font-size:clamp(36px,3.6vw,52px);line-height:1.32}
 .inner.over-art .chain-story h3{font-size:clamp(36px,3.6vw,54px)}
 .inner.over-art .chain-story .who{font-size:clamp(32px,3vw,46px)}
-.inner.over-art .val h4{font-size:clamp(36px,3.8vw,58px)}
+.inner.over-art .val h4{font-size:clamp(48px,5.2vw,88px)}
 .inner.fill{padding:0;justify-content:stretch}
 
 .eyebrow{
@@ -244,6 +244,47 @@ h2{font-size:clamp(52px,5.8vw,100px)}
 }
 .people{padding-top:clamp(88px,12vh,140px)}
 
+.slide-meet{
+  display:flex;flex-direction:column;
+  background:#07080b;
+}
+.meet-photos{
+  position:relative;flex:1;min-height:0;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;background:#07080b;
+}
+.meet-frame,.meet-shot{
+  overflow:hidden;min-height:0;height:100%;
+  position:relative;
+}
+.meet-photo{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  background:#07080b;
+  filter:saturate(1.02) contrast(1.06) brightness(1.04);
+}
+.meet-cave{object-position:30% 18%;transform-origin:28% 22%}
+.meet-temple{object-position:50% 92%;transform-origin:50% 85%}
+.meet-top{
+  position:relative;z-index:3;flex:0 0 auto;
+  background:#07080b;
+  padding:clamp(16px,2.4vh,28px) clamp(32px,4vw,64px) clamp(12px,1.8vh,18px);
+}
+.slide-meet h2{
+  font-size:clamp(48px,5.2vw,84px);
+  text-shadow:none;
+  margin-top:.08em;
+}
+.meet-names{
+  position:relative;z-index:3;flex:0 0 auto;
+  background:#07080b;
+  padding:clamp(10px,1.6vh,16px) clamp(32px,4vw,64px) clamp(16px,2.4vh,26px);
+  font-size:clamp(34px,3.4vw,56px);
+  font-weight:700;letter-spacing:.06em;
+  word-break:keep-all;line-break:strict;
+}
+.meet-names span{color:var(--gold);margin:0 .35em}
+
 .inner.story-inner{justify-content:flex-start;padding-top:clamp(16px,2.2vh,24px);padding-bottom:clamp(20px,3vh,36px)}
 .story-inner h2{font-size:clamp(40px,4.2vw,60px)}
 .chain-story{
@@ -303,8 +344,8 @@ h2{font-size:clamp(52px,5.8vw,100px)}
 
 .values{
   display:flex;flex-direction:column;
-  gap:clamp(4px,.7vh,10px);
-  margin-top:clamp(8px,1.2vh,16px);
+  gap:clamp(12px,1.8vh,28px);
+  margin-top:0;
 }
 .val{
   padding:.15em 0 .15em 0;
@@ -312,8 +353,8 @@ h2{font-size:clamp(52px,5.8vw,100px)}
 }
 .val h4{
   font-family:var(--serif);
-  font-size:clamp(38px,4vw,64px);
-  line-height:1.3;
+  font-size:clamp(48px,5.2vw,88px);
+  line-height:1.25;
 }
 .val h4::before{
   content:"";display:inline-block;width:.55em;height:.08em;
@@ -415,7 +456,7 @@ h2{font-size:clamp(52px,5.8vw,100px)}
   font-size:clamp(24px,2.3vw,36px);color:var(--muted);line-height:1.45;
 }
 
-.slide-stats .inner{justify-content:flex-end;padding-bottom:clamp(56px,9vh,96px)}
+.slide-stats .inner{justify-content:center;padding-bottom:clamp(40px,7vh,72px)}
 .slide-stats h2{font-size:clamp(52px,5.8vw,96px);line-height:1.18}
 .slide-stats .lead{
   font-size:clamp(36px,3.6vw,56px);margin-top:.35em;max-width:none;color:var(--muted);
@@ -462,6 +503,7 @@ h2{font-size:clamp(52px,5.8vw,100px)}
 
 .ice-row{
   display:flex;flex-wrap:wrap;gap:.35em 1.1em;
+  margin-top:clamp(18px,2.4vh,32px);
   font-family:var(--serif);
   font-size:clamp(42px,4.6vw,78px);
   color:var(--gold2);
@@ -551,6 +593,9 @@ h2{font-size:clamp(52px,5.8vw,100px)}
   padding:8px 12px;cursor:pointer;backdrop-filter:blur(8px);
 }
 .ctrl:hover{border-color:var(--gold);color:var(--gold)}
+.ctrl:disabled,.ctrl:disabled:hover{
+  opacity:.5;cursor:default;border-color:var(--line);color:var(--dim);
+}
 .page{min-width:4.6em;text-align:center;color:var(--gold);font-size:13px;font-weight:700}
 .hint{
   position:fixed;bottom:clamp(14px,2vh,24px);left:clamp(16px,2.2vw,28px);
@@ -575,7 +620,7 @@ h2{font-size:clamp(52px,5.8vw,100px)}
 @keyframes draw{to{transform:scaleX(1)}}
 
 @media (max-width:900px){
-  .people,.split,.split.flip,.stats{grid-template-columns:1fr}
+  .people,.split,.split.flip,.stats,.meet-photos{grid-template-columns:1fr}
   .split .visual{height:32vh}
   h1{font-size:clamp(36px,9vw,64px)}
   h2{font-size:clamp(30px,7vw,48px)}

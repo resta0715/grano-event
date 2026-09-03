@@ -53,16 +53,35 @@
     });
     if (ind) ind.textContent = cur + 1 + " / " + total;
     if (bar) bar.style.width = ((cur + 1) / total) * 100 + "%";
+    markEnd(cur >= total - 1);
     if (location.hash !== "#" + (cur + 1)) {
       history.replaceState(null, "", "#" + (cur + 1));
     }
     replay(slides[cur]);
   }
 
+  function markEnd(ended) {
+    const btn = document.getElementById("btn-next");
+    const hint = document.querySelector(".hint");
+    if (btn) {
+      btn.disabled = !!ended;
+      btn.textContent = ended ? "終わり" : "次 →";
+    }
+    if (hint) {
+      hint.innerHTML = ended
+        ? "<kbd>Home</kbd> 最初へ　<kbd>F</kbd> 全画面"
+        : "<kbd>→</kbd> 次へ　<kbd>F</kbd> 全画面";
+    }
+  }
+
   function next() {
     const hidden = frags(slides[cur]).find((f) => !f.classList.contains("on"));
     if (hidden) {
       hidden.classList.add("on");
+      return;
+    }
+    if (cur >= total - 1) {
+      markEnd(true);
       return;
     }
     go(cur + 1, false);
