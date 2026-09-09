@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[63510,["/grano-event/okazaki/_next/static/chunks/67d5cae24e732f91.js"],"default"]
+2:I[63510,["/grano-event/okazaki/_next/static/chunks/e8a988f91d706147.js"],"default"]
 3:I[7812,["/grano-event/okazaki/_next/static/chunks/dce885ae9f15087e.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"3FlSb3G1MB304IGgQVHCx","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/grano-event/okazaki/_next/static/chunks/67d5cae24e732f91.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"NcIcfy7BFuUgCgNrTrgQM","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/grano-event/okazaki/_next/static/chunks/e8a988f91d706147.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
