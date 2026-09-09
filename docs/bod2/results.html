@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>20期 第2回BOD 結果発表｜大人の夏祭り</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  background:#12081c;color:#fff8ee;
+  -webkit-font-smoothing:antialiased;
+}
+.nowrap{white-space:nowrap}
+.deck{width:100vw;height:100vh;position:relative}
+.slide{
+  display:none;width:100%;height:100%;
+  padding:clamp(28px,4.2vh,56px) clamp(36px,5vw,88px);
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 120%, rgba(255,80,120,.18), transparent 55%),
+    radial-gradient(circle at 8% 18%, rgba(255,200,80,.16), transparent 28%),
+    radial-gradient(circle at 92% 12%, rgba(80,180,255,.14), transparent 26%),
+    linear-gradient(180deg,#1a0c28 0%,#2a1238 42%,#3a1840 100%);
+}
+.slide.on{display:flex;flex-direction:column;justify-content:center}
+.slide > *{position:relative;z-index:2}
+.lanterns{
+  position:absolute;top:0;left:0;right:0;height:9vh;
+  display:flex;justify-content:space-evenly;pointer-events:none;z-index:1;
+}
+.lanterns i{
+  width:clamp(22px,2.4vw,40px);height:clamp(30px,3.6vh,52px);
+  border-radius:40% 40% 46% 46%;
+  background:linear-gradient(180deg,#ffb3c4,#ff5d7a);
+  box-shadow:0 0 18px rgba(255,90,120,.55);
+  margin-top:1.2vh;
+}
+.lanterns i:nth-child(even){background:linear-gradient(180deg,#ffe08a,#ff9f43)}
+.fw{position:absolute;border-radius:50%;pointer-events:none;z-index:1}
+.fw.a{width:18vw;height:18vw;right:-2vw;top:-4vh;background:radial-gradient(circle,rgba(255,210,90,.22),transparent 68%)}
+.fw.b{width:14vw;height:14vw;left:-3vw;bottom:4vh;background:radial-gradient(circle,rgba(120,200,255,.18),transparent 68%)}
+
+.kicker{
+  font-size:clamp(28px,2.4vw,40px);letter-spacing:.12em;
+  color:#ffd27a;font-weight:800;margin-bottom:.4vh;
+  word-break:keep-all;
+}
+h1{
+  font-size:clamp(52px,5.8vw,92px);line-height:1.15;font-weight:900;
+  word-break:keep-all;text-shadow:0 4px 0 rgba(0,0,0,.25);
+}
+h2{
+  font-size:clamp(48px,5.2vw,80px);line-height:1.18;font-weight:900;
+  word-break:keep-all;margin-bottom:2.2vh;
+}
+.lead{
+  font-size:clamp(34px,3.3vw,52px);line-height:1.45;font-weight:700;
+  word-break:keep-all;max-width:22em;margin-top:2vh;
+}
+.note{
+  font-size:clamp(28px,2.5vw,38px);line-height:1.4;font-weight:700;
+  color:#ffe7b8;word-break:keep-all;margin-top:1.6vh;
+}
+.row{display:flex;gap:clamp(16px,2vw,36px);align-items:stretch;width:min(92%,1680px)}
+.card{
+  flex:1;border-radius:28px;padding:clamp(18px,2.4vh,36px) clamp(18px,2vw,32px);
+  background:rgba(20,8,28,.42);backdrop-filter:blur(6px);
+}
+.card.pink{border:6px solid #ff6b9a;box-shadow:0 0 0 4px rgba(255,80,140,.18)}
+.card.blue{border:6px solid #4ec3ff;box-shadow:0 0 0 4px rgba(78,195,255,.18)}
+.card.gold{border:6px solid #ffd36a}
+.card.green{border:6px solid #7ee0a8}
+.card .lab{
+  font-size:clamp(32px,2.8vw,44px);font-weight:900;letter-spacing:.06em;
+  word-break:keep-all;margin-bottom:1vh;
+}
+.card.pink .lab{color:#ff9fbf}
+.card.blue .lab{color:#8ad8ff}
+.card.gold .lab{color:#ffe08a}
+.card.green .lab{color:#9af0c0}
+.metric{display:flex;justify-content:space-between;align-items:baseline;gap:1vw;padding:.55vh 0}
+.metric .n{
+  font-size:clamp(34px,3.2vw,48px);font-weight:800;word-break:keep-all;
+}
+.metric .v{
+  font-size:clamp(48px,5.2vw,84px);font-weight:900;line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.big3{
+  display:flex;gap:clamp(14px,1.8vw,28px);width:min(94%,1700px);margin-top:.6vh;
+}
+.big3 .box{
+  flex:1;text-align:center;border-radius:24px;padding:2vh 1vw;
+  background:rgba(20,8,28,.45);
+}
+.big3 .box b{
+  display:block;font-size:clamp(28px,2.5vw,40px);margin-bottom:.4vh;word-break:keep-all;
+}
+.big3 .box em{
+  font-style:normal;font-size:clamp(64px,7vw,110px);font-weight:900;line-height:1;
+}
+.list{
+  display:flex;flex-direction:column;gap:1.1vh;width:min(92%,1600px);
+}
+.item{
+  display:grid;grid-template-columns:minmax(9em,28%) 1fr;
+  gap:1.4vw;align-items:center;
+  background:rgba(20,8,28,.45);border-radius:20px;
+  padding:1.2vh 1.6vw;border-left:10px solid #ffd36a;
+}
+.item .who{
+  font-size:clamp(34px,3.2vw,50px);font-weight:900;word-break:keep-all;
+}
+.item .how{
+  font-size:clamp(32px,2.9vw,46px);font-weight:700;line-height:1.35;word-break:keep-all;
+}
+.item.ok{border-left-color:#7ee0a8}
+.item.go{border-left-color:#4ec3ff}
+.item.wait{border-left-color:#ffd36a}
+.item.off{border-left-color:#ff8aa8}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,32px);width:min(94%,1680px)}
+.point{
+  background:rgba(20,8,28,.5);border:5px solid #ffd36a;border-radius:28px;
+  padding:2.2vh 2vw;
+}
+.point .num{
+  font-size:clamp(32px,2.8vw,42px);color:#ffd36a;font-weight:900;margin-bottom:.8vh;
+}
+.point p{
+  font-size:clamp(34px,3.2vw,50px);line-height:1.42;font-weight:800;word-break:keep-all;
+}
+.nav{
+  position:fixed;right:1.4vw;bottom:1.6vh;z-index:9;
+  font-size:clamp(22px,1.6vw,28px);color:#ffe7b8;font-weight:800;
+}
+.hint{
+  position:fixed;left:1.6vw;bottom:1.6vh;z-index:9;
+  font-size:clamp(20px,1.5vw,26px);color:#d7c4a4;font-weight:700;
+}
+</style>
+</head>
+<body>
+<div class="lanterns" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="deck" id="deck">
+
+<section class="slide on" data-i="1">
+  <div class="fw a"></div><div class="fw b"></div>
+  <p class="kicker">BNI グラーノ 20期</p>
+  <h1>第2回 BOD<br>大人の夏祭り<br>結果発表</h1>
+  <p class="lead">グラーノが、目標と結果を並べて報告する。</p>
+</section>
+
+<section class="slide" data-i="2">
+  <h2>第2回　目標と結果</h2>
+  <div class="row">
+    <div class="card pink">
+      <p class="lab">目標</p>
+      <div class="metric"><span class="n">ビジター</span><span class="v">35</span></div>
+      <div class="metric"><span class="n">申込み</span><span class="v">10</span></div>
+      <div class="metric"><span class="n">入会</span><span class="v">7</span></div>
+    </div>
+    <div class="card blue">
+      <p class="lab">結果</p>
+      <div class="metric"><span class="n">ビジター</span><span class="v">21</span></div>
+      <div class="metric"><span class="n">申込み</span><span class="v">9</span></div>
+      <div class="metric"><span class="n">入会</span><span class="v">7</span></div>
+    </div>
+  </div>
+  <p class="note">入会7名は、いま確定している人数。</p>
+</section>
+
+<section class="slide" data-i="3">
+  <h2>入会の内訳</h2>
+  <div class="big3">
+    <div class="box" style="border:5px solid #4ec3ff">
+      <b>当日入金済み</b><em>2</em>
+    </div>
+    <div class="box" style="border:5px solid #7ee0a8">
+      <b>事前申込みで<br>入会済み</b><em>5</em>
+    </div>
+    <div class="box" style="border:5px solid #ffd36a">
+      <b>いま確定</b><em>7</em>
+    </div>
+  </div>
+  <p class="lead">あと<span class="nowrap">7名</span>が、審査と入金を待っている。</p>
+</section>
+
+<section class="slide" data-i="4">
+  <h2>後追い　入会済み</h2>
+  <div class="list">
+    <div class="item ok">
+      <p class="who">大場 祐介</p>
+      <p class="how">小野が招待。Web関連。<span class="nowrap">入会済み。</span></p>
+    </div>
+    <div class="item ok">
+      <p class="who">早川 尚吾</p>
+      <p class="how">栗原が招待。お散歩動画。<span class="nowrap">入会済み。</span></p>
+    </div>
+  </div>
+  <p class="note">シートに「入会済」と書いてある2名。<br>確定7名の残りは、当日入金と事前入会。</p>
+</section>
+
+<section class="slide" data-i="5">
+  <h2>後追い　いま動く</h2>
+  <div class="list">
+    <div class="item go"><p class="who">柴 慎平</p><p class="how">山野井がフォロー。<span class="nowrap">入金だけ進める。</span></p></div>
+    <div class="item go"><p class="who">星 寿美</p><p class="how">飛山が優につなぐ。<span class="nowrap">初回は9月30日。</span></p></div>
+    <div class="item go"><p class="who">阿部 綾香</p><p class="how">上村がフォロー。<span class="nowrap">9月16日ジョイン。</span></p></div>
+    <div class="item go"><p class="who">青木 健</p><p class="how">小宮がフォロー。<span class="nowrap">9月15日エリアBOD。</span></p></div>
+    <div class="item go"><p class="who">新田 義矩</p><p class="how">小宮がフォロー。<span class="nowrap">10月末に判断。</span></p></div>
+    <div class="item go"><p class="who">迫田 由美子</p><p class="how">小宮がフォロー。いま看病中。</p></div>
+  </div>
+</section>
+
+<section class="slide" data-i="6">
+  <h2>後追い　時期待ち</h2>
+  <div class="list">
+    <div class="item wait"><p class="who">小林 良</p><p class="how">あらいがフォロー。<span class="nowrap">来年1月入会。</span>かき氷でつなぐ。</p></div>
+    <div class="item wait"><p class="who">彌富 久美子</p><p class="how">幸田がフォロー。<span class="nowrap">2027年4月希望。</span></p></div>
+    <div class="item wait"><p class="who">加藤 一郎</p><p class="how">宇部がフォロー。<span class="nowrap">1年後に入会。</span></p></div>
+    <div class="item wait"><p class="who">猪股 みお</p><p class="how">小野と大工原がフォローを続ける。</p></div>
+    <div class="item wait"><p class="who">伊東 伸浩</p><p class="how">小宮が1to1する。</p></div>
+    <div class="item wait"><p class="who">石川 清司</p><p class="how">ビンゴ会で金銭的にお断り。<span class="nowrap">尾崎先生次第。</span></p></div>
+  </div>
+</section>
+
+<section class="slide" data-i="7">
+  <h2>後追い　リリース</h2>
+  <div class="list">
+    <div class="item off"><p class="who">秋山 雅代</p><p class="how">宇部が一旦リリース。海に返す。</p></div>
+    <div class="item off"><p class="who">古澤 萌愛</p><p class="how">グラーノとしてはリリース。<span class="nowrap">ひとみ会へ。</span></p></div>
+    <div class="item off"><p class="who">千葉 麻衣</p><p class="how">新美がリリース。牧場に返す。</p></div>
+    <div class="item off"><p class="who">香田 英匡</p><p class="how">ひとみがリリース。</p></div>
+    <div class="item off"><p class="who">野口 久美子</p><p class="how">ビンゴ会後、費用面でリリース。</p></div>
+    <div class="item off"><p class="who">ほか</p><p class="how">磯田、佐生、玉置、奥村もリリース寄り。</p></div>
+  </div>
+</section>
+
+<section class="slide" data-i="8">
+  <h2>第1回 BOD の結果</h2>
+  <div class="row">
+    <div class="card pink">
+      <p class="lab">目標</p>
+      <div class="metric"><span class="n">ビジター</span><span class="v">33</span></div>
+      <div class="metric"><span class="n">申込み</span><span class="v">10</span></div>
+      <div class="metric"><span class="n">正式入会</span><span class="v">7</span></div>
+    </div>
+    <div class="card blue">
+      <p class="lab">結果</p>
+      <div class="metric"><span class="n">来場</span><span class="v">29</span></div>
+      <div class="metric"><span class="n">申込み</span><span class="v">15</span></div>
+      <div class="metric"><span class="n">正式入会</span><span class="v">3</span></div>
+    </div>
+  </div>
+  <p class="note">出典は第1回振り返り資料。<br>振り返り時点の正式入会は3名。定着見込みは5名。</p>
+</section>
+
+<section class="slide" data-i="9">
+  <h2>第1回と第2回の合計</h2>
+  <div class="big3">
+    <div class="box gold">
+      <b>ビジター来場</b><em>50</em>
+      <p class="note" style="margin-top:.8vh">29 + 21</p>
+    </div>
+    <div class="box" style="border:5px solid #ff9fbf">
+      <b>申込み</b><em>24</em>
+      <p class="note" style="margin-top:.8vh">15 + 9</p>
+    </div>
+    <div class="box" style="border:5px solid #7ee0a8">
+      <b>入会確定</b><em>10</em>
+      <p class="note" style="margin-top:.8vh">3 + 7</p>
+    </div>
+  </div>
+  <p class="lead">第2回の審査入金待ち<span class="nowrap">7名</span>は、まだ足していない。</p>
+</section>
+
+<section class="slide" data-i="10">
+  <h2>BOD全体の総括</h2>
+  <div class="list">
+    <div class="item ok"><p class="who">第1回</p><p class="how">申込みは目標を超えた。<br>正式入会は、当日届かなかった。</p></div>
+    <div class="item go"><p class="who">第2回</p><p class="how">事前入金を進めた。<br>入会7名で、目標に並んだ。</p></div>
+    <div class="item wait"><p class="who">残る仕事</p><p class="how">審査入金待ちの7名を、<br>グラーノが取り切る。</p></div>
+  </div>
+</section>
+
+<section class="slide" data-i="11">
+  <h2>次に活かす</h2>
+  <div class="two">
+    <div class="point">
+      <p class="num">1</p>
+      <p>BODコーディネーター、ビジホス、<span class="nowrap">3役</span>の連携がさらに取れると、<span class="nowrap">3役</span>の負担を減らしつつ、結果にもつなげられる。</p>
+    </div>
+    <div class="point">
+      <p class="num">2</p>
+      <p>今回、コーヒーMTGを強化して成果が上がっている。<br>引き続きレベルを上げる。<br>できる人数も増やす。</p>
+    </div>
+  </div>
+</section>
+
+</div>
+<p class="nav"><span id="pos">1</span> / 11</p>
+<p class="hint">← →　またはクリック</p>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+function show(n){
+  i=(n+slides.length)%slides.length;
+  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  document.getElementById('pos').textContent=String(i+1);
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+  if(e.key==='Home')show(0);
+  if(e.key==='End')show(slides.length-1);
+});
+document.addEventListener('click',e=>{
+  if(e.clientX>innerWidth*0.35)show(i+1);else show(i-1);
+});
+</script>
+</body>
+</html>
