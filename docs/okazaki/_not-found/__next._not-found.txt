@@ -1,0 +1,4 @@
+1:"$Sreact.fragment"
+2:I[47338,["/grano-event/okazaki/_next/static/chunks/dce885ae9f15087e.js"],"default"]
+3:I[57243,["/grano-event/okazaki/_next/static/chunks/dce885ae9f15087e.js"],"default"]
+0:{"buildId":"LXZRHc9vFhyzsc0SmVwLF","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}

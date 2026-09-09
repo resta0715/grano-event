@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[74068,["/grano-event/nagyo/_next/static/chunks/ee2da7d2b60826a3.js"],"default"]
+3:I[22169,["/grano-event/nagyo/_next/static/chunks/642b36977e1c711c.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"_fqRUdnD7PdppFMfPeOAl","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/grano-event/nagyo/_next/static/chunks/ee2da7d2b60826a3.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
