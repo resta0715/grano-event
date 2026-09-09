@@ -135,13 +135,26 @@ h2{
 .point p{
   font-size:clamp(34px,3.2vw,50px);line-height:1.42;font-weight:800;word-break:keep-all;
 }
-.nav{
-  position:fixed;right:1.4vw;bottom:1.6vh;z-index:9;
-  font-size:clamp(22px,1.6vw,28px);color:#ffe7b8;font-weight:800;
+.slide-nav{
+  position:fixed;left:0;right:0;bottom:1.2vh;z-index:9;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 clamp(28px,3.6vw,72px);
+  pointer-events:none;
 }
-.hint{
-  position:fixed;left:1.6vw;bottom:1.6vh;z-index:9;
-  font-size:clamp(20px,1.5vw,26px);color:#d7c4a4;font-weight:700;
+.nav-btn{
+  pointer-events:auto;
+  font:inherit;
+  font-size:clamp(34px,3.3vw,54px);
+  font-weight:900;line-height:1.15;word-break:keep-all;
+  color:#fff8ee;background:rgba(20,8,28,.78);
+  border:5px solid #ffd36a;border-radius:18px;
+  padding:.28em .9em;cursor:pointer;
+}
+.nav-btn:disabled{
+  opacity:.3;cursor:default;border-color:#8a7350;
+}
+.nav-pos{
+  font-size:clamp(32px,2.8vw,44px);font-weight:900;color:#ffe7b8;
 }
 </style>
 </head>
@@ -303,20 +316,35 @@ h2{
 </section>
 
 </div>
-<p class="nav"><span id="pos">1</span></p>
-<p class="hint">→ またはクリックで次へ</p>
+<nav class="slide-nav" aria-label="スライド移動">
+  <button type="button" class="nav-btn" id="prev" disabled>戻る</button>
+  <span class="nav-pos" id="pos">1</span>
+  <button type="button" class="nav-btn" id="next">次へ</button>
+</nav>
 <script>
 (function(){
   const slides=Array.from(document.querySelectorAll('#deck > .slide'));
   let cur=0;
   const pos=document.getElementById('pos');
+  const prevBtn=document.getElementById('prev');
+  const nextBtn=document.getElementById('next');
   function go(next){
     if(next<0||next>=slides.length)return;
     slides[cur].classList.remove('on');
     cur=next;
     slides[cur].classList.add('on');
     pos.textContent=String(cur+1);
+    prevBtn.disabled=cur===0;
+    nextBtn.disabled=cur===slides.length-1;
   }
+  prevBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    go(cur-1);
+  });
+  nextBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    go(cur+1);
+  });
   document.addEventListener('keydown',function(e){
     if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){
       e.preventDefault();
@@ -326,8 +354,10 @@ h2{
       go(cur-1);
     }
   });
-  document.addEventListener('click',function(){
-    go(cur+1);
+  document.addEventListener('click',function(e){
+    if(e.target.closest('.nav-btn'))return;
+    if(e.clientX<window.innerWidth*0.35)go(cur-1);
+    else go(cur+1);
   });
 })();
 </script>
