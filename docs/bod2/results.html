@@ -151,14 +151,12 @@ h2{
 
 <section class="slide on" data-i="1">
   <div class="fw a"></div><div class="fw b"></div>
-  <p class="sno">1 / 11</p>
   <p class="kicker">BNI グラーノ 20期</p>
   <h1>第2回 BOD<br>大人の夏祭り<br>結果発表</h1>
   <p class="lead">グラーノが、目標と結果を並べて報告する。</p>
 </section>
 
 <section class="slide" data-i="2">
-  <p class="sno">2 / 11</p>
   <h2>第2回　目標と結果</h2>
   <div class="row">
     <div class="card pink">
@@ -306,23 +304,33 @@ h2{
 </section>
 
 </div>
-<p class="nav"><span id="pos">1</span> / 11</p>
-<p class="hint">← →　またはクリック</p>
+<p class="nav"><span id="pos">1</span></p>
+<p class="hint">→ またはクリックで次へ</p>
 <script>
-const slides=[...document.querySelectorAll('.slide')].sort((a,b)=>Number(a.dataset.i)-Number(b.dataset.i));
-let i=0;
-function show(n){
-  i=Math.max(0,Math.min(slides.length-1,n));
-  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
-  document.getElementById('pos').textContent=String(i+1);
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
-  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}
-});
-document.addEventListener('click',e=>{
-  if(e.clientX>innerWidth*0.35)show(i+1);else show(i-1);
-});
+(function(){
+  const slides=Array.from(document.querySelectorAll('#deck > .slide'));
+  let cur=0;
+  const pos=document.getElementById('pos');
+  function go(next){
+    if(next<0||next>=slides.length)return;
+    slides[cur].classList.remove('on');
+    cur=next;
+    slides[cur].classList.add('on');
+    pos.textContent=String(cur+1);
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){
+      e.preventDefault();
+      go(cur+1);
+    }else if(e.key==='ArrowLeft'||e.key==='PageUp'){
+      e.preventDefault();
+      go(cur-1);
+    }
+  });
+  document.addEventListener('click',function(){
+    go(cur+1);
+  });
+})();
 </script>
 </body>
 </html>
