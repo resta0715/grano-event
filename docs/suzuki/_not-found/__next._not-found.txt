@@ -1,4 +1,4 @@
 1:"$Sreact.fragment"
 2:I[9402,["/grano-event/suzuki/_next/static/chunks/0c446d34b70dab92.js"],"default"]
 3:I[92323,["/grano-event/suzuki/_next/static/chunks/0c446d34b70dab92.js"],"default"]
-0:{"buildId":"VjU4bzAcgwdl39d_tQUIU","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"5DzUfzQBxp0Tn4G4sGQ-6","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
