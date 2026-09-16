@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[37263,["/grano-event/suzuki/_next/static/chunks/4d28a6e7ec3286e4.js"],"default"]
+2:I[37263,["/grano-event/suzuki/_next/static/chunks/fe7e417192d1449f.js"],"default"]
 3:I[20565,["/grano-event/suzuki/_next/static/chunks/0c446d34b70dab92.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"XK3vArGZb9uZ-62UW0-jL","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/grano-event/suzuki/_next/static/chunks/4d28a6e7ec3286e4.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"v9znk2_UO_zaERqY8YPUO","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/grano-event/suzuki/_next/static/chunks/fe7e417192d1449f.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
