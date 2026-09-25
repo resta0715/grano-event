@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[27271,["/grano-event/daikuhara/_next/static/chunks/c73d9f4869d00dcc.js","/grano-event/daikuhara/_next/static/chunks/8e95070dbab94c9b.js","/grano-event/daikuhara/_next/static/chunks/d4c52e57efb8fdee.js"],"AtelierApp"]
+3:I[26531,["/grano-event/daikuhara/_next/static/chunks/eb7d7425e60fd950.js","/grano-event/daikuhara/_next/static/chunks/2cf155776d06d711.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"ZkO7mbDutxF1Qt-gouOvn","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/grano-event/daikuhara/_next/static/chunks/c73d9f4869d00dcc.js","async":true}],["$","script","script-1",{"src":"/grano-event/daikuhara/_next/static/chunks/8e95070dbab94c9b.js","async":true}],["$","script","script-2",{"src":"/grano-event/daikuhara/_next/static/chunks/d4c52e57efb8fdee.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
