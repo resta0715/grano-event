@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宇部 光太｜AIエンジニア 1to1 — グラーノ</title>
+<meta name="description" content="BNIグラーノ 宇部光太のAIエンジニア1to1資料。実店舗で使うWEBアプリを、作っている。">
+<meta http-equiv="Cache-Control" content="no-store">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F1B2D; --navy-2:#162338;
+  --gold:#C8943E; --gold-2:#E2B65A;
+  --paper:#FFFDF8; --cream:#FAF6EE;
+  --ink:#1A1A1A; --muted:#5c5348;
+  --line:#E4D9C6;
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,system-ui,sans-serif;
+  --serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+}
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  font-family:var(--sans);background:#0b0d12;color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+.word{word-break:keep-all;line-break:strict}
+.nowrap{white-space:nowrap}
+.deck{width:100%;height:100%;position:relative}
+.slide{
+  position:absolute;inset:0;width:100vw;height:100vh;
+  opacity:0;pointer-events:none;visibility:hidden;
+  transform:scale(.988);
+  transition:opacity .4s ease,transform .45s ease;
+  overflow:hidden;
+}
+.slide.active{opacity:1;pointer-events:auto;transform:none;z-index:2;visibility:visible}
+
+.bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.veil{position:absolute;inset:0;z-index:1;pointer-events:none}
+.inner{
+  position:relative;z-index:2;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  padding:clamp(22px,3.2vh,44px) clamp(36px,4.6vw,84px) clamp(56px,7vh,80px);
+}
+.head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:2vw;
+  padding-bottom:clamp(10px,1.6vh,20px);
+  border-bottom:4px solid var(--navy);
+  flex-shrink:0;
+}
+.eyebrow{
+  font-size:clamp(22px,2.2vw,36px);font-weight:800;
+  letter-spacing:.14em;color:var(--gold);margin-bottom:.2em;
+}
+.head h2{
+  font-size:clamp(48px,5.4vw,88px);font-weight:900;line-height:1.12;
+  font-family:var(--serif);
+}
+.head-r{
+  text-align:right;font-size:clamp(24px,2.2vw,38px);
+  font-weight:700;color:var(--muted);line-height:1.35;flex-shrink:0;
+}
+.head-r b{display:block;color:var(--navy);font-size:1.15em}
+.body{
+  flex:1;min-height:0;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.lead{
+  font-size:clamp(34px,3.4vw,54px);font-weight:700;line-height:1.45;
+  max-width:22em;
+}
+
+/* cover */
+.slide-cover{background:var(--navy)}
+.slide-cover .veil{
+  background:linear-gradient(90deg,rgba(15,27,45,.96) 0%,rgba(15,27,45,.88) 58%,rgba(15,27,45,.28) 86%,rgba(15,27,45,.08) 100%);
+}
+.slide-cover .inner{justify-content:center;padding-right:8vw}
+.cover-kicker{
+  font-size:clamp(24px,2.4vw,40px);font-weight:800;
+  letter-spacing:.18em;color:var(--gold-2);margin-bottom:clamp(12px,2vh,28px);
+}
+.slide-cover h1{
+  font-family:var(--serif);
+  font-size:clamp(56px,7vw,118px);font-weight:900;line-height:1.08;
+  color:#fff;margin-bottom:clamp(16px,2.4vh,36px);
+}
+.slide-cover .sub{
+  font-size:clamp(34px,3.3vw,54px);font-weight:700;line-height:1.45;
+  color:rgba(255,253,248,.9);max-width:18em;
+}
+
+/* numbers */
+.slide-nums{background:linear-gradient(180deg,var(--paper),var(--cream))}
+.num-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(12px,1.8vw,24px);
+}
+.num-card{
+  background:#fff;border:2px solid var(--line);border-radius:16px;
+  padding:clamp(16px,2.2vh,28px) clamp(14px,1.6vw,22px);
+  text-align:center;
+}
+.num-card .n{
+  font-size:clamp(52px,6vw,96px);font-weight:900;color:var(--navy);line-height:1;
+}
+.num-card .n small{font-size:.36em;font-weight:800;margin-left:.12em}
+.num-card .l{
+  margin-top:.35em;
+  font-size:clamp(26px,2.4vw,40px);font-weight:800;line-height:1.3;
+}
+.num-note{
+  margin-top:clamp(16px,2.2vh,28px);
+  font-size:clamp(32px,2.9vw,46px);font-weight:700;line-height:1.45;
+  color:var(--muted);
+}
+
+/* strength */
+.slide-plain{background:var(--paper)}
+.quote{
+  border-left:8px solid var(--gold);
+  background:#fff;
+  padding:clamp(22px,3vh,40px) clamp(28px,3.2vw,52px);
+  border-radius:0 16px 16px 0;
+  font-size:clamp(34px,3.3vw,54px);font-weight:800;line-height:1.45;
+  width:72%;
+  max-width:none;
+}
+.quote .em{color:var(--navy)}
+
+/* products */
+.prod-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2vw,28px);
+  height:100%;
+  align-items:stretch;
+}
+.prod{
+  background:#fff;border:2px solid var(--line);border-radius:18px;
+  padding:clamp(10px,1.4vh,18px) clamp(12px,1.4vw,20px) clamp(16px,2vh,24px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  min-height:0;
+}
+.prod img{
+  width:auto;max-width:92%;height:auto;max-height:32vh;
+  object-fit:contain;object-position:center;
+  margin:0 auto .2em;
+}
+.prod h3{
+  font-family:var(--serif);
+  font-size:clamp(40px,4.2vw,68px);font-weight:900;line-height:1.15;
+  margin:.1em 0 .2em;
+}
+.prod p{
+  font-size:clamp(32px,2.6vw,42px);font-weight:700;line-height:1.4;
+  color:var(--muted);
+}
+
+/* miseban */
+.mise-grid{
+  display:grid;grid-template-columns:.72fr 1.28fr;
+  gap:clamp(20px,3vw,48px);
+  height:100%;align-items:center;
+}
+.mise-logo{
+  background:#fff;border:2px solid var(--line);border-radius:18px;
+  padding:clamp(8px,1.2vh,16px);
+  display:grid;place-items:center;height:100%;
+}
+.mise-logo img{
+  width:auto;max-width:100%;height:auto;max-height:58vh;
+  object-fit:contain;object-position:center;
+}
+.fn-list{display:flex;flex-direction:column;gap:clamp(8px,1.2vh,16px)}
+.fn{
+  background:#fff;border:2px solid var(--line);border-radius:12px;
+  padding:clamp(10px,1.4vh,18px) clamp(16px,2vw,28px);
+  font-size:clamp(32px,3.2vw,50px);font-weight:800;line-height:1.25;
+}
+.who{
+  font-size:clamp(32px,2.6vw,42px);font-weight:800;color:var(--gold);
+  margin-bottom:clamp(8px,1.2vh,16px);
+}
+
+/* apps */
+.app-list{
+  display:flex;flex-direction:column;gap:clamp(10px,1.5vh,18px);
+}
+.app-row{
+  display:grid;grid-template-columns:minmax(8em,32%) 1fr;
+  gap:clamp(12px,2vw,28px);align-items:center;
+  background:#fff;border:2px solid var(--line);border-radius:14px;
+  padding:clamp(12px,1.6vh,20px) clamp(16px,2vw,28px);
+}
+.app-row .k{
+  font-size:clamp(32px,2.7vw,44px);font-weight:900;color:var(--navy);
+}
+.app-row .v{
+  font-size:clamp(32px,2.7vw,44px);font-weight:700;line-height:1.35;
+}
+
+/* price */
+.price-hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(16px,2.4vw,36px);
+}
+.price-box{
+  background:#fff;border:2px solid var(--line);border-radius:18px;
+  padding:clamp(20px,2.8vh,40px) clamp(18px,2vw,32px);
+  text-align:center;
+}
+.price-box .lbl{
+  font-size:clamp(32px,2.6vw,42px);font-weight:800;color:var(--muted);
+}
+.price-box .big{
+  font-size:clamp(52px,6.2vw,100px);font-weight:900;color:var(--navy);line-height:1.05;
+  margin:.12em 0 .1em;
+}
+.price-box .sub{
+  font-size:clamp(32px,2.6vw,42px);font-weight:700;line-height:1.4;
+}
+.price-foot{
+  margin-top:clamp(16px,2.2vh,28px);
+  font-size:clamp(28px,2.8vw,46px);font-weight:800;line-height:1.4;
+}
+
+/* ask */
+.ask-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(18px,2.6vw,40px);align-items:stretch;
+}
+.ask-main{
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,1.8vh,22px);
+}
+.ask-item{
+  font-size:clamp(32px,3.1vw,50px);font-weight:800;line-height:1.4;
+  padding-left:.7em;border-left:6px solid var(--gold);
+}
+.ask-side{
+  background:var(--navy);color:#fff;border-radius:18px;
+  padding:clamp(22px,3vh,40px) clamp(20px,2.4vw,36px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.ask-side .t{
+  font-size:clamp(32px,2.6vw,42px);font-weight:800;color:var(--gold-2);
+  margin-bottom:.4em;
+}
+.ask-side p{
+  font-size:clamp(30px,3vw,48px);font-weight:800;line-height:1.4;
+}
+
+.hint{
+  position:fixed;left:clamp(16px,2vw,28px);bottom:clamp(10px,1.6vh,18px);
+  z-index:20;color:rgba(255,255,255,.45);
+  font-size:clamp(14px,1.2vw,18px);font-weight:600;
+}
+.hint kbd{
+  display:inline-block;padding:.1em .4em;margin:0 .15em;
+  border:1px solid rgba(255,255,255,.25);border-radius:4px;
+}
+.controls{
+  position:fixed;right:clamp(16px,2vw,28px);bottom:clamp(10px,1.6vh,18px);
+  z-index:20;display:flex;gap:8px;align-items:center;
+}
+.ctrl{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+  color:#fff;border-radius:999px;
+  padding:.35em .9em;font:inherit;font-size:clamp(14px,1.3vw,18px);
+  font-weight:700;cursor:pointer;
+}
+.page{color:rgba(255,255,255,.7);font-weight:800;min-width:4.5em;text-align:center}
+
+@media (max-aspect-ratio:4/3){
+  .num-grid,.prod-row,.price-hero,.ask-grid,.mise-grid{grid-template-columns:1fr}
+  .slide-cover .veil{
+    background:linear-gradient(180deg,rgba(15,27,45,.2) 0%,rgba(15,27,45,.88) 48%,rgba(15,27,45,.96) 100%);
+  }
+  .prod img,.mise-logo img{max-height:22vh;width:auto;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <section class="slide slide-cover active">
+    <img class="bg-img" src="assets/grano-share/gs-stores.png" alt="">
+    <div class="veil"></div>
+    <div class="inner">
+      <p class="cover-kicker word">グラーノ　・　1to1</p>
+      <h1 class="word">宇部 光太</h1>
+      <p class="sub word">実店舗で使うアプリを、<br>作っている<span class="nowrap">AIエンジニア</span>。</p>
+    </div>
+  </section>
+
+  <section class="slide slide-nums">
+    <div class="inner">
+      <header class="head">
+        <div>
+          <p class="eyebrow">宇部 光太</p>
+          <h2 class="word">現場と、裏側。</h2>
+        </div>
+        <div class="head-r word">美容師歴<span class="nowrap">24年</span><b>アプリ開発<span class="nowrap">7年</span></b></div>
+      </header>
+      <div class="body">
+        <div class="num-grid">
+          <div class="num-card">
+            <div class="n">4<small>店舗</small></div>
+            <div class="l word">美容室</div>
+          </div>
+          <div class="num-card">
+            <div class="n">2<small>＋FC4</small></div>
+            <div class="l word">ネイルサロン</div>
+          </div>
+          <div class="num-card">
+            <div class="n">1<small>＋FC3</small></div>
+            <div class="l word">かき氷店</div>
+          </div>
+        </div>
+        <p class="num-note word">実店舗とFCの裏側で、WEBアプリを回してきた。<br>Pythonから始め、いまは9割をAIで開発している。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-plain">
+    <div class="inner">
+      <header class="head">
+        <div>
+          <p class="eyebrow">強み</p>
+          <h2 class="word">作れる人は、増えた。</h2>
+        </div>
+      </header>
+      <div class="body">
+        <div class="quote word">
+          開発自体は、誰でもできる時代。<br>
+          宇部が強いのは、<span class="em">実店舗と経営の現場で</span><br>
+          売り上げが上がるもの、<br>
+          業務が軽くなるものを作ること。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-nums">
+    <div class="inner">
+      <header class="head">
+        <div>
+          <p class="eyebrow">名前のある商材</p>
+          <h2 class="word">三つ、現場で使っている。</h2>
+        </div>
+      </header>
+      <div class="body">
+        <div class="prod-row">
+          <article class="prod">
+            <img src="assets/ai-1to1/logo-miseban.png" alt="みせばん">
+            <h3 class="word">みせばん</h3>
+            <p class="word">宇部が美容室で<br>毎日使っている、運営の一套</p>
+          </article>
+          <article class="prod">
+            <img src="assets/ai-1to1/logo-hoshitoru.png" alt="ホシトル">
+            <h3 class="word">ホシトル</h3>
+            <p class="word">店の星評価とクチコミを<br>取りこぼさない</p>
+          </article>
+          <article class="prod">
+            <img src="assets/ai-1to1/logo-futayaku.png" alt="フタヤク">
+            <h3 class="word">フタヤク</h3>
+            <p class="word">社長の頭と、現場の連絡。<br>二役の秘書</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-plain">
+    <div class="inner">
+      <header class="head">
+        <div>
+          <p class="eyebrow">みせばん</p>
+          <h2 class="word">美容室の、運営一套。</h2>
+        </div>
+      </header>
+      <div class="body">
+        <div class="mise-grid">
+          <div class="mise-logo">
+            <img src="assets/ai-1to1/logo-miseban.png" alt="みせばん">
+          </div>
+          <div>
+            <p class="who word">宇部が、実店舗で使っている。</p>
+            <div class="fn-list">
+              <div class="fn word">売上管理</div>
+              <div class="fn word">勤怠</div>
+              <div class="fn word">給与計算</div>
+              <div class="fn word">スタッフのモチベ管理</div>
+              <div class="fn word nowrap">個性心理学分析</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-nums">
+    <div class="inner">
+      <header class="head">
+        <div>
+          <p class="eyebrow">つくってきたもの</p>
+          <h2 class="word">現場の裏を、先に作った。</h2>
+        </div>
+      </header>
+      <div class="body">
+        <div class="app-list">
+          <div class="app-row">
+            <div class="k word">美容室</div>
+            <div class="v word">みせばん　・　予約　・　口コミ</div>
+          </div>
+          <div class="app-row">
+            <div class="k word">ネイルFC</div>
+            <div class="v word">本部ポータル　・　店舗の運営画面</div>
+          </div>
+          <div class="app-row">
+            <div class="k word">かき氷</div>
+            <div class="v word">POS　・　注文　・　採用LP</div>
+          </div>
+          <div class="app-row">
+            <div class="k word">経営</div>
+            <div class="v word">フタヤク　・　ホシトル</div>
+          </div>
+          <div class="app-row">
+            <div class="k word">グラーノ</div>
+            <div class="v word">運営アプリ　・　メンバー本業のデモ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-plain">
+    <div class="inner">
+      <header class="head">
+        <div>
+          <p class="eyebrow">はじめ方</p>
+          <h2 class="word">先に、触ってもらう。</h2>
+        </div>
+      </header>
+      <div class="body">
+        <div class="price-hero">
+          <div class="price-box">
+            <div class="lbl word">イニシャル</div>
+            <div class="big">0<span style="font-size:.42em">円</span></div>
+            <div class="sub word">デモアプリの開発も、無料</div>
+          </div>
+          <div class="price-box">
+            <div class="lbl word">契約はサブスク</div>
+            <div class="big">3千<span style="font-size:.42em">〜</span>5万</div>
+            <div class="sub word">最安3,000円から、月5万円まで</div>
+          </div>
+        </div>
+        <p class="price-foot word">使って効いたものだけ、残す。<br>だから、お試ししやすい。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-nums">
+    <div class="inner">
+      <header class="head">
+        <div>
+          <p class="eyebrow">お願い</p>
+          <h2 class="word">紹介してほしい人。</h2>
+        </div>
+      </header>
+      <div class="body">
+        <div class="ask-grid">
+          <div class="ask-main">
+            <p class="ask-item word">店舗を持っている経営者</p>
+            <p class="ask-item word">売上か、現場の手間で詰まっている人</p>
+            <p class="ask-item word">「何を作れば上がるか」を決めたい人</p>
+          </div>
+          <aside class="ask-side">
+            <p class="t word">1to1の次</p>
+            <p class="word">宇部が、相手の店に合わせて<br>デモを先に作る。<br>コードの話から入らない。</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<p class="hint"><kbd>→</kbd> 次へ　<kbd>F</kbd> 全画面　<a href="gains.html" style="color:inherit;margin-left:.8em">G.A.I.N.S.</a>　<a href="profile.html" style="color:inherit">略歴シート</a></p>
+<nav class="controls" aria-label="スライド操作">
+  <button class="ctrl" type="button" id="btn-prev">←</button>
+  <span class="page" id="page-ind">1 / 8</span>
+  <button class="ctrl" type="button" id="btn-next">次 →</button>
+  <button class="ctrl" type="button" id="btn-fs">全画面</button>
+</nav>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll(".slide")];
+  const total=slides.length;
+  const ind=document.getElementById("page-ind");
+  let cur=0;
+  function go(n){
+    cur=Math.max(0,Math.min(total-1,n));
+    slides.forEach((s,i)=>s.classList.toggle("active",i===cur));
+    if(ind) ind.textContent=(cur+1)+" / "+total;
+    if(location.hash!=="#"+(cur+1)) history.replaceState(null,"","#"+(cur+1));
+  }
+  function toggleFs(){
+    document.fullscreenElement?document.exitFullscreen?.():document.documentElement.requestFullscreen?.();
+  }
+  document.getElementById("btn-prev").onclick=()=>go(cur-1);
+  document.getElementById("btn-next").onclick=()=>go(cur+1);
+  document.getElementById("btn-fs").onclick=toggleFs;
+  document.addEventListener("keydown",e=>{
+    if(["ArrowRight"," ","PageDown","Enter"].includes(e.key)){e.preventDefault();go(cur+1)}
+    if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();go(cur-1)}
+    if(e.key==="Home"){e.preventDefault();go(0)}
+    if(e.key==="End"){e.preventDefault();go(total-1)}
+    if(e.key==="f"||e.key==="F"){e.preventDefault();toggleFs()}
+  });
+  document.querySelector(".deck")?.addEventListener("click",e=>{
+    if(e.target.closest("a,button,.controls,.hint")) return;
+    go(cur+1);
+  });
+  const start=parseInt(location.hash.replace("#",""),10);
+  go(Number.isFinite(start)&&start>0?start-1:0);
+})();
+</script>
+</body>
+</html>
