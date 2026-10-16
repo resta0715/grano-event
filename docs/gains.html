@@ -39,17 +39,17 @@
   .top {
     flex: 0 0 auto;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     gap: 20px;
-    padding: 14px 32px 12px;
+    padding: 16px 28px 14px;
     background: #12182a;
     color: #fff;
   }
   .name {
     font-size: 64px;
     font-weight: 900;
-    line-height: 1;
+    line-height: 1.15;
     letter-spacing: 0.04em;
   }
   .sub {
@@ -80,10 +80,17 @@
   .job {
     flex: 1 1 auto;
     display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 28px;
-    padding: 16px 32px 12px;
+    grid-template-columns: minmax(0, 72%) minmax(280px, 28%);
+    gap: 20px;
+    padding: 16px 24px 12px;
     min-height: 0;
+    align-items: stretch;
+  }
+  .job > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
   }
   .kicker {
     font-size: 32px;
@@ -94,13 +101,13 @@
   }
   .job h2 {
     margin-top: 8px;
-    font-size: 48px;
+    font-size: 56px;
     font-weight: 900;
-    line-height: 1.25;
+    line-height: 1.2;
   }
   .job p {
-    margin-top: 8px;
-    font-size: 34px;
+    margin-top: 10px;
+    font-size: 38px;
     font-weight: 700;
     line-height: 1.35;
   }
@@ -116,29 +123,33 @@
     overflow: hidden;
   }
   .ph p {
-    font-size: 32px;
+    font-size: 40px;
     font-weight: 800;
     line-height: 1.35;
   }
-  .ph.face { min-height: 100%; }
+  .ph.face {
+    height: 100%;
+    min-height: 0;
+    align-self: stretch;
+  }
 
   .ask {
     flex: 0 0 auto;
     background: #c41230;
     color: #fff;
-    padding: 12px 32px 14px;
+    padding: 14px 28px 16px;
   }
   .ask .kicker { color: #ffe08a; }
   .ask h2 {
     margin: 4px 0 8px;
-    font-size: 44px;
+    font-size: 48px;
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 1.15;
   }
   .ask li {
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 800;
-    line-height: 1.35;
+    line-height: 1.3;
     list-style: none;
     padding-left: 0;
   }
@@ -148,10 +159,10 @@
   .body {
     flex: 1 1 auto;
     min-height: 0;
-    padding: 16px 32px 12px;
+    padding: 14px 24px 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
   .sec-title {
     font-size: 48px;
@@ -177,46 +188,54 @@
     letter-spacing: 0;
   }
   .lead {
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 800;
-    line-height: 1.35;
+    line-height: 1.3;
   }
   .why {
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 1.3;
   }
   .frames {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
     flex: 1 1 auto;
-    min-height: 140px;
+    min-height: 0;
   }
+  .frames .ph { height: 100%; }
 
   .rows {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    gap: 8px;
     min-height: 0;
-    padding: 8px 28px 8px;
+    padding: 12px 20px 10px;
   }
   .row {
+    flex: 1 1 0;
     display: grid;
-    grid-template-columns: 64px 120px 1fr;
-    gap: 14px;
+    grid-template-columns: 108px 168px minmax(0, 1fr);
+    gap: 18px;
     align-items: center;
+    min-height: 0;
+    padding: 0 22px 0 0;
+    background: #efe6d4;
+    border-radius: 12px;
+    overflow: hidden;
   }
   .let {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    min-height: 88px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 40px;
+    font-size: 52px;
     font-weight: 900;
     line-height: 1;
   }
@@ -225,14 +244,14 @@
   .i { background: #c41230; }
   .n { background: #1d6b4a; }
   .s { background: #3d4a66; }
-  .lab { font-size: 34px; font-weight: 900; line-height: 1.1; }
-  .line { font-size: 32px; font-weight: 800; line-height: 1.3; }
+  .lab { font-size: 42px; font-weight: 900; line-height: 1.15; }
+  .line { font-size: 36px; font-weight: 800; line-height: 1.3; }
   .who {
     flex: 0 0 auto;
-    padding: 8px 32px 12px;
-    font-size: 32px;
+    padding: 12px 28px 14px;
+    font-size: 36px;
     font-weight: 800;
-    line-height: 1.3;
+    line-height: 1.25;
     background: #12182a;
     color: #fff;
   }
