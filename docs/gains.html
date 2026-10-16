@@ -275,10 +275,54 @@
     flex: 1 1 auto;
     min-height: 180px;
   }
-  .app a.open {
+  a.open {
+    display: inline-block;
+    margin-top: 4px;
     font-size: 32px;
     font-weight: 800;
     color: #8a3b12;
+    text-decoration: none;
+    border-bottom: 3px solid #e2b65a;
+  }
+  .app-one img.shot {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+  }
+  .app-one {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 20px 10px;
+  }
+  .app-head {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .app-head img.logo {
+    height: 108px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    flex: 0 0 auto;
+  }
+  .app-head h2 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .app-head p {
+    margin-top: 4px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
   }
 
   .pager {
@@ -325,8 +369,8 @@
           <p class="kicker">仕事</p>
           <h2>郊外の美容室の、<br>後継者不足と人手不足を解く。</h2>
           <p>個人の新規客を増やす美容師、ではない。</p>
-          <p>食と美容を、AIに勝てる産業として盛り上げる。</p>
-          <p><span class="nowrap">ホットペッパー</span>、予約、店舗のGoogle、勤怠、給与。<br>雑務をAIで外し、サービスの向上に戻す。</p>
+          <p>食と美容を、成果の出るAIとアプリで応援する。</p>
+          <p><span class="nowrap">ホットペッパー</span>、予約、<span class="nowrap">Googleビジネスプロフィール</span>、勤怠、給与。<br>雑務をAIで外し、サービスと事業規模に戻す。</p>
         </div>
         <div class="ph face"><p>ここにこの写真<br><span class="nowrap">宇部本人</span>の顔</p></div>
       </div>
@@ -359,10 +403,10 @@
           <p class="num"><span>グループ全体</span>35名</p>
         </div>
         <p class="lead">美容室4店舗。ネイルサロン2店舗。ネイルサロンFC店4店舗。<br>かき氷FC一号店の加盟店オーナー。エステサロン。オンラインクリニック。</p>
-        <p class="why">「綺麗になりたい。かっこよくなりたい。」<br>その要望に、すべて応えられるようになりたい。<br>その思いから、事業を広げた。</p>
+        <p class="why">「綺麗になりたい！かっこよくなりたい！」<br>その要望に、すべて応えたい。<br>その思いから、事業を広げた。</p>
         <div class="frames">
-          <div class="ph"><p>ここにこの写真<br>店舗の外観</p></div>
-          <div class="ph"><p>ここにこの写真<br>家族</p></div>
+          <div class="ph"><p>ここにこの写真<br><span class="nowrap">美容室・ネイル・かき氷・エステ</span>の外観</p></div>
+          <div class="ph"><p>ここにこの写真<br>家族（妻・息子・娘2人・猫）</p></div>
         </div>
       </div>
     </section>
@@ -416,24 +460,20 @@
           <p class="sub">現場で使うもの</p>
         </div>
         <div class="brand">
-          <p class="mark">1 / 2</p>
+          <p class="mark">ホシトル</p>
           <a class="to-profile" href="profile.html"><span class="nowrap">メンバー略歴</span>へ</a>
         </div>
       </header>
-      <div class="apps">
-        <article class="app">
+      <div class="app-one">
+        <div class="app-head">
           <img class="logo" src="assets/gains/logo-hoshitoru.png" alt="ホシトル">
-          <h2><span class="nowrap">ホシトル</span></h2>
-          <p>お客様が楽にレビューを書けて、口コミが集まりやすい。</p>
-          <div class="ph shot"><p>ここにこの写真<br><span class="nowrap">ホシトル</span>の実画面</p></div>
-        </article>
-        <article class="app">
-          <img class="logo" src="assets/gains/logo-futayaku.png" alt="フタヤク">
-          <h2><span class="nowrap">フタヤク</span></h2>
-          <p>LINEに投げると、予定とタスクをAIが整理する。もうひとりの自分と秘書。</p>
-          <div class="ph shot"><p>ここにこの写真<br><span class="nowrap">フタヤク</span>の実画面</p></div>
-          <a class="open" href="https://hisho.nail-reyel.fun" target="_blank" rel="noopener noreferrer">アプリを開く</a>
-        </article>
+          <div>
+            <h2><span class="nowrap">ホシトル</span></h2>
+            <p>美食Sのレビュー。お客が楽に口コミを書ける。</p>
+            <a class="open" href="https://bisyoku-s.rgrano.com/review/rvw-k7m2x" target="_blank" rel="noopener noreferrer">レビュー画面を開く</a>
+          </div>
+        </div>
+        <img class="shot" src="assets/gains/screen-hoshitoru.png" alt="美食Sのレビュー画面。星と印象を選んで口コミを書く。">
       </div>
     </section>
 
@@ -444,22 +484,66 @@
           <p class="sub">現場で使うもの</p>
         </div>
         <div class="brand">
-          <p class="mark">2 / 2</p>
+          <p class="mark">フタヤク</p>
           <a class="to-profile" href="profile.html"><span class="nowrap">メンバー略歴</span>へ</a>
         </div>
       </header>
-      <div class="apps">
-        <article class="app">
+      <div class="app-one">
+        <div class="app-head">
+          <img class="logo" src="assets/gains/logo-futayaku.png" alt="フタヤク">
+          <div>
+            <h2><span class="nowrap">フタヤク</span></h2>
+            <p>LINEに投げると、予定とタスクをAIが整理する。もうひとりの自分と秘書。</p>
+            <a class="open" href="https://hisho.nail-reyel.fun" target="_blank" rel="noopener noreferrer">アプリを開く</a>
+          </div>
+        </div>
+        <img class="shot" src="assets/gains/screen-futayaku.png" alt="フタヤクの今日の画面。予定、今週のタスク、壁打ち。">
+      </div>
+    </section>
+
+    <section class="gsl" data-i="5">
+      <header class="top">
+        <div>
+          <h1 class="name">アプリ</h1>
+          <p class="sub">現場で使うもの</p>
+        </div>
+        <div class="brand">
+          <p class="mark">みせばん</p>
+          <a class="to-profile" href="profile.html"><span class="nowrap">メンバー略歴</span>へ</a>
+        </div>
+      </header>
+      <div class="app-one">
+        <div class="app-head">
           <img class="logo" src="assets/gains/logo-miseban.png" alt="みせばん">
-          <h2><span class="nowrap">みせばん</span></h2>
-          <p>人材、売上、媒体、勤怠、給与。散らばった店の情報を一つにする。</p>
-          <div class="ph shot"><p>ここにこの写真<br><span class="nowrap">みせばん</span>の実画面</p></div>
-        </article>
-        <article class="app">
-          <h2><span class="nowrap">テンチョ</span></h2>
-          <p>売上が上がるモバイルオーダー。公式LINEと連動し、優秀な店長の仕事を代行する。</p>
-          <div class="ph shot"><p>ここにこの写真<br><span class="nowrap">テンチョ</span>のロゴと実画面</p></div>
-        </article>
+          <div>
+            <h2><span class="nowrap">みせばん</span></h2>
+            <p>人材、売上、媒体、勤怠、給与。散らばった店の情報を一つにする。</p>
+          </div>
+        </div>
+        <img class="shot" src="assets/gains/screen-miseban.png" alt="みせばんの店舗画面。勤怠、売上、予約、スタッフ、ホットペッパーの口コミ。">
+      </div>
+    </section>
+
+    <section class="gsl" data-i="6">
+      <header class="top">
+        <div>
+          <h1 class="name">アプリ</h1>
+          <p class="sub">現場で使うもの</p>
+        </div>
+        <div class="brand">
+          <p class="mark">テンチョ</p>
+          <a class="to-profile" href="profile.html"><span class="nowrap">メンバー略歴</span>へ</a>
+        </div>
+      </header>
+      <div class="app-one">
+        <div class="app-head">
+          <img class="logo" src="assets/gains/logo-tencho.png" alt="テンチョ">
+          <div>
+            <h2><span class="nowrap">テンチョ</span></h2>
+            <p>公式LINEと連動するモバイルオーダー。優秀な店長の仕事を代行する。</p>
+          </div>
+        </div>
+        <img class="shot" src="assets/gains/screen-tencho.png" alt="テンチョのお客画面。おすすめ、推しスタッフ、前回の注文、しばらく来ていない人へのメッセージ。">
       </div>
     </section>
 
