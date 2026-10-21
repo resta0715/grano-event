@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>目標達成会議、入れた？</title>
+<meta name="description" content="ボタンひとつで、グラーノの目標達成会議5回がカレンダーに入る。金曜 18:00–20:00。">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="目標達成会議、入れた？">
+<meta property="og:description" content="押すだけ。金曜 18:00–20:00 の5回がカレンダーに入る。">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2845;--navy-deep:#121A30;
+  --vermilion:#D94A38;--gold:#E8C078;
+  --cream:#F5EFE6;
+  --ff-serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
+  background:radial-gradient(120% 70% at 50% 0%, #2a1a22 0%, var(--navy-deep) 46%, var(--navy) 100%);
+  color:var(--cream);
+  min-height:100vh;
+  word-break:keep-all;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:720px;margin:0 auto;padding:28px 20px 80px}
+.logo{
+  font-family:var(--ff-serif);
+  font-size:20px;letter-spacing:.28em;color:var(--gold);margin-bottom:18px;
+}
+h1{
+  font-family:var(--ff-serif);
+  font-size:clamp(48px,12vw,80px);
+  font-weight:700;line-height:1.2;margin-bottom:18px;
+}
+.tap{
+  font-size:clamp(22px,5.5vw,28px);
+  font-weight:700;letter-spacing:.12em;color:var(--gold);
+  margin-bottom:12px;
+}
+button.add{
+  display:block;width:100%;
+  appearance:none;border:4px solid var(--gold);cursor:pointer;
+  background:linear-gradient(180deg,#ff6a52 0%, var(--vermilion) 55%, #c43828 100%);
+  color:#fff;
+  font:inherit;font-size:clamp(40px,11vw,64px);font-weight:700;
+  letter-spacing:.04em;
+  padding:32px 16px;border-radius:18px;
+  line-height:1.2;
+  box-shadow:0 16px 40px rgba(217,74,56,.45);
+  animation:throb 1.5s ease-in-out infinite;
+}
+button.add:active{animation:none;transform:scale(.98)}
+@keyframes throb{
+  0%,100%{transform:scale(1);box-shadow:0 10px 24px rgba(217,74,56,.35)}
+  50%{transform:scale(1.035);box-shadow:0 18px 48px rgba(217,74,56,.7)}
+}
+@media (prefers-reduced-motion: reduce){
+  button.add{animation:none}
+}
+.hint{
+  margin-top:16px;
+  font-size:clamp(20px,5vw,26px);
+  line-height:1.5;color:rgba(245,239,230,.92);
+}
+.list{margin-top:40px;display:flex;flex-direction:column;gap:8px}
+.item{
+  padding:18px 0 18px 18px;
+  border-left:5px solid var(--gold);
+}
+.date{font-size:clamp(22px,5.4vw,30px);color:var(--gold);letter-spacing:.04em}
+.time{
+  font-size:clamp(32px,8vw,48px);
+  font-weight:700;line-height:1.3;margin-top:2px;
+}
+.alts{margin-top:36px;display:flex;flex-direction:column;gap:16px}
+.alts a{
+  color:var(--gold);
+  font-size:clamp(22px,5.5vw,28px);
+  font-weight:700;
+  text-underline-offset:6px;
+}
+.foot{
+  margin-top:40px;
+  font-size:clamp(18px,4.6vw,24px);
+  line-height:1.6;color:rgba(245,239,230,.78);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="logo">BNI グラーノ</p>
+  <h1>会議、<br>入れた？</h1>
+  <p class="tap">↓ ここを押す</p>
+  <button class="add" type="button" id="add">今すぐ入れる</button>
+  <p class="hint" id="hint">オンライン。金曜 18:00–20:00。<br>5回分が、まとめて入る。</p>
+
+  <div class="list">
+    <article class="item">
+      <p class="date">2026年11月20日（金）</p>
+      <p class="time">18:00–20:00</p>
+    </article>
+    <article class="item">
+      <p class="date">2026年12月18日（金）</p>
+      <p class="time">18:00–20:00</p>
+    </article>
+    <article class="item">
+      <p class="date">2027年1月22日（金）</p>
+      <p class="time">18:00–20:00</p>
+    </article>
+    <article class="item">
+      <p class="date">2027年2月12日（金）</p>
+      <p class="time">18:00–20:00</p>
+    </article>
+    <article class="item">
+      <p class="date">2027年3月19日（金）</p>
+      <p class="time">18:00–20:00</p>
+    </article>
+  </div>
+
+  <div class="alts">
+    <a id="apple" href="mokuhyo.ics">iPhone / Mac のカレンダーで開く</a>
+    <a id="google" href="#">Googleカレンダーに追加する</a>
+  </div>
+  <p class="foot">Googleで追加した人には、<br>直した時刻が後から反映されます。<br>iPhoneで一度入れた人は、<br>古い予定を消してから、<br>もう一度入れてください。</p>
+</div>
+<script>
+(function () {
+  var ics = new URL("mokuhyo.ics", window.location.href).href;
+  var webcal = ics.replace(/^https:/, "webcal:").replace(/^http:/, "webcal:");
+  var google = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(webcal);
+  document.getElementById("google").href = google;
+
+  function isAppleMobile() {
+    var ua = navigator.userAgent || "";
+    if (/iPhone|iPad|iPod/.test(ua)) return true;
+    return navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+  }
+
+  document.getElementById("add").addEventListener("click", function () {
+    if (window.location.protocol === "file:" || isAppleMobile()) {
+      window.location.href = ics;
+      return;
+    }
+    window.location.href = google;
+  });
+
+  if (isAppleMobile()) {
+    document.getElementById("hint").innerHTML = "押すとカレンダーが開きます。<br>「すべて追加」で5件入ります。";
+  }
+})();
+</script>
+</body>
+</html>
