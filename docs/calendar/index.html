@@ -10,11 +10,10 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#1B2845;--navy-deep:#121A30;
-  --vermilion:#D94A38;--gold:#D4A055;
+  --vermilion:#D94A38;--gold:#E8C078;
   --cream:#F5EFE6;
   --ff-serif:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
 }
-html{font-size:18px}
 body{
   font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",YuGothic,Meiryo,sans-serif;
   background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 100%);
@@ -23,70 +22,95 @@ body{
   word-break:keep-all;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:640px;margin:0 auto;padding:36px 22px 64px}
+.wrap{max-width:720px;margin:0 auto;padding:40px 20px 72px}
 .logo{
   font-family:var(--ff-serif);
-  font-size:15px;letter-spacing:.35em;color:var(--gold);margin-bottom:18px;
+  font-size:22px;letter-spacing:.28em;color:var(--gold);margin-bottom:22px;
 }
 h1{
   font-family:var(--ff-serif);
-  font-size:clamp(32px,8vw,44px);
-  font-weight:700;line-height:1.35;margin-bottom:14px;
+  font-size:clamp(44px,11vw,72px);
+  font-weight:700;line-height:1.3;margin-bottom:22px;
 }
-.lead{font-size:18px;line-height:1.7;color:rgba(245,239,230,.82);margin-bottom:28px}
+.lead{
+  font-size:clamp(26px,6.4vw,34px);
+  line-height:1.5;color:var(--cream);margin-bottom:32px;
+}
 button.add{
   display:block;width:100%;
   appearance:none;border:0;cursor:pointer;
   background:var(--vermilion);color:#fff;
-  font:inherit;font-size:22px;font-weight:700;
+  font:inherit;font-size:clamp(32px,8vw,44px);font-weight:700;
   letter-spacing:.04em;
-  padding:22px 18px;border-radius:8px;
+  padding:28px 16px;border-radius:10px;
+  line-height:1.35;
 }
 button.add:active{transform:translateY(1px)}
-.hint{margin-top:14px;font-size:15px;line-height:1.65;color:rgba(245,239,230,.62)}
-.list{margin-top:36px;display:flex;flex-direction:column;gap:14px}
+.hint{
+  margin-top:18px;
+  font-size:clamp(20px,5vw,26px);
+  line-height:1.55;color:rgba(245,239,230,.9);
+}
+.list{margin-top:44px;display:flex;flex-direction:column;gap:8px}
 .item{
-  padding:16px 0 16px 16px;
-  border-left:3px solid var(--gold);
+  padding:22px 0 22px 18px;
+  border-left:5px solid var(--gold);
 }
-.date{font-size:15px;color:var(--gold);letter-spacing:.08em;margin-bottom:4px}
-.name{font-size:22px;font-weight:700;line-height:1.45}
-.note{margin-top:6px;font-size:15px;line-height:1.6;color:rgba(245,239,230,.62)}
-.pending{border-left-color:rgba(245,239,230,.28)}
-.pending .date{color:rgba(245,239,230,.45)}
-.pending .name{color:rgba(245,239,230,.55)}
-.alts{margin-top:28px;display:flex;flex-direction:column;gap:10px}
+.date{font-size:clamp(20px,5vw,26px);color:var(--gold);letter-spacing:.04em}
+.time{
+  font-size:clamp(32px,8vw,48px);
+  font-weight:700;line-height:1.3;margin:4px 0 8px;
+}
+.name{font-size:clamp(32px,8vw,46px);font-weight:700;line-height:1.4}
+.note{
+  margin-top:10px;
+  font-size:clamp(20px,5vw,26px);
+  line-height:1.55;color:rgba(245,239,230,.88);
+}
+.pending{border-left-color:rgba(245,239,230,.35)}
+.pending .date,.pending .name{color:rgba(245,239,230,.72)}
+.alts{margin-top:36px;display:flex;flex-direction:column;gap:16px}
 .alts a{
-  color:var(--gold);font-size:16px;text-underline-offset:4px;
+  color:var(--gold);
+  font-size:clamp(22px,5.5vw,28px);
+  font-weight:700;
+  text-underline-offset:6px;
 }
-.foot{margin-top:40px;font-size:14px;line-height:1.7;color:rgba(245,239,230,.4)}
+.foot{
+  margin-top:40px;
+  font-size:clamp(18px,4.6vw,24px);
+  line-height:1.6;color:rgba(245,239,230,.78);
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <p class="logo">BNI グラーノ</p>
-  <h1>予定を、<br>カレンダーに入れる</h1>
-  <p class="lead">下のボタンひとつで、日が決まっている3件がまとめて入ります。iPhoneのカレンダーでも、Googleカレンダーでも同じファイルです。</p>
-  <button class="add" type="button" id="add">3件をカレンダーに入れる</button>
-  <p class="hint" id="hint">iPhoneは「すべて追加」。<br>AndroidとパソコンのGoogleは、<br>「グラーノの予定」というカレンダーが追加されます。</p>
+  <h1>予定を、<br>カレンダーに<br>入れる</h1>
+  <p class="lead">ボタンひとつで、<br>3件がまとめて入ります。</p>
+  <button class="add" type="button" id="add">3件を入れる</button>
+  <p class="hint" id="hint">iPhoneは「すべて追加」。<br>Googleは「グラーノの予定」が<br>追加されます。</p>
 
   <div class="list">
     <article class="item">
-      <p class="date">2026年11月25日（水）・終日</p>
-      <p class="name">BOD 2部　大人のプロム</p>
+      <p class="date">2026年11月25日（水）</p>
+      <p class="time">9:00–15:00</p>
+      <p class="name">BOD 2部<br>大人のプロム</p>
     </article>
     <article class="item">
-      <p class="date">2026年11月25日（水）・終日</p>
-      <p class="name">BOD 3部　味彩・おんの字<br>かき氷パーティ</p>
+      <p class="date">2026年11月25日（水）</p>
+      <p class="time">9:00–15:00</p>
+      <p class="name">BOD 3部<br>味彩・おんの字<br>かき氷パーティ</p>
     </article>
     <article class="item">
-      <p class="date">2027年2月24日（水）・終日</p>
-      <p class="name">グラーノ10周年記念イベント</p>
+      <p class="date">2027年2月24日（水）</p>
+      <p class="time">9:00–17:00</p>
+      <p class="name">グラーノ10周年<br>記念イベント</p>
     </article>
     <article class="item pending">
       <p class="date">1月か3月・日は未定</p>
-      <p class="name">北本グラーノフェス（非公式）</p>
-      <p class="note">美容とグルメと音楽の祭典。日が決まってから、このボタンの中に足します。</p>
+      <p class="name">北本グラーノフェス<br>（非公式）</p>
+      <p class="note">美容とグルメと音楽の祭典。<br>日が決まってから、このボタンに足します。</p>
     </article>
   </div>
 
@@ -94,15 +118,14 @@ button.add:active{transform:translateY(1px)}
     <a id="apple" href="grano-events.ics">iPhone / Mac のカレンダーで開く</a>
     <a id="google" href="#">Googleカレンダーに追加する</a>
   </div>
-  <p class="foot">開始時刻はまだ決まっていないので、終日で入れています。時刻が決まったらファイルを直します。Googleで追加した人には、直した内容が後から反映されます。iPhoneで「追加」した人は、古い予定を消してから、もう一度入れてください。</p>
+  <p class="foot">Googleで追加した人には、<br>直した時刻が後から反映されます。<br>iPhoneで一度入れた人は、<br>古い予定を消してから、<br>もう一度入れてください。</p>
 </div>
 <script>
 (function () {
   var ics = new URL("grano-events.ics", window.location.href).href;
   var webcal = ics.replace(/^https:/, "webcal:").replace(/^http:/, "webcal:");
   var google = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(webcal);
-  var googleLink = document.getElementById("google");
-  googleLink.href = google;
+  document.getElementById("google").href = google;
 
   function isAppleMobile() {
     var ua = navigator.userAgent || "";
@@ -118,9 +141,8 @@ button.add:active{transform:translateY(1px)}
     window.location.href = google;
   });
 
-  var hint = document.getElementById("hint");
   if (isAppleMobile()) {
-    hint.textContent = "押すとカレンダーが開きます。「すべて追加」で3件入ります。";
+    document.getElementById("hint").innerHTML = "押すとカレンダーが開きます。<br>「すべて追加」で3件入ります。";
   }
 })();
 </script>
