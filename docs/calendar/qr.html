@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>グラーノの予定 QR</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  background:#121A30;color:#F5EFE6;
+  font-family:system-ui,-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI",sans-serif;
+  word-break:keep-all;
+}
+.sheet{
+  width:min(920px,100%);
+  padding:48px 28px 56px;
+  text-align:center;
+}
+h1{
+  font-size:clamp(48px,7vw,84px);
+  line-height:1.25;font-weight:700;margin-bottom:12px;
+}
+.sub{
+  font-size:clamp(28px,4vw,42px);
+  line-height:1.45;margin-bottom:28px;
+}
+.card{
+  display:inline-block;
+  background:#fff;
+  padding:28px;
+  border-radius:24px;
+}
+.card img{display:block;width:min(72vw,520px);height:auto}
+.note{
+  margin-top:28px;
+  font-size:clamp(24px,3.4vw,36px);
+  line-height:1.5;color:#E8C078;
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>カメラで読むと、<br>予定が入る</h1>
+  <p class="sub">11月25日のBOD<br>2月24日の10周年</p>
+  <div class="card">
+    <img src="grano-qr.svg" alt="カレンダーに入れるQRコード">
+  </div>
+  <p class="note">読み取ったあと、<br>「追加」を押すと3件入ります。</p>
+</div>
+</body>
+</html>
