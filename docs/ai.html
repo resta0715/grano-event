@@ -174,6 +174,7 @@
     .bento > .t7 { grid-column: span 7; }
   }
   @media (min-width: 1024px) {
+    .bento > .d3 { grid-column: span 3; }
     .bento > .d4 { grid-column: span 4; }
     .bento > .d5 { grid-column: span 5; }
     .bento > .d6 { grid-column: span 6; }
@@ -528,9 +529,40 @@
     .team-name { font-size: 52px; }
   }
   @media (min-width: 1024px) {
-    .team-tile { padding: 56px 64px; }
-    .team-with { font-size: 34px; }
-    .team-name { font-size: 68px; }
+    .team-tile { padding: 48px 56px; }
+    .team-with { font-size: 30px; }
+    .team-name { font-size: 56px; }
+  }
+  .team-desc { margin-top: 18px; font-size: var(--fs-l); line-height: 1.5; }
+  .team-tile.navy .team-desc { color: #f6efe2; }
+  .pt-shot { aspect-ratio: 16 / 9; }
+  .pt-shot img { position: absolute; inset: 0; }
+  .pt-shot-site { cursor: pointer; }
+  .pt-shot-site img { object-position: 50% 0; }
+  .pt-lab { color: var(--gold-deep); font-size: var(--fs); line-height: 1.4; }
+  .pt-person {
+    margin-top: 6px;
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1.3;
+    color: var(--navy);
+  }
+  .pt-role { margin-top: 2px; color: var(--muted); font-size: var(--fs); }
+  .pt-people { display: grid; gap: 18px; margin-top: 4px; }
+  .pt-people li + li { padding-top: 18px; border-top: 1px solid var(--line); }
+  .pt-stat { text-align: center; }
+  .pt-num { color: var(--navy); font-size: 28px; line-height: 1.2; }
+  .pt-num b {
+    font-family: var(--serif);
+    font-size: 76px;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+  }
+  @media (min-width: 1024px) {
+    .pt-shot { aspect-ratio: auto; min-height: 100%; }
+    .pt-person { font-size: 38px; }
+    .pt-num { font-size: 30px; }
+    .pt-num b { font-size: 92px; }
   }
 
   .pitch-era { color: var(--gold-2); font-size: var(--fs); }
@@ -976,13 +1008,56 @@
       <section class="sec">
         <h2>パワーチーム</h2>
         <div class="bento">
-          <div class="tile navy team-tile">
+          <div class="tile navy team-tile center d7">
             <p class="team-with"><span class="nowrap">美容室卸売業</span>の方との</p>
             <p class="team-name"><span class="nowrap">オンラインセミナー</span><wbr><span class="nowrap">事業チーム</span></p>
+            <p class="team-desc"><span class="nowrap">美容室経営者向けの</span><wbr><span class="nowrap">オンラインセミナー事業</span><wbr>「<span class="nowrap">Vアカデミー</span>」</p>
           </div>
-          <div class="tile gold team-tile">
+          <a class="tile shot pt-shot pt-shot-site d5" href="https://vars-camp.vercel.app/" target="_blank" rel="noopener">
+            <img src="assets/ai/vars-camp.jpg" width="1440" height="616" alt="Vアカデミーのトップページ" loading="lazy">
+            <span class="cap">vars-camp.vercel.app</span>
+          </a>
+          <div class="tile pt-who center d4">
+            <p class="pt-lab">一緒にやっている人</p>
+            <p class="pt-person nowrap">山野井 信夫 さん</p>
+            <p class="pt-role"><span class="nowrap">美容室製品</span><wbr><span class="nowrap">卸売業</span></p>
+          </div>
+          <div class="tile cream pt-stat center t6 d4">
+            <p class="pt-lab">美容室オーナーの登録</p>
+            <p class="pt-num nowrap"><b>200</b>件近く</p>
+          </div>
+          <div class="tile cream pt-stat center t6 d4">
+            <p class="pt-lab">セミナー講師</p>
+            <p class="pt-num nowrap"><b>20</b>人以上</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="bento">
+          <div class="tile gold team-tile center d7">
             <p class="team-with"><span class="nowrap">事業戦略支援</span>・<wbr><span class="nowrap">かき氷</span>・<wbr><span class="nowrap">サロンフランチャイズ</span> <wbr><span class="nowrap">カテゴリの方との</span></p>
             <p class="team-name"><span class="nowrap">フランチャイズ運営</span><wbr><span class="nowrap">パワーチーム</span></p>
+            <p class="team-desc"><span class="nowrap">RG株式会社</span>で、<wbr><span class="nowrap">かき氷のFC展開</span>と<wbr><span class="nowrap">オートネイル事業の</span><wbr><span class="nowrap">FC展開</span>を手がける</p>
+          </div>
+          <button type="button" class="tile shot pt-shot d5" data-full="assets/ai/rg-fc.jpg" data-label="かき氷とオートネイルのFC（イメージ画像）">
+            <img src="assets/ai/rg-fc.jpg" width="1280" height="720" alt="かき氷とオートネイルのイメージ画像" loading="lazy">
+            <span class="cap">かき氷 × オートネイル（イメージ）</span>
+          </button>
+          <div class="tile pt-who d6">
+            <p class="pt-lab">一緒にやっている人</p>
+            <ul class="pt-people">
+              <li><p class="pt-person nowrap">あらい ひとみ さん</p><p class="pt-role"><span class="nowrap">かき氷</span> <span class="nowrap">TSUKIMISOU</span></p></li>
+              <li><p class="pt-person nowrap">山田 研二 さん</p><p class="pt-role"><span class="nowrap">事業戦略支援</span><wbr><span class="nowrap">（オンライン秘書）</span></p></li>
+            </ul>
+          </div>
+          <div class="tile cream pt-stat center t6 d3">
+            <p class="pt-lab">ネイルFC</p>
+            <p class="pt-num"><b>4</b>店舗</p>
+          </div>
+          <div class="tile cream pt-stat center t6 d3">
+            <p class="pt-lab">かき氷FC</p>
+            <p class="pt-num"><b>3</b>店舗</p>
           </div>
         </div>
       </section>
@@ -1085,7 +1160,7 @@
         lightbox.hidden = true;
         lightboxImg.removeAttribute("src");
       }
-      document.querySelectorAll(".shot").forEach(function (shot) {
+      document.querySelectorAll(".shot[data-full]").forEach(function (shot) {
         shot.addEventListener("click", function () {
           lightboxImg.src = shot.getAttribute("data-full");
           lightboxImg.alt = shot.getAttribute("data-label") || "";
