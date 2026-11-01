@@ -72,21 +72,30 @@
     position: sticky;
     top: 0;
     z-index: 6;
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
     padding: 12px;
     background: var(--navy-2);
     border-bottom: 3px solid var(--gold);
   }
-  .switch button {
-    flex: 1;
+  .switch button,
+  .switch a {
+    min-width: 0;
     min-height: 56px;
     border-radius: 999px;
     border: 2px solid var(--gold);
     background: transparent;
     color: #f6efe2;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
+    line-height: 1.25;
+    padding: 8px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
   }
   .switch button.is-on {
@@ -145,21 +154,24 @@
   .secret-card {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin: 0 0 8px;
-    padding: 14px;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 0;
     background: var(--navy);
     border-radius: 16px;
-    border-bottom: 4px solid var(--gold);
+    overflow: hidden;
+  }
+  .secret-card > div {
+    padding: 16px 16px 12px;
+    min-width: 0;
+    container-type: inline-size;
   }
   .dress {
-    width: min(220px, 100%);
+    width: 100%;
     height: auto;
-    flex: 0 0 auto;
     object-fit: contain;
-    border-radius: 12px;
-    border: 3px solid var(--gold);
+    border-radius: 0;
   }
   .secret {
     margin: 0;
@@ -180,20 +192,12 @@
   .pop {
     font-weight: 900;
     line-height: 1.25;
-    color: var(--navy);
-    background-image: linear-gradient(var(--gold), var(--gold));
-    background-repeat: no-repeat;
-    background-size: 100% 0.22em;
-    background-position: 0 92%;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
+    color: var(--gold-deep);
   }
   .secret .pop, .wish .pop {
     color: var(--gold-2);
-    background-image: none;
-    border-bottom: 4px solid var(--gold);
   }
-  .secret .pop { font-size: 22px; }
+  .secret .pop { font-size: clamp(22px, 7.4cqi, 56px); }
   .wish .pop { font-size: 30px; }
   .steps .pop, .tenhou .pop { font-size: 28px; }
   .role {
@@ -201,7 +205,6 @@
     padding: 2px 12px 6px;
     background: var(--gold);
     color: var(--navy);
-    border-bottom: 5px solid var(--gold-deep);
   }
   .growth { display: grid; gap: 10px; margin: 0 0 16px; }
   .growth p {
@@ -220,7 +223,7 @@
     font-size: 34px;
     font-weight: 700;
     line-height: 1.15;
-    border-bottom: 4px solid var(--navy);
+    color: var(--navy);
   }
   .timeline {
     display: flex;
@@ -254,7 +257,6 @@
     font-weight: 700;
     line-height: 1.1;
     color: var(--navy);
-    border-bottom: 4px solid var(--navy);
   }
   .persona-body { padding: 18px 16px 28px; background: linear-gradient(180deg, #fffaf2, #f3e6cc); }
   .facts { margin: 0; padding: 0; list-style: none; }
@@ -266,13 +268,16 @@
     border-bottom: 1px solid rgba(138,94,22,.28);
   }
   .wish {
+    display: block;
+    width: 100%;
     margin: 14px 0 0;
-    padding: 14px 16px;
+    padding: 16px 18px;
     background: var(--navy);
     color: #f6efe2;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 900;
-    line-height: 1.6;
+    line-height: 1.45;
+    text-align: left;
   }
   .gains { background: var(--sheet); }
   .g-hero {
@@ -393,28 +398,6 @@
     border: 3px solid var(--gold);
   }
   .tenhou { margin: 10px 0 0; font-size: 21px; font-weight: 900; line-height: 1.6; }
-  .made-link { margin: 18px 0 0; }
-  .made-link a {
-    display: inline-block;
-    padding: 10px 16px;
-    background: var(--navy);
-    color: var(--gold-2);
-    font-size: 22px;
-    font-weight: 900;
-    line-height: 1.3;
-    text-decoration: none;
-    border-radius: 12px;
-    border-bottom: 4px solid var(--gold);
-  }
-  .made-link-side { margin: 8px 0 4px; }
-  .made-link-side a {
-    padding: 4px 0;
-    background: transparent;
-    color: var(--navy);
-    font-size: 21px;
-    border-radius: 0;
-    border-bottom: 3px solid var(--gold);
-  }
   .foot {
     display: flex;
     justify-content: space-between;
@@ -428,35 +411,50 @@
   }
   @media (min-width: 390px) {
     .secret { font-size: 22px; }
-    .secret .pop { font-size: 28px; }
+  }
+  @media (max-width: 720px) {
+    .switch { grid-template-columns: 1fr; }
+    .switch button, .switch a { font-size: 21px; min-height: 52px; }
   }
   @media (max-width: 380px) {
+    .wrap { width: calc(100% - 8px); }
     h1 { font-size: 40px; }
     .g-hero h1 { font-size: 34px; }
     .role { font-size: 26px; }
     .g-hero .role { font-size: 28px; }
     .g-hero { grid-template-columns: 96px 1fr; }
     .g-photo { width: 96px; height: 124px; }
+    .secret-card > div { padding: 14px 8px 8px; }
   }
   @media (min-width: 800px) {
     .wrap { width: min(1180px, calc(100% - 48px)); margin: 28px auto 48px; }
     .top, .foot { padding-left: 32px; padding-right: 32px; font-size: 22px; }
-    .switch { padding: 14px 24px; gap: 14px; }
-    .switch button { flex: 0 1 280px; font-size: 22px; min-height: 60px; }
+    .switch { padding: 14px 24px; gap: 12px; }
+    .switch button, .switch a { font-size: 22px; min-height: 60px; }
     h1 { font-size: 76px; }
     .role { font-size: 44px; }
     .who { grid-template-columns: 140px 1fr; }
     .face { width: 140px; height: 180px; }
-    .secret-card { flex-direction: row; align-items: center; gap: 22px; padding: 18px 22px; }
-    .dress { width: 220px; }
+    .secret-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) min(40%, 420px);
+      align-items: stretch;
+    }
+    .secret-card > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 18px 28px 32px;
+    }
+    .dress { width: 100%; height: auto; justify-self: stretch; align-self: stretch; }
     .secret { font-size: 28px; }
-    .secret-name { font-size: 44px; }
-    .secret .pop { font-size: 44px; }
+    .secret-name { font-size: clamp(32px, 3vw, 44px); }
     .people .pop, .steps .pop, .tenhou .pop { font-size: 36px; }
     .wish .pop { font-size: 40px; }
     .growth b { font-size: 48px; }
     .growth p { font-size: 26px; }
     .timeline { flex-wrap: wrap; overflow: visible; }
+    .timeline li { flex: 1 1 200px; }
     .timeline .year { font-size: 36px; }
     .hobby-row { flex-direction: row; }
     .persona-body { padding: 28px 36px 36px; }
@@ -493,8 +491,9 @@
         <p style="margin:0" class="nowrap">1to1</p>
       </header>
       <nav class="switch" aria-label="シート切替">
-        <button type="button" data-sheet="profile" class="is-on nowrap" aria-pressed="true">メンバー略歴</button>
-        <button type="button" data-sheet="gains" class="nowrap" aria-pressed="false">G.A.I.N.S.</button>
+        <button type="button" data-sheet="profile" class="is-on" aria-pressed="true">メンバー略歴</button>
+        <button type="button" data-sheet="gains" aria-pressed="false">G.A.I.N.S.</button>
+        <a href="apps.html">アプリ例</a>
       </nav>
 
       <section class="panel" data-panel="profile" id="profile">
@@ -531,7 +530,7 @@
                 <img class="dress" src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
               </div>
             </section>
-            <section class="block">
+            <section class="block wide">
               <h2>人柄</h2>
               <ul class="facts">
                 <li>出身は東京。拠点は埼玉。</li>
@@ -566,7 +565,6 @@
                 <li><span class="year nowrap">2026年</span><span class="evt"><span class="nowrap">かき氷ラボ TSUKIMISOU</span> オープン</span></li>
               </ol>
             </section>
-            <p class="made-link"><a class="nowrap" href="apps.html">作ったアプリ</a></p>
           </div>
         </div>
       </section>
@@ -630,7 +628,6 @@
               <li class="nowrap">コンサル業</li>
             </ul>
           </section>
-          <p class="made-link made-link-side"><a class="nowrap" href="apps.html">作ったアプリ</a></p>
         </div>
       </section>
 
