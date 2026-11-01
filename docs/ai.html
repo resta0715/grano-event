@@ -54,7 +54,7 @@
     background: var(--sheet);
     border: 3px solid var(--gold);
     box-shadow: 0 18px 50px rgba(0,0,0,.28);
-    overflow: hidden;
+    overflow: visible;
   }
   .top {
     display: flex;
@@ -160,12 +160,12 @@
     padding: 0;
     background: var(--navy);
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
   }
   .secret-card > div {
     padding: 16px 16px 12px;
     min-width: 0;
-    container-type: inline-size;
+    max-width: 100%;
   }
   .dress {
     width: 100%;
@@ -197,7 +197,8 @@
   .secret .pop, .wish .pop {
     color: var(--gold-2);
   }
-  .secret .pop { font-size: clamp(22px, 7.4cqi, 56px); }
+  .secret .pop { font-size: 24px; }
+  .tenhou .nowrap { white-space: normal; }
   .wish .pop { font-size: 30px; }
   .steps .pop, .tenhou .pop { font-size: 28px; }
   .role {
@@ -206,7 +207,9 @@
     background: var(--gold);
     color: var(--navy);
   }
-  .growth { display: grid; gap: 10px; margin: 0 0 16px; }
+  .history-top { display: grid; gap: 12px; }
+  .slot-history .timeline { margin-top: 14px; }
+  .growth { display: grid; gap: 10px; margin: 0; }
   .growth p {
     margin: 0;
     padding: 14px 14px 12px;
@@ -227,16 +230,19 @@
   }
   .timeline {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin: 0;
-    padding: 0 0 6px;
+    padding: 0;
     list-style: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
   }
   .timeline li {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
+    flex: 1 1 240px;
+    max-width: 100%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -250,7 +256,8 @@
     font-weight: 700;
     line-height: 1.35;
   }
-  .timeline .evt { white-space: nowrap; }
+  .timeline .evt,
+  .timeline .evt .nowrap { white-space: normal; }
   .timeline .year {
     font-family: var(--serif);
     font-size: 28px;
@@ -388,36 +395,87 @@
     line-height: 32px;
     text-align: center;
   }
-  .hobby-row { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-  .tile {
-    width: 108px;
+  .hobby-row { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; min-width: 0; }
+  .tile, .tile-agari {
     height: auto;
     flex: 0 0 auto;
+    max-width: 100%;
     object-fit: contain;
     border-radius: 10px;
     border: 3px solid var(--gold);
   }
+  .tile { width: 120px; }
+  .tile-agari { width: 148px; }
   .tenhou { margin: 10px 0 0; font-size: 21px; font-weight: 900; line-height: 1.6; }
   .people-photos {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin: 14px 0 0;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin: 12px 0 2px;
+    min-width: 0;
+    max-width: 100%;
   }
-  .people-photos figure { margin: 0; min-width: 0; }
-  .people-photos img {
+  .shot {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--navy);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .shot img {
     width: 100%;
-    height: auto;
+    height: 78px;
     object-fit: contain;
-    border-radius: 12px;
-    border: 3px solid var(--gold);
+    object-position: center center;
+    background: #efe6d4;
+    border-radius: 8px;
+    border: 2px solid var(--gold);
   }
-  .people-photos figcaption {
-    margin-top: 4px;
+  .shot span {
     font-size: 21px;
     font-weight: 900;
-    line-height: 1.3;
-    color: var(--navy);
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 16px 24px;
+    background: rgba(8, 12, 20, .9);
+  }
+  .lightbox[hidden] { display: none !important; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    min-height: 48px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 2px solid var(--gold);
+    background: var(--navy);
+    color: #f6efe2;
+    font-size: 21px;
+    font-weight: 900;
+    cursor: pointer;
   }
   .foot {
     display: flex;
@@ -433,8 +491,20 @@
   @media (min-width: 390px) {
     .secret { font-size: 22px; }
   }
-  .app-board { display: grid; grid-template-columns: 1fr; }
-  .app-card { min-width: 0; padding: 18px 0 0; background: linear-gradient(180deg, #fffaf2, #f3e6cc); }
+  .app-board {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 20px 16px 28px;
+    background: linear-gradient(180deg, #fffaf2, #f3e6cc);
+  }
+  .app-card {
+    min-width: 0;
+    padding: 16px 0 0;
+    background: #fffaf2;
+    border: 3px solid var(--gold);
+    border-radius: 16px;
+  }
   .app-card + .app-card { border-top: 3px solid var(--gold); }
   .app-head {
     display: flex;
@@ -519,32 +589,29 @@
     .face { width: 140px; height: 180px; }
     .secret-card {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) min(40%, 420px);
-      align-items: stretch;
+      grid-template-columns: minmax(0, 1fr) 180px;
+      align-items: start;
     }
     .secret-card > div {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 28px 18px 28px 32px;
+      padding: 22px 16px 22px 22px;
     }
-    .dress { width: 100%; height: auto; justify-self: stretch; align-self: stretch; }
-    .secret { font-size: 28px; }
-    .secret-name { font-size: clamp(32px, 3vw, 44px); }
+    .dress { width: 100%; height: auto; object-fit: contain; align-self: start; }
+    .secret { font-size: 26px; }
+    .secret .pop { font-size: 28px; }
     .people .pop, .steps .pop, .tenhou .pop { font-size: 36px; }
     .wish .pop { font-size: 40px; }
     .growth b { font-size: 48px; }
     .growth p { font-size: 26px; }
-    .timeline {
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-    .timeline li { flex: 0 0 auto; }
-    .timeline .year { font-size: 36px; }
-    .hobby-row { flex-direction: row; }
+    .timeline { width: 100%; max-width: 100%; min-width: 0; flex-wrap: wrap; }
+    .timeline li { flex: 1 1 280px; }
+    .timeline .year { font-size: 32px; }
+    .hobby-row { flex-direction: row; align-items: center; }
+    .tile { width: 132px; }
+    .tile-agari { width: 176px; }
+    .shot img { height: 112px; }
     .persona-body {
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
@@ -558,21 +625,24 @@
       min-width: 0;
       max-width: 100%;
     }
-    .intro-col { grid-column: 1; grid-row: 1; align-self: start; min-width: 0; }
+    .col-main, .col-side { min-width: 0; max-width: 100%; align-self: start; }
+    .col-main { grid-column: 1; grid-row: 1; }
+    .col-side { grid-column: 2; grid-row: 1; }
     .who { margin-bottom: 0; }
-    .slot-hobby { grid-column: 1; grid-row: 2; }
-    .slot-secret { grid-column: 1; grid-row: 3; }
-    .slot-nums { grid-column: 2; grid-row: 1; align-self: start; border-top: 0; padding-top: 0; }
-    .slot-person { grid-column: 2; grid-row: 2 / span 2; align-self: start; }
-    .slot-time { grid-column: 1 / -1; grid-row: 4; overflow: hidden; }
-    .people-photos { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-    .people-photos figure:nth-child(-n+2) { grid-column: span 3; }
-    .people-photos figure:nth-child(n+3) { grid-column: span 2; }
-    .wish br { display: none; }
-    .secret-card { grid-template-columns: minmax(0, 1fr) 210px; }
-    .app-board { grid-template-columns: 1fr 1fr; align-items: start; }
-    .app-card + .app-card { border-top: 0; border-left: 3px solid var(--gold); }
+    .slot-history {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      padding-top: 8px;
+    }
+    .slot-history .history-top {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 16px 28px;
+      align-items: start;
+    }
+    .app-board { padding-left: 28px; padding-right: 28px; gap: 36px; }
     .app-card h2 { font-size: 44px; }
+    .app-copy { font-size: 22px; }
     .g-hero {
       grid-template-columns: 1fr 320px;
       grid-template-areas: "text photo" "role photo" "lead photo";
@@ -593,7 +663,6 @@
     .body { grid-template-columns: 1fr 1fr; gap: 8px 32px; padding: 0 36px 32px; }
     .block h2 { font-size: 34px; }
     .app-card h2 { font-size: 44px; }
-    .tile { width: 132px; height: auto; }
   }
 </style>
 </head>
@@ -612,7 +681,7 @@
 
       <section class="panel" data-panel="profile" id="profile">
         <div class="persona-body">
-          <div class="intro-col">
+          <div class="col-main">
             <div class="who">
               <img class="face" src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
               <div>
@@ -622,32 +691,32 @@
               </div>
             </div>
             <div class="people-photos">
-              <figure>
-                <img src="assets/ai/resta.jpg" width="1024" height="768" alt="株式会社Resta">
-                <figcaption class="nowrap">株式会社Resta</figcaption>
-              </figure>
-              <figure>
-                <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="合同会社Reyel">
-                <figcaption class="nowrap">合同会社Reyel</figcaption>
-              </figure>
-              <figure>
-                <img src="assets/ai/rg.jpg" width="768" height="1024" alt="RG株式会社">
-                <figcaption class="nowrap">RG株式会社</figcaption>
-              </figure>
-              <figure>
-                <img src="assets/ai/musume.jpg" width="768" height="1024" alt="娘">
-                <figcaption class="nowrap">娘</figcaption>
-              </figure>
-              <figure>
-                <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="息子と着物">
-                <figcaption class="nowrap">息子と着物</figcaption>
-              </figure>
+              <button type="button" class="shot" data-full="assets/ai/resta.jpg" data-label="株式会社Resta">
+                <img src="assets/ai/resta.jpg" width="1024" height="768" alt="">
+                <span>株式会社Resta</span>
+              </button>
+              <button type="button" class="shot" data-full="assets/ai/reyel.jpg" data-label="合同会社Reyel">
+                <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="">
+                <span>合同会社Reyel</span>
+              </button>
+              <button type="button" class="shot" data-full="assets/ai/rg.jpg" data-label="RG株式会社">
+                <img src="assets/ai/rg.jpg" width="768" height="1024" alt="">
+                <span>RG株式会社</span>
+              </button>
+              <button type="button" class="shot" data-full="assets/ai/musume.jpg" data-label="娘">
+                <img src="assets/ai/musume.jpg" width="768" height="1024" alt="">
+                <span>娘</span>
+              </button>
+              <button type="button" class="shot" data-full="assets/ai/kimono.jpg" data-label="息子と着物">
+                <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="">
+                <span>息子と着物</span>
+              </button>
             </div>
-          </div>
             <section class="block slot-hobby">
               <h2>趣味</h2>
               <div class="hobby-row">
                 <img class="tile" src="assets/ai/tile.jpg" width="585" height="840" alt="宇部光太。麻雀の牌を持っている">
+                <img class="tile-agari" src="assets/ai/tile-agari.jpg" width="480" height="520" alt="あがり牌の四萬">
                 <div>
                   <ul class="tags">
                     <li class="nowrap">麻雀</li>
@@ -663,11 +732,12 @@
               <div class="secret-card">
                 <div>
                   <p class="secret">実は私……<br><span class="pop nowrap">女装すると妹に激似です</span></p>
-                  <p class="secret-name nowrap">宇部 光太</p>
                 </div>
                 <img class="dress" src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
               </div>
             </section>
+          </div>
+          <div class="col-side">
             <section class="block slot-person">
               <h2>人柄</h2>
               <ul class="facts">
@@ -677,8 +747,10 @@
               <p class="wish">多くの人に<br>喜ばれたい、<br>関わりたい。</p>
               <p class="wish">成功の鍵は、<br><span class="pop">まずはとにかく<br>量をやる。</span></p>
             </section>
-            <section class="block slot-nums">
-              <h2>略歴</h2>
+          </div>
+          <section class="block slot-history">
+            <h2><span class="nowrap">Reグループ</span>の略歴</h2>
+            <div class="history-top">
               <div class="growth">
                 <p>この10年で、<br>年商<b class="nowrap">1,000万円</b>から、<br>7年で<b class="nowrap">2億5,000万円</b></p>
                 <p>従業員<b class="nowrap">1名</b>から、<br>グループ全体で<b class="nowrap">30人</b></p>
@@ -688,21 +760,19 @@
                 <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
                 <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
               </ol>
-            </section>
-            <section class="block slot-time">
-              <h2><span class="nowrap">Reグループ</span>の略歴</h2>
-              <ol class="timeline">
-                <li><span class="year nowrap">2016年</span><span class="evt"><span class="nowrap">美容室Resta</span>　一号店オープン</span></li>
-                <li><span class="year nowrap">2017年</span><span class="evt"><span class="nowrap">顔面改善事業</span>スタート</span></li>
-                <li><span class="year nowrap">2018年</span><span class="evt"><span class="nowrap">ネイルサロンReyel</span> オープン</span></li>
-                <li><span class="year nowrap">2020年</span><span class="evt"><span class="nowrap">脱毛・ホワイトニング事業</span>スタート</span></li>
-                <li><span class="year nowrap">2021年</span><span class="evt nowrap">2号店オープン</span></li>
-                <li><span class="year nowrap">2024年</span><span class="evt nowrap">3号店オープン</span></li>
-                <li><span class="year nowrap">2025年</span><span class="evt"><span class="nowrap">FC店</span>　4店舗オープン</span></li>
-                <li><span class="year nowrap">2025年</span><span class="evt"><span class="nowrap">システム開発事業</span>スタート</span></li>
-                <li><span class="year nowrap">2026年</span><span class="evt"><span class="nowrap">かき氷ラボ TSUKIMISOU</span> オープン</span></li>
-              </ol>
-            </section>
+            </div>
+            <ol class="timeline">
+              <li><span class="year nowrap">2016年</span><span class="evt"><span class="nowrap">美容室Resta</span>　一号店オープン</span></li>
+              <li><span class="year nowrap">2017年</span><span class="evt"><span class="nowrap">顔面改善事業</span>スタート</span></li>
+              <li><span class="year nowrap">2018年</span><span class="evt"><span class="nowrap">ネイルサロンReyel</span> オープン</span></li>
+              <li><span class="year nowrap">2020年</span><span class="evt"><span class="nowrap">脱毛・ホワイトニング事業</span>スタート</span></li>
+              <li><span class="year nowrap">2021年</span><span class="evt nowrap">2号店オープン</span></li>
+              <li><span class="year nowrap">2024年</span><span class="evt nowrap">3号店オープン</span></li>
+              <li><span class="year nowrap">2025年</span><span class="evt"><span class="nowrap">FC店</span>　4店舗オープン</span></li>
+              <li><span class="year nowrap">2025年</span><span class="evt"><span class="nowrap">システム開発事業</span>スタート</span></li>
+              <li><span class="year nowrap">2026年</span><span class="evt"><span class="nowrap">かき氷ラボ TSUKIMISOU</span> オープン</span></li>
+            </ol>
+          </section>
         </div>
       </section>
 
@@ -810,6 +880,10 @@
       </footer>
     </article>
   </div>
+  <div class="lightbox" hidden>
+    <button type="button" class="lightbox-close">閉じる</button>
+    <img alt="">
+  </div>
   <script>
     (function () {
       var buttons = document.querySelectorAll("[data-sheet]");
@@ -835,6 +909,27 @@
       });
       var hash = (location.hash || "").replace("#", "");
       show(hash === "gains" || hash === "apps" ? hash : "profile");
+
+      var lightbox = document.querySelector(".lightbox");
+      var lightboxImg = lightbox.querySelector("img");
+      function closeShot() {
+        lightbox.hidden = true;
+        lightboxImg.removeAttribute("src");
+      }
+      document.querySelectorAll(".shot").forEach(function (shot) {
+        shot.addEventListener("click", function () {
+          lightboxImg.src = shot.getAttribute("data-full");
+          lightboxImg.alt = shot.getAttribute("data-label");
+          lightbox.hidden = false;
+        });
+      });
+      lightbox.querySelector(".lightbox-close").addEventListener("click", closeShot);
+      lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox || event.target === lightboxImg) closeShot();
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !lightbox.hidden) closeShot();
+      });
     })();
   </script>
 </body>
