@@ -125,6 +125,9 @@
     line-height: 1.2;
   }
   .company { margin: 6px 0 0; font-size: 21px; font-weight: 700; line-height: 1.5; }
+  .who > div { min-width: 0; }
+  .who .role { margin: 0 0 6px; font-size: 22px; }
+  .who .years { line-height: 1.45; }
   .lead { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.65; }
   .chips, .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .chips li, .tags li {
@@ -585,6 +588,7 @@
     .switch button, .switch a { font-size: 22px; min-height: 60px; }
     h1 { font-size: 76px; }
     .role { font-size: 44px; }
+    .who .role { font-size: 26px; }
     .who { grid-template-columns: 140px 1fr; }
     .face { width: 140px; height: 180px; }
     .secret-card {
@@ -685,23 +689,24 @@
             <div class="who">
               <img class="face" src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
               <div>
+                <p class="role nowrap">AIエンジニア</p>
                 <p class="kana">うべ こうた</p>
                 <h1 class="nowrap">宇部 光太</h1>
-                <p class="company nowrap">40歳。美容師歴24年。</p>
+                <p class="company years">40歳。<br><span class="nowrap">美容歴24年</span><br><span class="nowrap">企業10年</span><br><span class="nowrap">エンジニア歴7年</span></p>
               </div>
             </div>
             <div class="people-photos">
               <button type="button" class="shot" data-full="assets/ai/resta.jpg" data-label="株式会社Resta">
                 <img src="assets/ai/resta.jpg" width="1024" height="768" alt="">
-                <span>株式会社Resta</span>
+                <span>株式会社<wbr>Resta</span>
               </button>
               <button type="button" class="shot" data-full="assets/ai/reyel.jpg" data-label="合同会社Reyel">
                 <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="">
-                <span>合同会社Reyel</span>
+                <span>合同会社<wbr>Reyel</span>
               </button>
               <button type="button" class="shot" data-full="assets/ai/rg.jpg" data-label="RG株式会社">
                 <img src="assets/ai/rg.jpg" width="768" height="1024" alt="">
-                <span>RG株式会社</span>
+                <span>RG<wbr>株式会社</span>
               </button>
               <button type="button" class="shot" data-full="assets/ai/musume.jpg" data-label="娘">
                 <img src="assets/ai/musume.jpg" width="768" height="1024" alt="">
@@ -709,7 +714,7 @@
               </button>
               <button type="button" class="shot" data-full="assets/ai/kimono.jpg" data-label="息子と着物">
                 <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="">
-                <span>息子と着物</span>
+                <span>息子と<wbr>着物</span>
               </button>
             </div>
             <section class="block slot-hobby">
