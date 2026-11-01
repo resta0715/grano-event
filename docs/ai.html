@@ -125,9 +125,6 @@
     line-height: 1.2;
   }
   .company { margin: 6px 0 0; font-size: 21px; font-weight: 700; line-height: 1.5; }
-  .who > div { min-width: 0; }
-  .who .role { margin: 0 0 6px; font-size: 22px; }
-  .who .years { line-height: 1.45; }
   .lead { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.65; }
   .chips, .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .chips li, .tags li {
@@ -588,7 +585,6 @@
     .switch button, .switch a { font-size: 22px; min-height: 60px; }
     h1 { font-size: 76px; }
     .role { font-size: 44px; }
-    .who .role { font-size: 26px; }
     .who { grid-template-columns: 140px 1fr; }
     .face { width: 140px; height: 180px; }
     .secret-card {
@@ -633,17 +629,8 @@
     .col-main { grid-column: 1; grid-row: 1; }
     .col-side { grid-column: 2; grid-row: 1; }
     .who { margin-bottom: 0; }
-    .slot-history {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      padding-top: 8px;
-    }
-    .slot-history .history-top {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: 16px 28px;
-      align-items: start;
-    }
+    .slot-nums { border-top: 0; padding-top: 0; }
+    .slot-time { grid-column: 1 / -1; grid-row: 2; min-width: 0; max-width: 100%; }
     .app-board { padding-left: 28px; padding-right: 28px; gap: 36px; }
     .app-card h2 { font-size: 44px; }
     .app-copy { font-size: 22px; }
@@ -689,10 +676,9 @@
             <div class="who">
               <img class="face" src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
               <div>
-                <p class="role nowrap">AIエンジニア</p>
                 <p class="kana">うべ こうた</p>
                 <h1 class="nowrap">宇部 光太</h1>
-                <p class="company years">40歳。<br><span class="nowrap">美容歴24年</span><br><span class="nowrap">企業10年</span><br><span class="nowrap">エンジニア歴7年</span></p>
+                <p class="company nowrap">40歳。美容師歴24年。</p>
               </div>
             </div>
             <div class="people-photos">
@@ -743,6 +729,18 @@
             </section>
           </div>
           <div class="col-side">
+            <section class="block slot-nums">
+              <h2>略歴</h2>
+              <div class="growth">
+                <p>この10年で、<br>年商<b class="nowrap">1,000万円</b>から、<br>7年で<b class="nowrap">2億5,000万円</b></p>
+                <p>従業員<b class="nowrap">1名</b>から、<br>グループ全体で<b class="nowrap">30人</b></p>
+              </div>
+              <ol class="steps">
+                <li>7年前、自社内の<span class="nowrap">売り上げ管理</span>・<span class="nowrap">給与計算</span>・<span class="nowrap">シフト管理</span>・<span class="nowrap">勤怠管理</span>などを<br><span class="pop nowrap">全自動化</span>すべく<br><span class="nowrap">Python を学ぶ。</span></li>
+                <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
+                <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
+              </ol>
+            </section>
             <section class="block slot-person">
               <h2>人柄</h2>
               <ul class="facts">
@@ -753,19 +751,8 @@
               <p class="wish">成功の鍵は、<br><span class="pop">まずはとにかく<br>量をやる。</span></p>
             </section>
           </div>
-          <section class="block slot-history">
+          <section class="block slot-time">
             <h2><span class="nowrap">Reグループ</span>の略歴</h2>
-            <div class="history-top">
-              <div class="growth">
-                <p>この10年で、<br>年商<b class="nowrap">1,000万円</b>から、<br>7年で<b class="nowrap">2億5,000万円</b></p>
-                <p>従業員<b class="nowrap">1名</b>から、<br>グループ全体で<b class="nowrap">30人</b></p>
-              </div>
-              <ol class="steps">
-                <li>7年前、自社内の<span class="nowrap">売り上げ管理</span>・<span class="nowrap">給与計算</span>・<span class="nowrap">シフト管理</span>・<span class="nowrap">勤怠管理</span>などを<br><span class="pop nowrap">全自動化</span>すべく<br><span class="nowrap">Python を学ぶ。</span></li>
-                <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
-                <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
-              </ol>
-            </div>
             <ol class="timeline">
               <li><span class="year nowrap">2016年</span><span class="evt"><span class="nowrap">美容室Resta</span>　一号店オープン</span></li>
               <li><span class="year nowrap">2017年</span><span class="evt"><span class="nowrap">顔面改善事業</span>スタート</span></li>
@@ -778,106 +765,6 @@
               <li><span class="year nowrap">2026年</span><span class="evt"><span class="nowrap">かき氷ラボ TSUKIMISOU</span> オープン</span></li>
             </ol>
           </section>
-        </div>
-      </section>
-
-      <section class="panel gains" data-panel="gains" id="gains" hidden>
-        <div class="g-hero">
-          <div class="g-photo">
-            <img src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
-          </div>
-          <div class="g-text">
-            <p class="kana">うべ こうた</p>
-            <h1 class="nowrap">宇部 光太</h1>
-            <p class="company"><span class="nowrap">株式会社Resta</span><br>美容室 <span class="nowrap">Reグループ</span></p>
-          </div>
-          <p class="role nowrap">AIエンジニア</p>
-          <p class="lead g-lead">
-            美容室 <span class="nowrap">Reグループ</span>の経営者。<br>
-            自社の<span class="nowrap">売上・給与</span>・<wbr><span class="nowrap">シフト・勤怠</span>を<wbr>自動化した延長で、<wbr>他店の<wbr>システムも<wbr>作っています。
-          </p>
-        </div>
-        <section class="ask" aria-labelledby="ask-label">
-          <p class="ask-label" id="ask-label">紹介してほしい人</p>
-          <div class="ref-grid">
-            <div class="card egg">
-              <h2 class="nowrap">金の卵</h2>
-              <p class="card-note">紹介してほしい相手</p>
-              <ul class="people">
-                <li><span class="nowrap">店舗ビジネス</span>を<wbr>していて<wbr>売上を上げたい方</li>
-                <li>ツールを<wbr>入れているが<wbr><span class="nowrap">使いこなせていない</span><wbr><span class="nowrap">美容系サロン</span>の方</li>
-                <li><span class="nowrap">POSレジ</span><wbr>未導入の店舗</li>
-                <li><span class="nowrap">勤怠管理</span>・<span class="nowrap">給与計算</span>が<wbr>面倒な事業主</li>
-                <li><span class="nowrap">ホットペッパー</span><wbr><span class="nowrap">ビューティー</span>を<wbr>導入しているサロン</li>
-              </ul>
-            </div>
-            <div class="card goose">
-              <h2 class="nowrap">金のガチョウ</h2>
-              <p class="card-note">仕事を紹介してくれる人</p>
-              <ul class="people">
-                <li class="nowrap">飲食店コンサル</li>
-                <li class="nowrap">美容サロンコンサル</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <div class="body">
-          <section class="block">
-            <h2>他社にない強み</h2>
-            <ul class="people">
-              <li><span class="pop nowrap">0円からデモ</span>アプリを<wbr>開発できる</li>
-              <li><span class="nowrap">20年以上</span><wbr>接客業を<wbr>してきた<wbr>ヒアリング力</li>
-              <li><span class="nowrap">店舗運営</span>を<wbr>10年以上<wbr>してきた中で、<br>成果の出る<wbr>システム・<wbr>ツールを提供する</li>
-            </ul>
-          </section>
-          <section class="block">
-            <h2>人脈</h2>
-            <ul class="tags">
-              <li class="nowrap">BNI グラーノチャプター</li>
-              <li class="nowrap">美容関係</li>
-              <li class="nowrap">不動産</li>
-              <li class="nowrap">建設</li>
-              <li class="nowrap">コンサル業</li>
-            </ul>
-          </section>
-        </div>
-      </section>
-
-      <section class="panel" data-panel="apps" id="apps" hidden>
-        <div class="app-board">
-          <article class="app-card">
-            <div class="app-head">
-              <img class="app-logo" src="assets/gains/logo-hoshitoru.png" width="1024" height="1024" alt="">
-              <div>
-                <p class="app-en nowrap">HOSITORU</p>
-                <h2 class="nowrap">ホシトル</h2>
-              </div>
-            </div>
-            <p class="app-copy">
-              <span class="nowrap">AIレビュー</span>生成・収集ツール。<br>
-              お客様の声をAIで扱い、<wbr>レビューを書きやすくして、<wbr>口コミが集まりやすい仕組み。<br>
-              1to1では、<span class="nowrap">Googleマップ</span>の<wbr>口コミを集めるアプリ。
-            </p>
-            <img class="app-screen" src="assets/gains/screen-hoshitoru.png" width="1560" height="540" alt="ホシトルの画面">
-          </article>
-          <article class="app-card">
-            <div class="app-head">
-              <img class="app-logo" src="assets/gains/logo-miseban.png" width="1024" height="1024" alt="">
-              <div>
-                <p class="app-en nowrap">MISEBAN</p>
-                <h2 class="nowrap">みせばん</h2>
-              </div>
-            </div>
-            <p class="app-catch">美容室の運営を、ひとつに。</p>
-            <p class="app-copy">
-              人材・売上・媒体を一つにする<wbr>店舗情報アプリ。<br>
-              勤怠、給与計算、売上、<wbr><span class="nowrap">ホットペッパー</span>などの媒体連携。<br>
-              宇部が、自分の店で使っています。
-            </p>
-            <img class="app-screen" src="assets/gains/screen-miseban.png" width="1560" height="500" alt="みせばんの画面">
-          </article>
-        </div>
-      </section>
 
       <footer class="foot">
         <p style="margin:0" class="nowrap">宇部 光太</p>
