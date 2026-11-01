@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>宇部 光太｜AIエンジニア 1to1 — BNIグラーノ</title>
-<meta name="description" content="BNIグラーノ 宇部光太の1to1シート。美容室Reグループの経営者。自社の売上・給与・シフト・勤怠を自動化した延長で、他店のシステムも作っています。">
+<meta name="description" content="BNIグラーノ 宇部光太の1to1シート。Reグループの経営者。自社の売上・給与・シフト・勤怠を自動化した延長で、他店のシステムも作っています。">
 <meta property="og:title" content="宇部 光太｜AIエンジニア — BNIグラーノ">
-<meta property="og:description" content="美容室Reグループの経営者。自社の売上・給与・シフト・勤怠を自動化した延長で、他店のシステムも作っています。">
+<meta property="og:description" content="Reグループの経営者。自社の売上・給与・シフト・勤怠を自動化した延長で、他店のシステムも作っています。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://resta0715.github.io/grano-event/ai.html">
 <meta property="og:image" content="https://resta0715.github.io/grano-event/assets/ai/kota.jpg">
@@ -23,7 +23,6 @@
     --cream: #fbf4e4;
     --line: #ece4d3;
     --navy: #14233a;
-    --navy-2: #1e3352;
     --gold: #c6a15a;
     --gold-2: #ecd296;
     --gold-deep: #8a5e16;
@@ -41,7 +40,19 @@
     --r: 22px;
     --sec: 48px;
   }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) {
+    :root {
+      --fs: 23px;
+      --fs-l: 27px;
+      --fs-h2: 38px;
+      --page-x: 32px;
+      --gap: 18px;
+      --pad: 32px;
+      --r: 24px;
+      --sec: 60px;
+    }
+  }
+  @media (min-width: 1024px) {
     :root {
       --fs: 25px;
       --fs-l: 30px;
@@ -75,7 +86,7 @@
   button { font: inherit; color: inherit; }
   .nowrap { white-space: nowrap; }
 
-  .wrap { width: min(1200px, 100%); margin: 0 auto; padding: 0 var(--page-x); }
+  .wrap { width: min(1360px, 100%); margin: 0 auto; padding: 0 var(--page-x); }
 
   .top {
     display: flex;
@@ -98,12 +109,16 @@
   }
   .switch {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: min(720px, 100%);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
+    width: min(900px, 100%);
     margin: 0 auto;
     padding: 4px;
-    border-radius: 999px;
+    border-radius: 28px;
     background: #e7e1d4;
+  }
+  @media (min-width: 640px) {
+    .switch { grid-template-columns: repeat(4, minmax(0, 1fr)); border-radius: 999px; }
   }
   .switch button {
     min-height: 50px;
@@ -124,16 +139,17 @@
   }
   @media (max-width: 480px) {
     .switch-bar .wrap { padding: 0 10px; }
-    .switch button { font-size: 19px; letter-spacing: -.03em; }
+    .switch button { min-height: 46px; }
   }
-  @media (min-width: 900px) {
+  @media (min-width: 1024px) {
     .switch button { min-height: 56px; font-size: 22px; }
   }
   .panel[hidden] { display: none !important; }
 
   .sec { margin-top: var(--sec); }
   .sec:first-child { margin-top: 12px; }
-  .sec > h2 {
+  .sec-tight { margin-top: var(--gap); }
+  .sec > h2, .col > h2 {
     margin-bottom: 20px;
     font-size: var(--fs-h2);
     font-weight: 900;
@@ -150,14 +166,20 @@
   }
   .bento > * { min-width: 0; }
   .stack { display: grid; gap: var(--gap); min-width: 0; }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) {
     .bento { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-    .s4 { grid-column: span 4; }
-    .s5 { grid-column: span 5; }
-    .s6 { grid-column: span 6; }
-    .s7 { grid-column: span 7; }
-    .s8 { grid-column: span 8; }
-    .s12 { grid-column: 1 / -1; }
+    .bento > * { grid-column: 1 / -1; }
+    .bento > .t5 { grid-column: span 5; }
+    .bento > .t6 { grid-column: span 6; }
+    .bento > .t7 { grid-column: span 7; }
+  }
+  @media (min-width: 1024px) {
+    .bento > .d4 { grid-column: span 4; }
+    .bento > .d5 { grid-column: span 5; }
+    .bento > .d6 { grid-column: span 6; }
+    .bento > .d7 { grid-column: span 7; }
+    .bento > .d8 { grid-column: span 8; }
+    .bento > .d12 { grid-column: 1 / -1; }
   }
   .tile {
     position: relative;
@@ -169,7 +191,9 @@
   .tile.cream { background: var(--cream); }
   .tile.gold { background: var(--gold-grad); color: var(--navy); }
   .tile.navy { background: var(--navy-grad); color: #f6efe2; }
-  .tile h3 {
+  .center { display: flex; flex-direction: column; justify-content: center; }
+  .tile-title {
+    margin-bottom: 16px;
     font-size: var(--fs-l);
     font-weight: 900;
     line-height: 1.3;
@@ -243,15 +267,130 @@
   }
   .stats small { margin-left: 2px; font-size: .45em; }
   .lead-tile p { font-size: var(--fs-l); line-height: 1.6; }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) {
     .hero-photo { aspect-ratio: 4 / 5; }
+    .role { font-size: 26px; }
+    h1 { font-size: 80px; }
+    .hero-sub { font-size: 26px; }
+    .stats span { font-size: 21px; }
+    .stats b { font-size: 60px; }
+  }
+  @media (min-width: 1024px) {
     .role { font-size: 28px; }
     .kana { font-size: 22px; }
-    h1 { font-size: 104px; }
-    .hero-sub { font-size: 28px; }
-    .stats { padding: 28px 0; }
-    .stats span { font-size: 22px; }
-    .stats b { font-size: 76px; }
+    h1 { font-size: 112px; }
+    .hero-sub { font-size: 30px; }
+    .stats { padding: 30px 0; }
+    .stats span { font-size: 24px; }
+    .stats b { font-size: 84px; }
+  }
+
+  /* AI engineer path */
+  .path-title {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: #fff;
+  }
+  .path { margin-top: 24px; counter-reset: path; }
+  .path li { position: relative; padding: 22px 0; border-top: 1px solid rgba(236, 210, 150, .3); }
+  .path li:last-child { padding-bottom: 0; }
+  .path-tag {
+    display: inline-block;
+    padding: 2px 14px 4px;
+    border-radius: 999px;
+    background: rgba(236, 210, 150, .16);
+    color: var(--gold-2);
+    font-size: var(--fs);
+    line-height: 1.4;
+  }
+  .path-text { margin-top: 10px; line-height: 1.6; }
+  .path .mile {
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--serif);
+    font-size: 44px;
+    line-height: 1.2;
+    color: var(--gold-2);
+  }
+  .path .key { color: var(--gold-2); }
+  @media (min-width: 1024px) {
+    .ai-path { padding: 56px 64px; }
+    .path-title { font-size: 44px; }
+    .path {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 56px;
+      margin-top: 36px;
+    }
+    .path li { padding: 28px 0 0; border-top: 2px solid rgba(236, 210, 150, .45); }
+    .path li + li::before {
+      content: "→";
+      position: absolute;
+      left: -44px;
+      top: 66px;
+      color: var(--gold-2);
+      font-size: 36px;
+      font-weight: 900;
+    }
+    .path .mile { font-size: 44px; }
+    .path-text { font-size: 27px; }
+  }
+
+  /* history */
+  .growth p { font-size: var(--fs); line-height: 1.45; }
+  .growth b {
+    font-family: var(--serif);
+    font-size: 44px;
+    line-height: 1.15;
+  }
+  .timeline li {
+    display: grid;
+    grid-template-columns: 4.4em minmax(0, 1fr);
+    gap: 12px;
+    align-items: baseline;
+    align-content: start;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+  }
+  .timeline li:first-child { padding-top: 0; border-top: 0; }
+  .timeline .year {
+    font-family: var(--serif);
+    font-size: 26px;
+    color: var(--gold-deep);
+  }
+  @media (min-width: 768px) {
+    .growth p { font-size: 26px; }
+    .growth b { font-size: 56px; }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px 32px;
+    }
+    .timeline li {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 18px 0 0;
+      border-top: 3px solid var(--gold-2);
+    }
+    .timeline li:first-child { padding-top: 18px; border-top: 3px solid var(--gold-2); }
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -9px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .timeline li { position: relative; }
+    .timeline .year { font-size: 34px; line-height: 1.2; }
+  }
+  @media (min-width: 1024px) {
+    .growth p { font-size: 28px; }
+    .growth b { font-size: 68px; }
+    .timeline { gap: 36px 40px; }
   }
 
   /* company & family */
@@ -264,17 +403,20 @@
   .photos .tall { aspect-ratio: 3 / 4; }
   .photos .tall-sp { grid-column: span 2; aspect-ratio: 4 / 3; }
   .photos .tall-sp img { object-position: 50% 8%; }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) {
     .photos { grid-template-columns: repeat(12, minmax(0, 1fr)); }
     .photos .wide { grid-column: span 6; }
     .photos .tall, .photos .tall-sp { grid-column: span 4; aspect-ratio: 3 / 4; }
     .photos .tall-sp img { object-position: 50% 50%; }
   }
+  @media (min-width: 1024px) {
+    .photos { display: flex; }
+    .photos > .tile { flex: var(--g) 1 0; aspect-ratio: var(--ar); min-width: 0; }
+  }
 
-  /* hobby */
-  .pair { display: flex; gap: var(--gap); }
-  .pair .tile { flex: var(--ar) 1 0; aspect-ratio: var(--ar); }
-  .tenhou-tile { display: flex; flex-direction: column; justify-content: center; }
+  /* hobby & secret */
+  .tiles-up { aspect-ratio: 3 / 2; }
+  .table-shot { aspect-ratio: 4 / 3; }
   .tenhou { font-size: var(--fs-l); line-height: 1.5; }
   .tenhou b {
     display: block;
@@ -293,12 +435,6 @@
     font-weight: 900;
     line-height: 1.4;
   }
-  @media (min-width: 900px) {
-    .hobby .stack { grid-template-rows: 1fr auto; }
-    .tenhou b { font-size: 88px; }
-  }
-
-  /* secret */
   .secret {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 40%;
@@ -316,12 +452,21 @@
   }
   .secret .shot { align-self: stretch; }
   .secret .shot img { height: 100%; object-fit: cover; object-position: 50% 30%; }
-  @media (min-width: 900px) {
-    .secret { grid-template-columns: minmax(0, 1fr) 380px; }
-    .secret-text { padding: 56px 64px; }
-    .secret-text p:first-child { font-size: 40px; }
-    .secret-text p + p { font-size: 72px; }
+  @media (min-width: 768px) {
+    .secret { grid-template-columns: minmax(0, 1fr) 300px; }
+    .secret-text { padding: 40px; }
+    .secret-text p:first-child { font-size: 34px; }
+    .secret-text p + p { font-size: 56px; }
     .secret .shot img { height: auto; }
+  }
+  @media (min-width: 1024px) {
+    .hobby-side { grid-template-rows: 1fr auto; }
+    .tenhou b { font-size: 88px; }
+    .secret { grid-template-columns: minmax(0, 1fr) 35.5%; }
+    .secret-text { padding: 40px 48px; }
+    .secret-text p:first-child { font-size: 36px; }
+    .secret-text p + p { font-size: 60px; }
+    .secret .shot img { height: 100%; }
   }
 
   /* person */
@@ -334,11 +479,6 @@
   }
   .facts div:first-child { padding-top: 0; border-top: 0; }
   .facts dt { color: var(--gold-deep); }
-  @media (min-width: 900px) {
-    .facts { font-size: 28px; }
-    .facts div { padding: 18px 0; }
-  }
-  .quote { display: flex; flex-direction: column; justify-content: center; }
   .quote p { font-size: var(--fs); line-height: 1.4; color: var(--muted); }
   .quote b {
     display: block;
@@ -348,73 +488,51 @@
     line-height: 1.35;
     color: var(--navy);
   }
-  @media (min-width: 900px) {
+  @media (min-width: 1024px) {
+    .facts { font-size: 28px; }
+    .facts div { padding: 18px 0; }
     .quote b { font-size: 38px; }
   }
 
-  /* history */
-  .growth { display: flex; flex-direction: column; justify-content: center; }
-  .growth p { font-size: var(--fs); line-height: 1.45; }
-  .growth b {
-    font-family: var(--serif);
-    font-size: 44px;
-    line-height: 1.15;
+  /* gains */
+  .goals-title { margin-bottom: 20px; font-size: var(--fs-l); font-weight: 900; color: var(--navy); }
+  .goals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+  .goals li { line-height: 1.35; }
+  @media (max-width: 1023px) {
+    .goals li:nth-child(-n+2) { grid-column: 1 / -1; }
   }
-  .steps { counter-reset: step; }
-  .steps li {
-    position: relative;
-    padding-left: 60px;
-    line-height: 1.55;
-  }
-  .steps li + li { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
-  .steps li::before {
-    counter-increment: step;
-    content: counter(step);
-    position: absolute;
-    left: 0;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: var(--gold-2);
-    font-size: 22px;
-    font-weight: 900;
-    line-height: 42px;
-    text-align: center;
-  }
-  .steps li:first-child::before { top: 0; }
-  .steps li + li::before { top: 18px; }
-  .steps .pop { font-size: 1.25em; color: var(--gold-deep); }
-  .timeline li {
-    display: grid;
-    grid-template-columns: 4.4em minmax(0, 1fr);
-    gap: 12px;
-    align-items: baseline;
-    align-content: start;
-    padding: 14px 0;
-    border-top: 1px solid var(--line);
-  }
-  .timeline li:first-child { padding-top: 0; border-top: 0; }
-  .timeline .year {
-    font-family: var(--serif);
-    font-size: 26px;
-    color: var(--gold-deep);
-  }
-  @media (min-width: 900px) {
-    .growth p { font-size: 28px; }
-    .growth b { font-size: 68px; }
-    .steps li { font-size: 26px; }
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: 40px;
-    }
-    .timeline li { grid-template-columns: 1fr; gap: 2px; padding: 18px 0; }
-    .timeline li:nth-child(-n+3) { padding-top: 0; border-top: 0; }
-    .timeline .year { font-size: 36px; line-height: 1.2; }
+  .goals .lab { display: block; font-size: var(--fs); color: var(--gold-deep); }
+  .goals .num { font-family: var(--serif); font-size: 34px; color: var(--navy); }
+  .goals .num strong { font-size: 1.35em; }
+  .goals .sub { display: block; font-size: var(--fs); color: var(--gold-deep); }
+  @media (min-width: 1024px) {
+    .goals { grid-template-columns: 1.3fr 1.3fr 1fr 1fr; gap: 0; }
+    .goals li { padding: 0 28px; border-left: 1px solid rgba(20, 35, 58, .2); }
+    .goals li:first-child { padding-left: 0; border-left: 0; }
+    .goals .num { font-size: 44px; }
   }
 
-  /* gains */
+  .team-tile { padding: 32px var(--pad); }
+  .team-with { font-size: var(--fs-l); line-height: 1.5; }
+  .team-tile.navy .team-with { color: var(--gold-2); }
+  .team-tile.gold .team-with { color: var(--gold-deep); }
+  .team-name {
+    margin-top: 8px;
+    font-family: var(--serif);
+    font-size: 34px;
+    line-height: 1.3;
+  }
+  @media (min-width: 768px) {
+    .team-tile { padding: 48px; }
+    .team-with { font-size: 30px; }
+    .team-name { font-size: 52px; }
+  }
+  @media (min-width: 1024px) {
+    .team-tile { padding: 56px 64px; }
+    .team-with { font-size: 34px; }
+    .team-name { font-size: 68px; }
+  }
+
   .pitch-era { color: var(--gold-2); font-size: var(--fs); }
   .pitch-ask {
     margin-top: 14px;
@@ -443,13 +561,24 @@
   }
   .strengths .hook b { font-size: 2em; color: var(--gold-deep); }
   .strengths .em { color: var(--gold-deep); font-size: 1.15em; }
-  @media (min-width: 900px) {
-    .pitch { padding: 56px 64px; }
-    .pitch-era { font-size: 30px; }
-    .pitch-ask { font-size: 46px; }
-    .pitch-cost { font-size: 34px; }
-    .strengths li { display: grid; grid-template-columns: 380px minmax(0, 1fr); align-items: center; gap: 32px; font-size: 28px; }
-    .strengths .hook { margin-bottom: 0; font-size: 34px; }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .strengths li { display: grid; grid-template-columns: 300px minmax(0, 1fr); align-items: center; gap: 28px; }
+    .strengths .hook { margin-bottom: 0; }
+  }
+  @media (min-width: 768px) {
+    .pitch { padding: 48px; }
+    .pitch-era { font-size: 28px; }
+    .pitch-ask { font-size: 40px; }
+    .pitch-cost { font-size: 30px; }
+  }
+  @media (min-width: 1024px) {
+    .pitch { padding: 56px; }
+    .pitch-ask { font-size: 44px; }
+    .pitch-cost { font-size: 32px; }
+    .strengths li { font-size: 26px; }
+    .strengths li + li { margin-top: 18px; padding-top: 18px; }
+    .strengths .hook { font-size: 30px; }
+    .strengths .hook b { font-size: 1.8em; }
   }
 
   .ref h3 {
@@ -479,14 +608,18 @@
     background: var(--gold);
   }
   .goose .list li::before { background: var(--navy); }
-  @media (min-width: 900px) {
-    .ref h3 { font-size: 56px; }
-    .list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; }
-    .list li { font-size: 27px; }
+  @media (min-width: 768px) {
+    .ref h3 { font-size: 52px; }
+    .egg .list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
+    .list li { font-size: 26px; }
+  }
+  @media (min-width: 1024px) {
+    .ref h3 { font-size: 60px; }
+    .goose h3 { font-size: 72px; }
+    .goose .list li { font-size: 30px; }
   }
 
   /* apps */
-  .app { padding-bottom: 0; }
   .app-head { display: flex; align-items: center; gap: 18px; }
   .app-logo { width: 72px; height: 72px; border-radius: 18px; }
   .app-en { color: var(--gold-deep); font-size: 20px; letter-spacing: .14em; }
@@ -504,7 +637,7 @@
     grid-auto-flow: column;
     grid-auto-columns: 78%;
     gap: 12px;
-    margin: 28px calc(var(--pad) * -1) 0;
+    margin: 28px calc(var(--pad) * -1) calc(var(--pad) * -1);
     padding: 0 var(--pad) var(--pad);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -518,23 +651,37 @@
   }
   .app-shots .shot img { height: auto; object-fit: contain; }
   .swipe-hint { margin-top: 12px; color: var(--muted); font-size: var(--fs); }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) {
     .app-head { gap: 24px; }
-    .app-logo { width: 104px; height: 104px; border-radius: 24px; }
-    .app-name { font-size: 64px; }
-    .app-catch { font-size: 44px; }
-    .app-copy { font-size: 27px; }
+    .app-logo { width: 96px; height: 96px; border-radius: 22px; }
+    .app-name { font-size: 56px; }
+    .app-catch { font-size: 38px; }
+    .app-copy { font-size: 25px; }
     .app-shots {
       grid-auto-flow: row;
-      grid-template-columns: repeat(2, minmax(0, 400px));
+      grid-template-columns: repeat(2, minmax(0, 320px));
       grid-auto-columns: auto;
       justify-content: center;
       gap: var(--gap);
-      margin: 40px 0 0;
-      padding: 0 0 var(--pad);
+      margin: 32px 0 0;
+      padding: 0;
       overflow: visible;
     }
     .swipe-hint { display: none; }
+  }
+  @media (min-width: 1024px) {
+    .app {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      align-items: center;
+      gap: 48px;
+      padding: 48px;
+    }
+    .app-logo { width: 104px; height: 104px; border-radius: 24px; }
+    .app-name { font-size: 64px; }
+    .app-catch { font-size: 42px; }
+    .app-copy { font-size: 27px; }
+    .app-shots { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
   }
 
   .foot {
@@ -586,6 +733,7 @@
       <nav class="switch" aria-label="シート切替">
         <button type="button" data-sheet="profile" class="is-on" aria-pressed="true">メンバー略歴</button>
         <button type="button" data-sheet="gains" aria-pressed="false">G.A.I.N.S.</button>
+        <button type="button" data-sheet="powerteam" aria-pressed="false">パワーチーム</button>
         <button type="button" data-sheet="apps" aria-pressed="false">アプリ例</button>
       </nav>
     </div>
@@ -594,15 +742,15 @@
   <main class="wrap">
     <div class="panel" data-panel="profile" id="profile">
       <section class="sec hero bento">
-        <button type="button" class="tile shot hero-photo s5" data-full="assets/ai/kota.jpg" data-label="宇部光太">
+        <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota.jpg" data-label="宇部光太">
           <img src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
         </button>
-        <div class="stack s7">
+        <div class="stack t7 d8">
           <div class="tile name-tile">
             <p class="role nowrap">AIエンジニア</p>
             <p class="kana">うべ こうた</p>
             <h1 class="nowrap">宇部 光太</h1>
-            <p class="hero-sub">40歳。<span class="nowrap">株式会社Resta</span>・<span class="nowrap">美容室 Reグループ</span></p>
+            <p class="hero-sub">40歳。<span class="nowrap">株式会社Resta</span>・<span class="nowrap">Reグループ</span></p>
           </div>
           <ul class="tile stats">
             <li><span>美容歴</span><b>24<small>年</small></b></li>
@@ -612,100 +760,36 @@
         </div>
       </section>
 
-      <section class="sec">
-        <h2>会社と家族</h2>
-        <div class="photos">
-          <button type="button" class="tile shot wide" data-full="assets/ai/resta.jpg" data-label="株式会社Resta">
-            <img src="assets/ai/resta.jpg" width="1024" height="768" alt="">
-            <span class="cap nowrap">株式会社Resta</span>
-          </button>
-          <button type="button" class="tile shot wide" data-full="assets/ai/reyel.jpg" data-label="合同会社Reyel">
-            <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="">
-            <span class="cap nowrap">合同会社Reyel</span>
-          </button>
-          <button type="button" class="tile shot tall" data-full="assets/ai/rg.jpg" data-label="RG株式会社">
-            <img src="assets/ai/rg.jpg" width="768" height="1024" alt="">
-            <span class="cap nowrap">RG株式会社</span>
-          </button>
-          <button type="button" class="tile shot tall" data-full="assets/ai/musume.jpg" data-label="娘">
-            <img src="assets/ai/musume.jpg" width="768" height="1024" alt="">
-            <span class="cap">娘</span>
-          </button>
-          <button type="button" class="tile shot tall-sp" data-full="assets/ai/kimono.jpg" data-label="息子と着物">
-            <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="">
-            <span class="cap nowrap">息子と着物</span>
-          </button>
-        </div>
-        <p class="hint">写真をタップすると全体が開きます。</p>
-      </section>
-
-      <section class="sec hobby">
-        <h2>趣味</h2>
-        <div class="bento">
-          <div class="pair s7">
-            <button type="button" class="tile shot" style="--ar: 585 / 840" data-full="assets/ai/tile.jpg" data-label="麻雀の牌を持つ宇部光太">
-              <img src="assets/ai/tile.jpg" width="585" height="840" alt="宇部光太。麻雀の牌を持っている">
-            </button>
-            <button type="button" class="tile shot" style="--ar: 480 / 520" data-full="assets/ai/tile-agari.jpg" data-label="四萬">
-              <img src="assets/ai/tile-agari.jpg" width="480" height="520" alt="四萬の牌">
-            </button>
-          </div>
-          <div class="stack s5">
-            <div class="tile tenhou-tile">
-              <p class="tenhou"><b>天和</b><span class="nowrap">（出現率約0.0003％）</span>を<wbr>あがったことがある。</p>
-            </div>
-            <ul class="tile tags">
-              <li class="nowrap">麻雀</li>
-              <li class="nowrap">ピアノ</li>
-              <li class="nowrap">飲み会</li>
-              <li class="nowrap">着物</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="sec">
-        <div class="tile navy secret">
-          <div class="secret-text">
-            <p>実は私……</p>
-            <p><span class="nowrap">女装すると</span><wbr><span class="nowrap">妹に激似です</span></p>
-          </div>
-          <button type="button" class="shot" data-full="assets/ai/dress.jpg" data-label="女装した宇部光太">
-            <img src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
-          </button>
-        </div>
-      </section>
-
-      <section class="sec">
-        <h2>人柄</h2>
-        <div class="bento">
-          <dl class="tile facts s6">
-            <div><dt>出身</dt><dd>東京</dd></div>
-            <div><dt>拠点</dt><dd>埼玉</dd></div>
-            <div><dt>家族</dt><dd>妻（40歳）、長男（18歳）、<wbr>長女（16歳）、次女（1歳）、猫</dd></div>
-          </dl>
-          <div class="stack s6">
-            <div class="tile cream quote"><p>多くの人に<b>喜ばれたい、<wbr><span class="nowrap">関わりたい。</span></b></p></div>
-            <div class="tile cream quote"><p>成功の鍵は、<b>まずは<wbr>とにかく<wbr><span class="nowrap">量をやる。</span></b></p></div>
-          </div>
+      <section class="sec-tight">
+        <div class="tile navy ai-path">
+          <h2 class="path-title"><span class="nowrap">AIエンジニア</span><wbr><span class="nowrap">としての歩み</span></h2>
+          <ol class="path">
+            <li>
+              <span class="path-tag nowrap">学ぶ</span>
+              <p class="path-text"><b class="mile nowrap">7年前、</b>自社内の<span class="nowrap">売り上げ管理</span>・<wbr><span class="nowrap">給与計算</span>・<wbr><span class="nowrap">シフト管理</span>・<wbr><span class="nowrap">勤怠管理</span>などを<wbr><span class="key nowrap">全自動化</span>すべく<span class="key nowrap">Python を学ぶ。</span></p>
+            </li>
+            <li>
+              <span class="path-tag nowrap">自社で開発</span>
+              <p class="path-text"><b class="mile nowrap">全自動化後も、</b>集客や求人に<wbr>使える<wbr>システムや<wbr><span class="nowrap">ツールを開発。</span></p>
+            </li>
+            <li>
+              <span class="path-tag nowrap">他社へ</span>
+              <p class="path-text"><b class="mile nowrap">昨年より、</b>自社内だけでなく、<wbr><span class="key nowrap">他店舗・他企業</span>の<wbr>システム開発・<wbr><span class="nowrap">ツール開発に着手。</span></p>
+            </li>
+          </ol>
         </div>
       </section>
 
       <section class="sec">
         <h2><span class="nowrap">Reグループ</span>の略歴</h2>
         <div class="bento">
-          <div class="tile gold growth s7">
+          <div class="tile gold growth center t7 d7">
             <p>この10年で、<br>年商<b class="nowrap">1,000万円</b>から、<br>7年で<b class="nowrap">2億5,000万円</b></p>
           </div>
-          <div class="tile gold growth s5">
+          <div class="tile gold growth center t5 d5">
             <p>従業員<b class="nowrap">1名</b>から、<br>グループ全体で<b class="nowrap">30人</b></p>
           </div>
-          <ol class="tile steps s12">
-            <li>7年前、自社内の<span class="nowrap">売り上げ管理</span>・<wbr><span class="nowrap">給与計算</span>・<wbr><span class="nowrap">シフト管理</span>・<wbr><span class="nowrap">勤怠管理</span>などを<wbr><span class="pop nowrap">全自動化</span>すべく<span class="nowrap">Python を学ぶ。</span></li>
-            <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
-            <li>昨年より、<wbr>自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・<wbr><span class="nowrap">ツール開発に着手。</span></li>
-          </ol>
-          <ol class="tile timeline s12">
+          <ol class="tile timeline">
             <li><span class="year nowrap">2016年</span><span><span class="nowrap">美容室Resta</span>　一号店オープン</span></li>
             <li><span class="year nowrap">2017年</span><span><span class="nowrap">顔面改善事業</span><wbr><span class="nowrap">スタート</span></span></li>
             <li><span class="year nowrap">2018年</span><span><span class="nowrap">ネイルサロンReyel</span> オープン</span></li>
@@ -718,35 +802,134 @@
           </ol>
         </div>
       </section>
+
+      <section class="sec">
+        <h2>会社と家族</h2>
+        <div class="photos">
+          <button type="button" class="tile shot wide" style="--ar: 3 / 2; --g: 1.5" data-full="assets/ai/resta.jpg" data-label="株式会社Resta">
+            <img src="assets/ai/resta.jpg" width="1024" height="768" alt="">
+            <span class="cap nowrap">株式会社Resta</span>
+          </button>
+          <button type="button" class="tile shot wide" style="--ar: 3 / 2; --g: 1.5" data-full="assets/ai/reyel.jpg" data-label="合同会社Reyel">
+            <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="">
+            <span class="cap nowrap">合同会社Reyel</span>
+          </button>
+          <button type="button" class="tile shot tall" style="--ar: 3 / 4; --g: .75" data-full="assets/ai/rg.jpg" data-label="RG株式会社">
+            <img src="assets/ai/rg.jpg" width="768" height="1024" alt="">
+            <span class="cap nowrap">RG株式会社</span>
+          </button>
+          <button type="button" class="tile shot tall" style="--ar: 3 / 4; --g: .75" data-full="assets/ai/musume.jpg" data-label="娘">
+            <img src="assets/ai/musume.jpg" width="768" height="1024" alt="">
+            <span class="cap">娘</span>
+          </button>
+          <button type="button" class="tile shot tall-sp" style="--ar: 3 / 4; --g: .75" data-full="assets/ai/kimono.jpg" data-label="息子と着物">
+            <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="">
+            <span class="cap nowrap">息子と着物</span>
+          </button>
+        </div>
+        <p class="hint">写真をタップすると全体が開きます。</p>
+      </section>
+
+      <section class="sec">
+        <h2>趣味</h2>
+        <div class="bento">
+          <button type="button" class="tile shot tiles-up d7" data-full="assets/ai/tenhou-tiles.jpg" data-label="天和であがった卓上の牌">
+            <img src="assets/ai/tenhou-tiles.jpg" width="780" height="520" alt="天和であがった卓上の牌">
+          </button>
+          <div class="stack hobby-side d5">
+            <div class="tile center">
+              <p class="tenhou"><b>天和</b><span class="nowrap">（出現率約0.0003％）</span>を<wbr>あがったことがある。</p>
+            </div>
+            <ul class="tile tags">
+              <li class="nowrap">麻雀</li>
+              <li class="nowrap">ピアノ</li>
+              <li class="nowrap">飲み会</li>
+              <li class="nowrap">着物</li>
+            </ul>
+          </div>
+          <button type="button" class="tile shot table-shot d5" data-full="assets/ai/tenhou-table.jpg" data-label="天和をあがった卓と宇部光太">
+            <img src="assets/ai/tenhou-table.jpg" width="1024" height="768" alt="宇部光太。卓の上に天和であがった牌が並んでいる">
+          </button>
+          <div class="tile navy secret d7">
+            <div class="secret-text">
+              <p>実は私……</p>
+              <p><span class="nowrap">女装すると</span><wbr><span class="nowrap">妹に激似です</span></p>
+            </div>
+            <button type="button" class="shot" data-full="assets/ai/dress.jpg" data-label="女装した宇部光太">
+              <img src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>人柄</h2>
+        <div class="bento">
+          <dl class="tile facts d6">
+            <div><dt>出身</dt><dd>東京</dd></div>
+            <div><dt>拠点</dt><dd>埼玉</dd></div>
+            <div><dt>家族</dt><dd>妻（40歳）、長男（18歳）、<wbr>長女（16歳）、次女（1歳）、猫</dd></div>
+          </dl>
+          <div class="stack d6">
+            <div class="tile cream quote center"><p>多くの人に<b>喜ばれたい、<wbr><span class="nowrap">関わりたい。</span></b></p></div>
+            <div class="tile cream quote center"><p>成功の鍵は、<b>まずは<wbr>とにかく<wbr><span class="nowrap">量をやる。</span></b></p></div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div class="panel" data-panel="gains" id="gains" hidden>
       <section class="sec hero bento">
-        <button type="button" class="tile shot hero-photo s5" data-full="assets/ai/kota.jpg" data-label="宇部光太">
+        <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota.jpg" data-label="宇部光太">
           <img src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
         </button>
-        <div class="stack s7">
+        <div class="stack t7 d8">
           <div class="tile name-tile">
             <p class="role nowrap">AIエンジニア</p>
             <p class="kana">うべ こうた</p>
             <h1 class="nowrap">宇部 光太</h1>
-            <p class="hero-sub"><span class="nowrap">株式会社Resta</span>・<span class="nowrap">美容室 Reグループ</span></p>
+            <p class="hero-sub"><span class="nowrap">株式会社Resta</span>・<span class="nowrap">Reグループ</span></p>
           </div>
           <div class="tile cream lead-tile">
-            <p>美容室 <span class="nowrap">Reグループ</span>の経営者。<br>自社の<span class="nowrap">売上・給与</span>・<wbr><span class="nowrap">シフト・勤怠</span>を<wbr>自動化した延長で、<wbr>他店の<wbr>システムも<wbr>作っています。</p>
+            <p><span class="nowrap">Reグループ</span>の経営者。<br>自社の<span class="nowrap">売上・給与</span>・<wbr><span class="nowrap">シフト・勤怠</span>を<wbr>自動化した延長で、<wbr>他店の<wbr>システムも<wbr>作っています。</p>
           </div>
+        </div>
+      </section>
+
+      <section class="sec-tight">
+        <div class="tile gold">
+          <h2 class="goals-title">目標</h2>
+          <ul class="goals">
+            <li><span class="lab">年商</span><span class="num nowrap">2億 → <strong>10億</strong></span><span class="sub">（10年後）</span></li>
+            <li><span class="lab">従業員</span><span class="num nowrap">30名 → <strong>100名</strong></span><span class="sub">（10年後）</span></li>
+            <li><span class="lab">直営</span><span class="num nowrap"><strong>10</strong>店舗</span></li>
+            <li><span class="lab">FC</span><span class="num nowrap"><strong>10</strong>店舗</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec-tight bento">
+        <div class="tile">
+          <h2 class="tile-title">人脈</h2>
+          <ul class="tags">
+            <li class="nowrap">BNI グラーノチャプター</li>
+            <li class="nowrap">美容関係</li>
+            <li class="nowrap">不動産</li>
+            <li class="nowrap">建設</li>
+            <li class="nowrap">コンサル業</li>
+          </ul>
         </div>
       </section>
 
       <section class="sec">
         <h2>他社にない強み</h2>
         <div class="bento">
-          <div class="tile navy pitch s12">
+          <div class="tile navy pitch center d7">
             <p class="pitch-era">アプリ自体は<wbr>もう誰でも作れる時代に。</p>
             <p class="pitch-ask">その会社に<b class="nowrap">ピンポイント</b>で<br>必要としているものは<wbr>なにか</p>
             <p class="pitch-cost"><span class="nowrap">中小零細企業</span>でも<wbr><span class="nowrap">自社アプリ</span>を<wbr>作成できる<b class="nowrap">コスト</b>で。</p>
           </div>
-          <ul class="tile strengths s12">
+          <ul class="tile strengths center d5">
             <li>
               <p class="hook"><b class="nowrap">0円</b>から</p>
               <p><span class="nowrap">デモアプリ</span>を<wbr>開発できる</p>
@@ -766,7 +949,7 @@
       <section class="sec">
         <h2>紹介してほしい人</h2>
         <div class="bento">
-          <div class="tile ref egg s12">
+          <div class="tile ref egg d8">
             <h3 class="nowrap">金の卵</h3>
             <p class="note">紹介してほしい相手</p>
             <ul class="list">
@@ -777,8 +960,8 @@
               <li><span class="nowrap">ホットペッパー</span><wbr><span class="nowrap">ビューティー</span>を<wbr>導入しているサロン</li>
             </ul>
           </div>
-          <div class="tile gold ref goose s12">
-            <h3 class="nowrap">金のガチョウ</h3>
+          <div class="tile gold ref goose center d4">
+            <h3><span class="nowrap">金の</span><wbr><span class="nowrap">ガチョウ</span></h3>
             <p class="note">仕事を紹介してくれる人</p>
             <ul class="list">
               <li class="nowrap">飲食店コンサル</li>
@@ -787,35 +970,42 @@
           </div>
         </div>
       </section>
+    </div>
 
+    <div class="panel" data-panel="powerteam" id="powerteam" hidden>
       <section class="sec">
-        <h2>人脈</h2>
-        <ul class="tile tags">
-          <li class="nowrap">BNI グラーノチャプター</li>
-          <li class="nowrap">美容関係</li>
-          <li class="nowrap">不動産</li>
-          <li class="nowrap">建設</li>
-          <li class="nowrap">コンサル業</li>
-        </ul>
+        <h2>パワーチーム</h2>
+        <div class="bento">
+          <div class="tile navy team-tile">
+            <p class="team-with"><span class="nowrap">美容室卸売業</span>の方との</p>
+            <p class="team-name"><span class="nowrap">オンラインセミナー</span><wbr><span class="nowrap">事業チーム</span></p>
+          </div>
+          <div class="tile gold team-tile">
+            <p class="team-with"><span class="nowrap">事業戦略支援</span>・<wbr><span class="nowrap">かき氷</span>・<wbr><span class="nowrap">サロンフランチャイズ</span> <wbr><span class="nowrap">カテゴリの方との</span></p>
+            <p class="team-name"><span class="nowrap">フランチャイズ運営</span><wbr><span class="nowrap">パワーチーム</span></p>
+          </div>
+        </div>
       </section>
     </div>
 
     <div class="panel" data-panel="apps" id="apps" hidden>
       <section class="sec bento">
-        <article class="tile app s12">
-          <div class="app-head">
-            <img class="app-logo" src="assets/gains/logo-hoshitoru.png" width="1024" height="1024" alt="">
-            <div>
-              <p class="app-en nowrap">HOSITORU</p>
-              <h2 class="app-name nowrap">ホシトル</h2>
+        <article class="tile app">
+          <div class="app-text">
+            <div class="app-head">
+              <img class="app-logo" src="assets/gains/logo-hoshitoru.png" width="1024" height="1024" alt="">
+              <div>
+                <p class="app-en nowrap">HOSITORU</p>
+                <h2 class="app-name nowrap">ホシトル</h2>
+              </div>
             </div>
+            <p class="app-copy">
+              <span class="nowrap">AIレビュー</span>生成・収集ツール。<br>
+              お客様の声をAIで扱い、<wbr>レビューを書きやすくして、<wbr>口コミが集まりやすい仕組み。<br>
+              1to1では、<span class="nowrap">Googleマップ</span>の<wbr>口コミを集めるアプリ。
+            </p>
+            <p class="swipe-hint">画面は横にスライドできます。</p>
           </div>
-          <p class="app-copy">
-            <span class="nowrap">AIレビュー</span>生成・収集ツール。<br>
-            お客様の声をAIで扱い、<wbr>レビューを書きやすくして、<wbr>口コミが集まりやすい仕組み。<br>
-            1to1では、<span class="nowrap">Googleマップ</span>の<wbr>口コミを集めるアプリ。
-          </p>
-          <p class="swipe-hint">画面は横にスライドできます。</p>
           <div class="app-shots">
             <button type="button" class="shot" data-full="assets/gains/mock-hoshitoru-1.jpg" data-label="ホシトル：AIがレビューの文章案を作る画面">
               <img src="assets/gains/mock-hoshitoru-1.jpg" width="558" height="1068" alt="ホシトル：星とあてはまる項目を選ぶと、AIがレビューの文章案を作る画面">
@@ -825,21 +1015,23 @@
             </button>
           </div>
         </article>
-        <article class="tile app s12">
-          <div class="app-head">
-            <img class="app-logo" src="assets/gains/logo-miseban.png" width="1024" height="1024" alt="">
-            <div>
-              <p class="app-en nowrap">MISEBAN</p>
-              <h2 class="app-name nowrap">みせばん</h2>
+        <article class="tile app">
+          <div class="app-text">
+            <div class="app-head">
+              <img class="app-logo" src="assets/gains/logo-miseban.png" width="1024" height="1024" alt="">
+              <div>
+                <p class="app-en nowrap">MISEBAN</p>
+                <h2 class="app-name nowrap">みせばん</h2>
+              </div>
             </div>
+            <p class="app-catch">美容室の運営を、ひとつに。</p>
+            <p class="app-copy">
+              人材・売上・媒体を一つにする<wbr>店舗情報アプリ。<br>
+              勤怠、給与計算、売上、<wbr><span class="nowrap">ホットペッパー</span>などの媒体連携。<br>
+              宇部が、自分の店で使っています。
+            </p>
+            <p class="swipe-hint">画面は横にスライドできます。</p>
           </div>
-          <p class="app-catch">美容室の運営を、ひとつに。</p>
-          <p class="app-copy">
-            人材・売上・媒体を一つにする<wbr>店舗情報アプリ。<br>
-            勤怠、給与計算、売上、<wbr><span class="nowrap">ホットペッパー</span>などの媒体連携。<br>
-            宇部が、自分の店で使っています。
-          </p>
-          <p class="swipe-hint">画面は横にスライドできます。</p>
           <div class="app-shots">
             <button type="button" class="shot" data-full="assets/gains/mock-miseban-1.jpg" data-label="みせばん：勤怠管理と給与計算の画面">
               <img src="assets/gains/mock-miseban-1.jpg" width="556" height="1077" alt="みせばん：勤怠管理と給与計算の画面">
@@ -885,7 +1077,7 @@
         });
       });
       var hash = (location.hash || "").replace("#", "");
-      show(hash === "gains" || hash === "apps" ? hash : "profile");
+      show(hash === "gains" || hash === "powerteam" || hash === "apps" ? hash : "profile");
 
       var lightbox = document.querySelector(".lightbox");
       var lightboxImg = lightbox.querySelector("img");
