@@ -484,7 +484,11 @@
     .secret-card > div { padding: 14px 8px 8px; }
   }
   @media (min-width: 768px) {
-    .wrap { width: min(1180px, calc(100% - 48px)); margin: 28px auto 48px; }
+    .wrap {
+      width: max(1100px, 90%);
+      max-width: calc(100% - 32px);
+      margin: 28px auto 48px;
+    }
     .top, .foot { padding-left: 32px; padding-right: 32px; font-size: 22px; }
     .switch { padding: 14px 24px; gap: 12px; }
     .switch button, .switch a { font-size: 22px; min-height: 60px; }
@@ -510,21 +514,33 @@
     .wish .pop { font-size: 40px; }
     .growth b { font-size: 48px; }
     .growth p { font-size: 26px; }
-    .timeline { flex-wrap: nowrap; overflow-x: auto; }
+    .timeline {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
     .timeline li { flex: 0 0 auto; }
     .timeline .year { font-size: 36px; }
     .hobby-row { flex-direction: row; }
     .persona-body {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       gap: 8px 28px;
       align-items: start;
       padding: 28px 36px 28px;
+      min-width: 0;
+      max-width: 100%;
+    }
+    .who, .slot-intro, .slot-nums, .slot-time, .g-hero, .body, .ask, .app-board {
+      min-width: 0;
+      max-width: 100%;
     }
     .who { grid-column: 1; grid-row: 1; margin-bottom: 0; }
     .slot-intro { grid-column: 1; }
     .slot-nums { grid-column: 2; grid-row: 1 / span 4; border-top: 0; padding-top: 0; }
-    .slot-time { grid-column: 1 / -1; }
+    .slot-time { grid-column: 1 / -1; overflow: hidden; }
     .wish br { display: none; }
     .secret-card { grid-template-columns: minmax(0, 1fr) 210px; }
     .app-board { grid-template-columns: 1fr 1fr; align-items: start; }
