@@ -775,7 +775,7 @@
     <div class="panel" data-panel="profile" id="profile">
       <section class="sec hero bento">
         <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota.jpg" data-label="宇部光太">
-          <img src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
+          <img fetchpriority="high" src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
         </button>
         <div class="stack t7 d8">
           <div class="tile name-tile">
@@ -839,23 +839,23 @@
         <h2>会社と家族</h2>
         <div class="photos">
           <button type="button" class="tile shot wide" style="--ar: 3 / 2; --g: 1.5" data-full="assets/ai/resta.jpg" data-label="株式会社Resta">
-            <img src="assets/ai/resta.jpg" width="1024" height="768" alt="">
+            <img src="assets/ai/resta.jpg" width="1024" height="768" alt="" decoding="async">
             <span class="cap nowrap">株式会社Resta</span>
           </button>
           <button type="button" class="tile shot wide" style="--ar: 3 / 2; --g: 1.5" data-full="assets/ai/reyel.jpg" data-label="合同会社Reyel">
-            <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="">
+            <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="" decoding="async">
             <span class="cap nowrap">合同会社Reyel</span>
           </button>
           <button type="button" class="tile shot tall" style="--ar: 3 / 4; --g: .75" data-full="assets/ai/rg.jpg" data-label="RG株式会社">
-            <img src="assets/ai/rg.jpg" width="768" height="1024" alt="">
+            <img src="assets/ai/rg.jpg" width="768" height="1024" alt="" decoding="async">
             <span class="cap nowrap">RG株式会社</span>
           </button>
           <button type="button" class="tile shot tall" style="--ar: 3 / 4; --g: .75" data-full="assets/ai/musume.jpg" data-label="娘">
-            <img src="assets/ai/musume.jpg" width="768" height="1024" alt="">
+            <img src="assets/ai/musume.jpg" width="768" height="1024" alt="" decoding="async">
             <span class="cap">娘</span>
           </button>
           <button type="button" class="tile shot tall-sp" style="--ar: 3 / 4; --g: .75" data-full="assets/ai/kimono.jpg" data-label="息子と着物">
-            <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="">
+            <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="" decoding="async">
             <span class="cap nowrap">息子と着物</span>
           </button>
         </div>
@@ -866,7 +866,7 @@
         <h2>趣味</h2>
         <div class="bento">
           <button type="button" class="tile shot tiles-up d7" data-full="assets/ai/tenhou-tiles.jpg" data-label="天和であがった卓上の牌">
-            <img src="assets/ai/tenhou-tiles.jpg" width="780" height="520" alt="天和であがった卓上の牌">
+            <img src="assets/ai/tenhou-tiles.jpg" width="780" height="520" alt="天和であがった卓上の牌" decoding="async">
           </button>
           <div class="stack hobby-side d5">
             <div class="tile center">
@@ -880,7 +880,7 @@
             </ul>
           </div>
           <button type="button" class="tile shot table-shot d5" data-full="assets/ai/tenhou-table.jpg" data-label="天和をあがった卓と宇部光太">
-            <img src="assets/ai/tenhou-table.jpg" width="1024" height="768" alt="宇部光太。卓の上に天和であがった牌が並んでいる">
+            <img src="assets/ai/tenhou-table.jpg" width="1024" height="768" alt="宇部光太。卓の上に天和であがった牌が並んでいる" decoding="async">
           </button>
           <div class="tile navy secret d7">
             <div class="secret-text">
@@ -888,7 +888,7 @@
               <p><span class="nowrap">女装すると</span><wbr><span class="nowrap">妹に激似です</span></p>
             </div>
             <button type="button" class="shot" data-full="assets/ai/dress.jpg" data-label="女装した宇部光太">
-              <img src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
+              <img src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太" decoding="async">
             </button>
           </div>
         </div>
@@ -913,7 +913,7 @@
     <div class="panel" data-panel="gains" id="gains" hidden>
       <section class="sec hero bento">
         <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota.jpg" data-label="宇部光太">
-          <img src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
+          <img src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太" loading="lazy" decoding="async">
         </button>
         <div class="stack t7 d8">
           <div class="tile name-tile">
@@ -1068,7 +1068,7 @@
         <article class="tile app">
           <div class="app-text">
             <div class="app-head">
-              <img class="app-logo" src="assets/gains/logo-hoshitoru.png" width="1024" height="1024" alt="">
+              <img class="app-logo" src="assets/gains/logo-hoshitoru-256.png" width="256" height="256" alt="" loading="lazy" decoding="async">
               <div>
                 <p class="app-en nowrap">HOSITORU</p>
                 <h2 class="app-name nowrap">ホシトル</h2>
@@ -1083,17 +1083,17 @@
           </div>
           <div class="app-shots">
             <button type="button" class="shot" data-full="assets/gains/mock-hoshitoru-1.jpg" data-label="ホシトル：AIがレビューの文章案を作る画面">
-              <img src="assets/gains/mock-hoshitoru-1.jpg" width="558" height="1068" alt="ホシトル：星とあてはまる項目を選ぶと、AIがレビューの文章案を作る画面">
+              <img src="assets/gains/mock-hoshitoru-1.jpg" width="558" height="1068" alt="ホシトル：星とあてはまる項目を選ぶと、AIがレビューの文章案を作る画面" loading="lazy" decoding="async">
             </button>
             <button type="button" class="shot" data-full="assets/gains/mock-hoshitoru-2.jpg" data-label="ホシトル：Googleマップの口コミを集める画面">
-              <img src="assets/gains/mock-hoshitoru-2.jpg" width="562" height="1079" alt="ホシトル：Googleマップの口コミを集める画面">
+              <img src="assets/gains/mock-hoshitoru-2.jpg" width="562" height="1079" alt="ホシトル：Googleマップの口コミを集める画面" loading="lazy" decoding="async">
             </button>
           </div>
         </article>
         <article class="tile app">
           <div class="app-text">
             <div class="app-head">
-              <img class="app-logo" src="assets/gains/logo-miseban.png" width="1024" height="1024" alt="">
+              <img class="app-logo" src="assets/gains/logo-miseban-256.png" width="256" height="256" alt="" loading="lazy" decoding="async">
               <div>
                 <p class="app-en nowrap">MISEBAN</p>
                 <h2 class="app-name nowrap">みせばん</h2>
@@ -1109,10 +1109,10 @@
           </div>
           <div class="app-shots">
             <button type="button" class="shot" data-full="assets/gains/mock-miseban-1.jpg" data-label="みせばん：勤怠管理と給与計算の画面">
-              <img src="assets/gains/mock-miseban-1.jpg" width="556" height="1077" alt="みせばん：勤怠管理と給与計算の画面">
+              <img src="assets/gains/mock-miseban-1.jpg" width="556" height="1077" alt="みせばん：勤怠管理と給与計算の画面" loading="lazy" decoding="async">
             </button>
             <button type="button" class="shot" data-full="assets/gains/mock-miseban-2.jpg" data-label="みせばん：売上分析とホットペッパー連携の画面">
-              <img src="assets/gains/mock-miseban-2.jpg" width="528" height="1035" alt="みせばん：売上分析とホットペッパー連携の画面">
+              <img src="assets/gains/mock-miseban-2.jpg" width="528" height="1035" alt="みせばん：売上分析とホットペッパー連携の画面" loading="lazy" decoding="async">
             </button>
           </div>
         </article>
@@ -1127,7 +1127,7 @@
 
   <div class="lightbox" hidden>
     <button type="button" class="lightbox-close">閉じる</button>
-    <img alt="">
+    <img alt="" loading="lazy" decoding="async">
   </div>
   <script>
     (function () {
