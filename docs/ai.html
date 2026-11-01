@@ -33,7 +33,7 @@
   body {
     margin: 0;
     font-family: var(--sans);
-    font-size: 21px;
+    font-size: 26px;
     line-height: 1.65;
     color: var(--ink);
     background:
@@ -124,11 +124,11 @@
     font-weight: 900;
     line-height: 1.2;
   }
-  .company { margin: 6px 0 0; font-size: 21px; font-weight: 700; line-height: 1.5; }
+  .company { margin: 6px 0 0; font-size: 26px; font-weight: 700; line-height: 1.4; }
   .who > div { min-width: 0; }
   .who .role { margin: 0 0 6px; font-size: 22px; }
   .who .years { line-height: 1.45; }
-  .lead { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.65; }
+  .lead { margin: 0; font-size: 28px; font-weight: 700; line-height: 1.45; }
   .chips, .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .chips li, .tags li {
     font-size: 21px;
@@ -239,11 +239,12 @@
     list-style: none;
   }
   .strength-list li {
-    display: grid;
-    gap: 2px 18px;
-    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 14px;
     margin: 0;
-    padding: 14px 16px 12px;
+    padding: 10px 14px;
     color: var(--navy);
     background: linear-gradient(160deg, #f8e3b0 0%, #e2b45a 100%);
     border-radius: 16px;
@@ -258,7 +259,7 @@
     line-height: 1.05;
   }
   .strength-list .hook b {
-    display: block;
+    display: inline;
     font-size: 48px;
     font-weight: 700;
     line-height: 1;
@@ -351,13 +352,13 @@
     line-height: 1.1;
     color: var(--navy);
   }
-  .persona-body { padding: 18px 16px 28px; background: linear-gradient(180deg, #fffaf2, #f3e6cc); }
+  .persona-body { padding: 12px 16px 8px; background: linear-gradient(180deg, #fffaf2, #f3e6cc); }
   .facts { margin: 0; padding: 0; list-style: none; }
   .facts li {
-    font-size: 21px;
+    font-size: 26px;
     font-weight: 700;
-    line-height: 1.65;
-    padding: 12px 0;
+    line-height: 1.45;
+    padding: 6px 0;
     border-bottom: 1px solid rgba(138,94,22,.28);
   }
   .wish {
@@ -400,8 +401,8 @@
   .people .pop { font-size: 28px; }
   .ask { padding: 8px 14px 18px; }
   .ask-label {
-    margin: 0 0 10px;
-    font-size: 21px;
+    margin: 0 0 8px;
+    font-size: 28px;
     font-weight: 900;
     letter-spacing: 0.08em;
     color: var(--gold-deep);
@@ -415,7 +416,7 @@
     font-weight: 700;
     line-height: 1.2;
   }
-  .card-note { margin: 4px 0 10px; font-size: 21px; font-weight: 700; }
+  .card-note { margin: 2px 0 6px; font-size: 24px; font-weight: 700; }
   .egg {
     background: linear-gradient(160deg, #f8e3b0 0%, #e2b45a 100%);
     color: var(--navy);
@@ -430,8 +431,8 @@
   .people { margin: 0; padding: 0; list-style: none; }
   .people li {
     position: relative;
-    padding: 8px 0 8px 22px;
-    font-size: 22px;
+    padding: 6px 0 6px 22px;
+    font-size: 26px;
     font-weight: 900;
     line-height: 1.5;
   }
@@ -446,12 +447,12 @@
     height: 10px;
     background: currentColor;
   }
-  .body { display: grid; grid-template-columns: 1fr; gap: 0; padding: 0 14px 22px; }
-  .block { padding: 16px 0; border-top: 2px solid rgba(198,161,90,.55); min-width: 0; }
+  .body { display: grid; grid-template-columns: 1fr; gap: 0; padding: 0 14px 8px; }
+  .block { padding: 10px 0; border-top: 2px solid rgba(198,161,90,.55); min-width: 0; }
   .block h2 {
     margin: 0 0 10px;
     font-family: var(--serif);
-    font-size: 30px;
+    font-size: 36px;
     font-weight: 700;
     color: var(--navy);
     line-height: 1.25;
@@ -460,9 +461,9 @@
   .steps li {
     position: relative;
     padding: 0 0 0 42px;
-    font-size: 21px;
+    font-size: 26px;
     font-weight: 700;
-    line-height: 1.65;
+    line-height: 1.45;
   }
   .steps li + li { margin-top: 12px; }
   .steps li::before {
@@ -492,7 +493,7 @@
   }
   .tile { width: 120px; }
   .tile-agari { width: 148px; }
-  .tenhou { margin: 10px 0 0; font-size: 21px; font-weight: 900; line-height: 1.6; }
+  .tenhou { margin: 8px 0 0; font-size: 28px; font-weight: 900; line-height: 1.4; }
   .people-photos {
     display: flex;
     flex-wrap: nowrap;
@@ -704,7 +705,7 @@
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       gap: 8px 28px;
       align-items: start;
-      padding: 28px 36px 28px;
+      padding: 16px 28px 8px;
       min-width: 0;
       max-width: 100%;
     }
@@ -727,32 +728,44 @@
       gap: 16px 28px;
       align-items: start;
     }
-    .app-board { padding-left: 28px; padding-right: 28px; gap: 36px; }
+    .app-board { padding-left: 28px; padding-right: 28px; gap: 20px; }
     .app-card h2 { font-size: 44px; }
     .app-copy { font-size: 22px; }
     .g-hero {
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: minmax(0, 1fr) 280px;
       grid-template-areas: "text photo" "role photo" "lead photo";
-      gap: 8px 36px;
-      align-items: center;
-      padding: 32px 36px 12px;
+      gap: 4px 28px;
+      align-items: start;
+      padding: 16px 28px 4px;
     }
     .g-text { grid-area: text; }
-    .g-photo { grid-area: photo; width: 100%; height: 100%; min-height: 360px; max-height: 460px; }
-    .g-hero .role { grid-area: role; font-size: 52px; }
-    .g-lead { grid-area: lead; font-size: 24px; }
-    .ask { padding: 8px 36px 28px; }
+    .g-photo {
+      grid-area: photo;
+      width: 280px;
+      height: 340px;
+      min-height: 0;
+      max-height: none;
+      justify-self: end;
+    }
+    .g-hero .role { grid-area: role; font-size: 48px; margin-top: 4px; }
+    .g-lead { grid-area: lead; font-size: 32px; line-height: 1.45; }
+    .ask { padding: 4px 28px 8px; }
     .ref-grid { grid-template-columns: 1.15fr .85fr; gap: 18px; align-items: start; }
     .card { padding: 22px 22px 18px; }
     .card h2 { font-size: 48px; }
-    .people li { font-size: 24px; }
-    .goose .people li { font-size: 28px; padding-top: 14px; padding-bottom: 14px; }
-    .body { grid-template-columns: 1fr; gap: 0; padding: 0 36px 32px; }
+    .people li { font-size: 30px; }
+    .goose .people li { font-size: 32px; padding-top: 10px; padding-bottom: 10px; }
+    .body { grid-template-columns: 1fr; gap: 0; padding: 0 28px 12px; }
+    .strength-list { gap: 10px; }
     .strength-list li {
-      grid-template-columns: 250px minmax(0, 1fr);
-      padding: 16px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 2px 16px;
+      padding: 12px 22px;
     }
-    .strengths h2 { font-size: 40px; }
+    .strength-list .hook b { display: inline; }
+    .strengths h2 { font-size: 48px; }
     .strength-list .hook { font-size: 30px; }
     .strength-list .hook b { font-size: 64px; }
     .strength-list p { font-size: 28px; }
@@ -764,7 +777,9 @@
     .pitch-ask b { font-size: 64px; }
     .pitch-cost { font-size: 30px; }
     .pitch-cost b { font-size: 48px; }
-    .block h2 { font-size: 34px; }
+    .block h2 { font-size: 44px; }
+    .facts li, .steps li, .app-copy, .card-note { font-size: 28px; }
+    .app-copy { font-size: 30px; }
     .app-card h2 { font-size: 44px; }
   }
 </style>
@@ -896,6 +911,30 @@
             自社の<span class="nowrap">売上・給与</span>・<wbr><span class="nowrap">シフト・勤怠</span>を<wbr>自動化した延長で、<wbr>他店の<wbr>システムも<wbr>作っています。
           </p>
         </div>
+        <div class="body strengths-first">
+          <section class="block strengths">
+            <h2>他社にない強み</h2>
+            <div class="pitch">
+              <p class="pitch-era">アプリ自体は<br>もう誰でも作れる時代に。</p>
+              <p class="pitch-ask">その会社に<br class="ph"><b class="nowrap">ピンポイント</b>で<br>必要としているものはなにか</p>
+              <p class="pitch-cost"><span class="nowrap">中小零細企業</span>でも<br><span class="nowrap">自社アプリ</span>を<br class="ph">作成できる<b class="nowrap">コスト</b>で。</p>
+            </div>
+            <ul class="strength-list">
+              <li>
+                <p class="hook"><b class="nowrap">0円</b>から</p>
+                <p><span class="nowrap">デモアプリ</span>を開発できる</p>
+              </li>
+              <li>
+                <p class="hook"><b class="nowrap">20年以上</b></p>
+                <p>接客業をしてきた<span class="em nowrap">ヒアリング力</span></p>
+              </li>
+              <li>
+                <p class="hook">店舗運営<b class="nowrap">10年以上</b></p>
+                <p>してきた中で、<span class="em nowrap">成果の出る</span>システム・ツールを提供する</p>
+              </li>
+            </ul>
+          </section>
+        </div>
         <section class="ask" aria-labelledby="ask-label">
           <p class="ask-label" id="ask-label">紹介してほしい人</p>
           <div class="ref-grid">
@@ -921,28 +960,6 @@
           </div>
         </section>
         <div class="body">
-          <section class="block strengths">
-            <h2>他社にない強み</h2>
-            <div class="pitch">
-              <p class="pitch-era">アプリ自体は<br>もう誰でも作れる時代に。</p>
-              <p class="pitch-ask">その会社に<br class="ph"><b class="nowrap">ピンポイント</b>で<br>必要としているものはなにか</p>
-              <p class="pitch-cost"><span class="nowrap">中小零細企業</span>でも<br><span class="nowrap">自社アプリ</span>を<br class="ph">作成できる<b class="nowrap">コスト</b>で。</p>
-            </div>
-            <ul class="strength-list">
-              <li>
-                <p class="hook"><b class="nowrap">0円</b>から</p>
-                <p><span class="nowrap">デモアプリ</span>を開発できる</p>
-              </li>
-              <li>
-                <p class="hook"><b class="nowrap">20年以上</b></p>
-                <p>接客業をしてきた<br><span class="em nowrap">ヒアリング力</span></p>
-              </li>
-              <li>
-                <p class="hook">店舗運営<br><b class="nowrap">10年以上</b></p>
-                <p>してきた中で、<br><span class="em nowrap">成果の出る</span><br>システム・ツールを提供する</p>
-              </li>
-            </ul>
-          </section>
           <section class="block">
             <h2>人脈</h2>
             <ul class="tags">
