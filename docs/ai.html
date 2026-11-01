@@ -947,7 +947,39 @@
     .team-b .pt-people li + li { padding: 0 0 0 48px; border-top: 0; border-left: 1px solid var(--line); }
   }
 
-  @media (min-width: 1024px) and (max-width: 1279px) { .pt-person { font-size: 34px; } }
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .pt-person { font-size: 34px; }
+    h1 { font-size: 92px; }
+    .tenhou b { font-size: 64px; }
+  }
+  @media (min-width: 1280px) {
+    h1 { font-size: 68px; }
+    .stats b { font-size: 54px; }
+    .hobby > .hobby-side { order: 2; flex: 0 0 400px; display: grid; grid-template-rows: 1fr auto; }
+    .hobby > .table-shot { order: 3; }
+    .hobby > .secret { order: 4; flex: .67 1 220px; grid-template-columns: 220px minmax(0, 1fr); }
+    .hobby-side > .center { padding: 18px 24px; }
+    .hobby-side > .tags { gap: 8px; padding: 14px 20px; }
+    .hobby-side .tags li { padding: 5px 14px; font-size: 19px; }
+    .tenhou { font-size: 21px; line-height: 1.5; }
+    .tenhou b { display: block; margin: 0 0 4px; font-size: 44px; vertical-align: 0; }
+    .secret-text { padding: 20px; }
+    .secret-text p:first-child { font-size: 19px; }
+    .secret-text p + p { font-size: 26px; }
+    :root { --hero-h: 525px; }
+    .name-tile { padding: 18px var(--pad); }
+    .kana { margin-top: 6px; }
+    .stats { padding: 12px 0; }
+    .lead-tile { padding: 20px var(--pad); }
+    .lead-tile p { font-size: 23px; }
+    .ai-path { padding: 20px 32px 22px; }
+    .path { margin-top: 10px; }
+    .path li { padding-top: 10px; }
+    .path li + li::before { top: 36px; }
+    .goals-tile { padding: 20px 32px; }
+    .goals-title { margin-bottom: 8px; }
+    .goals .num { font-size: 34px; }
+  }
   @media (min-width: 1700px) { .wrap { width: min(2000px, 100%); } }
   @media (min-width: 768px) { body { zoom: .82; } }
   @media (min-width: 1280px) { body { zoom: .78; } }
