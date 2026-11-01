@@ -231,7 +231,7 @@
   /* hero */
   .hero-photo { aspect-ratio: 1 / 1; align-self: stretch; }
   .hero-photo img { position: absolute; inset: 0; object-position: 50% 16%; }
-  #profile .hero-photo img { object-position: 50% 20%; }
+  [data-panel="profile"] .hero-photo img { object-position: 50% 20%; }
   .hero .stack { grid-template-rows: 1fr auto; }
   .name-tile { display: flex; flex-direction: column; justify-content: center; }
   .role {
@@ -1031,8 +1031,8 @@
   @media (max-width: 359px) { body { zoom: .853; } }
   @media (min-width: 1280px) {
     :root { --hero-h: 575px; }
-    #profile .hero .stack > .name-tile { grid-row: 1 / span 2; }
-    #profile .hero .stats { padding: 6px 0; }
+    [data-panel="profile"] .hero .stack > .name-tile { grid-row: 1 / span 2; }
+    [data-panel="profile"] .hero .stats { padding: 6px 0; }
     .about { grid-template-columns: minmax(0, 1fr) 150px; grid-template-rows: auto auto; }
     .about-cat { grid-column: 2; grid-row: 1 / span 2; }
     .about-place, .about-family { padding: 6px 0; }
@@ -1096,7 +1096,7 @@
   </div>
 
   <main class="wrap">
-    <div class="panel" data-panel="profile" id="profile">
+    <div class="panel" data-panel="profile">
       <section class="sec hero bento">
         <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota-stripe.jpg" data-label="宇部光太">
           <img style="background:#5a4636 url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDC2j5WOMYUk/8AARWTclJFcxsGAPUVpwCO5jhimDGN3jDbeuPlz+laPinR7HSrZGgDq9wu/YRwPcH8+K57am/QzdET/iWp/vH+dFTaIB/Zkf1b+dFDiWpaHW6DYx2+nW8QiVZRGvmOByzY5/lWxc2VpqWltFexCWHk/N1X1wexrOtXICfR24/IVoCTZazjHChv/Qc/410JI5LnCfZDpUs1izZ8mRgpPdc5B/IiipvExJ1MSZ5eME/mR/SioaNVLQ//2Q==) center/cover" fetchpriority="high" src="assets/ai/kota-stripe.webp" srcset="assets/ai/kota-stripe-480.webp 480w, assets/ai/kota-stripe.webp 682w" sizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 140px" width="682" height="1024" alt="宇部光太">
@@ -1243,7 +1243,7 @@
       </section>
     </div>
 
-    <div class="panel" data-panel="gains" id="gains" hidden>
+    <div class="panel" data-panel="gains" hidden>
       <section class="sec hero bento">
         <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota.jpg" data-label="宇部光太">
           <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAeABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDgbS3M7kDOBycDNXzaIjlASJAM7HGCRTNDkRdQhWR/LUuMtXVeI7K3YtdNuEqgENjANE5W0CEW7s5gSBRiiqbS80UuUfMMRUTG7JP8q1rnxFPcWa2zRJlV2b/UD2rFZ8saYW+c1bSe5KbWxYaaJjlosH2bAoqqTk0Uhn//2Q==) center/cover" src="assets/ai/kota-v2.webp" srcset="assets/ai/kota-720.webp 720w, assets/ai/kota-v2.webp 1024w" sizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 140px" width="1024" height="1536" alt="宇部光太" loading="lazy" decoding="async">
@@ -1335,7 +1335,7 @@
       </section>
     </div>
 
-    <div class="panel" data-panel="apps" id="apps" hidden>
+    <div class="panel" data-panel="apps" hidden>
       <section class="sec bento">
         <article class="tile app">
           <div class="app-text">
@@ -1391,7 +1391,7 @@
       </section>
     </div>
 
-    <div class="panel" data-panel="powerteam" id="powerteam" hidden>
+    <div class="panel" data-panel="powerteam" hidden>
       <section class="sec">
         <h2>パワーチーム</h2>
         <div class="team team-a">
