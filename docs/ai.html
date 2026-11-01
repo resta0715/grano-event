@@ -934,7 +934,7 @@
 
     .foot { padding-top: 14px; padding-bottom: 20px; font-size: 18px; }
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1280px) {
     :root { --hero-h: 600px; }
     .wrap { width: min(1760px, 100%); }
     .goals li { padding: 0 28px; }
@@ -947,9 +947,13 @@
     .team-b .pt-people li + li { padding: 0 0 0 48px; border-top: 0; border-left: 1px solid var(--line); }
   }
 
-  @media (min-width: 2000px) { body { zoom: 1.05; } }
-  @media (min-width: 2400px) { body { zoom: 1.2; } }
-  @media (min-width: 2900px) { body { zoom: 1.4; } }
+  @media (min-width: 1024px) and (max-width: 1279px) { .pt-person { font-size: 34px; } }
+  @media (min-width: 1700px) { .wrap { width: min(2000px, 100%); } }
+  @media (min-width: 768px) { body { zoom: .82; } }
+  @media (min-width: 1280px) { body { zoom: .78; } }
+  @media (min-width: 2000px) { body { zoom: .85; } }
+  @media (min-width: 2400px) { body { zoom: .95; } }
+  @media (min-width: 2900px) { body { zoom: 1.1; } }
 </style>
 </head>
 <body>
