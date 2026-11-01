@@ -535,6 +535,15 @@
   }
   .team-b .team-no { color: var(--gold-deep); }
   .sec-team { margin-top: calc(var(--sec) * .75); }
+  .pt-count { display: inline-block; margin-left: .5em; padding: .1em .6em; border-radius: 999px; background: var(--gold-deep); color: #fff; font-size: .5em; vertical-align: middle; }
+  .pt-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .pt-index button { display: grid; gap: 2px; padding: 14px 16px; border: 0; border-radius: var(--r); font: inherit; text-align: left; color: inherit; cursor: pointer; }
+  .pt-index-b { background: #f3e7cb; }
+  .pt-index-a { background: #e4e9f1; }
+  .pt-index-no { font-size: 14px; font-weight: 700; opacity: .7; }
+  .pt-index-name { font-size: clamp(17px, 2vw, 24px); font-weight: 800; line-height: 1.35; }
+  .pt-index-sub { font-size: 14px; opacity: .7; }
+  .pt-index button::after { content: "↓"; justify-self: end; margin-top: -1.4em; font-weight: 800; opacity: .6; }
   @media (min-width: 768px) {
     .team { padding: 24px; }
     .team-no { margin: 0 6px 18px; font-size: 24px; }
@@ -1393,39 +1402,13 @@
 
     <div class="panel" data-panel="powerteam" hidden>
       <section class="sec">
-        <h2>パワーチーム</h2>
-        <div class="team team-a">
-          <p class="team-no">チーム 1</p>
-          <div class="bento">
-          <div class="tile navy team-tile center d7">
-            <p class="team-with"><span class="nowrap">美容室卸売業</span>の方との</p>
-            <p class="team-name"><span class="nowrap">オンラインセミナー</span><wbr><span class="nowrap">事業チーム</span></p>
-            <p class="team-desc"><span class="nowrap">美容室経営者向けの</span><wbr><span class="nowrap">オンラインセミナー事業</span><wbr>「<span class="nowrap">Vアカデミー</span>」</p>
-          </div>
-          <a class="tile shot pt-shot pt-shot-site d5" href="https://vars-camp.vercel.app/" target="_blank" rel="noopener">
-            <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAJABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCrHqd4ZAPtMvJ5+fFF1qlyh2pczgjrmTNZjVE1fQSSvsd7SLo1a9XpdSj/AIGaKzjRWV12JP/Z) center/cover" src="assets/ai/vars-camp-v2.webp" srcset="assets/ai/vars-camp-720.webp 720w, assets/ai/vars-camp-v2.webp 1200w" sizes="(min-width: 1600px) 640px, (min-width: 1024px) 40vw, 100vw" width="1440" height="616" alt="Vアカデミーのトップページ" loading="lazy">
-            <span class="cap">vars-camp.vercel.app</span>
-          </a>
-          <div class="tile pt-who center d4">
-            <p class="pt-lab">一緒にやっている人</p>
-            <p class="pt-person nowrap">山野井 信夫 さん</p>
-            <p class="pt-role"><span class="nowrap">美容室製品</span><wbr><span class="nowrap">卸売業</span></p>
-          </div>
-          <div class="tile pt-stat center t6 d4">
-            <p class="pt-lab">美容室オーナーの登録</p>
-            <p class="pt-num nowrap"><b>200</b>件近く</p>
-          </div>
-          <div class="tile pt-stat center t6 d4">
-            <p class="pt-lab">セミナー講師</p>
-            <p class="pt-num nowrap"><b>20</b>人以上</p>
-          </div>
-          </div>
+        <h2>パワーチーム<span class="pt-count nowrap">2チーム</span></h2>
+        <div class="pt-index">
+          <button type="button" class="pt-index-b" data-go-team="1"><span class="pt-index-no">チーム 1</span><span class="pt-index-name"><span class="nowrap">フランチャイズ運営</span><wbr><span class="nowrap">パワーチーム</span></span><span class="pt-index-sub nowrap">RG株式会社</span></button>
+          <button type="button" class="pt-index-a" data-go-team="2"><span class="pt-index-no">チーム 2</span><span class="pt-index-name"><span class="nowrap">オンラインセミナー</span><wbr><span class="nowrap">事業チーム</span></span><span class="pt-index-sub nowrap">Vアカデミー</span></button>
         </div>
-      </section>
-
-      <section class="sec-team">
-        <div class="team team-b">
-          <p class="team-no">チーム 2</p>
+        <div class="team team-b" data-team="1">
+          <p class="team-no">チーム 1</p>
           <div class="bento">
           <div class="tile gold team-tile center d7">
             <p class="team-with"><span class="nowrap">事業戦略支援</span>・<wbr><span class="nowrap">かき氷</span>・<wbr><span class="nowrap">サロンフランチャイズ</span> <wbr><span class="nowrap">カテゴリの方との</span></p>
@@ -1451,6 +1434,36 @@
             <span class="pt-note">イメージ</span>
             <span class="pt-brand"><img src="assets/ai/logo-reyel.webp" width="160" height="160" alt="" loading="lazy" decoding="async"><span class="pt-brand-name"><span class="nowrap">Reyel</span><small class="nowrap">（リエル）</small></span></span>
           </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec-team">
+        <div class="team team-a" data-team="2">
+          <p class="team-no">チーム 2</p>
+          <div class="bento">
+          <div class="tile navy team-tile center d7">
+            <p class="team-with"><span class="nowrap">美容室卸売業</span>の方との</p>
+            <p class="team-name"><span class="nowrap">オンラインセミナー</span><wbr><span class="nowrap">事業チーム</span></p>
+            <p class="team-desc"><span class="nowrap">美容室経営者向けの</span><wbr><span class="nowrap">オンラインセミナー事業</span><wbr>「<span class="nowrap">Vアカデミー</span>」</p>
+          </div>
+          <a class="tile shot pt-shot pt-shot-site d5" href="https://vars-camp.vercel.app/" target="_blank" rel="noopener">
+            <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAJABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCrHqd4ZAPtMvJ5+fFF1qlyh2pczgjrmTNZjVE1fQSSvsd7SLo1a9XpdSj/AIGaKzjRWV12JP/Z) center/cover" src="assets/ai/vars-camp-v2.webp" srcset="assets/ai/vars-camp-720.webp 720w, assets/ai/vars-camp-v2.webp 1200w" sizes="(min-width: 1600px) 640px, (min-width: 1024px) 40vw, 100vw" width="1440" height="616" alt="Vアカデミーのトップページ" loading="lazy">
+            <span class="cap">vars-camp.vercel.app</span>
+          </a>
+          <div class="tile pt-who center d4">
+            <p class="pt-lab">一緒にやっている人</p>
+            <p class="pt-person nowrap">山野井 信夫 さん</p>
+            <p class="pt-role"><span class="nowrap">美容室製品</span><wbr><span class="nowrap">卸売業</span></p>
+          </div>
+          <div class="tile pt-stat center t6 d4">
+            <p class="pt-lab">美容室オーナーの登録</p>
+            <p class="pt-num nowrap"><b>200</b>件近く</p>
+          </div>
+          <div class="tile pt-stat center t6 d4">
+            <p class="pt-lab">セミナー講師</p>
+            <p class="pt-num nowrap"><b>20</b>人以上</p>
+          </div>
           </div>
         </div>
       </section>
@@ -1486,6 +1499,12 @@
           show(name);
           if (history.replaceState) history.replaceState(null, "", "#" + name);
           window.scrollTo(0, 0);
+        });
+      });
+      document.querySelectorAll("[data-go-team]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var team = document.querySelector('[data-team="' + button.getAttribute("data-go-team") + '"]');
+          if (team) team.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
       var hash = (location.hash || "").replace("#", "");
