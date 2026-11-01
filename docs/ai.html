@@ -810,34 +810,146 @@
   @media (min-width: 768px) and (max-width: 1023px) { :root { --hero-h: 590px; } }
   @media (min-width: 1024px) { :root { --hero-h: 610px; } }
   @media (min-width: 1600px) { :root { --hero-h: 680px; } }
-  @media (min-width: 1600px) {
-    .wrap { width: min(1760px, 100%); }
-    .hero > .hero-photo { grid-column: span 3; }
-    .hero > .stack { grid-column: span 4; }
-    .hero > .ai-path, .hero > .goals-tile { grid-column: span 5; }
-    h1 { font-size: 88px; }
-    .stats b { font-size: 72px; }
-    .ai-path { display: flex; flex-direction: column; justify-content: center; padding: 40px 44px; }
-    .path-title { font-size: 34px; }
-    .path { display: block; margin-top: 20px; }
-    .path li { padding: 18px 0; border-top: 1px solid rgba(236, 210, 150, .35); }
-    .path li:last-child { padding-bottom: 0; }
-    .path li + li::before { content: none; }
+  @media (min-width: 1280px) {
+    :root {
+      --fs: 23px;
+      --fs-l: 27px;
+      --fs-h2: 36px;
+      --gap: 16px;
+      --pad: 28px;
+      --sec: 44px;
+      --hero-h: 660px;
+    }
+    .top { padding-top: 12px; padding-bottom: 0; font-size: 18px; }
+    .switch-bar { padding: 8px 0; }
+    .switch button { min-height: 48px; font-size: 21px; }
+    .sec:first-child { margin-top: 8px; }
+    .sec > h2, .col > h2 { margin-bottom: 14px; }
+    .tile-title { margin-bottom: 12px; }
+    .hint { margin-top: 10px; }
+
+    .hero > .hero-photo { grid-column: 1 / span 3; grid-row: 1 / span 2; min-height: var(--hero-h); }
+    .hero > .stack {
+      grid-column: 4 / -1;
+      grid-row: 1;
+      min-height: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
+    }
+    .hero > .ai-path, .hero > .goals-tile { grid-column: 4 / -1; grid-row: 2; }
+    .role { font-size: 24px; }
+    .kana { margin-top: 10px; font-size: 20px; }
+    h1 { font-size: clamp(72px, 5.4vw, 88px); }
+    .hero-sub { font-size: 24px; }
+    .stats { align-items: center; padding: 20px 0; }
+    .stats span { font-size: 20px; }
+    .stats b { font-size: 64px; }
+    .lead-tile { display: flex; align-items: center; }
+    .lead-tile p { font-size: 25px; line-height: 1.55; }
+
+    .name-tile { padding: 22px var(--pad); }
+    .ai-path { padding: 24px 36px 28px; }
+    .path-title { font-size: 30px; }
+    .path { column-gap: 40px; margin-top: 14px; }
+    .path li { padding: 14px 0 0; }
+    .path li + li::before { left: -32px; top: 42px; font-size: 26px; }
     .path-tag { font-size: 18px; }
-    .path-text { margin-top: 6px; font-size: 22px; line-height: 1.55; }
-    .path .mile { display: inline; margin: 0 10px 0 0; font-size: 30px; }
-    .goals-tile { display: flex; flex-direction: column; justify-content: center; padding: 44px; }
-    .goals-tile .goals { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 28px; }
-    .goals-tile .goals li { padding: 0; border-left: 0; }
-    .hist > .growth { grid-column: 1 / span 4; }
+    .path-text { margin-top: 6px; font-size: 20px; line-height: 1.5; }
+    .path .mile { display: inline; margin: 0 8px 0 0; font-size: 30px; }
+
+    .goals-tile { display: flex; flex-direction: column; justify-content: center; padding: 28px 40px; }
+    .goals-title { margin-bottom: 14px; }
+    .goals { grid-template-columns: 1.4fr 1.4fr .9fr .9fr; }
+    .goals li { padding: 0 20px; }
+    .goals .num { font-size: 32px; }
+
+    .hist > .growth { grid-column: 1 / span 4; padding: 24px 28px; }
     .hist > .timeline { grid-column: 5 / -1; grid-row: 1 / span 2; }
-    .growth b { font-size: 48px; }
-    .growth p { font-size: 26px; }
+    .growth p { font-size: 24px; }
+    .growth b { font-size: 42px; }
+    .timeline { gap: 18px 28px; }
+    .timeline li, .timeline li:first-child { padding-top: 12px; }
+    .timeline .year { font-size: 28px; }
+
+    .hobby { display: flex; flex-wrap: wrap; }
+    .hobby > .tiles-up { order: 1; flex: 1.5 1 0; aspect-ratio: 3 / 2; }
+    .hobby > .table-shot { order: 2; flex: 1.333 1 0; aspect-ratio: 4 / 3; }
+    .hobby > .secret { order: 3; flex: .67 1 240px; grid-template-columns: 240px minmax(0, 1fr); }
+    .hobby > .hobby-side { order: 4; flex: 1 1 100%; display: flex; gap: var(--gap); }
+    .hobby .shot img { position: absolute; inset: 0; }
+    .secret .shot { position: relative; }
+    .secret-text { padding: 24px; }
+    .secret-text p:first-child { font-size: 22px; }
+    .secret-text p + p { font-size: 30px; }
+    .hobby-side > .center { flex: 1 1 auto; padding: 20px var(--pad); }
+    .hobby-side > .tags { flex: 0 0 auto; align-content: center; padding: 20px var(--pad); }
+    .tenhou { font-size: var(--fs-l); }
+    .tenhou b { display: inline; margin-right: 12px; font-size: 56px; vertical-align: -4px; }
+
+    .me > .facts { grid-column: span 5; font-size: 25px; }
+    .me > .stack { grid-column: span 7; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .facts div { padding: 12px 0; }
+    .facts div:first-child { padding-top: 0; }
+    .quote b { font-size: 32px; }
+
+    .net-tile { display: flex; align-items: center; gap: 28px; padding: 20px var(--pad); }
+    .net-tile .tile-title { margin: 0; white-space: nowrap; }
+    .pitch { padding: 36px 44px; }
+    .pitch-era { font-size: 25px; }
+    .pitch-ask { margin-top: 10px; font-size: 38px; }
+    .pitch-cost { margin-top: 16px; padding-top: 16px; font-size: 27px; }
+    .strengths li { font-size: 23px; }
+    .strengths li + li { margin-top: 14px; padding-top: 14px; }
+    .strengths .hook { margin-bottom: 4px; font-size: 28px; }
+    .ref h3 { font-size: 48px; }
+    .goose h3 { font-size: 56px; }
+    .list li { padding: 8px 0 8px 26px; font-size: 23px; }
+    .goose .list li { font-size: 26px; }
+
+    .app { grid-template-columns: minmax(0, 1fr) auto; gap: 40px; padding: 28px 40px; }
+    .app-logo { width: 88px; height: 88px; border-radius: 20px; }
+    .app-name { font-size: 52px; }
+    .app-catch { margin-top: 14px; font-size: 34px; }
+    .app-copy { margin-top: 14px; font-size: 23px; }
+    .app-shots { grid-template-columns: repeat(2, auto); }
+    .app-shots .shot img { width: auto; height: 330px; }
+
+    .team { padding: 16px 20px 20px; }
+    .team-no { margin: 0 4px 12px; font-size: 22px; }
+    .sec-team { margin-top: 28px; }
+    .team-tile { padding: 28px 36px; }
+    .team-with { font-size: 25px; }
+    .team-name { margin-top: 4px; font-size: 44px; }
+    .team-desc { margin-top: 10px; }
+    .pt-who, .pt-stat { padding: 22px var(--pad); }
+    .pt-person { font-size: 34px; }
+    .pt-num b { font-size: 72px; }
+    .pt-people { gap: 14px; }
+    .pt-people li + li { padding-top: 14px; }
+    .team-b .team-tile { grid-column: 1 / -1; }
+    .team-b .pt-who { grid-column: span 4; }
+    .team-b .pt-photo { grid-column: span 4; }
+    .pt-over { padding: 40px var(--pad) 18px; }
+    .pt-over-num b { font-size: 64px; }
+
+    .foot { padding-top: 14px; padding-bottom: 20px; font-size: 18px; }
+  }
+  @media (min-width: 1600px) {
+    :root { --hero-h: 600px; }
+    .wrap { width: min(1760px, 100%); }
+    .goals li { padding: 0 28px; }
+    .goals .num { font-size: 38px; }
+    .app-shots .shot img { height: 380px; }
+    .team-b .team-tile { grid-column: span 6; }
+    .team-b .pt-photo { grid-column: span 3; }
+    .team-b .pt-who { grid-column: 1 / -1; grid-row: 2; flex-direction: row; justify-content: flex-start; align-items: center; gap: 48px; }
+    .team-b .pt-people { grid-template-columns: repeat(2, max-content); column-gap: 48px; margin-top: 0; }
+    .team-b .pt-people li + li { padding: 0 0 0 48px; border-top: 0; border-left: 1px solid var(--line); }
   }
 
-  @media (min-width: 2000px) { body { zoom: 1.1; } }
-  @media (min-width: 2400px) { body { zoom: 1.3; } }
-  @media (min-width: 2900px) { body { zoom: 1.55; } }
+  @media (min-width: 2000px) { body { zoom: 1.05; } }
+  @media (min-width: 2400px) { body { zoom: 1.2; } }
+  @media (min-width: 2900px) { body { zoom: 1.4; } }
 </style>
 </head>
 <body>
@@ -946,7 +1058,7 @@
 
       <section class="sec">
         <h2>趣味</h2>
-        <div class="bento">
+        <div class="bento hobby">
           <button type="button" class="tile shot tiles-up d7" data-full="assets/ai/tenhou-tiles.jpg" data-label="天和であがった卓上の牌">
             <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAANABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCK0eK5iEexRcJ90Ho9XHhksy0lrxkYmgPb/wCtWESUYOpwynINTjULj7SLkNhwMY7Ee9Hs3fyOeNVJdmI9hYSuXG6EsclQeM0U+5ujczNL5ax57L0orP6vf7TOj67bTlR//9k=) center/cover" src="assets/ai/tenhou-tiles.webp" width="780" height="520" alt="天和であがった卓上の牌" decoding="async">
           </button>
@@ -978,7 +1090,7 @@
 
       <section class="sec">
         <h2>わたしのこと</h2>
-        <div class="bento">
+        <div class="bento me">
           <dl class="tile facts d6">
             <div><dt>出身</dt><dd>東京</dd></div>
             <div><dt>拠点</dt><dd>埼玉</dd></div>
@@ -1021,7 +1133,7 @@
 
 
       <section class="sec-tight bento">
-        <div class="tile">
+        <div class="tile net-tile">
           <h2 class="tile-title">人脈</h2>
           <ul class="tags">
             <li class="nowrap">BNI グラーノチャプター</li>
