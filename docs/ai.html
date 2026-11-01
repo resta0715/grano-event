@@ -125,6 +125,9 @@
     line-height: 1.2;
   }
   .company { margin: 6px 0 0; font-size: 21px; font-weight: 700; line-height: 1.5; }
+  .who > div { min-width: 0; }
+  .who .role { margin: 0 0 6px; font-size: 22px; }
+  .who .years { line-height: 1.45; }
   .lead { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.65; }
   .chips, .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .chips li, .tags li {
@@ -227,6 +230,49 @@
     font-weight: 700;
     line-height: 1.15;
     color: var(--navy);
+  }
+  .strength-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .strength-list li {
+    display: grid;
+    gap: 2px 18px;
+    align-items: center;
+    margin: 0;
+    padding: 14px 16px 12px;
+    color: var(--navy);
+    background: linear-gradient(160deg, #f8e3b0 0%, #e2b45a 100%);
+    border-radius: 16px;
+    box-shadow: inset 0 0 0 2px rgba(138,94,22,.35);
+  }
+  .strength-list .hook,
+  .strength-list p { margin: 0; }
+  .strength-list .hook {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  .strength-list .hook b {
+    display: block;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .strength-list p {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.35;
+  }
+  .strength-list .em {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
   }
   .timeline {
     display: flex;
@@ -585,6 +631,7 @@
     .switch button, .switch a { font-size: 22px; min-height: 60px; }
     h1 { font-size: 76px; }
     .role { font-size: 44px; }
+    .who .role { font-size: 26px; }
     .who { grid-template-columns: 140px 1fr; }
     .face { width: 140px; height: 180px; }
     .secret-card {
@@ -629,8 +676,17 @@
     .col-main { grid-column: 1; grid-row: 1; }
     .col-side { grid-column: 2; grid-row: 1; }
     .who { margin-bottom: 0; }
-    .slot-nums { border-top: 0; padding-top: 0; }
-    .slot-time { grid-column: 1 / -1; grid-row: 2; min-width: 0; max-width: 100%; }
+    .slot-history {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      padding-top: 8px;
+    }
+    .slot-history .history-top {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 16px 28px;
+      align-items: start;
+    }
     .app-board { padding-left: 28px; padding-right: 28px; gap: 36px; }
     .app-card h2 { font-size: 44px; }
     .app-copy { font-size: 22px; }
@@ -651,7 +707,16 @@
     .card h2 { font-size: 48px; }
     .people li { font-size: 24px; }
     .goose .people li { font-size: 28px; padding-top: 14px; padding-bottom: 14px; }
-    .body { grid-template-columns: 1fr 1fr; gap: 8px 32px; padding: 0 36px 32px; }
+    .body { grid-template-columns: 1fr; gap: 0; padding: 0 36px 32px; }
+    .strength-list li {
+      grid-template-columns: 250px minmax(0, 1fr);
+      padding: 16px 28px;
+    }
+    .strengths h2 { font-size: 40px; }
+    .strength-list .hook { font-size: 30px; }
+    .strength-list .hook b { font-size: 64px; }
+    .strength-list p { font-size: 28px; }
+    .strength-list .em { font-size: 36px; }
     .block h2 { font-size: 34px; }
     .app-card h2 { font-size: 44px; }
   }
@@ -676,23 +741,24 @@
             <div class="who">
               <img class="face" src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
               <div>
+                <p class="role nowrap">AIエンジニア</p>
                 <p class="kana">うべ こうた</p>
                 <h1 class="nowrap">宇部 光太</h1>
-                <p class="company nowrap">40歳。美容師歴24年。</p>
+                <p class="company years">40歳。<br><span class="nowrap">美容歴24年</span><br><span class="nowrap">企業10年</span><br><span class="nowrap">エンジニア歴7年</span></p>
               </div>
             </div>
             <div class="people-photos">
               <button type="button" class="shot" data-full="assets/ai/resta.jpg" data-label="株式会社Resta">
                 <img src="assets/ai/resta.jpg" width="1024" height="768" alt="">
-                <span>株式会社Resta</span>
+                <span>株式会社<wbr>Resta</span>
               </button>
               <button type="button" class="shot" data-full="assets/ai/reyel.jpg" data-label="合同会社Reyel">
                 <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="">
-                <span>合同会社Reyel</span>
+                <span>合同会社<wbr>Reyel</span>
               </button>
               <button type="button" class="shot" data-full="assets/ai/rg.jpg" data-label="RG株式会社">
                 <img src="assets/ai/rg.jpg" width="768" height="1024" alt="">
-                <span>RG株式会社</span>
+                <span>RG<wbr>株式会社</span>
               </button>
               <button type="button" class="shot" data-full="assets/ai/musume.jpg" data-label="娘">
                 <img src="assets/ai/musume.jpg" width="768" height="1024" alt="">
@@ -700,7 +766,7 @@
               </button>
               <button type="button" class="shot" data-full="assets/ai/kimono.jpg" data-label="息子と着物">
                 <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="">
-                <span>息子と着物</span>
+                <span>息子と<wbr>着物</span>
               </button>
             </div>
             <section class="block slot-hobby">
@@ -729,18 +795,6 @@
             </section>
           </div>
           <div class="col-side">
-            <section class="block slot-nums">
-              <h2>略歴</h2>
-              <div class="growth">
-                <p>この10年で、<br>年商<b class="nowrap">1,000万円</b>から、<br>7年で<b class="nowrap">2億5,000万円</b></p>
-                <p>従業員<b class="nowrap">1名</b>から、<br>グループ全体で<b class="nowrap">30人</b></p>
-              </div>
-              <ol class="steps">
-                <li>7年前、自社内の<span class="nowrap">売り上げ管理</span>・<span class="nowrap">給与計算</span>・<span class="nowrap">シフト管理</span>・<span class="nowrap">勤怠管理</span>などを<br><span class="pop nowrap">全自動化</span>すべく<br><span class="nowrap">Python を学ぶ。</span></li>
-                <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
-                <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
-              </ol>
-            </section>
             <section class="block slot-person">
               <h2>人柄</h2>
               <ul class="facts">
@@ -751,8 +805,19 @@
               <p class="wish">成功の鍵は、<br><span class="pop">まずはとにかく<br>量をやる。</span></p>
             </section>
           </div>
-          <section class="block slot-time">
+          <section class="block slot-history">
             <h2><span class="nowrap">Reグループ</span>の略歴</h2>
+            <div class="history-top">
+              <div class="growth">
+                <p>この10年で、<br>年商<b class="nowrap">1,000万円</b>から、<br>7年で<b class="nowrap">2億5,000万円</b></p>
+                <p>従業員<b class="nowrap">1名</b>から、<br>グループ全体で<b class="nowrap">30人</b></p>
+              </div>
+              <ol class="steps">
+                <li>7年前、自社内の<span class="nowrap">売り上げ管理</span>・<span class="nowrap">給与計算</span>・<span class="nowrap">シフト管理</span>・<span class="nowrap">勤怠管理</span>などを<br><span class="pop nowrap">全自動化</span>すべく<br><span class="nowrap">Python を学ぶ。</span></li>
+                <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
+                <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
+              </ol>
+            </div>
             <ol class="timeline">
               <li><span class="year nowrap">2016年</span><span class="evt"><span class="nowrap">美容室Resta</span>　一号店オープン</span></li>
               <li><span class="year nowrap">2017年</span><span class="evt"><span class="nowrap">顔面改善事業</span>スタート</span></li>
@@ -809,12 +874,21 @@
           </div>
         </section>
         <div class="body">
-          <section class="block">
+          <section class="block strengths">
             <h2>他社にない強み</h2>
-            <ul class="people">
-              <li><span class="pop nowrap">0円からデモ</span>アプリを<wbr>開発できる</li>
-              <li><span class="nowrap">20年以上</span><wbr>接客業を<wbr>してきた<wbr>ヒアリング力</li>
-              <li><span class="nowrap">店舗運営</span>を<wbr>10年以上<wbr>してきた中で、<br>成果の出る<wbr>システム・<wbr>ツールを提供する</li>
+            <ul class="strength-list">
+              <li>
+                <p class="hook"><b class="nowrap">0円</b>から</p>
+                <p><span class="nowrap">デモアプリ</span>を開発できる</p>
+              </li>
+              <li>
+                <p class="hook"><b class="nowrap">20年以上</b></p>
+                <p>接客業をしてきた<br><span class="em nowrap">ヒアリング力</span></p>
+              </li>
+              <li>
+                <p class="hook">店舗運営<br><b class="nowrap">10年以上</b></p>
+                <p>してきた中で、<br><span class="em nowrap">成果の出る</span><br>システム・ツールを提供する</p>
+              </li>
             </ul>
           </section>
           <section class="block">
