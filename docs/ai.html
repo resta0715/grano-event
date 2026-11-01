@@ -169,6 +169,14 @@
     font-weight: 700;
     line-height: 1.45;
   }
+  .secret-name {
+    margin: 8px 0 0;
+    color: var(--gold-2);
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
   .pop {
     font-weight: 900;
     line-height: 1.25;
@@ -378,10 +386,9 @@
   .hobby-row { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
   .tile {
     width: 108px;
-    height: 136px;
+    height: auto;
     flex: 0 0 auto;
-    object-fit: cover;
-    object-position: center 20%;
+    object-fit: contain;
     border-radius: 10px;
     border: 3px solid var(--gold);
   }
@@ -421,6 +428,7 @@
     .secret-card { flex-direction: row; align-items: center; gap: 22px; padding: 18px 22px; }
     .dress { width: 220px; }
     .secret { font-size: 28px; }
+    .secret-name { font-size: 44px; }
     .secret .pop { font-size: 44px; }
     .people .pop, .steps .pop, .tenhou .pop { font-size: 36px; }
     .wish .pop { font-size: 40px; }
@@ -451,7 +459,7 @@
     .goose .people li { font-size: 28px; padding-top: 14px; padding-bottom: 14px; }
     .body { grid-template-columns: 1fr 1fr; gap: 8px 32px; padding: 0 36px 32px; }
     .block h2 { font-size: 34px; }
-    .tile { width: 132px; height: 168px; }
+    .tile { width: 132px; height: auto; }
   }
 </style>
 </head>
@@ -477,10 +485,6 @@
               <p class="company nowrap">40歳。美容師歴24年。</p>
             </div>
           </div>
-          <div class="secret-card">
-            <p class="secret">実は私……<br><span class="pop nowrap">女装すると妹に激似です</span></p>
-            <img class="dress" src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
-          </div>
           <div class="persona-sections">
             <section class="block">
               <h2>人柄</h2>
@@ -490,20 +494,6 @@
               </ul>
               <p class="wish">多くの人に<br>喜ばれたい、<br>関わりたい。</p>
               <p class="wish">成功の鍵は、<br><span class="pop">まずはとにかく<br>量をやる。</span></p>
-            </section>
-            <section class="block">
-              <h2>趣味</h2>
-              <div class="hobby-row">
-                <img class="tile" src="assets/ai/tile.jpg" width="585" height="840" alt="宇部光太。麻雀の牌を持っている">
-                <div>
-                  <ul class="tags">
-                    <li class="nowrap">麻雀</li>
-                    <li class="nowrap">ピアノ</li>
-                    <li class="nowrap">飲み会</li>
-                  </ul>
-                  <p class="tenhou">麻雀では、<br><span class="pop">天和</span><br><span class="pop nowrap">（出現率約0.0003％）</span><br>を持っている。</p>
-                </div>
-              </div>
             </section>
             <section class="block wide">
               <h2>略歴</h2>
@@ -516,6 +506,29 @@
                 <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
                 <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
               </ol>
+            </section>
+            <section class="block wide">
+              <h2>趣味</h2>
+              <div class="hobby-row">
+                <img class="tile" src="assets/ai/tile.jpg" width="585" height="840" alt="宇部光太。麻雀の牌を持っている">
+                <div>
+                  <ul class="tags">
+                    <li class="nowrap">麻雀</li>
+                    <li class="nowrap">ピアノ</li>
+                    <li class="nowrap">飲み会</li>
+                  </ul>
+                  <p class="tenhou"><span class="pop">天和</span><span class="pop nowrap">（出現率約0.0003％）</span>をあがったことがある。</p>
+                </div>
+              </div>
+            </section>
+            <section class="block wide">
+              <div class="secret-card">
+                <div>
+                  <p class="secret">実は私……<br><span class="pop nowrap">女装すると妹に激似です</span></p>
+                  <p class="secret-name nowrap">宇部 光太</p>
+                </div>
+                <img class="dress" src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
+              </div>
             </section>
             <section class="block wide">
               <h2><span class="nowrap">Reグループ</span>の略歴</h2>
