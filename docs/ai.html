@@ -198,6 +198,32 @@
     line-height: 1.15;
     border-bottom: 4px solid var(--navy);
   }
+  .timeline { margin: 0 -8px 0 -4px; padding: 0; list-style: none; }
+  .timeline li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    margin: 0;
+    padding: 8px 0 12px 12px;
+    border-left: 4px solid var(--gold);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .timeline li > span:last-child { min-width: 0; max-width: 100%; }
+  .timeline li + li { margin-top: 8px; }
+  .timeline .year {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+    background-image: linear-gradient(var(--gold), var(--gold));
+    background-repeat: no-repeat;
+    background-size: 100% 0.16em;
+    background-position: 0 94%;
+  }
   .persona-body { padding: 18px 16px 28px; background: linear-gradient(180deg, #fffaf2, #f3e6cc); }
   .facts { margin: 0; padding: 0; list-style: none; }
   .facts li {
@@ -374,6 +400,7 @@
     .wish .pop { font-size: 40px; }
     .growth b { font-size: 48px; }
     .growth p { font-size: 26px; }
+    .timeline .year { font-size: 44px; }
     .hobby-row { flex-direction: row; }
     .persona-body { padding: 28px 36px 36px; }
     .persona-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
@@ -423,6 +450,20 @@
           <h1 class="nowrap">宇部 光太</h1>
           <p class="company nowrap">40歳。美容師歴24年。</p>
           <div class="persona-sections">
+            <section class="block wide">
+              <h2><span class="nowrap">Reグループ</span>の略歴</h2>
+              <ol class="timeline">
+                <li><span class="year nowrap">2016年</span><span><span class="nowrap">美容室Resta</span>　<wbr>一号店オープン</span></li>
+                <li><span class="year nowrap">2017年</span><span><span class="nowrap">顔面改善事業</span><wbr>スタート</span></li>
+                <li><span class="year nowrap">2018年</span><span><span class="nowrap">ネイルサロンReyel</span><wbr> オープン</span></li>
+                <li><span class="year nowrap">2020年</span><span><span class="nowrap">脱毛・ホワイトニング事業</span><wbr>スタート</span></li>
+                <li><span class="year nowrap">2021年</span><span class="nowrap">2号店オープン</span></li>
+                <li><span class="year nowrap">2024年</span><span class="nowrap">3号店オープン</span></li>
+                <li><span class="year nowrap">2025年</span><span><span class="nowrap">FC店</span>　<wbr>4店舗オープン</span></li>
+                <li><span class="year nowrap">2025年</span><span><span class="nowrap">システム開発事業</span><wbr>スタート</span></li>
+                <li><span class="year nowrap">2026年</span><span><span class="nowrap">かき氷ラボ TSUKIMISOU</span><wbr> オープン</span></li>
+              </ol>
+            </section>
             <section class="block">
               <h2>人柄</h2>
               <ul class="facts">
