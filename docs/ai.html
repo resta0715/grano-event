@@ -398,6 +398,27 @@
     border: 3px solid var(--gold);
   }
   .tenhou { margin: 10px 0 0; font-size: 21px; font-weight: 900; line-height: 1.6; }
+  .people-photos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0 0;
+  }
+  .people-photos figure { margin: 0; min-width: 0; }
+  .people-photos img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 3px solid var(--gold);
+  }
+  .people-photos figcaption {
+    margin-top: 4px;
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--navy);
+  }
   .foot {
     display: flex;
     justify-content: space-between;
@@ -537,13 +558,16 @@
       min-width: 0;
       max-width: 100%;
     }
-    .who { grid-column: 1; grid-row: 1; margin-bottom: 0; }
-    .slot-intro { grid-column: 1; }
+    .intro-col { grid-column: 1; grid-row: 1; align-self: start; min-width: 0; }
+    .who { margin-bottom: 0; }
     .slot-hobby { grid-column: 1; grid-row: 2; }
     .slot-secret { grid-column: 1; grid-row: 3; }
     .slot-nums { grid-column: 2; grid-row: 1; align-self: start; border-top: 0; padding-top: 0; }
     .slot-person { grid-column: 2; grid-row: 2 / span 2; align-self: start; }
     .slot-time { grid-column: 1 / -1; grid-row: 4; overflow: hidden; }
+    .people-photos { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .people-photos figure:nth-child(-n+2) { grid-column: span 3; }
+    .people-photos figure:nth-child(n+3) { grid-column: span 2; }
     .wish br { display: none; }
     .secret-card { grid-template-columns: minmax(0, 1fr) 210px; }
     .app-board { grid-template-columns: 1fr 1fr; align-items: start; }
@@ -588,12 +612,36 @@
 
       <section class="panel" data-panel="profile" id="profile">
         <div class="persona-body">
-          <div class="who">
-            <img class="face" src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
-            <div>
-              <p class="kana">うべ こうた</p>
-              <h1 class="nowrap">宇部 光太</h1>
-              <p class="company nowrap">40歳。美容師歴24年。</p>
+          <div class="intro-col">
+            <div class="who">
+              <img class="face" src="assets/ai/kota.jpg" width="1024" height="1536" alt="宇部光太">
+              <div>
+                <p class="kana">うべ こうた</p>
+                <h1 class="nowrap">宇部 光太</h1>
+                <p class="company nowrap">40歳。美容師歴24年。</p>
+              </div>
+            </div>
+            <div class="people-photos">
+              <figure>
+                <img src="assets/ai/resta.jpg" width="1024" height="768" alt="株式会社Resta">
+                <figcaption class="nowrap">株式会社Resta</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/ai/reyel.jpg" width="1024" height="683" alt="合同会社Reyel">
+                <figcaption class="nowrap">合同会社Reyel</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/ai/rg.jpg" width="768" height="1024" alt="RG株式会社">
+                <figcaption class="nowrap">RG株式会社</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/ai/musume.jpg" width="768" height="1024" alt="娘">
+                <figcaption class="nowrap">娘</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/ai/kimono.jpg" width="768" height="1024" alt="息子と着物">
+                <figcaption class="nowrap">息子と着物</figcaption>
+              </figure>
             </div>
           </div>
             <section class="block slot-hobby">
@@ -605,6 +653,7 @@
                     <li class="nowrap">麻雀</li>
                     <li class="nowrap">ピアノ</li>
                     <li class="nowrap">飲み会</li>
+                    <li class="nowrap">着物</li>
                   </ul>
                   <p class="tenhou"><span class="pop">天和</span><span class="pop nowrap">（出現率約0.0003％）</span>をあがったことがある。</p>
                 </div>
