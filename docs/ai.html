@@ -65,7 +65,7 @@
     padding: 16px 18px;
     background: var(--navy);
     color: var(--gold-2);
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
   }
   .switch {
@@ -124,11 +124,11 @@
     font-weight: 900;
     line-height: 1.2;
   }
-  .company { margin: 6px 0 0; font-size: 20px; font-weight: 700; line-height: 1.5; }
+  .company { margin: 6px 0 0; font-size: 21px; font-weight: 700; line-height: 1.5; }
   .lead { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.65; }
   .chips, .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .chips li, .tags li {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
     line-height: 1.4;
     padding: 8px 14px;
@@ -308,7 +308,7 @@
   .ask { padding: 8px 14px 18px; }
   .ask-label {
     margin: 0 0 10px;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
     letter-spacing: 0.08em;
     color: var(--gold-deep);
@@ -322,7 +322,7 @@
     font-weight: 700;
     line-height: 1.2;
   }
-  .card-note { margin: 4px 0 10px; font-size: 20px; font-weight: 700; }
+  .card-note { margin: 4px 0 10px; font-size: 21px; font-weight: 700; }
   .egg {
     background: linear-gradient(160deg, #f8e3b0 0%, #e2b45a 100%);
     color: var(--navy);
@@ -383,7 +383,7 @@
     border-radius: 50%;
     background: var(--navy);
     color: var(--gold-2);
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
     line-height: 32px;
     text-align: center;
@@ -406,7 +406,7 @@
     padding: 16px 18px;
     background: var(--navy);
     color: var(--gold-2);
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
   }
   @media (min-width: 390px) {
@@ -433,7 +433,7 @@
   }
   .app-en {
     margin: 0;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 900;
     letter-spacing: 0.12em;
     color: var(--gold-deep);
@@ -539,8 +539,11 @@
     }
     .who { grid-column: 1; grid-row: 1; margin-bottom: 0; }
     .slot-intro { grid-column: 1; }
-    .slot-nums { grid-column: 2; grid-row: 1 / span 4; border-top: 0; padding-top: 0; }
-    .slot-time { grid-column: 1 / -1; overflow: hidden; }
+    .slot-hobby { grid-column: 1; grid-row: 2; }
+    .slot-secret { grid-column: 1; grid-row: 3; }
+    .slot-nums { grid-column: 2; grid-row: 1; align-self: start; border-top: 0; padding-top: 0; }
+    .slot-person { grid-column: 2; grid-row: 2 / span 2; align-self: start; }
+    .slot-time { grid-column: 1 / -1; grid-row: 4; overflow: hidden; }
     .wish br { display: none; }
     .secret-card { grid-template-columns: minmax(0, 1fr) 210px; }
     .app-board { grid-template-columns: 1fr 1fr; align-items: start; }
@@ -558,7 +561,7 @@
     .g-hero .role { grid-area: role; font-size: 52px; }
     .g-lead { grid-area: lead; font-size: 24px; }
     .ask { padding: 8px 36px 28px; }
-    .ref-grid { grid-template-columns: 1.15fr .85fr; gap: 18px; align-items: stretch; }
+    .ref-grid { grid-template-columns: 1.15fr .85fr; gap: 18px; align-items: start; }
     .card { padding: 22px 22px 18px; }
     .card h2 { font-size: 48px; }
     .people li { font-size: 24px; }
@@ -593,7 +596,7 @@
               <p class="company nowrap">40歳。美容師歴24年。</p>
             </div>
           </div>
-            <section class="block slot-intro">
+            <section class="block slot-hobby">
               <h2>趣味</h2>
               <div class="hobby-row">
                 <img class="tile" src="assets/ai/tile.jpg" width="585" height="840" alt="宇部光太。麻雀の牌を持っている">
@@ -607,7 +610,7 @@
                 </div>
               </div>
             </section>
-            <section class="block slot-intro">
+            <section class="block slot-secret">
               <div class="secret-card">
                 <div>
                   <p class="secret">実は私……<br><span class="pop nowrap">女装すると妹に激似です</span></p>
@@ -616,7 +619,7 @@
                 <img class="dress" src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
               </div>
             </section>
-            <section class="block slot-intro">
+            <section class="block slot-person">
               <h2>人柄</h2>
               <ul class="facts">
                 <li>出身は東京。拠点は埼玉。</li>
@@ -632,7 +635,7 @@
                 <p>従業員<b class="nowrap">1名</b>から、<br>グループ全体で<b class="nowrap">30人</b></p>
               </div>
               <ol class="steps">
-                <li>7年前、自社内の<span class="nowrap">売り上げ管理</span>・<span class="nowrap">給与計算</span>・<span class="nowrap">シフト管理</span>・<span class="nowrap">勤怠管理</span>などを<wbr><span class="pop nowrap">全自動化</span>すべく <span class="nowrap">Python</span> を学ぶ。</li>
+                <li>7年前、自社内の<span class="nowrap">売り上げ管理</span>・<span class="nowrap">給与計算</span>・<span class="nowrap">シフト管理</span>・<span class="nowrap">勤怠管理</span>などを<br><span class="pop nowrap">全自動化</span>すべく<br><span class="nowrap">Python を学ぶ。</span></li>
                 <li><span class="pop nowrap">全自動化</span>後も、<wbr>集客や求人に<wbr>使える<wbr>システムや<wbr>ツールを開発。</li>
                 <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
               </ol>
