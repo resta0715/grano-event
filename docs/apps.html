@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>作ったアプリ｜宇部 光太 — BNIグラーノ</title>
+<meta name="description" content="宇部光太が作ったアプリ。ホシトルとみせばん。">
+<meta property="og:title" content="作ったアプリ｜宇部 光太">
+<meta property="og:description" content="ホシトルとみせばん。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://resta0715.github.io/grano-event/apps.html">
+<meta property="og:locale" content="ja_JP">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1612;
+    --cream: #f6efe2;
+    --sheet: #fffaf2;
+    --navy: #14233a;
+    --navy-2: #0d1828;
+    --gold: #c6a15a;
+    --gold-2: #e7c98a;
+    --gold-deep: #8a5e16;
+    --sans: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, Meiryo, sans-serif;
+    --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 21px;
+    line-height: 1.65;
+    color: var(--ink);
+    background:
+      radial-gradient(900px 420px at 10% -10%, rgba(198,161,90,.35), transparent 60%),
+      var(--navy-2);
+    word-break: keep-all;
+    line-break: strict;
+    overflow-wrap: normal;
+  }
+  .nowrap { white-space: nowrap; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap {
+    width: min(980px, 100%);
+    margin: 0 auto 32px;
+  }
+  .sheet {
+    background: var(--sheet);
+    border: 3px solid var(--gold);
+    box-shadow: 0 18px 50px rgba(0,0,0,.28);
+    overflow: hidden;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    background: var(--navy);
+    color: var(--gold-2);
+  }
+  .back {
+    font-size: 21px;
+    font-weight: 900;
+    text-decoration: none;
+    border-bottom: 3px solid var(--gold);
+  }
+  .top-label {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 900;
+  }
+  .app {
+    padding: 22px 0 8px;
+    background: linear-gradient(180deg, #fffaf2, #f3e6cc);
+  }
+  .app + .app { border-top: 3px solid var(--gold); }
+  .app-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    min-width: 0;
+  }
+  .logo {
+    width: 84px;
+    height: 84px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    background: #f7f3ea;
+    border-radius: 12px;
+    border: 2px solid var(--gold);
+  }
+  .en {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep);
+  }
+  h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+  }
+  .catch {
+    margin: 14px 16px 0;
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--navy);
+  }
+  .copy {
+    margin: 10px 16px 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.65;
+  }
+  .screen {
+    width: 100%;
+    height: auto;
+    margin: 16px 0 0;
+    object-fit: contain;
+    background: var(--navy-2);
+  }
+  @media (min-width: 800px) {
+    .wrap { margin-top: 20px; }
+    h1 { font-size: 64px; }
+    .catch { font-size: 40px; }
+    .logo { width: 104px; height: 104px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="sheet">
+      <header class="top">
+        <a class="back nowrap" href="ai.html">1to1シートへ</a>
+        <p class="top-label nowrap">作ったアプリ</p>
+      </header>
+
+      <section class="app">
+        <div class="app-head">
+          <img class="logo" src="assets/gains/logo-hoshitoru.png" width="1024" height="1024" alt="">
+          <div>
+            <p class="en nowrap">HOSITORU</p>
+            <h1 class="nowrap">ホシトル</h1>
+          </div>
+        </div>
+        <p class="copy">
+          <span class="nowrap">AIレビュー</span>生成・収集ツール。<br>
+          お客様の声をAIで扱い、<wbr>レビューを書きやすくして、<wbr>口コミが集まりやすい仕組み。<br>
+          1to1では、<span class="nowrap">Googleマップ</span>の口コミを集めるアプリ。
+        </p>
+        <img class="screen" src="assets/gains/screen-hoshitoru.png" width="1560" height="540" alt="ホシトルの画面">
+      </section>
+
+      <section class="app">
+        <div class="app-head">
+          <img class="logo" src="assets/gains/logo-miseban.png" width="1024" height="1024" alt="">
+          <div>
+            <p class="en nowrap">MISEBAN</p>
+            <h1 class="nowrap">みせばん</h1>
+          </div>
+        </div>
+        <p class="catch">美容室の運営を、ひとつに。</p>
+        <p class="copy">
+          人材・売上・媒体を一つにする<wbr>店舗情報アプリ。<br>
+          勤怠、給与計算、売上、<wbr><span class="nowrap">ホットペッパー</span>などの媒体連携。<br>
+          宇部が、自分の店で使っています。
+        </p>
+        <img class="screen" src="assets/gains/screen-miseban.png" width="1560" height="500" alt="みせばんの画面">
+      </section>
+    </article>
+  </div>
+</body>
+</html>
