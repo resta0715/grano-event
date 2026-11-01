@@ -498,24 +498,43 @@
     line-height: 1.35;
     color: var(--navy);
   }
-  .app-copy { margin-top: 14px; line-height: 1.65; }
+  .app-copy { margin-top: 20px; line-height: 1.65; }
   .app-shots {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--gap);
-    margin-top: 28px;
-    padding-bottom: var(--pad);
+    grid-auto-flow: column;
+    grid-auto-columns: 78%;
+    gap: 12px;
+    margin: 28px calc(var(--pad) * -1) 0;
+    padding: 0 var(--pad) var(--pad);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 var(--pad);
   }
-  .app-shots .shot { border-radius: calc(var(--r) - 8px); overflow: hidden; background: var(--cream); }
+  .app-shots .shot {
+    border-radius: calc(var(--r) - 6px);
+    overflow: hidden;
+    background: #f6f3ec;
+    scroll-snap-align: start;
+  }
   .app-shots .shot img { height: auto; object-fit: contain; }
-  .app-shots .one { grid-column: 1 / -1; }
+  .swipe-hint { margin-top: 12px; color: var(--muted); font-size: var(--fs); }
   @media (min-width: 900px) {
     .app-head { gap: 24px; }
     .app-logo { width: 104px; height: 104px; border-radius: 24px; }
     .app-name { font-size: 64px; }
     .app-catch { font-size: 44px; }
     .app-copy { font-size: 27px; }
-    .app-shots { margin-top: 40px; }
+    .app-shots {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(2, minmax(0, 400px));
+      grid-auto-columns: auto;
+      justify-content: center;
+      gap: var(--gap);
+      margin: 40px 0 0;
+      padding: 0 0 var(--pad);
+      overflow: visible;
+    }
+    .swipe-hint { display: none; }
   }
 
   .foot {
@@ -796,9 +815,13 @@
             お客様の声をAIで扱い、<wbr>レビューを書きやすくして、<wbr>口コミが集まりやすい仕組み。<br>
             1to1では、<span class="nowrap">Googleマップ</span>の<wbr>口コミを集めるアプリ。
           </p>
+          <p class="swipe-hint">画面は横にスライドできます。</p>
           <div class="app-shots">
-            <button type="button" class="shot one" data-full="assets/gains/screen-hoshitoru.png" data-label="ホシトルの画面">
-              <img src="assets/gains/screen-hoshitoru.png" width="1560" height="540" alt="ホシトルの画面">
+            <button type="button" class="shot" data-full="assets/gains/mock-hoshitoru-1.jpg" data-label="ホシトル：AIがレビューの文章案を作る画面">
+              <img src="assets/gains/mock-hoshitoru-1.jpg" width="558" height="1068" alt="ホシトル：星とあてはまる項目を選ぶと、AIがレビューの文章案を作る画面">
+            </button>
+            <button type="button" class="shot" data-full="assets/gains/mock-hoshitoru-2.jpg" data-label="ホシトル：Googleマップの口コミを集める画面">
+              <img src="assets/gains/mock-hoshitoru-2.jpg" width="562" height="1079" alt="ホシトル：Googleマップの口コミを集める画面">
             </button>
           </div>
         </article>
@@ -816,9 +839,13 @@
             勤怠、給与計算、売上、<wbr><span class="nowrap">ホットペッパー</span>などの媒体連携。<br>
             宇部が、自分の店で使っています。
           </p>
+          <p class="swipe-hint">画面は横にスライドできます。</p>
           <div class="app-shots">
-            <button type="button" class="shot one" data-full="assets/gains/screen-miseban.png" data-label="みせばんの画面">
-              <img src="assets/gains/screen-miseban.png" width="1560" height="500" alt="みせばんの画面">
+            <button type="button" class="shot" data-full="assets/gains/mock-miseban-1.jpg" data-label="みせばん：勤怠管理と給与計算の画面">
+              <img src="assets/gains/mock-miseban-1.jpg" width="556" height="1077" alt="みせばん：勤怠管理と給与計算の画面">
+            </button>
+            <button type="button" class="shot" data-full="assets/gains/mock-miseban-2.jpg" data-label="みせばん：売上分析とホットペッパー連携の画面">
+              <img src="assets/gains/mock-miseban-2.jpg" width="528" height="1035" alt="みせばん：売上分析とホットペッパー連携の画面">
             </button>
           </div>
         </article>
