@@ -412,7 +412,64 @@
   @media (min-width: 390px) {
     .secret { font-size: 22px; }
   }
-  @media (max-width: 720px) {
+  .app-board { display: grid; grid-template-columns: 1fr; }
+  .app-card { min-width: 0; padding: 18px 0 0; background: linear-gradient(180deg, #fffaf2, #f3e6cc); }
+  .app-card + .app-card { border-top: 3px solid var(--gold); }
+  .app-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    min-width: 0;
+  }
+  .app-logo {
+    width: 84px;
+    height: 84px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    background: #f7f3ea;
+    border-radius: 12px;
+    border: 2px solid var(--gold);
+  }
+  .app-en {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep);
+  }
+  .app-card h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+    border: 0;
+  }
+  .app-catch {
+    margin: 12px 16px 0;
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--navy);
+  }
+  .app-copy {
+    margin: 8px 16px 0;
+    min-width: 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.65;
+  }
+  .app-screen {
+    width: 100%;
+    height: auto;
+    margin-top: 14px;
+    object-fit: contain;
+    background: var(--navy-2);
+  }
+  @media (max-width: 767px) {
     .switch { grid-template-columns: 1fr; }
     .switch button, .switch a { font-size: 21px; min-height: 52px; }
   }
@@ -426,7 +483,7 @@
     .g-photo { width: 96px; height: 124px; }
     .secret-card > div { padding: 14px 8px 8px; }
   }
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     .wrap { width: min(1180px, calc(100% - 48px)); margin: 28px auto 48px; }
     .top, .foot { padding-left: 32px; padding-right: 32px; font-size: 22px; }
     .switch { padding: 14px 24px; gap: 12px; }
@@ -453,13 +510,26 @@
     .wish .pop { font-size: 40px; }
     .growth b { font-size: 48px; }
     .growth p { font-size: 26px; }
-    .timeline { flex-wrap: wrap; overflow: visible; }
-    .timeline li { flex: 1 1 200px; }
+    .timeline { flex-wrap: nowrap; overflow-x: auto; }
+    .timeline li { flex: 0 0 auto; }
     .timeline .year { font-size: 36px; }
     .hobby-row { flex-direction: row; }
-    .persona-body { padding: 28px 36px 36px; }
-    .persona-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
-    .persona-sections .wide { grid-column: 1 / -1; }
+    .persona-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: 8px 28px;
+      align-items: start;
+      padding: 28px 36px 28px;
+    }
+    .who { grid-column: 1; grid-row: 1; margin-bottom: 0; }
+    .slot-intro { grid-column: 1; }
+    .slot-nums { grid-column: 2; grid-row: 1 / span 4; border-top: 0; padding-top: 0; }
+    .slot-time { grid-column: 1 / -1; }
+    .wish br { display: none; }
+    .secret-card { grid-template-columns: minmax(0, 1fr) 210px; }
+    .app-board { grid-template-columns: 1fr 1fr; align-items: start; }
+    .app-card + .app-card { border-top: 0; border-left: 3px solid var(--gold); }
+    .app-card h2 { font-size: 44px; }
     .g-hero {
       grid-template-columns: 1fr 320px;
       grid-template-areas: "text photo" "role photo" "lead photo";
@@ -479,6 +549,7 @@
     .goose .people li { font-size: 28px; padding-top: 14px; padding-bottom: 14px; }
     .body { grid-template-columns: 1fr 1fr; gap: 8px 32px; padding: 0 36px 32px; }
     .block h2 { font-size: 34px; }
+    .app-card h2 { font-size: 44px; }
     .tile { width: 132px; height: auto; }
   }
 </style>
@@ -493,7 +564,7 @@
       <nav class="switch" aria-label="シート切替">
         <button type="button" data-sheet="profile" class="is-on" aria-pressed="true">メンバー略歴</button>
         <button type="button" data-sheet="gains" aria-pressed="false">G.A.I.N.S.</button>
-        <a href="apps.html">アプリ例</a>
+        <button type="button" data-sheet="apps" aria-pressed="false">アプリ例</button>
       </nav>
 
       <section class="panel" data-panel="profile" id="profile">
@@ -506,8 +577,7 @@
               <p class="company nowrap">40歳。美容師歴24年。</p>
             </div>
           </div>
-          <div class="persona-sections">
-            <section class="block wide">
+            <section class="block slot-intro">
               <h2>趣味</h2>
               <div class="hobby-row">
                 <img class="tile" src="assets/ai/tile.jpg" width="585" height="840" alt="宇部光太。麻雀の牌を持っている">
@@ -521,7 +591,7 @@
                 </div>
               </div>
             </section>
-            <section class="block wide">
+            <section class="block slot-intro">
               <div class="secret-card">
                 <div>
                   <p class="secret">実は私……<br><span class="pop nowrap">女装すると妹に激似です</span></p>
@@ -530,7 +600,7 @@
                 <img class="dress" src="assets/ai/dress.jpg" width="686" height="1024" alt="宇部光太">
               </div>
             </section>
-            <section class="block wide">
+            <section class="block slot-intro">
               <h2>人柄</h2>
               <ul class="facts">
                 <li>出身は東京。拠点は埼玉。</li>
@@ -539,7 +609,7 @@
               <p class="wish">多くの人に<br>喜ばれたい、<br>関わりたい。</p>
               <p class="wish">成功の鍵は、<br><span class="pop">まずはとにかく<br>量をやる。</span></p>
             </section>
-            <section class="block wide">
+            <section class="block slot-nums">
               <h2>略歴</h2>
               <div class="growth">
                 <p>この10年で、<br>年商<b class="nowrap">1,000万円</b>から、<br>7年で<b class="nowrap">2億5,000万円</b></p>
@@ -551,7 +621,7 @@
                 <li>昨年より、自社内だけでなく、<wbr>他店舗・他企業の<wbr>システム開発・ツール開発に着手。</li>
               </ol>
             </section>
-            <section class="block wide">
+            <section class="block slot-time">
               <h2><span class="nowrap">Reグループ</span>の略歴</h2>
               <ol class="timeline">
                 <li><span class="year nowrap">2016年</span><span class="evt"><span class="nowrap">美容室Resta</span>　一号店オープン</span></li>
@@ -565,7 +635,6 @@
                 <li><span class="year nowrap">2026年</span><span class="evt"><span class="nowrap">かき氷ラボ TSUKIMISOU</span> オープン</span></li>
               </ol>
             </section>
-          </div>
         </div>
       </section>
 
@@ -631,6 +700,42 @@
         </div>
       </section>
 
+      <section class="panel" data-panel="apps" id="apps" hidden>
+        <div class="app-board">
+          <article class="app-card">
+            <div class="app-head">
+              <img class="app-logo" src="assets/gains/logo-hoshitoru.png" width="1024" height="1024" alt="">
+              <div>
+                <p class="app-en nowrap">HOSITORU</p>
+                <h2 class="nowrap">ホシトル</h2>
+              </div>
+            </div>
+            <p class="app-copy">
+              <span class="nowrap">AIレビュー</span>生成・収集ツール。<br>
+              お客様の声をAIで扱い、<wbr>レビューを書きやすくして、<wbr>口コミが集まりやすい仕組み。<br>
+              1to1では、<span class="nowrap">Googleマップ</span>の<wbr>口コミを集めるアプリ。
+            </p>
+            <img class="app-screen" src="assets/gains/screen-hoshitoru.png" width="1560" height="540" alt="ホシトルの画面">
+          </article>
+          <article class="app-card">
+            <div class="app-head">
+              <img class="app-logo" src="assets/gains/logo-miseban.png" width="1024" height="1024" alt="">
+              <div>
+                <p class="app-en nowrap">MISEBAN</p>
+                <h2 class="nowrap">みせばん</h2>
+              </div>
+            </div>
+            <p class="app-catch">美容室の運営を、ひとつに。</p>
+            <p class="app-copy">
+              人材・売上・媒体を一つにする<wbr>店舗情報アプリ。<br>
+              勤怠、給与計算、売上、<wbr><span class="nowrap">ホットペッパー</span>などの媒体連携。<br>
+              宇部が、自分の店で使っています。
+            </p>
+            <img class="app-screen" src="assets/gains/screen-miseban.png" width="1560" height="500" alt="みせばんの画面">
+          </article>
+        </div>
+      </section>
+
       <footer class="foot">
         <p style="margin:0" class="nowrap">宇部 光太</p>
         <p style="margin:0" class="nowrap">AIエンジニア</p>
@@ -661,7 +766,7 @@
         });
       });
       var hash = (location.hash || "").replace("#", "");
-      show(hash === "gains" ? "gains" : "profile");
+      show(hash === "gains" || hash === "apps" ? hash : "profile");
     })();
   </script>
 </body>
