@@ -274,6 +274,46 @@
     font-weight: 700;
     line-height: 1.2;
   }
+  .pitch {
+    margin: 0 0 14px;
+    padding: 20px 14px 16px;
+    background: var(--navy);
+    border-radius: 16px;
+    color: var(--gold-2);
+  }
+  .pitch p { margin: 0; }
+  .pitch-era {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+  .pitch-ask {
+    margin-top: 8px;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--cream);
+  }
+  .pitch-ask b {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--gold-2);
+  }
+  .pitch-cost {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.4;
+  }
+  .pitch-cost b {
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--cream);
+  }
   .timeline {
     display: flex;
     flex-wrap: wrap;
@@ -717,6 +757,13 @@
     .strength-list .hook b { font-size: 64px; }
     .strength-list p { font-size: 28px; }
     .strength-list .em { font-size: 36px; }
+    .pitch { padding: 28px 36px 24px; }
+    .pitch-era br, br.ph { display: none; }
+    .pitch-era { font-size: 28px; }
+    .pitch-ask { font-size: 36px; }
+    .pitch-ask b { font-size: 64px; }
+    .pitch-cost { font-size: 30px; }
+    .pitch-cost b { font-size: 48px; }
     .block h2 { font-size: 34px; }
     .app-card h2 { font-size: 44px; }
   }
@@ -876,6 +923,11 @@
         <div class="body">
           <section class="block strengths">
             <h2>他社にない強み</h2>
+            <div class="pitch">
+              <p class="pitch-era">アプリ自体は<br>もう誰でも作れる時代に。</p>
+              <p class="pitch-ask">その会社に<br class="ph"><b class="nowrap">ピンポイント</b>で<br>必要としているものはなにか</p>
+              <p class="pitch-cost"><span class="nowrap">中小零細企業</span>でも<br><span class="nowrap">自社アプリ</span>を<br class="ph">作成できる<b class="nowrap">コスト</b>で。</p>
+            </div>
             <ul class="strength-list">
               <li>
                 <p class="hook"><b class="nowrap">0円</b>から</p>
