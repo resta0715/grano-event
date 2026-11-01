@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://resta0715.github.io/grano-event/assets/ai/kota.jpg">
 <meta property="og:locale" content="ja_JP">
 <link rel="icon" href="data:,">
-<link rel="preload" as="image" href="assets/ai/kota.webp" imagesrcset="assets/ai/kota-720.webp 720w, assets/ai/kota.webp 1024w" imagesizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 100vw" fetchpriority="high">
+<link rel="preload" as="image" href="assets/ai/kota-stripe.webp" imagesrcset="assets/ai/kota-stripe-480.webp 480w, assets/ai/kota-stripe.webp 682w" imagesizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 140px" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
@@ -231,6 +231,7 @@
   /* hero */
   .hero-photo { aspect-ratio: 1 / 1; align-self: stretch; }
   .hero-photo img { position: absolute; inset: 0; object-position: 50% 16%; }
+  #profile .hero-photo img { object-position: 50% 20%; }
   .hero .stack { grid-template-rows: 1fr auto; }
   .name-tile { display: flex; flex-direction: column; justify-content: center; }
   .role {
@@ -803,6 +804,18 @@
     cursor: pointer;
   }
 
+  @media (max-width: 767px) {
+    .hero { grid-template-columns: 112px minmax(0, 1fr); column-gap: 12px; }
+    .hero > .hero-photo { grid-column: 1; grid-row: 1; aspect-ratio: auto; min-height: 220px; }
+    .hero > .stack { display: contents; }
+    .hero .stack > * { grid-column: 1 / -1; }
+    .hero .stack > .name-tile { grid-column: 2; grid-row: 1; padding: 16px; }
+    .hero > .ai-path, .hero > .goals-tile { grid-column: 1 / -1; }
+    .hero .role { padding: 2px 10px 4px; font-size: 18px; }
+    .hero .kana { margin-top: 8px; font-size: 15px; letter-spacing: .14em; }
+    .hero h1 { font-size: min(40px, calc((100vw - 188px) / 5.1)); }
+    .hero .hero-sub { margin-top: 6px; font-size: 18px; line-height: 1.4; }
+  }
   @media (min-width: 768px) {
     .hero > .hero-photo { aspect-ratio: auto; min-height: 100%; }
     .hero .stack { min-height: var(--hero-h); }
@@ -1007,8 +1020,8 @@
   <main class="wrap">
     <div class="panel" data-panel="profile" id="profile">
       <section class="sec hero bento">
-        <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota.jpg" data-label="宇部光太">
-          <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAeABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDgbS3M7kDOBycDNXzaIjlASJAM7HGCRTNDkRdQhWR/LUuMtXVeI7K3YtdNuEqgENjANE5W0CEW7s5gSBRiiqbS80UuUfMMRUTG7JP8q1rnxFPcWa2zRJlV2b/UD2rFZ8saYW+c1bSe5KbWxYaaJjlosH2bAoqqTk0Uhn//2Q==) center/cover" fetchpriority="high" src="assets/ai/kota.webp" srcset="assets/ai/kota-720.webp 720w, assets/ai/kota.webp 1024w" sizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 100vw" width="1024" height="1536" alt="宇部光太">
+        <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota-stripe.jpg" data-label="宇部光太">
+          <img style="background:#5a4636 url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAeABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDC2j5WOMYUk/8AARWTclJFcxsGAPUVpwCO5jhimDGN3jDbeuPlz+laPinR7HSrZGgDq9wu/YRwPcH8+K57am/QzdET/iWp/vH+dFTaIB/Zkf1b+dFDiWpaHW6DYx2+nW8QiVZRGvmOByzY5/lWxc2VpqWltFexCWHk/N1X1wexrOtXICfR24/IVoCTZazjHChv/Qc/410JI5LnCfZDpUs1izZ8mRgpPdc5B/IiipvExJ1MSZ5eME/mR/SioaNVLQ//2Q==) center/cover" fetchpriority="high" src="assets/ai/kota-stripe.webp" srcset="assets/ai/kota-stripe-480.webp 480w, assets/ai/kota-stripe.webp 682w" sizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 140px" width="682" height="1024" alt="宇部光太">
         </button>
         <div class="stack t7 d8">
           <div class="tile name-tile">
@@ -1143,7 +1156,7 @@
     <div class="panel" data-panel="gains" id="gains" hidden>
       <section class="sec hero bento">
         <button type="button" class="tile shot hero-photo t5 d4" data-full="assets/ai/kota.jpg" data-label="宇部光太">
-          <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAeABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDgbS3M7kDOBycDNXzaIjlASJAM7HGCRTNDkRdQhWR/LUuMtXVeI7K3YtdNuEqgENjANE5W0CEW7s5gSBRiiqbS80UuUfMMRUTG7JP8q1rnxFPcWa2zRJlV2b/UD2rFZ8saYW+c1bSe5KbWxYaaJjlosH2bAoqqTk0Uhn//2Q==) center/cover" src="assets/ai/kota.webp" srcset="assets/ai/kota-720.webp 720w, assets/ai/kota.webp 1024w" sizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 100vw" width="1024" height="1536" alt="宇部光太" loading="lazy" decoding="async">
+          <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAeABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDgbS3M7kDOBycDNXzaIjlASJAM7HGCRTNDkRdQhWR/LUuMtXVeI7K3YtdNuEqgENjANE5W0CEW7s5gSBRiiqbS80UuUfMMRUTG7JP8q1rnxFPcWa2zRJlV2b/UD2rFZ8saYW+c1bSe5KbWxYaaJjlosH2bAoqqTk0Uhn//2Q==) center/cover" src="assets/ai/kota.webp" srcset="assets/ai/kota-720.webp 720w, assets/ai/kota.webp 1024w" sizes="(min-width: 1600px) 410px, (min-width: 1280px) 440px, (min-width: 768px) 410px, 140px" width="1024" height="1536" alt="宇部光太" loading="lazy" decoding="async">
         </button>
         <div class="stack t7 d8">
           <div class="tile name-tile">
