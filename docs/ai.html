@@ -575,6 +575,26 @@
   .pt-over-lab { font-size: var(--fs-l); }
   .pt-over-num { font-size: 28px; white-space: nowrap; }
   .pt-over-num b { font-family: var(--serif); font-size: 72px; line-height: 1; }
+  .pt-brand {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px 5px 5px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(20, 35, 58, .16);
+    color: var(--navy);
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: .02em;
+  }
+  .pt-photo .pt-brand img { position: static; width: 56px; height: 56px; object-fit: contain; }
+  .pt-brand-name { display: flex; flex-direction: column; }
+  .pt-brand-name small { font-size: .8em; font-weight: 700; color: var(--muted); }
   .pt-note {
     position: absolute;
     top: 14px;
@@ -993,6 +1013,19 @@
     .goals-title { margin-bottom: 8px; }
     .goals .num { font-size: 34px; }
   }
+  @media (max-width: 767px) {
+    .path .mile { font-size: min(44px, calc((100vw - 84px) / 7.2)); }
+    .secret-text p + p { font-size: min(22px, calc(((100vw - 32px) * .44 - 36px) / 6.3)); }
+    .stats span { font-size: min(19px, calc((100vw - 32px) / 19)); }
+    .team-name { font-size: min(28px, calc((100vw - 112px) / 9.2)); }
+    .team-with, .team-desc { font-size: min(24px, calc((100vw - 112px) / 11.3)); }
+    .timeline li > span:not(.year) { font-size: min(21px, calc(100vw / 18.6)); }
+  }
+  @media (max-width: 767px) {
+    .pt-brand { top: 10px; left: 10px; gap: 6px; padding: 4px 12px 4px 4px; border-radius: 12px; font-size: 14px; }
+    .pt-photo .pt-brand img { width: 44px; height: 44px; }
+  }
+  @media (max-width: 359px) { body { zoom: .853; } }
   @media (min-width: 1700px) { .wrap { width: min(2000px, 100%); } }
   @media (min-width: 768px) { body { zoom: .82; } }
   @media (min-width: 1280px) { body { zoom: .78; } }
@@ -1350,14 +1383,16 @@
             </ul>
           </div>
           <button type="button" class="tile shot pt-photo t6 d6" data-full="assets/ai/rg-kakigori.jpg" data-label="かき氷（イメージ画像）">
-            <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAPABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDorRQcVPZSSC5kjl+YdVPp7UsVr5IAZyfoKeGWIMQhyTXPY6L6WLZuApxRVBp1J+4aKVxWP//Z) center/cover" src="assets/ai/rg-kakigori.webp" srcset="assets/ai/rg-kakigori-640.webp 640w, assets/ai/rg-kakigori.webp 1000w" sizes="(min-width: 1600px) 400px, (min-width: 1280px) 30vw, (min-width: 768px) 48vw, 100vw" width="1152" height="864" alt="かき氷のイメージ画像" loading="lazy" decoding="async">
+            <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0SQ/ITXDXdpa3V0bo6qkM8DGRkIKlQBwV/qa37wSiII1zJgcZwOR6Gua8RS6eJld4gjB1kbbk7gB06cVxOV2d1GEVrMyft0ls7xt5RBbepbaSQec52nPWiqty+m3colFxdw/KBsjHHFFR7vYqz6M//9k=) center/cover" src="assets/ai/rg-kakigori.webp" srcset="assets/ai/rg-kakigori-640.webp 640w, assets/ai/rg-kakigori.webp 1000w" sizes="(min-width: 1600px) 400px, (min-width: 1280px) 30vw, (min-width: 768px) 48vw, 100vw" width="1152" height="864" alt="かき氷のイメージ画像" loading="lazy" decoding="async">
             <span class="pt-over"><span class="pt-over-lab">かき氷FC</span><span class="pt-over-num"><b>3</b>店舗</span></span>
             <span class="pt-note">イメージ</span>
+            <span class="pt-brand"><img src="assets/ai/logo-tsukimisou.webp" width="160" height="158" alt="" loading="lazy" decoding="async"><span class="nowrap">TSUKIMISOU</span></span>
           </button>
           <button type="button" class="tile shot pt-photo t6 d6" data-full="assets/ai/rg-autonail.jpg" data-label="オートネイル（イメージ画像）">
             <img style="background:#14233a url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAAPABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDqFktbdWNzIsQU43McA0+31bTJLlbe3uUeZ/uqOc1Xl0mK6Qx3eJ487gG7GoPsU2m/vYUikVOV4wVFY6JbGy1e5rNCzMSR1orNj8QoyAmM59qKi8SuWR//2Q==) center/cover" src="assets/ai/rg-autonail.webp" srcset="assets/ai/rg-autonail-640.webp 640w, assets/ai/rg-autonail.webp 1000w" sizes="(min-width: 1600px) 400px, (min-width: 1280px) 30vw, (min-width: 768px) 48vw, 100vw" width="1152" height="864" alt="オートネイルのイメージ画像" loading="lazy" decoding="async">
             <span class="pt-over"><span class="pt-over-lab">ネイルFC</span><span class="pt-over-num"><b>4</b>店舗</span></span>
             <span class="pt-note">イメージ</span>
+            <span class="pt-brand"><img src="assets/ai/logo-reyel.webp" width="160" height="160" alt="" loading="lazy" decoding="async"><span class="pt-brand-name"><span class="nowrap">Reyel</span><small class="nowrap">（レイエル）</small></span></span>
           </button>
           </div>
         </div>
