@@ -539,6 +539,36 @@
   .pt-shot img { position: absolute; inset: 0; }
   .pt-shot-site { cursor: pointer; }
   .pt-shot-site img { object-position: 50% 0; }
+  .pt-photo { aspect-ratio: 4 / 3; }
+  .pt-photo img { position: absolute; inset: 0; }
+  .pt-over {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 60px var(--pad) 22px;
+    background: linear-gradient(180deg, rgba(20,35,58,0) 0%, rgba(20,35,58,.78) 100%);
+    color: #fff;
+  }
+  .pt-over-lab { font-size: var(--fs-l); }
+  .pt-over-num { font-size: 28px; white-space: nowrap; }
+  .pt-over-num b { font-family: var(--serif); font-size: 72px; line-height: 1; }
+  .pt-note {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.82);
+    color: var(--muted);
+    font-size: 16px;
+  }
+  @media (min-width: 1024px) {
+    .pt-over-num b { font-size: 92px; }
+  }
   .pt-lab { color: var(--gold-deep); font-size: var(--fs); line-height: 1.4; }
   .pt-person {
     margin-top: 6px;
@@ -1096,25 +1126,23 @@
             <p class="team-name"><span class="nowrap">フランチャイズ運営</span><wbr><span class="nowrap">パワーチーム</span></p>
             <p class="team-desc"><span class="nowrap">RG株式会社</span>で、<wbr><span class="nowrap">かき氷のFC展開</span>と<wbr><span class="nowrap">オートネイル事業の</span><wbr><span class="nowrap">FC展開</span>を手がける</p>
           </div>
-          <button type="button" class="tile shot pt-shot d5" data-full="assets/ai/rg-fc.jpg" data-label="かき氷とオートネイルのFC（イメージ画像）">
-            <img src="assets/ai/rg-fc.jpg" width="1280" height="720" alt="かき氷とオートネイルのイメージ画像" loading="lazy">
-            <span class="cap">かき氷 × オートネイル（イメージ）</span>
-          </button>
-          <div class="tile pt-who d6">
+          <div class="tile pt-who center d5">
             <p class="pt-lab">一緒にやっている人</p>
             <ul class="pt-people">
               <li><p class="pt-person nowrap">あらい ひとみ さん</p><p class="pt-role"><span class="nowrap">かき氷</span> <span class="nowrap">TSUKIMISOU</span></p></li>
               <li><p class="pt-person nowrap">山田 研二 さん</p><p class="pt-role"><span class="nowrap">事業戦略支援</span><wbr><span class="nowrap">（オンライン秘書）</span></p></li>
             </ul>
           </div>
-          <div class="tile cream pt-stat center t6 d3">
-            <p class="pt-lab">ネイルFC</p>
-            <p class="pt-num"><b>4</b>店舗</p>
-          </div>
-          <div class="tile cream pt-stat center t6 d3">
-            <p class="pt-lab">かき氷FC</p>
-            <p class="pt-num"><b>3</b>店舗</p>
-          </div>
+          <button type="button" class="tile shot pt-photo t6 d6" data-full="assets/ai/rg-kakigori.jpg" data-label="かき氷（イメージ画像）">
+            <img src="assets/ai/rg-kakigori.jpg" width="1152" height="864" alt="かき氷のイメージ画像" loading="lazy" decoding="async">
+            <span class="pt-over"><span class="pt-over-lab">かき氷FC</span><span class="pt-over-num"><b>3</b>店舗</span></span>
+            <span class="pt-note">イメージ</span>
+          </button>
+          <button type="button" class="tile shot pt-photo t6 d6" data-full="assets/ai/rg-autonail.jpg" data-label="オートネイル（イメージ画像）">
+            <img src="assets/ai/rg-autonail.jpg" width="1152" height="864" alt="オートネイルのイメージ画像" loading="lazy" decoding="async">
+            <span class="pt-over"><span class="pt-over-lab">ネイルFC</span><span class="pt-over-num"><b>4</b>店舗</span></span>
+            <span class="pt-note">イメージ</span>
+          </button>
         </div>
       </section>
     </div>
