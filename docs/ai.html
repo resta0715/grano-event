@@ -1507,6 +1507,19 @@
           button.setAttribute("aria-pressed", on ? "true" : "false");
         });
       }
+      var root = document.documentElement;
+      var enterFull = root.requestFullscreen || root.webkitRequestFullscreen;
+      if (enterFull && window.matchMedia && matchMedia("(pointer: fine) and (min-width: 1024px)").matches) {
+        var firstClick = function () {
+          document.removeEventListener("pointerdown", firstClick, true);
+          if (document.fullscreenElement || document.webkitFullscreenElement) return;
+          try {
+            var r = enterFull.call(root);
+            if (r && r.catch) r.catch(function () {});
+          } catch (e) {}
+        };
+        document.addEventListener("pointerdown", firstClick, true);
+      }
       var calm = !window.matchMedia || matchMedia("(prefers-reduced-motion: reduce)").matches;
       var curtain = document.querySelector(".sheet-curtain");
       var curtainPath = curtain.querySelector("path");
