@@ -3,11 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>痛ネイルオートプリンター｜チラシ</title>
+<title>痛ネイル｜チラシ 2種</title>
 <style>
   @page { size: A4 portrait; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: #000; }
+  html, body { background: #111; color: #fff; font-family: "Hiragino Sans", sans-serif; }
+  .label {
+    max-width: 210mm;
+    margin: 12px auto 4px;
+    padding: 0 8px;
+    font-size: 16px;
+    font-weight: 700;
+  }
   img {
     display: block;
     width: 210mm;
@@ -16,16 +23,21 @@
     object-fit: cover;
   }
   @media screen {
-    body { padding: 16px 0; }
-    img { height: auto; max-width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+    body { padding-bottom: 32px; }
+    img { height: auto; max-width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
   }
   @media print {
+    .label { display: none; }
+    img { break-after: page; page-break-after: always; }
+    img:last-child { break-after: auto; page-break-after: auto; }
     html, body { background: #fff; }
-    img { width: 210mm; height: 297mm; box-shadow: none; }
   }
 </style>
 </head>
 <body>
-<img src="itaneil/flyer.jpg" alt="痛ネイルオートプリンターのチラシ">
+<p class="label">1. 個人向け　痛ネイルチップ</p>
+<img src="itaneil/flyer-chip.jpg" alt="個人向けの痛ネイルチップのチラシ">
+<p class="label">2. マシン導入　痛ネイルオートプリンター</p>
+<img src="itaneil/flyer-machine.jpg" alt="プリンター導入のチラシ">
 </body>
 </html>
