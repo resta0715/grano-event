@@ -2,171 +2,30 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>痛ネイルオートプリンター</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>痛ネイルオートプリンター｜チラシ</title>
 <style>
-@page { size: A4 portrait; margin: 0; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-  width: 210mm; height: 297mm; margin: 0;
-  background: #050508; color: #fff;
-  font-family: "Zen Kaku Gothic New", "Noto Sans CJK JP", "Hiragino Sans", sans-serif;
-  font-weight: 700;
-  word-break: keep-all; line-break: strict;
-  -webkit-print-color-adjust: exact; print-color-adjust: exact;
-}
-.scaler { width: 210mm; height: 297mm; }
-.page {
-  width: 210mm; height: 297mm; overflow: hidden;
-  display: flex; flex-direction: column;
-  background: #07070b;
-}
-.nw { white-space: nowrap; }
-.display { font-family: "Dela Gothic One", "Zen Kaku Gothic New", sans-serif; font-weight: 400; }
-.tape {
-  flex: 0 0 4.2mm;
-  background: repeating-linear-gradient(135deg, #ffe500 0 3.2mm, #111 3.2mm 6.4mm);
-}
-.hero { flex: 0 0 auto; padding: 1.6mm 4mm 1.2mm; }
-h1 {
-  font-size: 30pt; line-height: 1.02; letter-spacing: 0.01em;
-  color: #fff;
-  text-shadow: 0.7mm 0.7mm 0 #ff2bd6, -0.35mm 0 0 #39fff2;
-}
-.sub {
-  margin-top: 0.8mm;
-  font-size: 16pt; font-weight: 900; line-height: 1.25;
-  color: #ffe500;
-}
-.claims { flex: 0 0 auto; padding: 0.6mm 3.2mm 1.2mm; display: flex; flex-direction: column; gap: 1.1mm; }
-.both {
-  font-size: 16pt; font-weight: 900; line-height: 1.2;
-  color: #39fff2;
-}
-.c1, .c2 {
-  font-size: 18.5pt; line-height: 1.18;
-  padding: 1.1mm 2.6mm 1.3mm;
-  border: 0.55mm solid #fff;
-}
-.c1 { background: #ff2bd6; color: #fff; box-shadow: 1.1mm 1.1mm 0 #39fff2; }
-.c2 { background: #ffe500; color: #14110a; box-shadow: 1.1mm 1.1mm 0 #ff2bd6; }
-.row {
-  flex: 1 1 auto; min-height: 0;
-  display: flex; gap: 1.3mm; padding: 0 1.3mm;
-}
-.row img {
-  height: 100%; min-width: 0;
-  object-fit: cover; object-position: center;
-  border: 0.9mm solid #fff;
-  box-shadow: 0.7mm 0.7mm 0 #ff2bd6;
-}
-.row .wide { flex: 1.45; }
-.row .mid { flex: 1; }
-.row .slim { flex: 0.78; }
-.bands { flex: 0 0 auto; padding: 1.3mm 3mm; display: flex; flex-direction: column; gap: 0.7mm; }
-.band {
-  font-size: 16pt; font-weight: 900; line-height: 1.22;
-  padding: 0.7mm 2.2mm;
-}
-.band.pink { background: #ff2bd6; }
-.band.cyan { background: #102428; color: #39fff2; border: 0.4mm solid #39fff2; }
-.band.yellow { background: #ffe500; color: #14110a; }
-.band .tag {
-  display: inline-block;
-  background: #07070b; color: #ffe500;
-  padding: 0 1.4mm; margin-right: 1.4mm;
-}
-.band.cyan .tag { background: #39fff2; color: #071016; }
-.price { font-size: 18pt; }
-.foot {
-  flex: 0 0 72mm;
-  display: grid;
-  grid-template-columns: 1fr 40mm;
-  grid-template-rows: 1fr auto;
-  gap: 1mm 3mm;
-  padding: 1.6mm 3.2mm 1.4mm;
-  background: #07070b;
-  border-top: 1.3mm solid #ff2bd6;
-}
-.linebox { display: flex; align-items: center; gap: 3mm; min-width: 0; }
-.line-label {
-  font-size: 20pt; line-height: 1.15; color: #ffe500;
-  text-shadow: 0.45mm 0.45mm 0 #ff2bd6;
-}
-.qr-empty {
-  width: 56mm; height: 56mm; flex: 0 0 56mm;
-  background:
-    linear-gradient(#fff, #fff) padding-box,
-    repeating-linear-gradient(90deg, #ff2bd6 0 3mm, #ffe500 3mm 6mm, #39fff2 6mm 9mm) border-box;
-  border: 1.5mm solid transparent;
-  box-shadow: 1mm 1mm 0 #39fff2;
-}
-.lp { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.lp .who { font-size: 16pt; font-weight: 900; line-height: 1.2; }
-.lp img { width: 28mm; height: 28mm; margin-top: 0.8mm; background: #fff; }
-.lp .cap { font-size: 16pt; font-weight: 900; color: #39fff2; margin-top: 0.3mm; }
-.rights {
-  grid-column: 1 / -1;
-  font-size: 9pt; font-weight: 700; line-height: 1.3;
-  color: rgba(255,255,255,.78);
-}
-@media screen and (max-width: 200mm) {
-  html, body { width: 100%; height: auto; overflow-x: hidden; }
-  .scaler { width: 100vw; height: calc(297mm * 100vw / 210mm); overflow: hidden; }
-  .page { transform: scale(calc(100vw / 210mm)); transform-origin: top left; }
-}
-@media print {
-  .scaler { width: 210mm; height: 297mm; overflow: visible; }
-  .page { transform: none; }
-}
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #000; }
+  img {
+    display: block;
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    object-fit: cover;
+  }
+  @media screen {
+    body { padding: 16px 0; }
+    img { height: auto; max-width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+  }
+  @media print {
+    html, body { background: #fff; }
+    img { width: 210mm; height: 297mm; box-shadow: none; }
+  }
 </style>
 </head>
 <body>
-<div class="scaler">
-<div class="page">
-  <div class="tape" aria-hidden="true"></div>
-  <header class="hero">
-    <h1 class="display nw">痛ネイルオートプリンター</h1>
-    <p class="sub">イベント出店の集客に。痛ネイルチップ販売に。</p>
-  </header>
-  <div class="claims">
-    <p class="both">出店者向けにも、推しを指に乗せたい人にも。</p>
-    <p class="c1 display">好きな推しの画像を持ち込めば、<br>痛ネイルチップに刷る。</p>
-    <p class="c2 display">痛車のプリントと同じ。<br>データがあれば、指先に載せられる。</p>
-  </div>
-  <div class="row">
-    <img class="wide" src="itaneil/fan.jpg" alt="蛍光とチェッカーのオリジナル痛ネイルチップを指のあいだに並べたところ">
-    <img class="mid" src="itaneil/silver.jpg" alt="銀髪のオリジナルキャラが端まで載った痛ネイル">
-    <img class="slim" src="itaneil/black.jpg" alt="レーシング柄のオリジナルキャラを刷ったネイルチップ">
-  </div>
-  <div class="bands">
-    <p class="band pink"><span class="tag">出店者向け</span><span class="price nw">売価 7,000〜10,000円</span>　<span class="nw">月々　当日案内</span></p>
-    <p class="band">ビジネスをしている人には、それをフックに集客と動員を増やす。</p>
-    <p class="band cyan"><span class="tag">推しを指に乗せたい人向け</span><span class="nw">痛ネイルチップ作成</span>　<span class="price nw">10本セット　5,000〜8,000円</span></p>
-    <p class="band">好きな推しキャラ、推しカラー。<span class="nw">高品質プリント</span>。ジェルコーティングなので、長持ちする。</p>
-    <p class="band yellow">推しキャラを、常に指先に。　今日、実物の痛ネイルを見られる</p>
-  </div>
-  <div class="row">
-    <img class="wide" src="itaneil/set.jpg" alt="チェッカーと炎のオリジナル痛ネイルチップ10本">
-    <img class="mid" src="itaneil/hand.jpg" alt="五本の指を埋めるオリジナルの痛ネイル">
-    <img class="slim" src="itaneil/macro.jpg" alt="指先いっぱいにオリジナルキャラを載せたネイルの拡大">
-  </div>
-  <footer class="foot">
-    <div class="linebox">
-      <div class="qr-empty" role="img" aria-label="宇部の公式LINE"></div>
-      <p class="line-label display">宇部の<br>公式LINE</p>
-    </div>
-    <div class="lp">
-      <p class="who">問い合わせ<br>RG株式会社<br>宇部光太</p>
-      <img src="itaneil/lp-qr.png" alt="作例と詳細のページへのQR">
-      <p class="cap">作例と詳細</p>
-    </div>
-    <p class="rights">版権キャラの商用利用は、依頼する側の責任で権利者のルールに従う。</p>
-  </footer>
-  <div class="tape" aria-hidden="true"></div>
-</div>
-</div>
+<img src="itaneil/flyer.jpg" alt="痛ネイルオートプリンターのチラシ">
 </body>
 </html>
