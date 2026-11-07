@@ -7,235 +7,226 @@
 <meta name="description" content="痛ネイルチップは、推しの画像を持ち込めば刷れる。痛ネイルオートプリンターは、イベント出店の集客に。RG株式会社">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f4f1ec;
-    --ink: #1c1b19;
-    --muted: #5f5a54;
-    --line: #ddd6cc;
-    --panel: #ebe6df;
+    --ink: #1d1d1f;
+    --ink-2: #424245;
+    --muted: #6e6e73;
+    --line: #d2d2d7;
+    --bg: #ffffff;
+    --bg-alt: #f5f5f7;
+    --accent: #2f6b3a;
+    --nav-h: 48px;
+    --wrap: 1120px;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; background: var(--paper); }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   body {
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
-    font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 1.75;
-    word-break: keep-all;
+    font-family: var(--font);
+    font-size: 19px;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    word-break: auto-phrase;
     line-break: strict;
+    overflow-wrap: anywhere;
   }
-  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
-  .bar {
+  a:hover { opacity: 0.82; }
+  .nav {
     position: sticky;
     top: 0;
-    z-index: 5;
+    z-index: 20;
+    height: var(--nav-h);
+    background: rgba(251, 251, 253, 0.82);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .nav-in {
+    height: 100%;
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 14px 6vw;
-    background: rgba(244,241,236,.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
   }
-  .brand {
-    font-family: "Shippori Mincho", serif;
+  .nav img { height: 28px; width: auto; }
+  .nav nav { display: flex; gap: 28px; }
+  .nav nav a {
+    font-size: 15px;
+    white-space: nowrap;
+    opacity: 0.82;
+  }
+  .hero { padding: 72px 0 0; text-align: center; }
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
+  .eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--accent);
+    font-size: 21px;
     font-weight: 600;
-    font-size: 18px;
-    letter-spacing: .08em;
-  }
-  .bar nav { display: flex; gap: 22px; }
-  .bar nav a {
-    font-size: 14px;
-    letter-spacing: .12em;
-    color: var(--muted);
-  }
-  .hero { height: 68vh; min-height: 320px; max-height: 820px; background: #111; }
-  .intro {
-    display: grid;
-    gap: 18px;
-    padding: 48px 6vw 56px;
-    border-bottom: 1px solid var(--line);
+    line-height: 1.3;
   }
   h1 {
-    font-family: "Shippori Mincho", serif;
-    font-weight: 600;
-    font-size: clamp(40px, 6vw, 72px);
-    line-height: 1.15;
-    letter-spacing: .04em;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
   }
-  .intro p {
-    max-width: 28em;
-    color: var(--muted);
-    font-size: 17px;
+  .lead {
+    max-width: 18em;
+    margin: 20px auto 0;
+    color: var(--ink-2);
+    font-size: clamp(18px, 1.7vw, 24px);
+    line-height: 1.6;
   }
-  .block {
+  .hero-fig {
+    max-width: 1200px;
+    margin: 56px auto 0;
+    padding: 0 32px;
+  }
+  .hero-fig img {
+    width: 100%;
+    height: min(62vh, 640px);
+    object-fit: cover;
+    border-radius: 28px;
+  }
+  .section { padding: 112px 0; }
+  .section.alt { background: var(--bg-alt); }
+  .split {
     display: grid;
-    grid-template-columns: 1fr;
-    border-bottom: 1px solid var(--line);
-    scroll-margin-top: 56px;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
   }
-  .visual {
-    min-height: 280px;
-    height: 62vw;
-    background: var(--panel);
+  .split.flip .photo { order: 2; }
+  .photo {
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
   }
-  .visual.machine { height: 72vw; background: #f7f5f2; }
-  .visual.machine img { object-fit: contain; padding: 28px 18vw; }
-  .text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 40px 6vw 48px;
-  }
-  .kicker {
-    font-size: 12px;
-    letter-spacing: .22em;
-    color: var(--muted);
-    margin-bottom: 14px;
-  }
+  .photo img { width: 100%; height: 460px; object-fit: cover; }
+  .photo.machine { background: var(--bg); }
+  .section.alt .photo.machine { background: #fff; }
+  .photo.machine img { object-fit: contain; height: 460px; padding: 36px; background: #fff; }
   h2 {
-    font-family: "Shippori Mincho", serif;
-    font-weight: 600;
-    font-size: clamp(32px, 4vw, 52px);
-    line-height: 1.25;
-    letter-spacing: .04em;
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.18;
   }
-  .body {
-    margin-top: 18px;
-    max-width: 28em;
-    font-size: 17px;
-  }
-  .price {
-    margin-top: 28px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-  }
+  .body { margin-top: 16px; color: var(--ink-2); font-size: 19px; line-height: 1.75; }
+  .price { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
   .price b {
     display: block;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: .16em;
     color: var(--muted);
+    font-size: 15px;
+    font-weight: 500;
   }
   .price strong {
     display: block;
     margin-top: 4px;
-    font-family: "Shippori Mincho", serif;
-    font-weight: 600;
-    font-size: clamp(28px, 3vw, 40px);
-    letter-spacing: .03em;
-    line-height: 1.2;
+    font-size: clamp(32px, 3vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
-  .note {
-    margin-top: 14px;
-    max-width: 28em;
-    color: var(--muted);
-    font-size: 15px;
-  }
-  footer {
-    padding: 36px 6vw 48px;
-  }
-  footer strong {
-    font-family: "Shippori Mincho", serif;
-    font-weight: 600;
-    font-size: 18px;
-    letter-spacing: .08em;
-  }
-  footer p {
-    margin-top: 8px;
-    max-width: 40em;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  @media (min-width: 800px) {
-    .intro {
-      grid-template-columns: minmax(8em, .7fr) 1.3fr;
-      align-items: end;
-      gap: 40px;
-      padding: 72px 6vw 80px;
-    }
-    .intro p { font-size: 18px; justify-self: end; }
-    .block { grid-template-columns: 1.05fr .95fr; }
-    .block.flip { grid-template-columns: .95fr 1.05fr; }
-    .block.flip .visual { order: 2; }
-    .visual, .visual.machine { height: auto; min-height: 520px; }
-    .visual.machine img { padding: 48px 12%; }
-    .text { padding: 8vh 6vw; }
-    .body { font-size: 18px; }
-  }
-  @media (max-width: 799px) {
-    .hero { height: 54vh; }
-    .bar { padding: 12px 16px; }
-    .brand { font-size: 16px; letter-spacing: .04em; }
-    .bar nav { gap: 14px; flex-shrink: 0; }
-    .bar nav a { font-size: 13px; letter-spacing: .06em; }
-    .intro, .text, footer { padding-left: 20px; padding-right: 20px; }
-    .visual { height: 72vw; min-height: 240px; }
-    .visual.machine { height: 78vw; }
-    .visual.machine img { padding: 24px 16vw; }
+  .note { margin-top: 14px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+  footer { padding: 48px 0 56px; background: var(--bg-alt); color: var(--muted); font-size: 14px; line-height: 1.7; }
+  footer img { width: 148px; height: auto; margin-bottom: 12px; }
+  footer p + p { margin-top: 6px; }
+  @media (max-width: 800px) {
+    body { font-size: 17px; }
+    .nav-in, .wrap, .hero-fig { padding-left: 20px; padding-right: 20px; }
+    .nav nav { gap: 16px; }
+    .nav nav a { font-size: 14px; }
+    .hero { padding-top: 48px; }
+    .eyebrow { font-size: 18px; }
+    h1 { font-size: clamp(36px, 10vw, 48px); }
+    .lead { font-size: 18px; }
+    .hero-fig { margin-top: 36px; }
+    .hero-fig img { height: 52vw; min-height: 220px; border-radius: 20px; }
+    .section { padding: 72px 0; }
+    .split, .split.flip { grid-template-columns: 1fr; gap: 28px; }
+    .split.flip .photo { order: 0; }
+    .photo img, .photo.machine img { height: 64vw; min-height: 240px; }
+    .photo.machine img { padding: 20px; }
+    h2 { font-size: clamp(30px, 8vw, 40px); }
+    .body { font-size: 17px; }
   }
 </style>
 </head>
 <body>
-<header class="bar">
-  <a class="brand" href="#top">痛ネイル</a>
-  <nav>
-    <a href="#machine">プリンター</a>
-    <a href="#chip">チップ</a>
-  </nav>
+<header class="nav">
+  <div class="nav-in">
+    <a href="#top"><img src="itaneil/rg-wordmark.png" srcset="itaneil/rg-wordmark@2x.png 2x" alt="RG株式会社" width="94" height="40"></a>
+    <nav>
+      <a href="#machine">プリンター</a>
+      <a href="#chip">チップ</a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero" id="top">
-  <img src="itaneil/fan.jpg" alt="色と柄の違う痛ネイルチップ">
-</section>
-
-<section class="intro">
-  <h1>痛ネイル</h1>
-  <p>チップの販売と、プリンターの導入。持ち込む画像を刷る話と、イベントの集客にする話を、分けて案内します。</p>
-</section>
-
-<section class="block" id="machine">
-  <div class="visual machine">
-    <img src="itaneil/printer.jpg" alt="痛ネイルオートプリンター">
-  </div>
-  <div class="text">
-    <p class="kicker">導入</p>
-    <h2>痛ネイル<br>オートプリンター</h2>
-    <p class="body">イベント出店の集客に。その場でチップを刷って、売り場にする。集客と、動員のフックです。</p>
-    <div class="price">
-      <b>月額</b>
-      <strong>35,000円〜</strong>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">痛ネイル</span>
+      <h1>チップと、<br>プリンター。</h1>
+      <p class="lead">持ち込めば刷る話と、イベントの集客にする話を、分けて案内します。</p>
     </div>
-  </div>
-</section>
+    <figure class="hero-fig">
+      <img src="itaneil/fan.jpg" alt="色と柄の違う痛ネイルチップ">
+    </figure>
+  </section>
 
-<section class="block flip" id="chip">
-  <div class="visual">
-    <img src="itaneil/set.jpg" alt="痛ネイルチップ">
-  </div>
-  <div class="text">
-    <p class="kicker">チップ</p>
-    <h2>痛ネイルチップ</h2>
-    <p class="body">好きな推しの画像を持ち込めば刷る。痛車のプリントと同じです。データがあれば、指先に載せられます。</p>
-    <div class="price">
-      <b>料金</b>
-      <strong>7,000円〜</strong>
+  <section class="section alt" id="machine">
+    <div class="wrap split">
+      <div class="photo machine">
+        <img src="itaneil/printer.jpg" alt="痛ネイルオートプリンター">
+      </div>
+      <div>
+        <span class="eyebrow">導入</span>
+        <h2>痛ネイル<br>オートプリンター</h2>
+        <p class="body">イベント出店の集客に。その場でチップを刷って、売り場にする。集客と、動員のフックです。</p>
+        <div class="price">
+          <b>月額</b>
+          <strong>35,000円〜</strong>
+        </div>
+      </div>
     </div>
-    <p class="note">ジェルコーティングで、長持ちする。推しを、常に指先に。</p>
-  </div>
-</section>
+  </section>
+
+  <section class="section" id="chip">
+    <div class="wrap split flip">
+      <div class="photo">
+        <img src="itaneil/set.jpg" alt="痛ネイルチップ">
+      </div>
+      <div>
+        <span class="eyebrow">チップ</span>
+        <h2>痛ネイルチップ</h2>
+        <p class="body">好きな推しの画像を持ち込めば刷る。痛車のプリントと同じです。データがあれば、指先に載せられます。</p>
+        <div class="price">
+          <b>料金</b>
+          <strong>7,000円〜</strong>
+        </div>
+        <p class="note">ジェルコーティングで、長持ちする。推しを、常に指先に。</p>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <strong>RG株式会社</strong>
-  <p>公式LINEは、会場で案内します。</p>
-  <p>版権キャラの商用利用は、データを持ち込む側が権利者のルールに従う。</p>
+  <div class="wrap">
+    <img src="itaneil/rg-logo.png" alt="RG株式会社">
+    <p>公式LINEは、会場で案内します。</p>
+    <p>版権キャラの商用利用は、データを持ち込む側が権利者のルールに従う。</p>
+  </div>
 </footer>
 </body>
 </html>
